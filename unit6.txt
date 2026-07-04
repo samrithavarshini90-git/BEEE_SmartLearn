@@ -1,0 +1,878 @@
+                         U20EST117
+     BASIC E L E C T R I C A L AND
+  E L E C T R O N I C S ENGINEERING
+
+
+
+
+                             UNIT-6
+
+          COMMUNICATION S Y S T E M S
+6.1 Analog Communication System    6.6 Satellite Communication
+• Block diagram                    7. Cellular Mobile Communication
+• Need for Modulation              8. Fibre Optical Communication
+• AM, FM , and PM                  System
+6.2 Digital Communication System
+• Block diagram
+• A S K , F S K , and PSK
+3. Comparison of Analog and
+Digital Communication System
+4. Electromagnetic Spectrum
+5. Wired and Wireless Channel
+
+
+
+
+                                                                      1
+                              INTRODUCTION
+
+▪   The   process      of   transmitting     and    receiving     meaningful
+    information or intelligence is termed as ‘communication’.
+▪   Electronic    communication        involves    converting     speech     or
+    intelligence into electrical signals using transducers.
+▪   The signals are processed and transmitted. Receiver located
+    kilometers away from the transmitter receives these signals.
+▪   The receiver processes the received signals and finally drives
+    the transducer which converts the processed signals into speech
+    or intelligence.
+▪   Radio commnication (Transmission and reception) is one of the
+    effective communication system.
+
+
+
+
+                6.1 ANALOG COMMUNICATION SYSTEM
+
+
+
+
+The transmission of information and reception of meaningful information can
+be successfully achieved with the help of two processes. The two processes are
+1. Modulation
+2. Demodulation
+
+
+
+
+                                                                                  2
+(i) Information Source:
+▪    A communication system serves to communicate a message or information. This
+    information originates in the information source.
+▪   In general, there can be various messages in the form of words, group of words,
+    code, symbols, sound signal etc.
+▪   However, out of these messages, only the desired message is selected and
+    communicated. Therefore, we can say that the function of information source is to
+    produce required message which has to be transmitted.
+(ii)Input Transducer
+▪   A transducer is a device which converts one form of energy into another form.
+▪   The message from the information source may or may not be electrical in nature.
+▪   In a case when the message produced by the information source is not electrical in
+    nature, an input transducer is used to convert it into a time-varying electrical
+    signal.
+▪   For example, in case of radio-broadcasting, a microphone converts the information
+    or massage which is in the form of sound waves into corresponding electrical signal.
+
+
+
+
+(iii)Transmitter:
+▪   The function of the transmitter is to process the electrical signal from
+    different aspects.
+▪   For example in radio broadcasting the electrical signal obtained from sound
+    signal, is processed to restrict its range of audio frequencies (upto 5 kHz in
+    amplitude modulation radio broadcast ) and is often amplified.
+▪   In wire telephony, no real processing is needed. However, in long-distance
+    radio communication, signal amplification is necessary before modulation.
+▪   Modulation is the main function of the transmitter. In modulation, the
+    message signal is superimposed upon the high-frequency carrier signal.
+▪   In short, we can say that inside the transmitter, signal processings such as
+    restriction of range of audio frequencies, amplification and modulation of
+    signal are achieved.
+▪   All these processings of the message signal are done just to ease the
+    transmission of the signal through the channel.
+
+
+
+
+                                                                                           3
+(iv) Channel:
+▪   The term channel means the medium through which the message travels from the transmitter to the
+    receiver. In other words, we can say that the function of the channel is to provide a physical connection
+    between the transmitter and the receiver.
+
+▪   There are two types of channels, namely point-to-point channels and broadcast channels. Example of
+    point-to-point channels are wire lines, microwave links and optical fibres. Wire-lines operate by guided
+    electromagnetic waves and they are used for local telephone transmission. In case of microwave links,
+    the transmitted signal is radiated as an electromagnetic wave in free space. Microwave links are used in
+    long distance   telephone transmission.     An optical fibre is a low-loss,   well-controlled, guided optical
+    medium. Optical fibres are used in optical communications. On the other hand, the broadcast channel
+    provides a capability where several receiving stations can be reached simultaneously from a single
+    transmitter. An example of a broadcast channel is a satellite in geostationary orbit, which covers about
+    one third of the earth’s surface.
+
+▪   During the process of transmission and reception the signal gets distorted due to noise introduced in
+    the system. Noise is an unwanted signal which tend to interfere with the required signal. Noise signal is
+    always random in character. Noise may interfere with signal at any point in a communication system.
+    However, the noise has its greatest effect on the signal in the channel.
+
+
+
+
+(v) Receiver:
+▪   The main function of the receiver is to reproduce the message
+    signal in electrical form from the distorted received signal. This
+    reproduction of the original signal is accomplished by a process
+    known as the demodulation or detection. Demodulation is the
+    reverse process of modulation carried out in transmitter.
+(vi)Output Transducer:
+▪   It is the final stage which is used to convert an electrical
+    message signal into its original form.
+▪   For example in radio broadcasting,                                   the      destination           is     a
+    loudspeaker which works as a transducer i.e. converts the
+    electrical signal in the form of original sound signal.
+
+
+
+
+                                                                                                                    4
+           (Low frequency signal )
+
+
+
+
+                                     (High frequency signal )
+
+
+
+
+Modulation :
+▪ Modulation is the process of combining the low-frequency audio waves with
+   a very-high     frequency radio waves. The              low-frequency   wave is called
+   Modulating Wave. The very-high frequency radio wave which carries the low
+   frequency audio wave information is called a Carrier Wave. The resultant
+   wave obtained is called Modulated Carrier.
+Demodulation :
+▪ Demodulation involves recovering the low-frequency audio wave from the
+   Modulated Carrier Wave. This process is performed at the receiving end. It
+   is the reverse process of modulation.
+Carrier Wave :
+▪  Carrier wave is a high frequency radio wave produced using radio-frequency
+   oscillators. The radio frequency ranges from 3kHz to 300GHz. In radio
+   transmission, Carrier waves in the radio frequency range from hundreds of
+   kHz to few MHz are preferred.
+
+
+
+
+                                                                                            5
+                                       Baseband signal:
+                                       The signal which contains a message
+                                       to be transmitted.
+
+                                       Carrier signal (Sinusoidal Signal):
+                                       The high frequency signal which
+                                       has a certain phase, frequency,
+                                       and amplitude but contains no
+                                       information.
+
+
+                                       Modulated signal :
+                                       The resultant signal after the process
+                                       of modulation
+
+
+
+
+Need for Modulation :
+▪   Low frequency signals cannot propagate over long distances. They are
+    short range signals
+▪   If there are many transmissions of low frequency signals directly
+    without   modulation   they   interfere    and   the   information   at   the
+    receiving end will not be clear.
+▪   The antenna length required for the transmission of audio-frequency
+    signals is around 75 m which is practically very large.
+Thus a low frequency signal cannot be transmitted effectively and
+efficiently without modulation. Hence radio frequency carrier waves are
+modulated by low frequency signals and are transmitted to reach longer
+distances. Even the antenna size required for the transmission of the
+radio frequency waves is of reasonable size.
+
+
+
+
+                                                                                    6
+Thus, Baseband signal transmission cannot be used for radio
+communication. To transmit the baseband signal for radio
+
+communication,      modulation   must be used. Modulation   is
+necessary because of following advantages:
+▪   Reduction in height of antenna.
+▪   Avoids mixing of signals.
+▪   Increase the range of communication.
+▪   Multiplexing is possible.
+▪   Improves quality of reception
+
+
+
+
+                      Types of Modulation
+
+
+
+
+                                                                 7
+Amplitude Modulation:
+In amplitude modulation the amplitude
+of the radio-frequency (RF) carrier wave
+is varied by low frequency audio signals(
+AF) without affecting the frequency and
+phase of the carrier wave.
+
+
+
+
+Frequency Modulation:
+The frequency of the radio frequency
+carrier wave is varied by low frequency
+audio signals then the modulation is
+called Frequency Modulation.
+In frequency modulation the amplitude
+and phase of the carrier wave remain
+
+unchanged.
+
+
+
+
+                                            8
+Phase Modulation:
+During       the     phase      modulation         the
+information signal modifies the phase of
+the carrier without affecting the other
+two parameters.
+
+
+
+
+                6.2 DIGITAL COMMUNICATION SYSTEM
+
+
+
+
+In a Digital Communication System, the messages generated by the source which are generally
+in analog form are converted to digital format and then transmitted. At the receiver end, the
+received digital data is converted back to analog form, which is an approximation of the original
+message
+
+
+
+
+                                                                                                    9
+(i)Information Transducer:
+▪   The input source or the source of information are generally analog in nature.
+    Since the information from the input source are non-electrical quantity, the
+    input   transducer   convert    this   non-electrical   quantity     into   electrical
+    quantity.
+    ▪   Analog Data: Microphone, speech signal, image, video et c…
+    ▪   Discrete (Digital) Data: keyboard, binary numbers, hex numbers, et c…
+(ii)Formatters:
+▪   Converting    continuous     time   signal   to   sequence   of   binary    digits   or
+    “information sequence”
+(iii) Source Encoder
+▪   The source encoder is used to compress the data into minimum number of
+    bits. This helps in effective utilization of the bandwidth. It removes the
+    redundant bits or unnecessary excess bits that is zeros from the input data.
+
+
+
+
+(iv)Channel Encoder
+▪  The channel encoder, does the coding for error correction. During the
+    transmission of the signal, due to the noise in the channel, the signal may
+    get altered. Hence, the channel encoder provides some redundant bits to the
+    message data in order to provide an error free data on the receiver side.
+(v) Modulator:
+▪   The digital data is modulated with the help of a high frequency carrier
+(vi) Channel:
+▪   The communication      channel is      the medium via        which   the    signal   is
+    transmitted from the transmitting end to the receiving end. It is the part of
+    model at which maximum noise is added to the signal.
+(vii) Demodulator:
+▪   The base-band decoder is used to recover the original data from the pulse
+    shaped or line coded data.
+
+
+
+
+                                                                                              10
+(viii)Channel Decoder
+▪  The channel decoder, after detecting          the   sequence,   does some    error
+     corrections.
+▪    During the transmission, the signal might get distorted. This is corrected by
+     adding some redundant bits to the signal. This addition of bits helps in the
+     complete recovery of the original signal.
+(ix)Source Decoder:
+▪  The resultant signal is once again digitized by sampling and quantizing so
+     that the pure digital output is obtained without the loss of information. The
+     source decoder recreates the source output.
+(x) Deformatter:
+▪    The deformatter converts the digital data into analog signal.
+(x) Output Transducer:
+▪   It converts the electrical signal into physical output         for example: loud
+     speaker.
+
+
+
+
+    Amplitude S h i f t Keying:
+    A binary information signal directly modulates the amplitude of an
+    analog carrier.
+
+
+
+
+                                                                                        11
+Frequency S h i f t Keying:
+A binary information signal directly modulates the frequency of an
+analog carrier.
+
+
+
+
+Phase S h i f t Keying:
+A binary information signal directly modulates the phase of an analog
+carrier.
+
+
+
+
+                                                                        12
+    6.3 COMPARISON BETWEEN ANALOG AND DIGITAL COMMUNICATION
+
+              Analog Communication                                     Digital Communication
+
+Transmitted signal is analog in nature               Transmitted signal is digital or train of digital pulses
+Amplitude, frequency, or phase variations in the Amplitude, width, or position of the transmitted pulses is
+transmitted signal represent the information or constant. The message is transmitted in the form of code
+message.                                         words.
+Noise immunity is poor for AM, but improved in       Noise immunity is excellent
+F M and PM.
+It is not possible to separate noise      signal.    It not possible to separate signal from noise. Therefore,
+Therefore, repeaters cannot be used.                 repeaters can be used.
+Coding is not possible                               Coding techniques can be used to detect and correct the
+                                                     errors.
+Bandwidth required is lower than that for the        Due to higher      bitrates, higher   channel   bandwidth   is
+digital modulation method.                           required.
+Not suitable for transmission of secret              Due to loading techniques, it is suitable for military
+information in military application.                 applications.
+Analog modulation systems:                           Digital modulation systems:
+• AM, F M , PM, PAM, etc                             • P CM , DM, etc
+
+
+                                                                                                                  25
+
+
+
+
+                         6.4 EL ECTROMAGNETIC SPECTRUM
+
+▪   The electromagnetic spectrum is the range of frequencies of
+    electromagnetic radiation and their respective wavelengths and
+    photon energies.
+▪   The electromagnetic spectrum covers electromagnetic waves
+    with frequencies ranging from below one hertz to above GHz.
+
+▪   Electromagnetic spectrum begins at the low frequency (long
+    wavelength)             &     end     of        the     spectrum            consists          of:      radio
+    waves, microwaves, infrared, visible light, ultraviolet, X-rays,
+    and gamma rays at the high-frequency (short wavelength) end.
+
+
+
+
+                                                                                                                       13
+    Frequency    Frequency Range       Applications            Frequency      Frequency Range        Applications
+      ELF           3 - 30 Hz                                   Voice             0 – 4k Hz
+      SLF          30 - 300 Hz        Power Grid                Audio           20 – 20k Hz
+
+      ULF          300 - 3k Hz                                  Radio           30k – 1 G Hz        Radio/TV
+                                                              Frequency
+      VLF          3k - 30k Hz        Submarine                                1 G – 300G Hz        Microwave
+
+       LF         30k - 300k Hz                                                300G – 3T Hz         Terahetz wave
+       MF         300k - 3M Hz        AM broadcast                IR           3T – 300T Hz
+       HF         3M – 30M Hz         Shortwave                 Visible         300T – 3P Hz
+                                      broadcast                  light
+      VHF        30M – 300M Hz        TV, FM                      UV           3P – 3x10 17 Hz
+      UHF         300M – 3 G Hz       TV, LAN,                  X-Ray        3x10 17 – 3x10 18 Hz
+                                      Cellular, GPS
+                                                               Gamma         3x10 19 – 3x10 20 Hz
+      SHF          3 G – 30G Hz       Radar, GSO
+                                      satellites. Data
+      EHF         30G – 300G Hz       Radar,
+                                      Automotive,
+                                      Data
+
+
+
+
+                          6.6 SATELLITE COMMUNICATION
+▪    Satellite communication is the method of transporting information from one place to
+     another using a communication satellite in orbit around the Earth.
+▪    The use of artificial satellites to provide communication links between various points on
+     Earth.
+▪    Satellite   communications        play a vital       role in the     global telecommunications        system.
+     Approximately     2,000      artificial satellites   orbiting Earth    relay analog and digital signals
+     carrying voice, video, and data to and from one or many locations worldwide.
+Satellite communication ha s two main components:
+▪   The ground segment, which consists of fixed or mobile transmission, reception, and ancillary
+     equipment, and the space segment, which primarily is the satellite itself.
+▪    A typical satellite link involves the transmission or uplinking of a signal from an Earth
+     station to a satellite.
+▪    The satellite then receives and amplifies the signal and retransmits it back to Earth, where it
+     is received and reamplified by Earth stations and terminals.
+▪    Satellite receivers on the ground include direct-to-home (DTH) satellite equipment, mobile
+     reception equipment in aircraft, satellite telephones, and handheld devices.
+
+
+
+
+                                                                                                                     14
+                                          Satellite transponder –It receive signal
+                                          from the transmitting earth stations,
+                                          frequency    converts,    amplifiers and
+                                          retransmits    the   signal  toward   the
+                                          receiving each stations
+
+
+
+
+6 GHZ to 14 GHZ                     4 GHZ to 12 GHZ
+
+
+
+
+Earth Station -1                    Earth Station -2
+ (Transmitter)                         (receiver )
+
+
+
+
+                   Satellite Communication Block Diagram
+                                                                                 30
+
+
+
+
+                                                                                      15
+Working of satellite communication:
+The communication satellites are similar to the space mirrors that help us in bouncing the signals
+such as radio, internet data, and television from one side of the earth to another. There are three
+stages that are involved which explain the working of satellite communications. These are:
+▪ Uplink
+▪ Transponders
+▪ Downlink
+Let’s consider an example of signals from a television. In the first stage, the signal from the
+television broadcast on the other side of the earth is first beamed up to the satellite from the
+ground station on the earth. This process is known as uplink.
+
+
+The second stage involves transponders such as radio receivers, amplifiers, and transmitters.
+These transponders are used for boosting the incoming signal and to change their frequency so
+that the outgoing signals are not altered. Depending on the incoming signal sources, the
+transponders vary.
+
+
+The final stage involves a downlink in which the data is sent to the other end of the receiver on
+the earth. It is important to understand that usually there is one uplink and multiple downlinks.
+                                                                                                    31
+
+
+
+
+Advantage:
+❑ It provides point to Multipoint communication
+❑ It offers telecommunication link which include video, F A X , telegraphy,
+  Telephone etc.
+❑ The satellite can provide line of sight coverage for a large number of
+  users
+
+Disadvantage:
+❑ Initial cost is high
+❑ The malfunction in satellite is highly difficult to correct
+
+Application:
+
+❑ Mobile networks
+                                                                                                    32
+
+
+
+
+                                                                                                         16
+                     6.7 CEL L ULAR MOBILE COMMUNICATION
+▪     Mobile telephone or cellular technology is widely used since early 1980s and
+      is based upon the concept of frequency re-use by the application on a series
+      of coverage cells.
+▪     Mobile       Communication         is   the   use    of     technology      that    allows   us   to
+      communicate with others in different locations without the use of any
+      physical connection (wires or cables).
+▪     Mobile communication makes our life easier, and it saves time and effort.
+▪     A mobile phone (also called mobile cellular network, cell phone or hand
+      phone) is an example of mobile communication (wireless communication). It
+      is      an     electronic      device     used      for     full   duplex     two     way     radio
+      telecommunication over a cellular network of base stations known as cell
+      site.
+
+
+
+
+Cellular telecommunications generations:
+                   Generation       Launching Year                       Focus
+                       1G                1979             Mobile Voice
+                       2G                1991             Mobile Voice
+                       3G                2001             Mobile Broadband
+                       4G                2009             Mobile Broadband
+                       5G                2020             Ubiquitous connectivity
+
+Frequency bands used in India:
+    Mobile Technology in                                        Frequency used
+            India
+            G S M (2G)            900 MHz, 1800 MHz
+              CDMA                850 MHz
+           WCDMA (3G)             900 MHz, 2100 MHz
+              Wi-MAX              2300MHz
+            4G (LTE)              850 MHz (Jio), 1800 MHz & 2300 MHz (AirTel,
+                                  Idea, Vodafone, Jio) 2500 MHz (BSNL, Idea & Vodafone)                  34
+
+
+
+
+                                                                                                              17
+Cellular communication concepts:
+▪ Cellular communication is based on the geographic division of the communication
+ coverage area into cells, and within cells.(used in mobile phones)
+▪ Each cell is allocated a given number of frequencies (or channels) that allow a large
+  number of subscribers to conduct conversations simultaneously
+▪ In communication, the cellular system replaced a large zone with a number of smaller
+ hexagonal cells with a single BS (base station) covering a fraction of the area.
+
+
+
+
+                                                                                         35
+
+
+
+
+                              Fig: Block Diagram of Cellular System
+
+
+
+
+                                                                                              18
+▪ In a cellular structure, a Mobile Station (MS) needs to communicate with
+ the Base Station (BS) of the cell where the M S is currently located and
+ the BS acts as a gateway to the rest of the world.
+▪ Therefore, to provide a link, the M S needs to be in the area of one of the
+ cells (and hence a BS) so that mobility of the M S can be supported.
+▪ Several base stations are connected through hard-wires and                  are
+ controlled by a Base Station Controller (BSC), which in turn is connected
+ to a Mobile Switching Center (MSC).
+▪ Several mobile switching centers are interconnected to a PSTN (Public
+ Switched Telephone Network) and the ATM (Asynchronous Transfer
+ Mode) backbone.
+▪ A BS consists of a Base Transceiver System (BTS) and a B S C . Both tower
+ and antenna are a part of the BTS, while all associated electronics are
+ contained in the BSC.                                                         37
+
+
+
+
+▪ The HLR (Home Location Register) and VLR (Visitor Location Register) are two
+ sets of pointers that support mobility and enable the use of the same
+ telephone numbers worldwide.
+▪ The AUC (Authentication Center) unit provides authentication and encryption
+ parameters that verify the user's identity and ensure the confidentiality of
+ each cell.
+▪ The EIR (Equipment Identity Register) is a database that information about
+ identity of mobile equipment. Both AUC and EIR can be implemented as
+ individual stand-alone units or as a combined AUC/EIR unit.
+▪ The HLR is located at the M S C where M S is initially registered and is the
+ initial home location for billing and access information.
+▪ In simple words, any incoming call, based on the calling number, is directed to
+ the HLR of the home mobile station where the M S is registered. The HLR then
+ points to the VL R of the M S C where the M S is currently located.
+
+                                                                               38
+
+
+
+
+                                                                                    19
+Features of Mobile Communication:
+▪ High capacity load balancing
+▪ Scalability
+▪ Network management system
+▪ Indoor as well as outdoor coverage options
+▪ Network access control
+▪ Mobile device management
+▪ Roaming
+▪ Proper Security means using the right firewall
+▪ Switching
+                                                                           39
+
+
+
+
+Advantages of Mobile Communication:
+▪ High capacity & Less transmission power.
+▪ It reduced the interference which increases the total system capacity
+▪ More robust against the failure of single components.
+Disadvantage:
+▪ Small cells require a complex infrastructure to connect all base station.
+▪ The mobile station has to perform a handover when changing from one
+    cell to another very frequently.
+▪    To avoid interference,     frequency   spectrum   should be distributed
+    properly with a very less range of frequency spectrum.
+Application
+▪ Global mobile communication
+▪ Acts as navigation
+▪ Connecting remote areas                                                  40
+
+
+
+
+                                                                                20
+                6.8 OPTICAL F IBER COMMUNICATION
+▪    Fibre optic communication is a communication technology that
+     uses light pulse to transfer information from one point to
+     another through an optical fiber
+▪    The light forms an electromagnetic carrier wave that modulated
+     to carry the information
+
+
+
+
+▪ The technique of transmitting data from one location to another by
+    transmitting infrared light pulses using optical fiber is known as fiber
+    optic communication. Here, the light is in the form of a carrier signal
+    that is changed to hold the data. The fiber optic cables replace the
+    electrical cables whenever long distance, high bandwidth, and resistance
+    to electromagnetic interference are necessary.
+
+
+▪ Fiber-optic communication is mainly used for transmitting voice, video
+    & telemetry using LANs. In many telecommunication companies, optical
+    fiber is used for transmitting the signals of telephone, cable TV signals,
+    Internet communication. In Bell Labs, the researchers have investigated
+    and reached a record of BW distance 100 petabit × kilometers for each
+    second with fiber-optic communication.                                  42
+
+
+
+
+                                                                                 21
+                       Fig: Block diagram of Optical fiber Communication
+
+
+
+
+Working of Fiber Optic Communication:
+▪ Unlike copper wire-based transmission where the transmission entirely depends on electrical
+ signals passing through the cable, fiber optics transmission involves the transmission of
+ signals in the form of light from one point to the other.
+▪ Furthermore, a fiber optic communication network consists of transmitting and receiving
+ circuitry, a light source, and detector devices like the ones shown in the figure.
+▪ When the input data, in the form of electrical signals, is given to the transmitter circuitry, it
+ converts them into a light signal with the help of a light source.
+
+▪ This source is of L E D whose amplitude, frequency, and phases must remain stable and free
+ from fluctuation in order to have efficient transmission.
+▪ The light beam from the source is carried by a fiber optic cable to the destination circuitry
+ wherein the information is transmitted back to the electrical signal by a receiver circuit.
+▪ The Receiver circuit consists of a photodetector along with an appropriate electronic circuit,
+ which is capable of measuring the magnitude, frequency, and phase of the optic field.
+▪ This type of communication uses the wavelengths near the infrared band that is just above
+                                                                                                  44
+ the visible range. Both L E D and Laser can be used as light sources based on the application.
+
+
+
+
+                                                                                                       22
+B a s i c Elements of a Fiber Optic Communication S y s t em :
+There are three main basic elements of a fiber optic communication system. They are
+▪ C o m p a c t Light Source
+▪ Low loss Optical Fiber
+▪ Photo Detector
+Accessories like connectors, switches, couplers, multiplexing devices, amplifiers, and splices
+are also essential elements in this communication system.
+
+a ) C o m p a c t Light Source
+❑ Depending      on the applications like local area networks and long-haul communication
+  systems, the light source requirements vary.
+❑ The requirements of the sources include power, speed, spectral linewidth, noise, ruggedness,
+
+  cost, temperature, and so on.
+
+❑ Two components are used as light sources: light-emitting diodes (LEDs) and laser diodes.
+
+
+
+
+                                                                                                 45
+
+
+
+
+❑ The light-emitting diodes are used for short distances and low data rate applications due to
+
+  their low bandwidth and power capabilities.
+
+❑ Two such L E D structures include Surface and Edge Emitting Systems.
+❑ The surface-emitting diodes are simple in design and are reliable, but due to their broader
+
+  line width and modulation frequency limitation edge-emitting diodes are mostly used.
+❑ Edge emitting diodes have high power and narrower linewidth capabilities.
+
+
+❑ For longer distances and high data rate transmission, Laser Diodes are preferred due to its
+
+  high power, high speed, and narrower spectral linewidth characteristics. But these are
+  inherently non-linear and more sensitive to temperature variations.
+❑ Nowadays many improvements and advancements have made these sources more reliable.
+
+  Both these sources are modulated using either direct or external modulation techniques.
+
+
+
+
+                                                                                                 46
+
+
+
+
+                                                                                                      23
+b) Low Loss Optical Fiber
+❑ Optical fiber is a cable, which is also known as a cylindrical dielectric waveguide made of low-
+
+     loss material.
+❑ Optical fiber also considers the parameters like the environment in which it is operating, the
+
+     tensile strength, durability, and rigidity.
+❑ The Fiber optic cable is made of high-quality extruded glass (si) or plastic, and it is flexible.
+     The diameter of the fiber optic cable is in between 0.25 to 0 . 5 m m (slightly thicker than a
+     human hair). requirements of the sources include power, speed, spectral linewidth, noise,
+     ruggedness, cost, temperature, and so on.
+
+❑ Two components are used as light sources: light-emitting diodes (LEDs) and laser diodes.
+
+Types of Optical Fibers
+Single-Mode Fibers: Single-mode fibers are used to
+transmit one signal per fiber; these fibers are used in
+telephone and television sets. Single-mode fibers have
+small cores.
+Multi-Mode Fibers: Multimode fibers are used to transmit
+many signals per fiber; these signals are used in
+computer and local area networks that have larger cores.                                             47
+
+
+
+
+c)     Photo Detector:
+❑ The purpose of photodetectors is to convert the light signal back to an electrical signal. Two
+
+     types of photodetectors are mainly used for optical receivers in optical communication
+     systems:   PN    photodiode   and   avalanche   photodiode.   Depending   on   the   application’s
+     wavelengths, the material composition of these devices vary. These materials include silicon,
+     germanium, InGaAs, etc.
+
+
+
+
+Why laser light is used in optical fiber communication?
+In fiber-optic communication, laser light is used for transmission because this light source has a
+single wavelength. As compared to other light sources like bulb light or sunlight have several
+light wavelengths. Thus, if another light source like sunlight is used for this communication then
+they will generate a less powerful sunbeam whereas the laser light generates a more powerful
+beam. So , laser light source is the best option for communication because of the low dispersion,
+generating a number of signals in less time.
+
+
+
+
+                                                                                                     50
+
+
+
+
+                                                                                                          24
+Advantages :
+▪ The life of fiber is longer than the life of copper
+▪ There is no necessity                  of additional          equipment         for protecting
+  against grounding and voltage problems
+▪ As it does not radiates energy any antenna or detector cannot
+ detects it hence provides signal security
+Disadvantage:
+▪ Highly skilled staff are required to handle
+▪ Cost is high
+Application
+▪ Medical field
+▪ Used to deduct nuclear radiation
+▪ Long distance communication backbones                                                               49
+
+
+
+
+              Fiber Optic Vs Satellite Communication
+          Fiber Optic Communication                              Satellite Communication
+Fiber-optic communication is         used in urban Satellite communication is best suitable for
+areas   including    the     best     infrastructure, uneven terrains, badly connected regions, and
+wherever     it   is     suitable      to     arrange areas where it is hard to lay wires.
+communication lines.
+The bandwidth of Fiber optic is very high             Satellites include less bandwidth & are prone to
+including small electromagnetic interference.         interferences.
+This kind of communication works with the             This    kind   of   communication  utilizes
+light signals like a medium of propagation.           electromagnetic signals like a medium for
+                                                      propagation.
+The communication can be done through a The communication can be done through a
+fiber optic cable                       relay station
+Antennas   are      not     required      in   this This communication uses special antennas
+communication
+In this communication,         the     transmission   In this communication,       the   air   is   the
+medium is fiber.                                      transmission medium.
+Optical communication is suitable for point-          Satellite communication is suitable for long-
+point less distance communication.                    distance communication
+                                                                                                      50
+
+
+
+
+                                                                                                           25
+        Fiber Optic Communication                         Satellite Communication
+The data rates are high including less           The data rates are very low. So, the
+propagation delays.                              distance from the ground to the satellites
+                                                 setups unintended     delays within the
+                                                 transfer
+Fiber optic cables use a lot of BW               Satellites   are  mainly     designed for
+                                                 broadcasting. The messages transmitted
+                                                 through a satellite can be obtained by
+                                                 ground stations concurrently.
+Installation cost is less                        Installation cost is high
+Fiber optics is stationary through design & This kind of communication           facilitates
+their utilization is incomplete in set mobile communications
+locations.
+Fiber-optic    communication         is   more   Satellite communication is low prone to
+dependable                                       errors.
+The cost of this cable mainly depends on The price of satellites is independent of
+the distance among the links & the distance among the stations, i.e. the price
+number of points                         will be similar for 5km as well as 5000km.
+                                         The recurring cost of this communication
+                                         is high as compared to fibers.          51
+
+
+
+
+                                                                                               26
+

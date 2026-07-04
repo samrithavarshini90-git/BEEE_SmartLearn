@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: beeesmartlearn
+    env: docker
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TIDB_URL
+        sync: false   # Set manually in Render dashboard
+      - key: CEREBRAS_API_KEY
+        sync: false   # Set manually in Render dashboard
+      - key: JWT_SECRET
+        sync: false   # Set manually in Render dashboard

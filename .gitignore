@@ -1,0 +1,39 @@
+# ── Secrets — NEVER commit these ────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+.dev.vars
+
+# ── Build outputs ────────────────────────────────────────────────────────────
+dist/
+dist-ssr/
+.output/
+.vinxi/
+.nitro/
+
+# ── TanStack / Vite internal caches ─────────────────────────────────────────
+.tanstack/
+node_modules/
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── Wrangler / Cloudflare ────────────────────────────────────────────────────
+.wrangler/
+
+# ── OS / Editor artifacts ────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.idea/
+.vscode/*
+!.vscode/extensions.json

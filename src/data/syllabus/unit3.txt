@@ -1,0 +1,891 @@
+                                                                 05-02-2022
+
+
+
+
+                          U20EST117
+    BASIC ELECTRICAL AND
+  ELECTRONICS ENGINEERING
+
+                             Presented by
+
+
+                        Dr. M. Jayachandran
+                             Dept. of EEE
+                         SMVEC, Puducherry
+
+
+
+
+                               UNIT-3
+ ELECTRICAL SAFETY AND ELECTRICAL
+             MACHINES
+3.1 Layout of Electrical Power Systems   3.9 Elementary Concept of
+3.2 Safety Devices and Systems           Rotating Machines
+3.3 Types of Wires & Cables              • Left hand rule
+3.4 Sensors and its types                • Right hand rule
+3.5 Wiring                               3.10 DC Machines
+• Types of Domestic wiring               • DC Motor
+3.6 Earthing                             • DC Generator
+3.7 Laws of Electromagnetic Induction    3.11 AC Machines
+3.8 Transformer                          • 3Φ/1Φ Induction machine,
+• Two winding Transformer                • 3Φ Sync machine
+• Auto Transformer
+
+
+
+
+                                                                         1
+                                                                                     05-02-2022
+
+
+
+
+             3.1 Layout of Electrical Power Systems
+
+
+
+
+•   Generation
+•   Transmission
+•   Distribution
+•   Loads
+
+
+               Fig: Single line representation of power system (One line diagram).
+                                                                                        3
+
+
+
+
+                   3.2 Safety Devices and Systems
+
+Switch Fuse Unit (SFU):
+Simplest form of protection element is “Fuse”.
+The rewireable SFU are used for distributing
+power and protecting electrical devices and
+cables from damage due to fluctuations.
+
+
+
+
+                                                                                        4
+
+
+
+
+                                                                                             2
+                                                                                                   05-02-2022
+
+
+
+
+Circuit Breaker
+
+A CB (Circuit breaker) is a device which:
+▪ Control     (make   or   break)      a      circuit
+ manually or by remote control under
+ normal and fault conditions.
+▪ Break a circuit automatically under
+ fault conditions (like over current, Short
+ circuit, etc).
+
+
+
+                                                                                                      5
+
+
+
+
+Components of LT Switch Gear Products:
+1. Air Circuit Breakers (ACB)                         “Switch       gear      is     used    for    the
+
+2. Moulded Case Circuit Breakers (MCCB)               control       of   electricity        and     the
+                                                      protection of electrical devices.
+3. Miniature circuit breakers (MCB)
+                                                      Switchgear of all sizes and types
+4. Earth leakage circuit breakers (ELCB)
+                                                      get used for switching, controlling
+5. Starters
+                                                      and     for    carrying        the    different
+6. Contactors                                         electrical loads”.
+7. Relays
+                                      It can differentiated based on the voltage of operation,
+8. Switch disconnector fuses
+                                      ▪High tension or high voltage (above 3.3 KV)
+9. Timers                             ▪Medium tension or medium voltage, (between 1 KV and 3.3 KV)
+10.Actuators and indicators           ▪Low tension or low voltage (less than 1 KV)
+
+11.Meters
+12.Capacitors                                                                                         6
+
+
+
+
+                                                                                                           3
+                                                                 05-02-2022
+
+
+
+
+1. Air Circuit Breakers (ACB):
+▪ A circuit breaker carry normal current continuously
+  (rated current), Under abnormal current (more than rated
+  current), this can break the electrical circuit. (eg:
+  overload, fault and short).
+▪ Air circuit breakers are breakers where the arc
+  quenching is done in air.
+▪ Used in low tension applications (Irating up to 6500A).
+2. Moulded Case Circuit Breakers (MCCB):
+▪ It can give protection through thermal-magnetic, static
+  or microprocessor based releases. They can have
+  communication capabilities and can be networked with
+  other circuit breakers and meters.
+▪ MCCB are breakers where the arc quenching is done in
+  moulded chamber.
+▪ (Irating up to 200A; Breaking capacity 200kA).                    7
+
+
+
+
+3. Miniature circuit breakers (MCB):
+
+▪ A MCBs are used for protection of both industrial
+ and domestic circuits. They are miniature forms of
+ MCCBs.
+4. Earth leakage circuit breakers (ELCB) :
+
+▪ Earth    leakage     circuit    breakers   protect   against
+ leakage currents that flow into the earth. These
+ currents can cause electrical shocks to operating
+ personnel.
+
+
+
+
+                                                                    8
+
+
+
+
+                                                                         4
+                                                                     05-02-2022
+
+
+
+
+                                                                        9
+
+
+
+
+5. Starters:
+
+▪ Starters are used to switch on and switch off electrical motors.
+
+
+
+
+                                                                        10
+
+
+
+
+                                                                             5
+                                                                   05-02-2022
+
+
+
+
+6. Contactors:
+
+▪ Contactors are switching devices. They have a moving magnet, which
+ gets magnetized, whenever the coil of the contactor gets energized.
+
+
+
+
+                                                                       11
+
+
+
+
+7. Relays:
+
+▪ Relays are the devices that sense the faults in the electrical circuit
+ and send the tripping impulse to the switching device.
+▪ A release sends a mechanical impulse for tripping, as different from a
+ relay that sends electrical signal.
+
+
+
+
+                                                                       12
+
+
+
+
+                                                                            6
+                                                                     05-02-2022
+
+
+
+
+8. Switch disconnector fuses :
+
+▪ These devices are used for switching applications and for protection
+ against short circuit. The protection is offered by the fuses. The fuses
+ let nominal current flow through them, and rupture as soon as the
+ current rises to dangerous levels.
+
+
+
+
+                                                                        13
+
+
+
+
+9. Timers:
+
+▪ Timers are used to measure time interval that has elapsed. As an
+ example, in a star-delta starter, the switch from star to delta has to be
+ after the motor current has reached steady state value.
+
+
+
+
+                                                                        14
+
+
+
+
+                                                                             7
+                                                                    05-02-2022
+
+
+
+
+10. Actuators and indicators:
+
+▪ An actuator is a component of a machine that is responsible for
+ moving and controlling a mechanism or system, for example by
+ opening a valve. In simple terms, it is a "mover". An actuator requires
+ a control signal and a source of energy. They are available in many
+ types and colours based on the application.
+▪ Indicators are used to give display of the health of a device or an
+ electrical circuit.
+
+
+
+
+                                                                       15
+
+
+
+
+11. Meters:
+
+▪ Analog and digital meters are used for indicating electrical parameters
+ like current, voltage, power factor, frequency etc. Their size, shape,
+ type, accuracy get determined by the application for which they have
+ to be used.
+
+
+
+
+                                                                       16
+
+
+
+
+                                                                            8
+                                                                                         05-02-2022
+
+
+
+
+12. Capacitors:
+
+▪ Capacitors are the most common device used for improvement of
+ power factor. They have two conductors separated by an insulator.
+ Capacitors       are   used      for    high      voltage   as      well   as   low   voltage
+ applications. Capacitors are available in many types of constructions
+ depending on the desired usage.
+
+
+
+
+                                                                                            17
+
+
+
+
+Summary of Switchgear products
+1. Power gear Products                             4. Energy metering and protection
+   ▪ Air circuit breakers                             products
+   ▪ Moulded case circuit breakers                    ▪ Meters
+   ▪ Switch-disconnector fuses                        ▪ Relays
+2. Control gear Products                           5. Reactive power management
+   ▪ Contactors                                       products
+   ▪ Starters                                         ▪ Capacitors
+   ▪ Timers and other panel accessories               ▪ Harmonic filters
+3. Distribution products for 240 V
+    segment
+   ▪ Miniature circuit breakers
+   ▪ Earth   leakage    and   other     residual
+     current circuit breakers
+                                                                                            18
+
+
+
+
+                                                                                                 9
+                                                                                                 05-02-2022
+
+
+
+
+                           3.3 Types of Wires & Cables
+“Wire is a single electrical conductor, whereas a cable is a group of wires swathed in sheathing that
+ensures a smooth electricity supply”.
+❑ Size of Wires – Each application requires a certain wire size for installation, and the right size for
+ a specific application is determined by the wire gauge. Sizing of wire is done by the American
+ wire gauge system. Common wire sizes are 10, 12 and 14 – a higher number means a smaller wire
+ size, and affects the amount of power it can carry. For example, a low-voltage lamp cord with 10
+ Amps will require 18-gauge wire, while service panels or subpanels with 100 Amps will require 2-
+ gauge wire.
+❑ Wire Lettering – The letters THHN, THWN, THW and XHHN represent the main insulation types of
+ individual wires. These letters depict the following NEC requirements:.
+   ▪ T – Thermoplastic insulation
+   ▪ H – Heat resistance
+   ▪ HH – High heat resistance (up to 194°F)
+   ▪ W – Suitable for wet locations
+   ▪ N – Nylon coating, resistant to damage by oil or gas
+                                                                                                     19
+   ▪ X – Synthetic polymer that is flame-resistant
+
+
+
+
+1. Triplex Wires :
+▪ Triplex wires are usually used in overhead single-
+  phase service drop conductors, between the
+  power pole and weather heads.
+▪ They are composed of two insulated aluminum
+  wires (hot legs) wrapped with a third bare or
+  uninsulated wire which is used as a common
+  neutral.
+▪ If a circuit is connected between the two hot legs,
+  the circuit voltage is 240 volts. If a circuit is
+  connected between the neutral and either hot leg
+  of the service, the circuit voltage will be 120
+  volts.
+▪ The neutral is usually of a smaller gauge and
+  grounded at both the electric meter and the
+  transformer.
+                                                                                                     20
+
+
+
+
+                                                                                                           10
+                                          05-02-2022
+
+
+
+
+2. Main Feeder Wires :
+
+❑Main power feeder wires are the wires
+ that connect the service weather head
+ to the house.
+❑They’re made with stranded or solid
+ THHN wire and the cable installed is
+ 25% more than the load required.
+
+
+
+
+                                             21
+
+
+
+
+3. Panel Feed Wires :
+
+❑Panel feed cables are generally black
+ insulated THHN wire.
+❑These are used to power the main
+ junction box and the circuit breaker
+ panels.
+❑Just like main power feeder wires, the
+ cables should be rated for 25% more
+ than the actual load.
+
+
+                                             22
+
+
+
+
+                                                  11
+                                                                              05-02-2022
+
+
+
+
+4. Non-Metallic Sheathed Wires :
+
+❑Non-metallic sheath wire, or Romex, is
+ used      in    most      homes    and    has    2-3
+ conductors, each with plastic insulation,
+ and a bare ground wire.
+❑The individual wires are covered with                       NM 14/3 Romex
+ another layer of non-metallic sheathing.
+❑Since it’s relatively cheaper and available
+ in ratings for 15, 20 and 20 amps, this
+ type is preferred for in-house wiring.
+
+
+                                                                                     23
+
+
+
+
+5. Single Strand Wires :
+
+❑Single strand wire also uses THHN
+ wire, though there are other variants.
+❑Each wire is separate and multiple
+ wires can be drawn together through a
+ pipe easily.
+❑Single         strand     wires   are    the    most   Single Core / Single Stand
+                                                        Breadboard Hook Up Wire
+ popular choice for layouts that use
+ pipes to contain wires.
+
+
+                                                                                     24
+
+
+
+
+                                                                                          12
+                                                                 05-02-2022
+
+
+
+
+Types of Cables
+1. Non-Metallic Sheathed Cable (NM Cable):
+
+❑These cables have a flexible plastic jacket with two to four
+ wires that are commonly used for indoor residential cabling
+ and special varieties are for underground and outdoor cabling.
+
+
+
+
+                                                                    25
+
+
+
+
+2. Underground Feeder Cable (UF Cable)
+
+❑The wires in such cables are grouped together and embedded
+ in the flexible material. These are useful for outdoor lighting
+ and in-ground application.
+
+
+
+
+                10/3 UF-B Wire
+ UF-B is an underground feeder and branch circuit wiring cable      26
+
+
+
+
+                                                                         13
+                                                             05-02-2022
+
+
+
+
+3. Metallic Sheathed Cable (BX cable)
+
+❑There are three stranded copper wires insulated with cross-
+ linked Polyethylene and PVC sheathing. These cables are used
+ for outdoor application and high-stress installation.
+
+
+
+
+                                                                27
+
+
+
+
+4. Multi-Conductor Cable (MC Cable)
+
+❑More than one conductor that is insulated individually. The
+ outer insulation gives extra security. The different varieties of
+ MC cables are used in homes and music industries. For
+ example, the audio multicore ‘snake cable’.
+
+
+
+
+                                                                28
+
+
+
+
+                                                                     14
+                                                                05-02-2022
+
+
+
+
+5. Coaxial Cable (Heliax cable)
+
+❑A tubular insulating layer with a tubular conducting shield protects
+ the inner conductor of the cable. As the two inner sheaths share
+ the same geometrical axis, the name coaxial is justified. It is used
+ for carrying television signals and connecting video equipment.
+
+
+
+
+                                                                   29
+
+
+
+
+6. Paired Cable
+
+❑There are two individually insulated conductors, which are
+ used in DC or low frequency AC applications.
+
+
+
+
+                                                                   30
+
+
+
+
+                                                                        15
+                                                           05-02-2022
+
+
+
+
+7. Twisted Pair Cable
+
+❑The inner insulated wires in TPC are twisted or intertwined;
+ otherwise, it is same as paired cable.
+
+
+
+
+                                                              31
+
+
+
+
+8. Unshielded Twisted Pair Cable (UTP)
+
+❑UTP cable consists of two wires twisted together with solid
+ copper cores and not insulated individually. These are often
+ used in telephones, security cameras and data networks.
+
+
+
+
+CAT-6 Network Cable Unshielded 305m
+                                                              32
+
+
+
+
+                                                                   16
+                                                                   05-02-2022
+
+
+
+
+9. Ribbon Cable
+
+❑It has various conducting wires running parallel to each other
+ on a flat plane. Ribbon cables are applicable for low voltage
+ applications such as in computers and its peripherals.
+
+
+
+
+                                                                        33
+
+
+
+
+10. Direct Buried Cable (DB cable)
+
+❑It either is a specially designed coaxial cable or bundled fiber optic
+ cables, which have many layers of banded metal sheathing, heavy
+ rubber coverings, and shock absorbing gel waterproof wrapped
+ thread-fortified tape. This is considered a popular choice for
+ transmission and communication requirements.
+
+
+
+                                                                RS-232 Serial
+                                                                Male Adapter
+
+
+
+
+                                                                        34
+
+
+
+
+                                                                                17
+                                                                 05-02-2022
+
+
+
+
+11. Twin Lead Cable (TL cable)
+
+❑The TL cable consists of two wires that are generally used in
+ the transmission of a signal from the antenna to receivers like
+ TV and radio.
+
+
+
+
+                                                                       35
+
+
+
+
+                                 3.4 Sensors
+  Sensor/Detectors/Transducers:
+
+
+  “A device that detects the changes in electrical or physical
+  or other quantities and thereby produces an output as an
+  acknowledgement of change in the quantity is called as a
+  Sensor”.
+
+  Generally, this sensor output will be in the form of electrical or
+  optical signal.
+
+                                                                       36
+
+
+
+
+                                                                            18
+                                                                             05-02-2022
+
+
+
+
+Types of Sensors:
+1. Sensors in Electronics                  2. Sensors in Robotics
+   ▪ Temperature Sensor (Temp,               ▪ Acceleration Sensor (speed)
+    humidity)
+                                             ▪ Sound Sensor (Mic)
+   ▪ IR Sensor (TV remote)
+                                             ▪ Light Sensor (PV)
+   ▪ Ultrasonic Sensor (echo, distance)
+                                             ▪ Photo Resistor (LDR)
+   ▪ Touch Sensor (Capacitive type)
+                                             ▪ Tactile Sensors
+   ▪ Proximity Sensors (object)
+                                             (lamps   those   dim   or   enhance
+   ▪ Pressure Sensor (force or pressure)
+                                             brightness by touching)
+   ▪ Level Sensors (water level)
+   ▪ Smoke and Gas Sensors
+   (LPG, Propane, Butane, Methane (CH4))                                        37
+
+
+
+
+Types of Sensors:
+
+3. Sensors in Building                     4. Sensors in Remote Sensing
+   ▪ Temperature sensors                     ▪ Active Sensor
+   ▪ Motion Detection Sensors                ▪ Passive Sensor
+   ▪ Electric voltage and current
+    sensors
+   ▪ Smoke      and    fire   detection
+    sensors
+   ▪ Camera sensors
+   ▪ Gas sensors
+                                                                                38
+
+
+
+
+                                                                                     19
+                                                               05-02-2022
+
+
+
+
+                         3.5 Wiring
+
+ “Electrical Wiring is a process of connecting cables and
+ wires to the related devices such as fuse, switches, sockets,
+ lights, fans etc to the main distribution board is a specific
+ structure to the utility pole for continues power supply.”.
+
+
+
+
+                                                                  39
+
+
+
+
+Types of Domestic Wiring
+                                     Cleat wiring
+
+
+                                       Battern
+
+
+                                     Casing and
+                   WIRING          Capping wiring
+
+                                    Lead sheathed
+                                      (or) Metal
+                                   sheathed wiring
+
+
+                                   Conduit wiring
+                                                                  40
+
+
+
+
+                                                                       20
+                                                             05-02-2022
+
+
+
+
+1. Cleat wiring:
+
+❑This system of wiring comprise of ordinary
+  VIR or PVC insulated wires (occasionally,
+  sheathed and weather proof cable) braided
+  and compounded held on walls or ceilings by
+  means of porcelain cleats, Plastic or wood.
+❑Cleat wiring system is a temporary wiring
+  system therefore it is not suitable for
+  domestic premises. The use of cleat wiring
+  system is over nowadays.
+
+
+
+
+                                                                41
+
+
+
+
+2. Casing and Capping wiring:
+
+
+❑Casing and Capping wiring system was famous
+  wiring system in the past but, it is considered
+  obsolete this days because of Conduit and
+  sheathed wiring system. The cables used in
+  this kind of wiring were either VIR or PVC or
+  any other approved insulated cables.
+❑The cables were carried through the wooden
+  casing enclosures. The casing is made up of a
+  strip of wood with parallel grooves cut length
+  wise so as to accommodate VIR cables. The
+  grooves          were    made   to   separate   opposite
+  polarity. the capping (also made of wood) used
+  to cover the wires and cables installed and
+  fitted in the casing.
+                                                                42
+
+
+
+
+                                                                     21
+                                                              05-02-2022
+
+
+
+
+3. Batten Wiring:
+
+❑Single core or double core or three core TRS
+  cables with a circular oval shape cables are used
+  in this kind of wiring. Mostly, single core cables
+  are preferred. TRS cables are chemical proof,
+  water      proof,   steam   proof,   but   are   slightly
+  affected by lubricating oil. The TRS cables are
+  run on well seasoned and straight teak wood
+  batten with at least a thickness of 10mm.
+
+
+❑The cables are held on the wooden batten by
+  means of tinned brass link clips (buckle clip)
+  already fixed on the batten with brass pins and
+  spaced at an interval of 10cm for horizontal runs
+  and 15cm for vertical runs.
+
+                                                                 43
+
+
+
+
+4. Lead Sheathed Wiring:
+
+❑The type of wiring employs conductors that are
+  insulated with VIR and covered with an outer
+  sheath of lead aluminum alloy containing about
+  95% of lead. The metal sheath given protection to
+  cables from mechanical damage, moisture and
+  atmospheric corrosion.
+
+
+❑The whole lead covering is made electrically
+  continuous and is connected to earth at the point
+  of entry to protect against electrolytic action due
+  to leaking current and to provide safety in case
+  the sheath becomes alive. The cables are run on
+  wooden batten and fixed by means of link clips
+  just as in TRS wiring.                                         44
+
+
+
+
+                                                                      22
+                                                             05-02-2022
+
+
+
+
+5. Conduit Wiring:
+
+
+
+
+                                                                45
+
+
+
+
+5. Conduit

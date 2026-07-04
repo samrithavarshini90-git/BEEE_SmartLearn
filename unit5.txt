@@ -1,0 +1,1148 @@
+24-02-2022
+
+> **U23ESTC03**
+>
+> **BASIC ELECTRICAL AND ELECTRONICS ENGINEERING**
+>
+> **UNIT-5**
+>
+> **COMMUNICATION SYSTEMS**
+
+**5.1 BJT**
+
+• **Construction**
+
+• **Operation**
+
+• **Configuration and its characteristics** • **Biasing**
+
+• **Numerical Applications**
+
+**5.2 JFET**
+
+• **Construction**
+
+• **Operation**
+
+• **Configuration and its characteristics** • **Biasing**
+
+• **Numerical Applications**
+
+**5.3 MOSFET**
+
+• **EMOSFET**
+
+• **DMOSFET**
+
+• **Numerical Applications**
+
+1
+
+24-02-2022
+
+> **5.1 TRANSISTOR**
+>
+> ▪ **The transistor is a semiconductor device and it comes in two
+> general types: the Bipolar Junction Transistor (BJT) and the Field
+> Effect Transistor (FET).**
+>
+> ▪ **It is named as transistor which is an acronym of two terms:
+> ―transfer-of-resistor. It means that the internal resistance of
+> transistor transfers from one value to another values depending on the
+> *[biasing voltage]{.underline}* applied to the transistor.**
+>
+> ▪ **Thus it is called Transfer resistor: i.e. TRANSISTOR.**
+>
+> ▪ **A bipolar transistor (BJT) is a three**
+> ![](media/image36.png){width="2.0166666666666666in" height="2.2in"}
+>
+> **terminal semiconductor device in which**
+>
+> **the operation depends on the interaction**
+>
+> **of both majority and minority carriers and**
+>
+> **hence the name bipolar.**
+>
+> ▪ **The voltage between two terminals**
+>
+> (*Collector & Emitter*) **controls the current**
+>
+> **through the third terminal** (*Base*). **So it is**
+>
+> **called current controlled device. This is**
+> ![](media/image33.png){width="1.355in" height="1.2533333333333334in"}
+>
+> **the basic principle of the BJT.**
+>
+> ▪ **It can be used as *amplifier* and *logic***
+>
+> ***switches.***
+
+2
+
+24-02-2022
+
+> **[Transistor Types:]{.underline}**
+> ![](media/image32.png){width="2.3033333333333332in" height="1.38in"}
+>
+> ▪ **The symbolic representation of the two**
+>
+> **types of the BJT is shown in figure,**
+>
+> ➢ **NPN Transistor**
+>
+> ➢ **PNP Transistor**
+>
+> **[Equivalent diode representation:]{.underline}**
+> ![](media/image40.png){width="2.408333333333333in"
+> height="1.8966666666666667in"}
+>
+> ▪ **The transistor formed by back to back**
+>
+> **connection of two diodes**
+>
+> **[Transistor Construction:]{.underline}**
+>
+> ▪ **[NPN Transistor:]{.underline} In NPN transistor a thin layer of
+> P-type silicon is sandwiched between two layers of N-type silicon.**
+>
+> ▪ **[PNP Transistor:]{.underline} In PNP transistor a thin layer of
+> N-type silicon is sandwiched between two layers of P-type silicon.**
+>
+> ![](media/image34.png){width="4.163333333333333in"
+> height="2.1166666666666667in"}
+
+3
+
+24-02-2022
+
+> **[Area:\[C\>E\>B\]:]{.underline}**
+>
+> ▪ **The area of collector layer is largest. So it can dissipate heat
+> quickly.** ▪ **Area of emitter layer is medium.**
+>
+> ▪ **Area of base layer is smallest and it is very thin layer.**
+>
+> **[Doping level:\[E\>C\>B\]:]{.underline}**
+>
+> ▪ **Emitter layer is heavily doped. So it has largest number of
+> charges.** ▪ **Collector layer is moderately doped. So it has medium
+> number of charges.** ▪ **Base layer is lightly doped. So it has a very
+> few number of charges.**
+>
+> **[Junctions:]{.underline}**
+>
+> ▪ **There are two junctions in this transistor -- junction J~1~ and
+> junction J~2~.**
+>
+> ▪ **The junction between collector layer and base layer is called as
+> collector-base junction or *CB junction*.**
+>
+> ▪ **The junction between base layer and emitter layer is called as
+> base-emitter junction** ▪ **or *EB junction*.**
+>
+> ▪ **The two junctions have almost same potential barrier voltage of
+> *0.6V to 0.7V*, just like in a diode.**
+>
+> **[Transistor Biasing:]{.underline}**
+>
+> ▪ **The states of the two pn junctions can be altered by the external
+> circuitry connected to the transistor. This is called biasing the
+> transistor.**
+>
+> ▪ **Usually the emitter-base junction is forward biased and
+> collector--base junction is reverse biased. Due to forward bias on the
+> emitter-base junction an emitter current flows through the base into
+> the collector. Though, the collector--base junction is reverse biased,
+> almost the entire emitter current flows through the collector
+> circuit.**
+
+![](media/image38.png){width="3.975in" height="1.6783333333333332in"}
+
+4
+
+24-02-2022
+
+> **[Transistor Modes of Operation:]{.underline}**
+>
+> ▪ **There are two junctions in bipolar junction transistor. Each
+> junction can be forward or reverse biased independently.**
+>
+> ▪ **Thus there are four modes of operations:**
+
++-----------------+------------------+-----------------+------------------+
+| **Modes**       | > **Emitter-Base | > **Collector-  | **Applications** |
+|                 | > junction**     | > Base          |                  |
+|                 |                  | > junction**    |                  |
++-----------------+------------------+-----------------+------------------+
+| **Forward       | **Forward**      | **Reverse**     | ***Amplifier***  |
+| Active**        |                  |                 |                  |
++-----------------+------------------+-----------------+------------------+
+| **Reverse       | **Reverse**      | **Forward**     | ***Digital       |
+| active**        |                  |                 | circuits***      |
++-----------------+------------------+-----------------+------------------+
+| **Saturation**  | **Forward**      | **Forward**     | ***Closed        |
+|                 |                  |                 | switch***        |
++-----------------+------------------+-----------------+------------------+
+| **Cutoff**      | **Reverse**      | **Reverse**     | ***Open          |
+|                 |                  |                 | switch***        |
++=================+==================+=================+==================+
+
+> **[Forward Active:]{.underline}**
+>
+> ▪ **In this mode of operation, emitter-base junction is forward biased
+> and collector base junction is reverse biased. Transistor behaves as a
+> [source]{.underline}. With controlled source characteristics the BJT
+> can be used as an *amplifier* and in analog circuits. [Reverse
+> Active:]{.underline}**
+>
+> ▪ **It is opposite to forward active mode because in this emitter base
+> junction is reverse biased and collector base junction is forward
+> biased. It is called [inverted mode]{.underline}. It is no suitable
+> for amplification. However the reverse active mode has application in
+> *digital circuits* and certain *analog switching circuits*.**
+>
+> **[Saturation:]{.underline}**
+>
+> ▪ **In saturation mode both junctions are forward biased large
+> collector current flows with a small voltage across collector base
+> junction. Transistor behaves as an *closed switch*.**
+>
+> **[Cut off:]{.underline}**
+>
+> ▪ **When both junctions are reverse biased it is called cut off mode.
+> In this situation there is nearly zero current and transistor behaves
+> as an *open switch*.**
+
+5
+
+24-02-2022
+
+> **[Transistor Currents:]{.underline}**
+>
+> ▪ **The arrow is always drawn on the emitter. The arrow always point
+> toward the n-type. The arrow indicates the direction of the emitter
+> current:** ![](media/image42.png){width="1.385in"
+> height="1.6916666666666667in"}![](media/image41.png){width="1.385in"
+> height="1.6916666666666667in"}
+>
+> ➢ **NPN: B** → **E**
+>
+> ➢ **PNP: E** → **B**
+>
+> ***I~C~ = the collector current,***
+>
+> ***I~B~ = the base current,***
+>
+> ***I~E~ = the emitter current***
+>
+> **[Operation of NPN Transistor:]{.underline}**
+>
+> ▪ **Emitter base junction is forward biased and**
+> ![](media/image37.png){width="2.3433333333333333in"
+> height="1.6783333333333332in"}
+>
+> **collector base junction is reverse biased.**
+>
+> ▪ **Due to emitter base junction is forward biased**
+>
+> **lot of electrons from emitter entering the base**
+>
+> **region.**
+>
+> ▪ **Base is lightly doped with P-type impurity. So**
+>
+> **the number of holes in the base region is very**
+>
+> **small.**
+>
+> ▪ **Due to this, electron-hole recombination is**
+>
+> **less (i.e,) few electrons (\<5%) combine with**
+> ![](media/image44.png){width="1.105in" height="0.30333333333333334in"}
+>
+> **holes to constitute base current (I~B~).**
+>
+> ▪ **The remaining electrons (\>95%) crossover into**
+>
+> **collector region, to constitute collector**
+>
+> **current (I~C~).**
+
+6
+
+24-02-2022
+
+> **[Operation of PNP Transistor:]{.underline}**
+> ![](media/image31.png){width="2.4133333333333336in"
+> height="1.9766666666666666in"}
+>
+> ▪ **Emitter base junction is forward biased and collector base
+> junction is reverse biased.** ▪ **Due to emitter base junction is
+> forward biased lot of holes from emitter entering the base region and
+> electrons from base to emitter region.**
+>
+> ▪ **Base is lightly doped with N-type impurity. So the number of
+> electrons in the base region is very small.**
+>
+> ▪ **Due to this, electron- hole recombination is less (i.e,) few holes
+> (\<5%) combine with electrons to constitute base current(I~B~).**
+>
+> ▪ **The remaining holes (\>95%) crossover into collector region, to
+> constitute collector current (I~C~).**
+>
+> **[Transistor Configurations:]{.underline}**
+>
+> **Three types of configuration is available 1. Common emitter (CE)
+> configuration 2. Common base(CB) configuration**
+>
+> **3. Common collector (CC) configuration**
+
+7
+
+24-02-2022
+
+> **[1. Common Emitter (CE) configuration:]{.underline}**
+>
+> ![](media/image35.png){width="5.773333333333333in" height="2.59in"}
+>
+> **[Input Characteristics:]{.underline}**
+>
+> ▪ **It is defined as the characteristic curve drawn**
+>
+> **between input voltages to input current**
+> ![](media/image43.png){width="2.2783333333333333in" height="1.97in"}
+>
+> **whereas output voltage is constant.**
+>
+> ▪ **To determine input characteristics, the**
+>
+> **collector base voltage V~CB~ is kept constant at**
+>
+> **zero and base current I~B~is increased from**
+>
+> **zero by increasing V~BE~. This is repeated for**
+>
+> **higher fixed values of V~CE~.**
+>
+> ▪ **A curve is drawn between base current and**
+>
+> **base emitter voltage at constant collector**
+>
+> **base voltage is shown in figure. Here the base**
+>
+> **width decreases. So curve moves right as V~CE~**
+>
+> **increases.**
+
+8
+
+24-02-2022
+
+> **[Output Characteristics:]{.underline}**
+>
+> ▪ **It is defined as the characteristic curve drawn between output
+> voltage to output current whereas input current is constant.**
+> ![](media/image45.png){width="2.5866666666666664in"
+> height="1.7783333333333333in"}
+>
+> ▪ **To determine output characteristics, the base current I~B~is kept
+> constant at zero and collector current Ic is increased from zero by
+> increasing V~CE~. This is repeated for higher fixed values of I~B~.**
+>
+> ▪ **From the characteristic it is seen that for a constant value of
+> I~B~, Ic is independent of V~CB~ and the curves are parallel to the
+> axis of V~CE~.**
+>
+> **[Active region:]{.underline}**
+> ![](media/image5.png){width="1.1816666666666666in" height="1.38in"}
+>
+> ▪ **EB junction forward bias and CB junction reverse bias.**
+>
+> ▪ **I~E~ increased, I~C~ increased.**
+>
+> ▪ **Refer to the graph, I~C~≈I~E~**
+>
+> ▪ **I~C~ not depends on V~CB~**
+>
+> ▪ **Suitable region for the transistor working as *amplifier*.**
+>
+> **[Saturation region:]{.underline}**
+> ![](media/image39.png){width="2.4in" height="1.65in"}
+>
+> ▪ **BE and CB junction both are forward bias** ▪ **Small changes in
+> V~CB~ will cause big different to I~C~** ▪ **The allocation for this
+> region is to the left of V~CB~=0V.**
+>
+> **[Cut off region:]{.underline}**
+>
+> ▪ **BE and CB is reverse biase**
+>
+> ▪ **Region below the line of I~E~=0A**
+>
+> ▪ **No current flow at collector, only leakage current**
+
+9
+
+24-02-2022
+
+> **[2. Common Base (CB) configuration:]{.underline}**
+>
+> ![](media/image5.png){width="5.446666666666666in" height="2.03in"}
+>
+> • **It is also called as *grounded base* configuration. Emitter is
+> used as a input terminal where as collector is the output terminal.**
+>
+> **[Input Characteristics:]{.underline}**
+>
+> ▪ **It is defined as the characteristic curve drawn**
+>
+> **between input voltage to input current**
+>
+> **whereas output voltage is constant.**
+> ![](media/image5.png){width="2.0883333333333334in" height="1.64in"}
+>
+> ▪ **To determine input characteristics, the**
+>
+> **collector base voltage V~CB~ is kept constant at**
+>
+> **zero and emitter current I~E~is increased from**
+>
+> **zero by increasing V~EB~.**
+>
+> ▪ **This is repeated for higher fixed values of V~CB~.**
+>
+> ▪ **A curve is drawn between emitter current and**
+>
+> **emitter base voltage at constant collector**
+>
+> **base voltage. When VCB is zero EB junctions**
+>
+> **is forward biased. So it behaves as a diode so**
+>
+> **that emitter current increases rapidly.**
+
+10
+
+24-02-2022
+
+> **[Output Characteristics:]{.underline}**
+>
+> ▪ **It is defined as the characteristic curve drawn between**
+>
+> **output voltage to output current whereas input current is**
+>
+> **constant.**
+>
+> ▪ **To determine output characteristics, the emitter current I~E~**
+> ![](media/image5.png){width="2.3266666666666667in" height="1.855in"}
+>
+> **is kept constant at zero and collector current I~C~ is increased**
+>
+> **from zero by increasing V~CB~. This is repeated for higher fixed**
+>
+> **values of I~E~.**
+>
+> ▪ **From the characteristic it is seen that for a constant value of**
+>
+> **I~E~, Ic is independent of V~CB~ and the curves are parallel to
+> the**
+>
+> **axis of V~CB~. As the emitter base junction is forward biased the**
+>
+> **majority carriers that is electrons from the emitter region**
+>
+> **are injected into the base region.**
+>
+> ▪ **In CB configuration a variation of the base-collector voltage**
+>
+> **results in a variation of the quasi-neutral width in the base.**
+>
+> ▪ **The gradient of the minority-carrier density in the base**
+>
+> **therefore changes, yielding an increased collector current as**
+>
+> **the collector-base current is increased. This effect is referred**
+>
+> **to as the *Early effect*.**
+>
+> **[3. Common Collector (CC) configuration:]{.underline}**
+
+![](media/image5.png){width="5.923333333333333in" height="2.02in"}11
+
+24-02-2022
+
+> **[Input Characteristics:]{.underline}**
+>
+> ▪ **It is defined as the characteristic curve drawn between input
+> voltage to input current whereas output voltage is constant.**
+> ![](media/image5.png){width="2.3516666666666666in"
+> height="2.066666666666667in"}
+>
+> ▪ **To determine input characteristics, the emitter base voltage V~EB~
+> is kept constant at zero and base current I~B~ is increased from zero
+> by increasing V~BC~. This is repeated for higher fixed values of
+> V~CE~.**
+>
+> ▪ **A curve is drawn between base current and base emitter voltage at
+> constant collector base voltage.**
+>
+> **[Output Characteristics:]{.underline}**
+>
+> ▪ **It is defined as the characteristic curve drawn between output
+> voltage to output current whereas input current is constant.**
+> ![](media/image5.png){width="2.3433333333333333in"
+> height="1.7033333333333334in"}
+>
+> ▪ **To determine output characteristics, the base current I~B~ is kept
+> constant at zero and emitter current I~E~ is increased from zero by
+> increasing V~EC~. This is repeated for higher fixed values of I~B~.**
+>
+> ▪ **From the characteristic it is seen that for a constant value of
+> I~B~, I~E~ is independent of V~EB~ and the curves are parallel to the
+> axis of V~EC~.**
+
+12
+
+24-02-2022
+
+> **[Comparison of CE, CB, and CC configuration]{.underline}**
+
++----------------------+-------------------+-----------------+-------------------+
+| **Property**         | **CB**            | **CE**          | **CC**            |
++----------------------+-------------------+-----------------+-------------------+
+| > ***Input           | > **Low           | **Moderate      | > **High          |
+| > resistance***      | > (100**��**)**   | (750**��**)**   | > (750**����**)** |
++----------------------+-------------------+-----------------+-------------------+
+| ***Output            | > **High          | **Moderate      | > **Low           |
+| resistance***        | > (450**����**)** | (45k**��**)**   | > (25**��**)**    |
++----------------------+-------------------+-----------------+-------------------+
+| > ***Current gain*** | > **1**           | > **High**      | > **High**        |
++----------------------+-------------------+-----------------+-------------------+
+| > ***Voltage gain*** | > **About 150**   | > **About 500** | > **Less than 1** |
++----------------------+-------------------+-----------------+-------------------+
+| > ***Phase shift***  | > **0 or 360º**   | > **180º**      | > **0 or 360º**   |
+| >                    |                   |                 |                   |
+| > ***between i/p and |                   |                 |                   |
+| > o/p voltages***    |                   |                 |                   |
++----------------------+-------------------+-----------------+-------------------+
+| > ***Applications*** | > **High          | > **Audio       | > **Impedance**   |
+|                      | > frequency       | > frequency     | >                 |
+|                      | > circuits**      | > circuits**    | > **matching**    |
++======================+===================+=================+===================+
+
+**25**
+
+> **[Transistor Biasing:]{.underline}**
+>
+> ▪ **If transistor is not biased properly, it would work inefficiently
+> and produce distortion in output signal.**
+>
+> ▪ **A transistor is biased either with the help of battery or
+> associating a circuit. The later method is more efficient and it is
+> frequently used.** ▪ **The circuit used for transistor biasing is
+> called the biasing circuit.**
+>
+> **Three types of biasing**
+>
+> **1. Fixed bias (*base bias*)**
+>
+> **2. Collector to base bias (*base bias with collector feedback*) 3.
+> Voltage divider bias (*self bias*)**
+
+13
+
+24-02-2022
+
+**[1. Fixed bias (*base bias*):]{.underline}**
+![](media/image5.png){width="3.401666666666667in"
+height="3.0016666666666665in"}
+
+> ��~��~ = ��~��~ + ��~��~
+> ![](media/image5.png){width="3.256666666666667in"
+> height="3.3733333333333335in"}
+>
+> ~��\ =~��~��~
+>
+> ��~��~
+>
+> ~��\ =~��~��~
+>
+> ��~��~
+
+**KVL at input side:**
+
+��~����~ = ��~����~ + ��~��~��~��~
+
+��~��\ =~��~����~ − ��~����~
+
+��~��~
+
+**KVL at output side:**
+
+��~����~ = ��~����~ + ��~��~��~��~
+
+��~����~ = ��~����~ − ��~��~��~��~
+
+��~��\ =~��~����~ − ��~����~
+
+��~��~
+
+��~��~ = �� + �� ��~��~
+
+��~��~ = ����~��~
+
+��~��~ ≅ ��~��~
+
+**KVL at input side:**
+
+> ��~����~ = ��~����~ + ��~��~��~��~ + ��~��~��~��~ ��~��\ =~��~����~ −
+> ��~����~
+
+��~��~ + (�� + ��)��~��~
+
+**KVL at output side:**
+
+> ��~����~ = ��~����~ + ��~��~��~��~ + ��~��~��~��~ ��~����~ = ��~����~
+> − ��~��~��~��~ − ��~��~��~��~ ��~����~ = ��~����~ −
+> ��~��~(��~��~+��~��~)
+
+14
+
+24-02-2022
+
+> **[2. Collector to base bias (*base bias with collector
+> feedback*):]{.underline}**
+
+![](media/image5.png){width="2.8866666666666667in"
+height="3.3066666666666666in"}��~��~ = ����~��~
+
+**[3. Voltage divider bias (*self bias*):]{.underline}**
+
+> ��~��~ = ����~��~ ![](media/image5.png){width="2.625in"
+> height="3.215in"}
+>
+> ��~��~ ≅ ��~��~
+>
+> **KVL at input side:**
+>
+> ��~����~ = ��~����~ + ��~��~��~��~ + ��~��~��~��~ ��~��\ =~��~����~ −
+> ��~����~
+
+����~��~ + ��~��~
+
+**KVL at output side:**
+
+��~����~ = ��~����~ + ��~��~��~��~
+
+��~����~ = ��~����~ − ��~��~��~��~
+
+**KVL at input side:**
+
+��~��\ =~��~��~
+
+��~��~ + ��~��~× ��~����~
+
+��~��~ = ��~��~ − ��~����~
+
+**KVL at output side:**
+
+> ��~����~ = ��~����~ + ��~��~��~��~ + ��~��~��~��~ ��~����~ = ��~����~
+> − ��~��~��~��~ − ��~��~��~��~ ��~����~ = ��~����~ −
+> ��~��~(��~��~+��~��~)
+
+15
+
+24-02-2022
+
+> **[Applications of BJT:]{.underline}**
+>
+> ▪ **Switching**
+>
+> ▪ **Amplification**
+>
+> ▪ **Converters**
+>
+> ▪ **Automatic switch**
+>
+> ▪ **Temperature sensors**
+>
+> ▪ **Electronic switches**
+>
+> ▪ **Amplifiers**
+>
+> ▪ **High driving capability**
+>
+> ▪ **Detection circuits**
+>
+> ▪ **High-frequency operation**
+>
+> ▪ **Demodulator and modulator**
+>
+> ▪ **Digital switch**
+>
+> ▪ **Clippers**
+>
+> ▪ **Oscillation circuit**
+>
+> **5.2 FIELD EFFECT TRANSISTOR**
+>
+> ▪ **The field effect transistor is a semiconductor device, which
+> depends for its operation on the control of current by an electric
+> field.**
+>
+> **There are two of field effect transistors:**
+>
+> **1. JFET (Junction Field Effect Transistor)**
+>
+> **2. MOSFET (Metal Oxide Semiconductor Field Effect Transistor) The
+> FET has**
+
+16
+
+24-02-2022
+
+> **[Advantages FET over conventional transistor:]{.underline}**
+>
+> **1. In a conventional transistor, the operation depends upon the flow
+> of majority and minority carriers. That is why it is called bipolar
+> transistor. In FET the operation depends upon the flow of majority
+> carriers only. It is called *unipolar device*.**
+>
+> **2. The input to conventional transistor amplifier involves a forward
+> biased PN junction with its inherently low dynamic impedance. The
+> input to FET involves a reverse biased PN junction hence the high
+> input impedance of the order of Mega-ohm.**
+>
+> **3. It is less noisy than a bipolar transistor.**
+>
+> **4. It exhibits no offset voltage at zero drain current.**
+>
+> **5. It has thermal stability.**
+>
+> **6. It is relatively immune to radiation.**
+>
+> ***[Note:]{.underline}* The main disadvantage is its relatively small
+> gain bandwidth product in comparison with conventional transistor.**
+>
+> **[Operation of FET:]{.underline}**
+> ![](media/image5.png){width="2.225in" height="1.97in"}
+>
+> ▪ **if a voltage is applied across the bar, the current**
+>
+> **flows through the channel.**
+>
+> ▪ **The terminal through which majority carriers**
+>
+> **enter the channel is called source *(S) and* leaves**
+>
+> **the channel is called drain *(D)*.**
+>
+> ▪ **For an N-channel device, electrons are the**
+>
+> **majority carriers. Hence the circuit behaves like**
+>
+> **a dc voltage V~DS~ applied across a resistance R~DS~.**
+>
+> **The resulting current is the drain current I~D~. If**
+>
+> **V~DS~ increases, I~D~ increases proportionally.**
+>
+> ▪ **Both sides of the n-type bar heavily doped**
+> ![](media/image5.png){width="0.9166666666666666in"
+> height="0.8333333333333334in"}
+>
+> **regions of p-type impurity have been formed by**
+>
+> **any method for creating pn junction. These**
+>
+> **impurity regions are called gates *(G)*.**
+
+17
+
+24-02-2022
+
+> ▪ **Consider now the behavior of drain current I~D~ vs**
+> ![](media/image5.png){width="2.255in" height="2.275in"}
+>
+> **drain source voltage V~DS~. The gate source**
+>
+> **voltage is zero therefore V~GS~=0. Suppose that V~DS~**
+>
+> **is gradually linearly increased linearly from 0V.**
+>
+> **I~D~ also increases.**
+>
+> ▪ **Since the channel behaves as a semiconductor**
+>
+> **resistance, therefore it follows ohm\'s law. The**
+>
+> **region is called *ohmic region*, with increasing**
+>
+> **current, the ohmic voltage drop between the**
+>
+> **source and the channel region reverse biased**
+>
+> **the junction.** ![](media/image5.png){width="1.5266666666666666in"
+> height="0.865in"}
+>
+> ▪ **The conducting portion of the channel begins to**
+>
+> **constrict and I~D~ begins to level off until a**
+>
+> **specific value of V~DS~ is reached, called the *pinch***
+>
+> ***of voltage* (V~P~^).^*Ohnic Resistance:*** ��~����~
+> =^��^[����]{.underline} ***Drain Resistance:*** ��~��~
+> =^∆��^[����]{.underline}
+
+∆��~��~
+
+��~��~
+
+> ▪ **At this point further increase in V~DS~ do not produce**
+> ![](media/image5.png){width="2.223333333333333in"
+> height="2.0633333333333335in"}
+>
+> **corresponding increase in I~D~. Instead, as V~DS~**
+>
+> **increases, both depletion regions extend further into**
+>
+> **the channel, resulting in a no more cross section,**
+>
+> **and hence a higher channel resistance.**
+>
+> ▪ **Thus even though, there is more voltage, the**
+>
+> **resistance is also greater and the current remains**
+>
+> **relatively constant. This is called *pinch off or***
+>
+> ***saturation region*.**
+>
+> ▪ **The current in this region is maximum current that**
+>
+> **FET can produce and designated by I~DSS~. (Drain to**
+>
+> **source current with gate shorted).**
+>
+> ▪ **As with all pn junctions, when the reverse voltage**
+>
+> **exceeds a certain level, *avalanche breakdown* of PN**
+>
+> **junction occurs and I~D~ rises very rapidly.**
+
+18
+
+24-02-2022
+
+> **[N-channel JFET:]{.underline}**
+> ![](media/image5.png){width="2.171666666666667in"
+> height="1.4783333333333333in"}
+>
+> ▪ **Consider an N-channel JFET with a reverse gate source voltage.**
+>
+> ▪ **The additional reverse bias, pinch off will occur for smaller
+> values of \|V~DS~\|, and the maximum drain current will be smaller. A
+> family of curves for different values of V~GS~ (negative).**
+> ![](media/image5.png){width="2.225in" height="1.735in"}
+>
+> ▪ **Suppose that V~GS~=0 and that due of V~DS~ at a specific point
+> along the channel is +5V with respect to ground. Therefore reverse
+> voltage across either p-n junction is now 5V. If V~GS~ is decreased
+> from 0 to --1V the net reverse bias near the point is 5 - (-1) = 6V.
+> Thus for any fixed value of V~DS~, the channel width decreases as
+> V~GS~ is made more negative.**
+>
+> ▪ **Thus I~D~ value changes correspondingly. When the gate voltage is
+> negative enough, the depletion layers touch each other and the
+> conducting channel pinches off (disappears). In this case the drain
+> current is cut off.**
+> ![](media/image5.png){width="2.171666666666667in"
+> height="1.4783333333333333in"}
+>
+> ▪ **The gate voltage that produces cut off is symbolized V~GS~ (off) .
+> It is same as pinch off voltage.**
+>
+> ▪ **Since the gate source junction is a reverse biased silicon diode,
+> only a very small reverse current flows through it. Ideally gate
+> current is zero. As a result, all the free electrons from the source
+> go to the drain i.e. I~D~ = I~S~. Because the gate draws almost
+> negligible reverse current the input resistance is very high 10\'s or
+> 100\'s of Mega-ohm. Therefore where high input impedance is required,
+> JFET is preferred over BJT.** ![](media/image5.png){width="2.225in"
+> height="1.735in"}
+>
+> ▪ **The disadvantage is less control over output current i.e. FET
+> takes larger changes in input voltage to produce changes in output
+> current. For this reason, JFET has less voltage gain than a bipolar
+> amplifier.**
+
+19
+
+24-02-2022
+
+> **[Transductance Curves:]{.underline}**
+>
+> ▪ **The transductance (g~m~) curve of a JFET is a graph of output
+> current (I~D~) vs input voltage (V~GS~).**
+>
+> ▪ **By reading the value of I~D~ and V~GS~ for a particular value of
+> V~DS~, the transductance curve can be plotted. The transductance curve
+> is a part of parabola. It has an equation of**
+>
+> �� ![](media/image5.png){width="4.3566666666666665in"
+> height="2.3133333333333335in"}
+>
+> ��~��~ = ��~������\ ��\ −~��~����~
+>
+> ��~����\ ������~
+>
+> ***Transconductance:*** ��~��~ =^∆��^[��]{.underline} ∆��~����~
+>
+> **[Comparison between BJT and FET:]{.underline}**
+
++----------------------------------+-------------------------------------+
+| **BJT**                          | **FET**                             |
++----------------------------------+-------------------------------------+
+| > • **Bipolar device.**          | > • **Unipolar device.**            |
+| >                                | >                                   |
+| > *(current conduction by both   | > *(current conduction is only due  |
+| > electrons and holes)*          | > to majority carriers, either      |
+|                                  | > electrons and holes)*             |
++----------------------------------+-------------------------------------+
+| > • **Current controlled         | > • **Voltage controlled device.**  |
+| > device**                       | >                                   |
+| >                                | > *(The current through the two     |
+| > *(The voltage across the two   | > terminals controlled by voltage   |
+| > terminals controlled by a      | > at third terminal)*               |
+| > current at third terminal)*    |                                     |
++----------------------------------+-------------------------------------+
+| > • **Low input impedance**      | > • **High input impedance**        |
++----------------------------------+-------------------------------------+
+| > • **Transconductance is very   | > • **Lower than BJT**              |
+| > high**                         |                                     |
++----------------------------------+-------------------------------------+
+| • **Gain is characterized by     | > • **Gain is characterized by      |
+| voltage gain**                   | > transconductance**                |
++----------------------------------+-------------------------------------+
+| > • **Lower thermal stability**  | > • **Better thermal stability**    |
++----------------------------------+-------------------------------------+
+| > • **High noise level**         | > • **Low noise level**             |
++----------------------------------+-------------------------------------+
+| > **[Application:]{.underline}** | > **[Application:]{.underline}**    |
+| >                                | >                                   |
+| > • **As amplifier - active      | > • **As amplifier -- saturation    |
+| > region**                       | > *(pinchoff)* region** • **As      |
+| >                                | > switch-cutoff & ohmic region**    |
+| > • **As switch-cutoff &         |                                     |
+| > saturation region**            |                                     |
++==================================+=====================================+
+
+**40**
+
+20
+
+24-02-2022
+
+> **5.3 METAL OXIDE SEMICONDUCTOR FIELD EFFECT TRANSISTOR (MOSFET)**
+>
+> ▪ **Like JFET, it has a source, Drain and Gate.**
+>
+> ▪ **It is also called IGFET (Insulated Gate FET) because gate terminal
+> is insulated from channel. Therefore it has extremely high input
+> resistance.**
+>
+> **There are two types of MOSFET:**
+> ![](media/image5.png){width="2.933333333333333in"
+> height="1.6783333333333332in"}
+>
+> **1. Depletion mode MOSFET**
+>
+> ➢ ***N-channel***
+>
+> ➢ ***P-channel***
+>
+> **1. Enhancement mode MOSFET**
+> ![](media/image5.png){width="2.933333333333333in"
+> height="1.7266666666666666in"}
+>
+> ➢ ***N-channel***
+>
+> ➢ ***P-channel***
+
+21
+
+24-02-2022
+
+> **[Deplition mode MOSFET:]{.underline}**
+>
+> ▪ **In depletion mode of operation the bias voltage on the gate reduce
+> the number of charge carriers in the channel and therefore reduce the
+> drain current *(I~D~)*.**
+>
+> ▪ **It operates in both depletion mode and enhancement mode.**
+>
+> **[Construction of D-MOSFET:]{.underline}**
+>
+> ▪ **It consists of lightly doped p-type substrate in which**
+>
+> **two highly doped n-regions are diffused.**
+> ![](media/image5.png){width="2.433333333333333in"
+> height="1.8466666666666667in"}
+>
+> ▪ **The source and drain terminals are connected**
+>
+> **through metallic contacts to n-doped regions linked**
+>
+> **by an n-channel.**
+>
+> ▪ **The gate is also connected to a metal contact surface**
+>
+> **but remains insulated from the n-channel by a very**
+>
+> **thin silicon dioxide (SiO2) layer.**
+>
+> ▪ **SiO~2~is a particular type of insulator referred to as a**
+>
+> **dielectric that sets up opposing electric fields within**
+>
+> **the dielectric when exposed to an externally applied**
+>
+> **field.**
+>
+> ▪ **Then the thin layer of metal aluminium is formed**
+>
+> **over the SiO~2~layer. This metal overs the entire**
+>
+> **channel region and it forms the gate (G).**
+
+22
+
+24-02-2022
+
+> **[Operation of D-MOSFET:]{.underline}**
+>
+> ***Case-1 "when V~DS~ increased from zero"*** ▪ **Here drain is
+> connected to positive supply. It act as a reverse bias. Due to this,
+> depletion region gets increases.** ▪ **Free electron from n-channel
+> are attracted towards positive potential of drain terminal.**
+> ![](media/image5.png){width="2.9366666666666665in"
+> height="2.1466666666666665in"}
+>
+> ▪ **This establishes current through channel flows from drain to
+> source and denoted as I~DSS~.**
+>
+> ***Pinch of voltage***
+>
+> ▪ **The pinch off voltage is the voltage at which the junction is
+> depleted of charge carriers.**
+>
+> **[Operation of D-MOSFET:]{.underline}**
+>
+> ***Case-2 "when V~GS~ increased from zero"*** ▪ **The negative charge
+> on gate repels conduction electrons from the channel and attract holes
+> from the p-type substrate.**
+> ![](media/image5.png){width="2.9366666666666665in"
+> height="2.1466666666666665in"}
+>
+> ▪ **Due to this electron-hole recombination occurs and reduce the
+> number of free electrons in the channel available for conduction,
+> reducing Drain current *(I~D~).***
+>
+> ▪ **When negative voltage of V~GS~ is increased the pinch of voltage
+> decreased. When it is further increased the channel is fully depleted
+> and no current flows through it.**
+>
+> ▪ ***The negative voltage depletion MOSFET.***
+
+23
+
+24-02-2022
+
+> **[Characteristics of D-MOSFET:]{.underline}**
+>
+> ![](media/image5.png){width="4.903333333333333in"
+> height="2.9266666666666667in"}***[Fig: Drain and Transfer
+> Characteristics]{.underline}***
+>
+> **[Enhancement mode MOSFET:]{.underline}**
+>
+> ▪ **In this mode bias on the gate increases the number of charge
+> carriers in the channel and increases the drain current *(I~D~).***
+>
+> ▪ **It operates only in the enhancement mode and has no depletion mode
+> of operation. It has no physical channel.**
+
+24
+
+24-02-2022
+
+> **[Construction of E-MOSFET:]{.underline}**
+>
+> ▪ **In the basic construction of the n-channel enhancement type
+> MOSFET, a slab of p-type material is formed from a silicon base and is
+> again referred to as the substrate.**
+> ![](media/image5.png){width="2.1533333333333333in" height="1.975in"}
+>
+> ▪ **As with the depletion-type MOSFET, the substrate is sometimes
+> internally connected to the source terminal, while in other cases a
+> fourth lead is made available for external control of its potential
+> level.**
+>
+> ▪ **The SiO~2~layer is still present to isolate the gate metallic
+> platform from the region between the drain and source, but now it is
+> simply separated from a section of the p-type material.**
+>
+> ▪ **In summary, therefore, the construction of an enhancement-type
+> MOSFET is quite similar to that of the depletion-type MOSFET, except
+> for the absence of a channel between the drain and source terminals.**
+>
+> **[Operation of E-MOSFET:]{.underline}**
+>
+> ▪ **If V~GS~ is set at 0V and a voltage applied between the drain and
+> source of the device, the absence of an n-channel (with its generous
+> number of free carriers) will result in a current of effectively zero
+> amperes---quite different from the depletion- type MOSFET and JFET
+> where I~D~ - I~DSS~.**
+> ![](media/image5.png){width="2.9166666666666665in"
+> height="1.6233333333333333in"}
+>
+> ▪ **It is not sufficient to saturation level as occurred for the JFET
+> and depletion-type MOSFET.**
+>
+> ▪ **The conductivity of the channel is enhanced by the positive bias
+> voltage on the gate, the device is known as enhancement MOSFET. E
+> MOSFET's are normally called as *"OFF MOSFET"***
+
+25
+
+24-02-2022
+
+> **[Characteristics of E-MOSFET:]{.underline}**
+
+![](media/image5.png){width="3.3866666666666667in"
+height="3.1933333333333334in"}
+
+> ***[Fig: Drain and Transfer Characteristics]{.underline}***
+>
+> **[Applications of FET:]{.underline}**
+>
+> ▪ **Low Noise Amplifier**
+>
+> ▪ **Buffer Amplifier**
+>
+> ▪ **Cascode Amplifier**
+>
+> ▪ **Analog Switch**
+>
+> ▪ **Chopper**
+>
+> ▪ **Multiplexer**
+>
+> ▪ **Current Limiter**
+>
+> ▪ **Phase Shift Oscillators**
+
+26

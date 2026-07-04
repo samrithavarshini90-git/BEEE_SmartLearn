@@ -1,0 +1,757 @@
+{
+  "unit_number": 2,
+  "unit_title": "AC CIRCUITS",
+  "topics": [
+    "Representation of Sinusoidal Waveforms",
+    "Peak & RMS values",
+    "Form and Peak Factors",
+    "Phasor Representation",
+    "Analysis of 1\u0424 AC circuits",
+    "R, RL, RC, and RLC (Series & parallel) combinations",
+    "Series and parallel resonance",
+    "Bandwidth and quality factors",
+    "Real, Reactive, & Apparent Power",
+    "Power Factor and Complex Power",
+    "Analysis of 3\u0424 balanced AC circuits",
+    "Power measurement by two wattmeter method"
+  ],
+  "formulas": [
+    {
+      "name": "RMS Value of Sinusoid",
+      "topic": "Peak & RMS values",
+      "expression": "V_rms = Vm / sqrt(2)",
+      "latex": "V_{rms} = \\frac{V_m}{\\sqrt{2}}",
+      "variables": [
+        {
+          "symbol": "V_rms",
+          "meaning": "Root Mean Square Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_m",
+          "meaning": "Maximum or Peak Voltage",
+          "unit": "V"
+        }
+      ],
+      "explanation": "The RMS value is the effective value of a varying voltage or current. It is the equivalent DC value that would deliver the same average power to a resistor."
+    },
+    {
+      "name": "Average Value of Sinusoid",
+      "topic": "Peak & RMS values",
+      "expression": "V_avg = (2 * Vm) / pi",
+      "latex": "V_{avg} = \\frac{2V_m}{\\pi}",
+      "variables": [
+        {
+          "symbol": "V_avg",
+          "meaning": "Average Voltage over a half-cycle",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_m",
+          "meaning": "Maximum or Peak Voltage",
+          "unit": "V"
+        }
+      ],
+      "explanation": "The average value of a complete sinusoidal cycle is zero, so it is calculated over a half-cycle. It is approximately 0.637 times the peak value."
+    },
+    {
+      "name": "Form Factor",
+      "topic": "Form and Peak Factors",
+      "expression": "Form Factor = RMS Value / Average Value",
+      "latex": "k_f = \\frac{V_{rms}}{V_{avg}}",
+      "variables": [
+        {
+          "symbol": "k_f",
+          "meaning": "Form Factor",
+          "unit": "unitless"
+        }
+      ],
+      "explanation": "The form factor of an alternating current waveform is the ratio of its RMS value to its average value. For a sinusoid, it is approximately 1.11."
+    },
+    {
+      "name": "Peak Factor",
+      "topic": "Form and Peak Factors",
+      "expression": "Peak Factor = Maximum Value / RMS Value",
+      "latex": "k_p = \\frac{V_m}{V_{rms}}",
+      "variables": [
+        {
+          "symbol": "k_p",
+          "meaning": "Peak Factor or Crest Factor",
+          "unit": "unitless"
+        }
+      ],
+      "explanation": "The peak factor is the ratio of the peak (maximum) value to the RMS value of the waveform. For a sinusoid, it is sqrt(2), approximately 1.414."
+    },
+    {
+      "name": "Impedance",
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "expression": "Z = V / I",
+      "latex": "Z = \\frac{V}{I}",
+      "variables": [
+        {
+          "symbol": "Z",
+          "meaning": "Impedance",
+          "unit": "\u03a9"
+        },
+        {
+          "symbol": "V",
+          "meaning": "Phasor Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I",
+          "meaning": "Phasor Current",
+          "unit": "A"
+        }
+      ],
+      "explanation": "Impedance is the total opposition that a circuit presents to alternating current. It is a complex quantity including both resistance and reactance."
+    },
+    {
+      "name": "Rectangular Impedance",
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "expression": "Z = R + jX",
+      "latex": "Z = R + jX",
+      "variables": [
+        {
+          "symbol": "Z",
+          "meaning": "Impedance",
+          "unit": "\u03a9"
+        },
+        {
+          "symbol": "R",
+          "meaning": "Resistance",
+          "unit": "\u03a9"
+        },
+        {
+          "symbol": "X",
+          "meaning": "Reactance",
+          "unit": "\u03a9"
+        }
+      ],
+      "explanation": "Impedance expressed in rectangular form, where R is the real part (resistance) and X is the imaginary part (reactance)."
+    },
+    {
+      "name": "Inductive Reactance",
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "expression": "XL = w * L",
+      "latex": "X_L = \\omega L",
+      "variables": [
+        {
+          "symbol": "XL",
+          "meaning": "Inductive Reactance",
+          "unit": "\u03a9"
+        },
+        {
+          "symbol": "w",
+          "meaning": "Angular Frequency",
+          "unit": "rad/s"
+        },
+        {
+          "symbol": "L",
+          "meaning": "Inductance",
+          "unit": "H"
+        }
+      ],
+      "explanation": "Inductive reactance is the opposition offered by an inductor to alternating current. It is directly proportional to the frequency."
+    },
+    {
+      "name": "Capacitive Reactance",
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "expression": "XC = 1 / (w * C)",
+      "latex": "X_C = \\frac{1}{\\omega C}",
+      "variables": [
+        {
+          "symbol": "XC",
+          "meaning": "Capacitive Reactance",
+          "unit": "\u03a9"
+        },
+        {
+          "symbol": "w",
+          "meaning": "Angular Frequency",
+          "unit": "rad/s"
+        },
+        {
+          "symbol": "C",
+          "meaning": "Capacitance",
+          "unit": "F"
+        }
+      ],
+      "explanation": "Capacitive reactance is the opposition offered by a capacitor to alternating current. It is inversely proportional to the frequency."
+    },
+    {
+      "name": "Series RLC Impedance",
+      "topic": "Series RLC Circuit Analysis",
+      "expression": "Z = sqrt(R^2 + (XL - XC)^2)",
+      "latex": "Z = \\sqrt{R^2 + (X_L - X_C)^2}",
+      "variables": [
+        {
+          "symbol": "Z",
+          "meaning": "Total Impedance",
+          "unit": "\u03a9"
+        },
+        {
+          "symbol": "R",
+          "meaning": "Resistance",
+          "unit": "\u03a9"
+        },
+        {
+          "symbol": "XL",
+          "meaning": "Inductive Reactance",
+          "unit": "\u03a9"
+        },
+        {
+          "symbol": "XC",
+          "meaning": "Capacitive Reactance",
+          "unit": "\u03a9"
+        }
+      ],
+      "explanation": "The total impedance of a series RLC circuit is the vector sum of the resistance and the total reactance (difference between inductive and capacitive reactance)."
+    },
+    {
+      "name": "Series Resonance Frequency",
+      "topic": "Series and Parallel Resonance",
+      "expression": "w0 = 1 / sqrt(L * C)",
+      "latex": "\\omega_0 = \\frac{1}{\\sqrt{LC}}",
+      "variables": [
+        {
+          "symbol": "w0",
+          "meaning": "Resonant Angular Frequency",
+          "unit": "rad/s"
+        },
+        {
+          "symbol": "L",
+          "meaning": "Inductance",
+          "unit": "H"
+        },
+        {
+          "symbol": "C",
+          "meaning": "Capacitance",
+          "unit": "F"
+        }
+      ],
+      "explanation": "Resonance occurs when the inductive reactance equals the capacitive reactance, leading to minimum impedance and maximum current in a series circuit."
+    },
+    {
+      "name": "Average Power (Real Power)",
+      "topic": "Real, Reactive, & Apparent Power",
+      "expression": "P = V_rms * I_rms * cos(phi)",
+      "latex": "P = V_{rms} I_{rms} \\cos(\\phi)",
+      "variables": [
+        {
+          "symbol": "P",
+          "meaning": "Average or Real Power",
+          "unit": "W"
+        },
+        {
+          "symbol": "V_rms",
+          "meaning": "RMS Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I_rms",
+          "meaning": "RMS Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "phi",
+          "meaning": "Phase angle difference between V and I",
+          "unit": "degrees"
+        }
+      ],
+      "explanation": "Real power is the actual power dissipated by the resistive part of a load. It is the only power that does useful work."
+    },
+    {
+      "name": "Apparent Power",
+      "topic": "Real, Reactive, & Apparent Power",
+      "expression": "S = V_rms * I_rms",
+      "latex": "S = V_{rms} I_{rms}",
+      "variables": [
+        {
+          "symbol": "S",
+          "meaning": "Apparent Power",
+          "unit": "VA"
+        },
+        {
+          "symbol": "V_rms",
+          "meaning": "RMS Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I_rms",
+          "meaning": "RMS Current",
+          "unit": "A"
+        }
+      ],
+      "explanation": "Apparent power is the product of RMS voltage and RMS current, representing the total power that appears to be transferred between the source and the load."
+    },
+    {
+      "name": "Reactive Power",
+      "topic": "Real, Reactive, & Apparent Power",
+      "expression": "Q = V_rms * I_rms * sin(phi)",
+      "latex": "Q = V_{rms} I_{rms} \\sin(\\phi)",
+      "variables": [
+        {
+          "symbol": "Q",
+          "meaning": "Reactive Power",
+          "unit": "VAR"
+        },
+        {
+          "symbol": "V_rms",
+          "meaning": "RMS Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I_rms",
+          "meaning": "RMS Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "phi",
+          "meaning": "Phase angle difference between V and I",
+          "unit": "degrees"
+        }
+      ],
+      "explanation": "Reactive power is the power exchanged back and forth between the source and the reactive components (inductors and capacitors) of a load."
+    },
+    {
+      "name": "Power Factor",
+      "topic": "Power Factor and Complex Power",
+      "expression": "pf = P / S = cos(phi)",
+      "latex": "pf = \\frac{P}{S} = \\cos(\\phi)",
+      "variables": [
+        {
+          "symbol": "pf",
+          "meaning": "Power Factor",
+          "unit": "unitless"
+        },
+        {
+          "symbol": "P",
+          "meaning": "Real Power",
+          "unit": "W"
+        },
+        {
+          "symbol": "S",
+          "meaning": "Apparent Power",
+          "unit": "VA"
+        },
+        {
+          "symbol": "phi",
+          "meaning": "Power factor angle",
+          "unit": "degrees"
+        }
+      ],
+      "explanation": "The power factor is the cosine of the phase difference between voltage and current. It indicates how effectively the current is being converted into useful work."
+    },
+    {
+      "name": "Complex Power",
+      "topic": "Power Factor and Complex Power",
+      "expression": "S = P + jQ = V_rms * I_rms*",
+      "latex": "S = P + jQ = V_{rms} I_{rms}^{*}",
+      "variables": [
+        {
+          "symbol": "S",
+          "meaning": "Complex Power",
+          "unit": "VA"
+        },
+        {
+          "symbol": "P",
+          "meaning": "Real Power",
+          "unit": "W"
+        },
+        {
+          "symbol": "Q",
+          "meaning": "Reactive Power",
+          "unit": "VAR"
+        },
+        {
+          "symbol": "V_rms",
+          "meaning": "RMS Phasor Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I_rms*",
+          "meaning": "Complex Conjugate of RMS Phasor Current",
+          "unit": "A"
+        }
+      ],
+      "explanation": "Complex power is a complex number that contains all power information for a load. Its real part is real power (P) and its imaginary part is reactive power (Q)."
+    }
+  ],
+  "questions_2_mark": [
+    {
+      "topic": "Peak & RMS values",
+      "question": "Define RMS value of an alternating current.",
+      "answer": "The RMS (Root Mean Square) value of an alternating current is the value of the direct current (DC) that would produce the same amount of heat energy in a given resistor over the same period of time. For a sinusoid, it is the peak value divided by the square root of 2."
+    },
+    {
+      "topic": "Form and Peak Factors",
+      "question": "Define form factor and peak factor for a sinusoidal waveform.",
+      "answer": "Form factor is the ratio of the RMS value to the average value, which is 1.11 for a sinusoid. Peak factor (or crest factor) is the ratio of the maximum (peak) value to the RMS value, which is 1.414 for a sinusoid."
+    },
+    {
+      "topic": "Phasor Representation",
+      "question": "What is a phasor?",
+      "answer": "A phasor is a complex number that represents the amplitude and phase angle of a sinusoidal function. It simplifies the analysis of AC circuits by allowing us to solve them with complex algebra instead of differential equations."
+    },
+    {
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "question": "Define impedance and admittance.",
+      "answer": "Impedance (Z) is the total opposition a circuit offers to the flow of alternating current, measured in ohms (\u03a9). Admittance (Y) is the reciprocal of impedance and represents how easily a circuit allows current to flow, measured in siemens (S)."
+    },
+    {
+      "topic": "Real, Reactive, & Apparent Power",
+      "question": "What is the difference between real power and apparent power?",
+      "answer": "Real power (P) is the actual power dissipated by a load in watts (W), performing useful work. Apparent power (S) is the product of RMS voltage and current in volt-amperes (VA), representing the total power supplied to the circuit, including both dissipated and reactive components."
+    },
+    {
+      "topic": "Power Factor and Complex Power",
+      "question": "Define Power Factor. What does it signify?",
+      "answer": "Power factor is the cosine of the phase angle between voltage and current. It is the ratio of real power to apparent power and signifies how effectively electrical power is being converted into useful work. A power factor of 1 is ideal."
+    },
+    {
+      "topic": "Series and Parallel Resonance",
+      "question": "What is the condition for resonance in a series RLC circuit?",
+      "answer": "The condition for resonance in a series RLC circuit is when the inductive reactance (XL) equals the capacitive reactance (XC). At this frequency, the total impedance is at its minimum (equal to R), and the current is at its maximum."
+    },
+    {
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "question": "What is the phase relationship between voltage and current in a purely inductive circuit?",
+      "answer": "In a purely inductive circuit, the current lags the voltage by 90 degrees. This means the current waveform reaches its peak a quarter of a cycle after the voltage waveform."
+    },
+    {
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "question": "What is the phase relationship between voltage and current in a purely capacitive circuit?",
+      "answer": "In a purely capacitive circuit, the current leads the voltage by 90 degrees. This means the current waveform reaches its peak a quarter of a cycle before the voltage waveform."
+    },
+    {
+      "topic": "Real, Reactive, & Apparent Power",
+      "question": "What is reactive power and what is its unit?",
+      "answer": "Reactive power (Q) is a measure of the energy exchange between the source and the reactive part of the load (inductors and capacitors). It does not perform useful work and is measured in Volt-Ampere Reactive (VAR)."
+    }
+  ],
+  "questions_5_mark": [
+    {
+      "topic": "Form and Peak Factors",
+      "question": "Derive the expressions for Form Factor and Peak Factor for a sinusoidal voltage waveform.",
+      "answer": "For a sinusoidal voltage v(t) = Vm sin(\u03c9t):\n\n1. RMS Value: The RMS value is calculated as V_rms = Vm / \u221a2 \u2248 0.707 * Vm.\n\n2. Average Value: The average value over a half-cycle is V_avg = (2 * Vm) / \u03c0 \u2248 0.637 * Vm.\n\n3. Form Factor (k_f):\nForm Factor is the ratio of the RMS value to the Average value.\nk_f = V_rms / V_avg = (0.707 * Vm) / (0.637 * Vm) \u2248 1.11.\n\n4. Peak Factor (k_p):\nPeak Factor is the ratio of the Maximum (Peak) value to the RMS value.\nk_p = Vm / V_rms = Vm / (0.707 * Vm) \u2248 1.414.",
+      "formulas_used": [
+        "RMS Value of Sinusoid",
+        "Average Value of Sinusoid",
+        "Form Factor",
+        "Peak Factor"
+      ],
+      "diagram_hint": "waveform"
+    },
+    {
+      "topic": "Power Factor and Complex Power",
+      "question": "Explain the terms real power, reactive power, and apparent power. Draw and label the power triangle.",
+      "answer": "In an AC circuit, power can be categorized into three types:\n\n1. Real Power (P): Also known as average or true power, it is the power dissipated by the resistive elements of the load and performs useful work. It is measured in Watts (W). P = V_rms * I_rms * cos(\u03d5).\n\n2. Reactive Power (Q): This is the power exchanged between the source and the reactive elements (inductors and capacitors). It does not do any useful work. It is measured in Volt-Amperes Reactive (VAR). Q = V_rms * I_rms * sin(\u03d5).\n\n3. Apparent Power (S): It is the product of the RMS voltage and current, representing the 'apparent' power supplied. It is the vector sum of real and reactive power. It is measured in Volt-Amperes (VA). S = V_rms * I_rms.\n\nThe Power Triangle: These three powers are related by the power triangle, a right-angled triangle where:\n- The base represents Real Power (P).\n- The height represents Reactive Power (Q).\n- The hypotenuse represents Apparent Power (S).\n- The angle between P and S is the power factor angle (\u03d5).\nThe relationship is S\u00b2 = P\u00b2 + Q\u00b2.",
+      "formulas_used": [
+        "Average Power (Real Power)",
+        "Reactive Power",
+        "Apparent Power"
+      ],
+      "diagram_hint": "graph"
+    },
+    {
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "question": "Explain the phasor relationship of voltage and current for pure resistive, pure inductive, and pure capacitive circuits.",
+      "answer": "1. Pure Resistive Circuit (R):\nIn a pure resistor, the voltage and current are in phase. The phase angle (\u03d5) is 0\u00b0. The phasor diagram shows the voltage and current phasors aligned on the same axis. Z = R\u22200\u00b0.\n\n2. Pure Inductive Circuit (L):\nIn a pure inductor, the current lags the voltage by 90\u00b0. The phase angle (\u03d5) is +90\u00b0. The phasor diagram shows the current phasor lagging the voltage phasor by 90\u00b0. The impedance is purely imaginary, Z = jXL = \u03c9L\u222090\u00b0.\n\n3. Pure Capacitive Circuit (C):\nIn a pure capacitor, the current leads the voltage by 90\u00b0. The phase angle (\u03d5) is -90\u00b0. The phasor diagram shows the current phasor leading the voltage phasor by 90\u00b0. The impedance is purely imaginary, Z = -jXC = (1/\u03c9C)\u2220-90\u00b0.",
+      "formulas_used": [
+        "Impedance",
+        "Inductive Reactance",
+        "Capacitive Reactance"
+      ],
+      "diagram_hint": "phasor"
+    },
+    {
+      "topic": "Series RLC Circuit Analysis",
+      "question": "Compare the behavior of a series RLC circuit when it is inductive, capacitive, and resistive (at resonance).",
+      "answer": "The behavior of a series RLC circuit depends on the relative magnitudes of inductive reactance (XL) and capacitive reactance (XC).\n\nCase 1: Inductive (XL > XC)\n- The net reactance X = (XL - XC) is positive.\n- The total impedance Z = R + jX is inductive.\n- The circuit current lags the supply voltage. The phase angle \u03d5 is positive (0\u00b0 < \u03d5 < 90\u00b0).\n- The power factor is lagging.\n\nCase 2: Capacitive (XC > XL)\n- The net reactance X = (XL - XC) is negative.\n- The total impedance Z = R + jX is capacitive.\n- The circuit current leads the supply voltage. The phase angle \u03d5 is negative (-90\u00b0 < \u03d5 < 0\u00b0).\n- The power factor is leading.\n\nCase 3: Resistive / Resonance (XL = XC)\n- The net reactance X = 0.\n- The total impedance is minimum and purely resistive (Z = R).\n- The circuit current is in phase with the supply voltage (\u03d5 = 0\u00b0).\n- The power factor is unity (pf = 1). The current is maximum at this frequency.",
+      "formulas_used": [
+        "Series RLC Impedance",
+        "Series Resonance Frequency"
+      ],
+      "diagram_hint": "phasor"
+    },
+    {
+      "topic": "Parallel RLC Circuit Analysis",
+      "question": "Explain the concept of resonance in a parallel RLC circuit.",
+      "answer": "In a parallel RLC circuit, resonance occurs when the susceptance part of the total admittance is zero. This happens when the inductive susceptance (BL) equals the capacitive susceptance (BC).\n\nCondition for resonance:\n|IL| = |IC|, which means |V/XL| = |V/XC|, so XL = XC. The resonant frequency is the same as in a series circuit: \u03c90 = 1/sqrt(LC).\n\nAt resonance:\n- The imaginary components of the current (IL and IC) cancel each other out.\n- The total current drawn from the source is minimum and is in phase with the supply voltage (IR).\n- The total admittance (Y) is at its minimum and equal to the conductance (G = 1/R).\n- The total impedance (Z) is at its maximum (Z = R).\n- The power factor is unity (pf = 1).\nThis condition is often called anti-resonance due to the minimum current and maximum impedance.",
+      "formulas_used": [
+        "Admittance",
+        "Series Resonance Frequency"
+      ],
+      "diagram_hint": "circuit"
+    },
+    {
+      "topic": "Phasor Representation",
+      "question": "Explain how to convert a sinusoidal signal from time-domain to phasor-domain and vice versa.",
+      "answer": "Time-domain to Phasor-domain:\nA sinusoidal signal in the time domain, v(t) = Vm * cos(\u03c9t + \u03d5), can be represented in the phasor domain.\n1. Identify the amplitude (Vm) and the phase angle (\u03d5).\n2. The phasor representation is a complex number in polar form: V = Vm\u2220\u03d5. \n3. Often, the RMS value is used, so V_rms = (Vm/\u221a2)\u2220\u03d5.\nExample: v(t) = 10 cos(\u03c9t + 30\u00b0) becomes the phasor V = 10\u222030\u00b0.\n\nPhasor-domain to Time-domain:\nA phasor V = Vm\u2220\u03d5 represents a sinusoidal signal.\n1. Identify the amplitude Vm and phase angle \u03d5 from the phasor.\n2. Write the time-domain function as v(t) = Vm * cos(\u03c9t + \u03d5). The angular frequency \u03c9 must be known from the circuit context.\nExample: A phasor I = 5\u2220-45\u00b0 A at a frequency of 60 Hz (\u03c9 = 2\u03c0f \u2248 377 rad/s) corresponds to i(t) = 5 cos(377t - 45\u00b0).",
+      "formulas_used": [
+        "Phasor Representation"
+      ],
+      "diagram_hint": "none"
+    }
+  ],
+  "questions_10_mark": [
+    {
+      "topic": "Peak & RMS values",
+      "question": "Derive the expressions for the average value and RMS value of a sinusoidal voltage waveform v(t) = Vm sin(\u03c9t).",
+      "answer": "Given the sinusoidal voltage waveform v(t) = Vm sin(\u03b8), where \u03b8 = \u03c9t.\n\n1. Derivation of Average Value:\nThe average value is calculated over one half-cycle (from 0 to \u03c0) as the average over a full cycle is zero.\nFormula: V_avg = (1/\u03c0) \u222b[0 to \u03c0] v(t) d\u03b8\nV_avg = (1/\u03c0) \u222b[0 to \u03c0] Vm sin(\u03b8) d\u03b8\nV_avg = (Vm/\u03c0) [-cos(\u03b8)] from 0 to \u03c0\nV_avg = (Vm/\u03c0) [-cos(\u03c0) - (-cos(0))]\nV_avg = (Vm/\u03c0) [-(-1) - (-1)]\nV_avg = (Vm/\u03c0) [1 + 1]\nResult: V_avg = (2 * Vm) / \u03c0 \u2248 0.637 Vm\n\n2. Derivation of RMS Value:\nThe RMS value is the square root of the mean of the square of the instantaneous values.\nFormula: V_rms = \u221a[(1/\u03c0) \u222b[0 to \u03c0] v(t)\u00b2 d\u03b8]\nFirst, calculate the mean of the square:\nV_rms\u00b2 = (1/\u03c0) \u222b[0 to \u03c0] (Vm sin(\u03b8))\u00b2 d\u03b8\nV_rms\u00b2 = (Vm\u00b2/\u03c0) \u222b[0 to \u03c0] sin\u00b2(\u03b8) d\u03b8\nUsing the identity sin\u00b2(\u03b8) = (1 - cos(2\u03b8))/2:\nV_rms\u00b2 = (Vm\u00b2/\u03c0) \u222b[0 to \u03c0] (1 - cos(2\u03b8))/2 d\u03b8\nV_rms\u00b2 = (Vm\u00b2/(2\u03c0)) [\u03b8 - (sin(2\u03b8)/2)] from 0 to \u03c0\nV_rms\u00b2 = (Vm\u00b2/(2\u03c0)) [ (\u03c0 - sin(2\u03c0)/2) - (0 - sin(0)/2) ]\nV_rms\u00b2 = (Vm\u00b2/(2\u03c0)) [ (\u03c0 - 0) - 0 ]\nV_rms\u00b2 = (Vm\u00b2/(2\u03c0)) * \u03c0 = Vm\u00b2/2\nTaking the square root:\nResult: V_rms = \u221a(Vm\u00b2/2) = Vm / \u221a2 \u2248 0.707 Vm",
+      "formulas_used": [
+        "Average Value of Sinusoid",
+        "RMS Value of Sinusoid"
+      ],
+      "diagram_hint": "waveform"
+    },
+    {
+      "topic": "Series RLC Circuit Analysis",
+      "question": "With a neat circuit diagram and phasor diagram, explain the analysis of a series RLC circuit for the three cases of operation: Inductive, Capacitive, and Resistive (Resonance).",
+      "answer": "A series RLC circuit consists of a resistor (R), an inductor (L), and a capacitor (C) connected in series with an AC voltage source V.\n\nCircuit Diagram: An AC source `v(t)` connected in series with R, L, and C.\n\nThe impedance of the circuit is Z = R + j(\u03c9L - 1/\u03c9C) = R + j(XL - XC).\nThe current I = V/Z.\n\nCase 1: Inductive (XL > XC)\n- In this case, \u03c9L > 1/\u03c9C. The net reactance X = (XL - XC) is positive.\n- The impedance Z = R + jX is inductive, with a phase angle \u03d5 = arctan(X/R) which is positive.\n- The current I lags the voltage V by the angle \u03d5.\n- Phasor Diagram: The voltage drop across the resistor (VR) is in phase with the current I. The voltage across the inductor (VL) leads I by 90\u00b0. The voltage across the capacitor (VC) lags I by 90\u00b0. Since VL > VC, the resultant reactive voltage (VL-VC) is upward. The total voltage V is the vector sum of VR and (VL-VC), leading I.\n\nCase 2: Capacitive (XC > XL)\n- In this case, 1/\u03c9C > \u03c9L. The net reactance X = (XL - XC) is negative.\n- The impedance Z = R - j|X| is capacitive, with a phase angle \u03d5 which is negative.\n- The current I leads the voltage V by the angle |\u03d5|.\n- Phasor Diagram: Similar to case 1, but now VC > VL. The resultant reactive voltage (VL-VC) is downward. The total voltage V is the vector sum of VR and (VL-VC), lagging I.\n\nCase 3: Resistive / Resonance (XL = XC)\n- In this case, \u03c9L = 1/\u03c9C. The net reactance X = 0.\n- The impedance is purely resistive and minimum, Z = R.\n- The current is maximum, I_max = V/R.\n- The phase angle \u03d5 is 0\u00b0, meaning the current I and voltage V are in phase.\n- Phasor Diagram: VL and VC are equal in magnitude and opposite in direction, so they cancel each other out. The total voltage V is equal to the resistive voltage drop VR. V and I are in phase.",
+      "formulas_used": [
+        "Series RLC Impedance",
+        "Series Resonance Frequency"
+      ],
+      "diagram_hint": "circuit"
+    },
+    {
+      "topic": "Real, Reactive, & Apparent Power",
+      "question": "For a AC circuit, the voltage across a load is v(t) = 60 cos(\u03c9t - 10\u00b0) V and the current through the element is i(t) = 1.5 cos(\u03c9t + 50\u00b0) A. Find: (a) the complex and apparent powers, (b) the real and reactive powers, and (c) the power factor and the load impedance.",
+      "answer": "Given:\nv(t) = 60 cos(\u03c9t - 10\u00b0) V\ni(t) = 1.5 cos(\u03c9t + 50\u00b0) A\n\nStep 1: Convert to Phasor Domain (using RMS values)\nThe RMS voltage phasor is V_rms = (60/\u221a2)\u2220-10\u00b0 V \u2248 42.43\u2220-10\u00b0 V.\nThe RMS current phasor is I_rms = (1.5/\u221a2)\u2220+50\u00b0 A \u2248 1.06\u2220+50\u00b0 A.\n\nStep 2: Calculate Complex Power (S)\nComplex Power S = V_rms * I_rms* (where I_rms* is the complex conjugate of I_rms).\nI_rms* = 1.06\u2220-50\u00b0 A\nS = (42.43\u2220-10\u00b0) * (1.06\u2220-50\u00b0)\nS = (42.43 * 1.06) \u2220 (-10\u00b0 - 50\u00b0) = 45\u2220-60\u00b0 VA.\n\nTo find P and Q, convert S to rectangular form:\nS = 45 * (cos(-60\u00b0) + j sin(-60\u00b0)) = 45 * (0.5 - j 0.866)\nS = 22.5 - j38.97 VA\n\nSolution:\n(a) The complex power S is 45\u2220-60\u00b0 VA or (22.5 - j38.97) VA. The apparent power is the magnitude of S, which is |S| = 45 VA.\n\n(b) The real power P is the real part of S, P = 22.5 W. The reactive power Q is the imaginary part of S, Q = -38.97 VAR. The negative sign indicates that the reactive power is capacitive.\n\n(c) The power factor (pf) is the cosine of the power factor angle.\nThe power factor angle is the angle of the complex power, which is -60\u00b0.\npf = cos(-60\u00b0) = 0.5.\nSince the current phase (+50\u00b0) is greater than the voltage phase (-10\u00b0), the current leads the voltage. Thus, the power factor is 0.5 leading.\nLoad impedance Z is calculated as Z = V_rms / I_rms.\nZ = (42.43\u2220-10\u00b0) / (1.06\u2220+50\u00b0)\nZ = (42.43/1.06) \u2220 (-10\u00b0 - 50\u00b0)\nZ = 40\u2220-60\u00b0 \u03a9.",
+      "formulas_used": [
+        "Complex Power",
+        "Apparent Power",
+        "Average Power (Real Power)",
+        "Reactive Power",
+        "Power Factor",
+        "Impedance"
+      ],
+      "diagram_hint": "none"
+    },
+    {
+      "topic": "Parallel RLC Circuit Analysis",
+      "question": "Analyze a parallel RLC circuit with a neat circuit and phasor diagram. Derive the condition for resonance.",
+      "answer": "A parallel RLC circuit consists of a resistor (R), an inductor (L), and a capacitor (C) connected in parallel across an AC voltage source V.\n\nCircuit Diagram: An AC source `v(t)` connected in parallel with R, L, and C.\nSince the elements are in parallel, the voltage V across each element is the same.\nThe total current I is the phasor sum of the individual branch currents: I = IR + IL + IC.\n\nBranch Currents:\n- Current through resistor: IR = V/R (in phase with V)\n- Current through inductor: IL = V/(j\u03c9L) = -j(V/XL) (lags V by 90\u00b0)\n- Current through capacitor: IC = V/(-j/\u03c9C) = j(V/XC) (leads V by 90\u00b0)\n\nTotal Admittance (Y):\nTotal current I = V/R + j(V/XC - V/XL) = V * [1/R + j(\u03c9C - 1/\u03c9L)]\nAdmittance Y = I/V = 1/R + j(\u03c9C - 1/\u03c9L) = G + j(BC - BL)\nwhere G is conductance, BC is capacitive susceptance, and BL is inductive susceptance.\n\nPhasor Diagram:\nUsing voltage V as the reference phasor on the horizontal axis.\n- IR is in phase with V.\n- IC leads V by 90\u00b0 (drawn upwards).\n- IL lags V by 90\u00b0 (drawn downwards).\n- The total current I is the vector sum of IR, IL, and IC.\n\nCondition for Resonance:\nResonance occurs when the circuit behaves as purely resistive. This happens when the imaginary part of the admittance is zero, meaning the net susceptance is zero.\nBC - BL = 0  =>  BC = BL\n\u03c9C = 1/(\u03c9L)\n\u03c9\u00b2 = 1/(LC)\n\u03c9\u2080 = 1/sqrt(LC)\n\nAt resonance:\n- The susceptances cancel out, so Y = G = 1/R. Admittance is minimum.\n- The total impedance Z = 1/Y = R is maximum.\n- The total current I = V/R is minimum and in phase with the voltage V.\n- The power factor is unity (pf = 1). Since the current is minimum, this is also known as anti-resonance.",
+      "formulas_used": [
+        "Admittance",
+        "Series Resonance Frequency"
+      ],
+      "diagram_hint": "circuit"
+    }
+  ],
+  "numerical_problems": [
+    {
+      "topic": "Representation of Sinusoidal Waveforms",
+      "problem": "For the sinusoid v(t) = 12 cos(50t + 10\u00b0), find the amplitude, phase, frequency, and period.",
+      "solution_steps": [
+        "The standard form is Vm cos(\u03c9t + \u03d5).",
+        "Amplitude Vm is 12 V.",
+        "Phase angle \u03d5 is 10\u00b0.",
+        "Angular frequency \u03c9 is 50 rad/s.",
+        "Frequency f = \u03c9 / (2\u03c0) = 50 / (2*3.14159) = 7.96 Hz.",
+        "Period T = 1 / f = 1 / 7.96 = 0.1257 s."
+      ],
+      "final_answer": "Amplitude: 12V, Phase: 10\u00b0, Frequency: 7.96 Hz, Period: 0.1257 s.",
+      "formulas_used": []
+    },
+    {
+      "topic": "Phasor Representation",
+      "problem": "Given v1(t) = -10 cos(\u03c9t + 50\u00b0) and v2(t) = 12 sin(\u03c9t - 10\u00b0), calculate the phase angle between them and state which sinusoid is leading.",
+      "solution_steps": [
+        "First, express both signals in the same form (positive cosine).",
+        "v1(t) = -10 cos(\u03c9t + 50\u00b0) = 10 cos(\u03c9t + 50\u00b0 - 180\u00b0) = 10 cos(\u03c9t - 130\u00b0).",
+        "v2(t) = 12 sin(\u03c9t - 10\u00b0) = 12 cos(\u03c9t - 10\u00b0 - 90\u00b0) = 12 cos(\u03c9t - 100\u00b0).",
+        "The corresponding phasors are V1 = 10\u2220-130\u00b0 and V2 = 12\u2220-100\u00b0.",
+        "The phase angle between v1 and v2 is the difference between their phases: -100\u00b0 - (-130\u00b0) = 30\u00b0.",
+        "Since the phase angle of v2 (-100\u00b0) is greater (less negative) than the phase angle of v1 (-130\u00b0), v2 is leading v1 by 30\u00b0."
+      ],
+      "final_answer": "The phase angle is 30\u00b0. v2(t) leads v1(t).",
+      "formulas_used": []
+    },
+    {
+      "topic": "Instantaneous and Average Power",
+      "problem": "Given v(t) = 120 cos(377t + 45\u00b0) V and i(t) = 10 cos(377t - 10\u00b0) A, find the instantaneous power and the average power absorbed by the network.",
+      "solution_steps": [
+        "The instantaneous power p(t) = v(t) * i(t).",
+        "p(t) = 120 cos(377t + 45\u00b0) * 10 cos(377t - 10\u00b0).",
+        "Using the identity cos(A)cos(B) = 0.5[cos(A-B) + cos(A+B)].",
+        "p(t) = 0.5 * 1200 * [cos(45\u00b0 - (-10\u00b0)) + cos(377t+45\u00b0 + 377t-10\u00b0)].",
+        "p(t) = 600 * [cos(55\u00b0) + cos(754t + 35\u00b0)].",
+        "p(t) = 600 * (0.5736) + 600 cos(754t + 35\u00b0) = 344.16 + 600 cos(754t + 35\u00b0) W.",
+        "The average power (P) is the constant term of the instantaneous power, or calculated by P = 0.5 * Vm * Im * cos(\u03b8v - \u03b8i).",
+        "P = 0.5 * 120 * 10 * cos(45\u00b0 - (-10\u00b0)) = 600 * cos(55\u00b0) = 344.16 W."
+      ],
+      "final_answer": "Instantaneous power p(t) = 344.16 + 600 cos(754t + 35\u00b0) W. Average power P = 344.16 W.",
+      "formulas_used": [
+        "Instantaneous Power",
+        "Average Power (Real Power)"
+      ]
+    },
+    {
+      "topic": "Real, Reactive, & Apparent Power",
+      "problem": "Calculate the average power absorbed by an impedance Z = (30 - j70) \u03a9 when a voltage V = 120\u22200\u00b0 V is applied across it.",
+      "solution_steps": [
+        "The voltage is given in phasor form, V = 120\u22200\u00b0 V.",
+        "The impedance in polar form is Z = sqrt(30\u00b2 + (-70)\u00b2) \u2220 arctan(-70/30) = 76.16 \u2220 -66.8\u00b0 \u03a9.",
+        "Calculate the current phasor I = V / Z.",
+        "I = (120\u22200\u00b0) / (76.16 \u2220 -66.8\u00b0) = (120/76.16) \u2220 (0 - (-66.8\u00b0)) = 1.576 \u2220 66.8\u00b0 A.",
+        "The phase difference between voltage and current is \u03d5 = \u03b8v - \u03b8i = 0\u00b0 - 66.8\u00b0 = -66.8\u00b0.",
+        "Average power P = V_rms * I_rms * cos(\u03d5). Assuming V and I are RMS values.",
+        "P = 120 * 1.576 * cos(-66.8\u00b0) = 120 * 1.576 * 0.3939 = 74.5 W.",
+        "Alternatively, P = I_rms\u00b2 * R = (1.576)\u00b2 * 30 = 2.484 * 30 = 74.5 W."
+      ],
+      "final_answer": "74.5 W",
+      "formulas_used": [
+        "Impedance",
+        "Average Power (Real Power)"
+      ]
+    }
+  ],
+  "mcqs": [
+    {
+      "topic": "Peak & RMS values",
+      "question": "The RMS value of a sinusoidal voltage Vm sin(\u03c9t) is:",
+      "options": [
+        "Vm",
+        "Vm / 2",
+        "Vm / sqrt(2)",
+        "2 * Vm / pi"
+      ],
+      "correct_index": 2,
+      "explanation": "The RMS value of a sinusoidal waveform is its peak value divided by the square root of 2."
+    },
+    {
+      "topic": "Form and Peak Factors",
+      "question": "The form factor for a pure sinusoidal waveform is approximately:",
+      "options": [
+        "1.00",
+        "1.11",
+        "1.414",
+        "0.707"
+      ],
+      "correct_index": 1,
+      "explanation": "Form factor is the ratio of RMS value (0.707 Vm) to the average value (0.637 Vm), which is approximately 1.11."
+    },
+    {
+      "topic": "Form and Peak Factors",
+      "question": "The peak factor for a pure sinusoidal waveform is approximately:",
+      "options": [
+        "1.00",
+        "1.11",
+        "1.414",
+        "0.637"
+      ],
+      "correct_index": 2,
+      "explanation": "Peak factor is the ratio of the peak value (Vm) to the RMS value (Vm/\u221a2), which is \u221a2 or approximately 1.414."
+    },
+    {
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "question": "In a purely inductive circuit, the relationship between voltage and current is:",
+      "options": [
+        "Voltage leads current by 90\u00b0",
+        "Current leads voltage by 90\u00b0",
+        "They are in phase",
+        "Voltage leads current by 180\u00b0"
+      ],
+      "correct_index": 0,
+      "explanation": "In a pure inductor, the voltage across it leads the current flowing through it by 90 degrees."
+    },
+    {
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "question": "In a purely capacitive circuit, the relationship between voltage and current is:",
+      "options": [
+        "Voltage leads current by 90\u00b0",
+        "Current leads voltage by 90\u00b0",
+        "They are in phase",
+        "Current lags voltage by 180\u00b0"
+      ],
+      "correct_index": 1,
+      "explanation": "In a pure capacitor, the current flowing through it leads the voltage across it by 90 degrees."
+    },
+    {
+      "topic": "Real, Reactive, & Apparent Power",
+      "question": "The unit of Apparent Power is:",
+      "options": [
+        "Watt (W)",
+        "Volt-Ampere Reactive (VAR)",
+        "Volt-Ampere (VA)",
+        "Joule (J)"
+      ],
+      "correct_index": 2,
+      "explanation": "Apparent power (S) is the product of RMS voltage and RMS current, and its unit is Volt-Ampere (VA)."
+    },
+    {
+      "topic": "Real, Reactive, & Apparent Power",
+      "question": "The unit of Reactive Power is:",
+      "options": [
+        "Watt (W)",
+        "Volt-Ampere Reactive (VAR)",
+        "Volt-Ampere (VA)",
+        "Ohm (\u03a9)"
+      ],
+      "correct_index": 1,
+      "explanation": "Reactive power (Q) represents the energy exchanged with reactive components and is measured in Volt-Ampere Reactive (VAR)."
+    },
+    {
+      "topic": "Power Factor and Complex Power",
+      "question": "Power factor is defined as the cosine of the angle between:",
+      "options": [
+        "Resistance and Impedance",
+        "Voltage and Current",
+        "Real Power and Reactive Power",
+        "Inductive and Capacitive Reactance"
+      ],
+      "correct_index": 1,
+      "explanation": "Power factor is the cosine of the phase difference angle (\u03d5) between the voltage and current waveforms."
+    },
+    {
+      "topic": "Series and Parallel Resonance",
+      "question": "In a series RLC circuit, resonance occurs when:",
+      "options": [
+        "R = XL",
+        "R = XC",
+        "XL = XC",
+        "The current is minimum"
+      ],
+      "correct_index": 2,
+      "explanation": "Series resonance is the condition where inductive reactance (XL) equals capacitive reactance (XC), causing the impedance to be purely resistive and minimal."
+    },
+    {
+      "topic": "Analysis of 1\u0424 AC circuits",
+      "question": "At DC (zero frequency), a capacitor behaves as a(n):",
+      "options": [
+        "Short circuit",
+        "Open circuit",
+        "Resistor",
+        "Inductor"
+      ],
+      "correct_index": 1,
+      "explanation": "The reactance of a capacitor (XC = 1/\u03c9C) becomes infinite as frequency (\u03c9) approaches zero, so it acts as an open circuit to DC."
+    },
+    {
+      "topic": "Power Factor and Complex Power",
+      "question": "The power factor of a purely resistive circuit is:",
+      "options": [
+        "Zero",
+        "Unity (1)",
+        "0.5 lagging",
+        "0.5 leading"
+      ],
+      "correct_index": 1,
+      "explanation": "In a purely resistive circuit, voltage and current are in phase (\u03d5=0\u00b0), so the power factor cos(0\u00b0) is 1."
+    },
+    {
+      "topic": "Power Factor and Complex Power",
+      "question": "The imaginary part of the complex power S represents:",
+      "options": [
+        "Real Power (P)",
+        "Apparent Power (|S|)",
+        "Reactive Power (Q)",
+        "Power Factor (pf)"
+      ],
+      "correct_index": 2,
+      "explanation": "In the complex power S = P + jQ, the imaginary part (Q) is the reactive power."
+    }
+  ]
+}

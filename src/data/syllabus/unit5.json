@@ -1,0 +1,621 @@
+{
+  "unit_number": 5,
+  "unit_title": "TRANSISTORS",
+  "topics": [
+    "BJT Construction and Operation",
+    "BJT Modes of Operation",
+    "BJT Configurations and Characteristics",
+    "BJT Biasing Circuits",
+    "JFET Construction and Operation",
+    "JFET Characteristics and Biasing",
+    "MOSFET Construction and Operation",
+    "Depletion-Mode MOSFET (DMOSFET)",
+    "Enhancement-Mode MOSFET (EMOSFET)",
+    "BJT vs FET Comparison",
+    "Numerical Applications of Transistors"
+  ],
+  "formulas": [
+    {
+      "name": "Emitter Current Relation",
+      "topic": "BJT Construction and Operation",
+      "expression": "I_E = I_B + I_C",
+      "latex": "I_E = I_B + I_C",
+      "variables": [
+        {
+          "symbol": "I_E",
+          "meaning": "Emitter Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "I_B",
+          "meaning": "Base Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "I_C",
+          "meaning": "Collector Current",
+          "unit": "A"
+        }
+      ],
+      "explanation": "The total current leaving the emitter is the sum of the small base current and the large collector current, based on Kirchhoff's Current Law."
+    },
+    {
+      "name": "DC Current Gain (Beta)",
+      "topic": "BJT Construction and Operation",
+      "expression": "I_C = beta * I_B",
+      "latex": "I_C = \\beta I_B",
+      "variables": [
+        {
+          "symbol": "I_C",
+          "meaning": "Collector Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "beta",
+          "meaning": "DC Current Gain",
+          "unit": "Dimensionless"
+        },
+        {
+          "symbol": "I_B",
+          "meaning": "Base Current",
+          "unit": "A"
+        }
+      ],
+      "explanation": "This formula relates the collector current to the base current, showing that the BJT acts as a current amplifier."
+    },
+    {
+      "name": "Fixed Bias - Base Current",
+      "topic": "BJT Biasing Circuits",
+      "expression": "I_B = (V_CC - V_BE) / R_B",
+      "latex": "I_B = \\frac{V_{CC} - V_{BE}}{R_B}",
+      "variables": [
+        {
+          "symbol": "I_B",
+          "meaning": "Base Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "V_CC",
+          "meaning": "Collector Supply Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_BE",
+          "meaning": "Base-Emitter Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "R_B",
+          "meaning": "Base Resistor",
+          "unit": "\u03a9"
+        }
+      ],
+      "explanation": "The base current is set by the supply voltage and the base resistor, derived from KVL around the input loop."
+    },
+    {
+      "name": "Fixed Bias - Collector-Emitter Voltage",
+      "topic": "BJT Biasing Circuits",
+      "expression": "V_CE = V_CC - I_C * R_C",
+      "latex": "V_{CE} = V_{CC} - I_C R_C",
+      "variables": [
+        {
+          "symbol": "V_CE",
+          "meaning": "Collector-Emitter Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_CC",
+          "meaning": "Collector Supply Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I_C",
+          "meaning": "Collector Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "R_C",
+          "meaning": "Collector Resistor",
+          "unit": "\u03a9"
+        }
+      ],
+      "explanation": "The output voltage V_CE is determined by the supply voltage minus the voltage drop across the collector resistor, from KVL on the output loop."
+    },
+    {
+      "name": "Voltage Divider - Thevenin Voltage",
+      "topic": "BJT Biasing Circuits",
+      "expression": "V_TH = V_CC * R2 / (R1 + R2)",
+      "latex": "V_{TH} = V_{CC} \\frac{R_2}{R_1 + R_2}",
+      "variables": [
+        {
+          "symbol": "V_TH",
+          "meaning": "Thevenin Voltage at Base",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_CC",
+          "meaning": "Collector Supply Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "R1",
+          "meaning": "Upper Divider Resistor",
+          "unit": "\u03a9"
+        },
+        {
+          "symbol": "R2",
+          "meaning": "Lower Divider Resistor",
+          "unit": "\u03a9"
+        }
+      ],
+      "explanation": "The base terminal 'sees' a Thevenin equivalent voltage from the R1-R2 voltage divider network."
+    },
+    {
+      "name": "Voltage Divider - Emitter Current",
+      "topic": "BJT Biasing Circuits",
+      "expression": "I_E = (V_TH - V_BE) / R_E",
+      "latex": "I_E \\approx \\frac{V_{TH} - V_{BE}}{R_E}",
+      "variables": [
+        {
+          "symbol": "I_E",
+          "meaning": "Emitter Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "V_TH",
+          "meaning": "Thevenin Voltage at Base",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_BE",
+          "meaning": "Base-Emitter Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "R_E",
+          "meaning": "Emitter Resistor",
+          "unit": "\u03a9"
+        }
+      ],
+      "explanation": "The emitter current is determined by applying KVL to the base-emitter loop of the Thevenin equivalent circuit (Approximation when Rth is small)."
+    },
+    {
+      "name": "Voltage Divider - Collector-Emitter Voltage",
+      "topic": "BJT Biasing Circuits",
+      "expression": "V_CE = V_CC - I_C * (R_C + R_E)",
+      "latex": "V_{CE} = V_{CC} - I_C (R_C + R_E)",
+      "variables": [
+        {
+          "symbol": "V_CE",
+          "meaning": "Collector-Emitter Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_CC",
+          "meaning": "Collector Supply Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I_C",
+          "meaning": "Collector Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "R_C",
+          "meaning": "Collector Resistor",
+          "unit": "\u03a9"
+        },
+        {
+          "symbol": "R_E",
+          "meaning": "Emitter Resistor",
+          "unit": "\u03a9"
+        }
+      ],
+      "explanation": "The output voltage is the supply voltage minus the drops across both the collector and emitter resistors, assuming Collector and Emitter currents are approximately equal."
+    },
+    {
+      "name": "JFET Shockley Equation",
+      "topic": "JFET Characteristics and Biasing",
+      "expression": "I_D = I_DSS * (1 - V_GS / V_GS(off))^2",
+      "latex": "I_D = I_{DSS} \\left(1 - \\frac{V_{GS}}{V_{GS(off)}}\\right)^2",
+      "variables": [
+        {
+          "symbol": "I_D",
+          "meaning": "Drain Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "I_DSS",
+          "meaning": "Drain-Source Saturation Current (for V_GS=0)",
+          "unit": "A"
+        },
+        {
+          "symbol": "V_GS",
+          "meaning": "Gate-Source Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_GS(off)",
+          "meaning": "Gate-Source Cutoff (Pinch-off) Voltage",
+          "unit": "V"
+        }
+      ],
+      "explanation": "This equation describes the non-linear relationship between the gate-source voltage and the drain current in a JFET's saturation region."
+    },
+    {
+      "name": "JFET Transconductance",
+      "topic": "JFET Characteristics and Biasing",
+      "expression": "g_m = delta(I_D) / delta(V_GS)",
+      "latex": "g_m = \\frac{\\Delta I_D}{\\Delta V_{GS}}",
+      "variables": [
+        {
+          "symbol": "g_m",
+          "meaning": "Transconductance",
+          "unit": "S (Siemens)"
+        },
+        {
+          "symbol": "delta(I_D)",
+          "meaning": "Change in Drain Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "delta(V_GS)",
+          "meaning": "Change in Gate-Source Voltage",
+          "unit": "V"
+        }
+      ],
+      "explanation": "Transconductance measures how effectively the gate voltage controls the drain current, representing the gain of the FET."
+    }
+  ],
+  "questions_2_mark": [
+    {
+      "topic": "BJT Construction and Operation",
+      "question": "What is a BJT and why is it called a bipolar device?",
+      "answer": "A BJT, or Bipolar Junction Transistor, is a three-terminal semiconductor device. It is called 'bipolar' because its operation depends on the interaction and flow of both majority and minority charge carriers (electrons and holes)."
+    },
+    {
+      "topic": "BJT Modes of Operation",
+      "question": "List the four modes of operation for a BJT.",
+      "answer": "The four modes of BJT operation are: 1. Forward Active (Amplifier). 2. Saturation (Closed Switch). 3. Cutoff (Open Switch). 4. Reverse Active (Digital circuits)."
+    },
+    {
+      "topic": "BJT Construction and Operation",
+      "question": "State the relative doping levels and physical areas of the three BJT regions.",
+      "answer": "The doping level is highest in the Emitter, moderate in the Collector, and light in the Base (E > C > B). The physical area is largest for the Collector (for heat dissipation), medium for the Emitter, and smallest for the Base (C > E > B)."
+    },
+    {
+      "topic": "BJT Biasing Circuits",
+      "question": "What is transistor biasing and why is it necessary?",
+      "answer": "Transistor biasing is the process of setting up DC operating conditions (currents and voltages) for the transistor using an external circuit. It is necessary to ensure the transistor operates in the desired region (e.g., active region for amplification) and to avoid distortion in the output signal."
+    },
+    {
+      "topic": "JFET Construction and Operation",
+      "question": "What is a JFET and why is it called a unipolar device?",
+      "answer": "A JFET, or Junction Field-Effect Transistor, is a voltage-controlled device where an electric field controls conductivity. It is called 'unipolar' because its operation depends on the flow of only one type of charge carrier, either electrons (N-channel) or holes (P-channel)."
+    },
+    {
+      "topic": "JFET Characteristics and Biasing",
+      "question": "Define Pinch-off Voltage (Vp) in a JFET.",
+      "answer": "Pinch-off voltage is the specific value of Drain-Source voltage (V_DS) at which, for a given Gate-Source voltage (V_GS), the channel becomes constricted and the drain current (I_D) levels off, becoming relatively constant. Further increases in V_DS do not significantly increase I_D."
+    },
+    {
+      "topic": "MOSFET Construction and Operation",
+      "question": "What does MOSFET stand for and what is its key structural feature?",
+      "answer": "MOSFET stands for Metal Oxide Semiconductor Field Effect Transistor. Its key structural feature is an insulated gate, where the metal gate terminal is electrically isolated from the semiconductor channel by a very thin layer of silicon dioxide (SiO2)."
+    },
+    {
+      "topic": "Depletion-Mode MOSFET (DMOSFET)",
+      "question": "How does a depletion-mode MOSFET operate?",
+      "answer": "A D-MOSFET has a physical channel and can conduct with zero gate voltage (V_GS=0). Applying a negative V_GS (for N-channel) depletes the channel of charge carriers, reducing current. It can also operate in enhancement mode with a positive V_GS."
+    },
+    {
+      "topic": "Enhancement-Mode MOSFET (EMOSFET)",
+      "question": "Why is an E-MOSFET called a 'normally OFF' device?",
+      "answer": "An E-MOSFET is called 'normally OFF' because it has no physical channel between the source and drain in its construction. It requires a gate voltage above a certain threshold (V_GS > V_T) to form or 'enhance' a conductive channel, thus turning the device ON."
+    },
+    {
+      "topic": "BJT vs FET Comparison",
+      "question": "State two major advantages of FET over BJT.",
+      "answer": "1. FET has a very high input impedance (in Mega-ohms) because its input gate is reverse-biased (JFET) or insulated (MOSFET). 2. FETs are unipolar devices and are generally less noisy and have better thermal stability than bipolar BJTs."
+    }
+  ],
+  "questions_5_mark": [
+    {
+      "topic": "BJT Construction and Operation",
+      "question": "With a suitable diagram, explain the operation of an NPN transistor in the forward active mode.",
+      "answer": "In the forward active mode, the Emitter-Base (EB) junction is forward biased and the Collector-Base (CB) junction is reverse biased.\\n\\n1. **Forward Biased EB Junction:** The forward bias on the EB junction causes a large number of majority carriers (electrons) from the heavily doped emitter to be injected into the thin, lightly doped p-type base.\\n2. **Base Region Action:** In the base, a small fraction of these electrons (less than 5%) recombine with the majority carriers (holes) in the base. This recombination accounts for the small base current (I_B).\\n3. **Reverse Biased CB Junction:** The remaining majority of electrons (more than 95%) are swept across the reverse-biased CB junction into the collector region due to the strong attractive force from the positive collector voltage. This flow of electrons constitutes the collector current (I_C).\\n4. **Current Relationship:** The total emitter current (I_E) is the sum of the base and collector currents (I_E = I_B + I_C). Since I_B is very small, I_C is approximately equal to I_E.",
+      "formulas_used": [
+        "Emitter Current Relation"
+      ],
+      "diagram_hint": "circuit"
+    },
+    {
+      "topic": "BJT Configurations and Characteristics",
+      "question": "Draw and explain the input and output characteristics of a BJT in Common Emitter (CE) configuration.",
+      "answer": "**Input Characteristics (I_B vs V_BE):**\\nThis is a plot of base current (I_B) versus base-emitter voltage (V_BE) for a constant collector-emitter voltage (V_CE). The curve resembles a forward-biased diode characteristic. As V_BE increases beyond the cut-in voltage (~0.7V for silicon), the base current I_B increases rapidly. For higher values of V_CE, the curve shifts slightly to the right due to the Early effect decreasing the effective base width.\\n\\n**Output Characteristics (I_C vs V_CE):**\\nThis is a plot of collector current (I_C) versus collector-emitter voltage (V_CE) for a constant base current (I_B). The characteristics are divided into three regions:\\n1. **Active Region:** Here, the collector junction is reverse-biased. I_C is almost independent of V_CE and is primarily controlled by I_B (I_C = \u03b2 * I_B). The curves are nearly flat. This region is used for amplification.\\n2. **Saturation Region:** This is the region where V_CE is very small (near 0V) and both EB and CB junctions are forward biased. In this region, I_C increases rapidly with V_CE before becoming constant. It acts as a closed switch.\\n3. **Cutoff Region:** This is the region below the I_B = 0 curve. Both junctions are reverse-biased, and only a very small leakage current flows. It acts as an open switch.",
+      "formulas_used": [
+        "DC Current Gain (Beta)"
+      ],
+      "diagram_hint": "characteristic"
+    },
+    {
+      "topic": "BJT Configurations and Characteristics",
+      "question": "Compare the performance of CB, CE, and CC configurations of a BJT.",
+      "answer": "The three BJT configurations are compared based on key parameters:\\n\\n*   **Input Resistance:** CB has low input resistance (~100\u03a9). CE has moderate input resistance (~750\u03a9). CC has very high input resistance (~750k\u03a9).\\n*   **Output Resistance:** CB has very high output resistance (~450k\u03a9). CE has moderate output resistance (~45k\u03a9). CC has low output resistance (~25\u03a9).\\n*   **Current Gain:** CB has a current gain of approximately 1. CE has high current gain (\u03b2 > 50). CC also has high current gain (\u2248 \u03b2).\\n*   **Voltage Gain:** CB has high voltage gain (~150). CE has the highest voltage gain (~500). CC has a voltage gain of less than 1.\\n*   **Phase Shift:** CB and CC configurations have 0\u00b0 phase shift between input and output voltage. CE configuration has a 180\u00b0 phase shift.\\n*   **Applications:** CB is used in high-frequency circuits. CE is used for audio frequency amplification. CC is used for impedance matching.",
+      "formulas_used": [],
+      "diagram_hint": "none"
+    },
+    {
+      "topic": "JFET Construction and Operation",
+      "question": "Explain the principle of operation of an N-channel JFET.",
+      "answer": "An N-channel JFET consists of an N-type semiconductor bar (the channel) with two P-type regions diffused on its sides, which form the gate.\\n\\n**Operation:**\\n1. **V_GS = 0:** When a voltage V_DS is applied between drain and source with the gate shorted to the source (V_GS=0), electrons flow from source to drain, creating a drain current I_D. The channel acts like a resistor (Ohmic Region). As V_DS increases, the reverse bias across the P-N gate junctions increases, widening the depletion regions and constricting the channel. At a voltage V_P (pinch-off voltage), the channel is maximally constricted, and I_D saturates at a value called I_DSS.\\n2. **V_GS < 0 (Reverse Bias):** When a negative voltage is applied to the gate (V_GS < 0), the P-N junctions are reverse-biased even with V_DS=0. This initial reverse bias narrows the channel. Now, pinch-off is reached at a lower V_DS, and the saturation drain current (I_D) is less than I_DSS. If V_GS is made negative enough (equal to V_GS(off)), the channel is completely closed, and I_D becomes zero. Thus, the gate voltage controls the drain current.",
+      "formulas_used": [
+        "JFET Shockley Equation"
+      ],
+      "diagram_hint": "characteristic"
+    },
+    {
+      "topic": "BJT vs FET Comparison",
+      "question": "Tabulate the key differences between a Bipolar Junction Transistor (BJT) and a Field Effect Transistor (FET).",
+      "answer": "| Feature | BJT (Bipolar Junction Transistor) | FET (Field Effect Transistor) |\n|---|---|---|\n| **Carrier Type** | Bipolar device (conduction by both electrons and holes) | Unipolar device (conduction by majority carriers only) |\n| **Control Type** | Current controlled device (Base current controls collector current) | Voltage controlled device (Gate voltage controls drain current) |\n| **Input Impedance** | Low input impedance (forward biased BE junction) | High input impedance (reverse biased or insulated gate) |\n| **Noise Level** | Higher noise level | Lower noise level |\n| **Thermal Stability** | Lower thermal stability | Better thermal stability |\n| **Gain Parameter** | Gain is characterized by current gain (\u03b2) | Gain is characterized by transconductance (g_m) |",
+      "formulas_used": [],
+      "diagram_hint": "none"
+    },
+    {
+      "topic": "MOSFET Construction and Operation",
+      "question": "Describe the construction and working of an N-channel Enhancement-Mode MOSFET (E-MOSFET).",
+      "answer": "**Construction:**\\nAn N-channel E-MOSFET is built on a P-type substrate. Two highly doped N+ regions are diffused into it, acting as the Source and Drain. Unlike a JFET or D-MOSFET, there is no pre-existing channel between the source and drain. A thin layer of silicon dioxide (SiO\u2082) insulates a metal gate from the P-type substrate between the source and drain.\\n\\n**Working:**\\n1. **V_GS = 0:** With zero gate voltage, there is no conductive path between the source and drain. Applying a V_DS results in practically zero drain current. The device is 'OFF'.\\n2. **V_GS > V_T (Threshold Voltage):** When a positive voltage is applied to the gate, it creates an electric field that attracts minority carriers (electrons) from the P-substrate to the region under the gate. If V_GS is greater than a specific 'threshold voltage' (V_T), enough electrons accumulate to form an N-type 'inversion layer'. This layer acts as a conducting channel between the source and drain.\\n3. **Current Flow:** Once the channel is formed, applying a positive V_DS will cause electrons to flow from source to drain, resulting in a drain current I_D. A more positive V_GS will attract more electrons, 'enhancing' the channel's conductivity and increasing the drain current.",
+      "formulas_used": [],
+      "diagram_hint": "characteristic"
+    }
+  ],
+  "questions_10_mark": [
+    {
+      "topic": "BJT Biasing Circuits",
+      "question": "With neat circuit diagrams, explain the operation of Fixed Bias and Voltage Divider Bias circuits for a BJT. Derive the expressions for the quiescent point (ICQ, VCEQ) for the voltage divider bias circuit.",
+      "answer": "**1. Fixed Bias Circuit:**\\nThis is the simplest biasing circuit. A single resistor, RB, is connected between the VCC supply and the base terminal. Another resistor, RC, is connected between VCC and the collector terminal.\\n**Operation:** The base current IB is determined by the value of RB. It is calculated by applying KVL to the base-emitter loop: VCC = IB*RB + VBE. So, IB = (VCC - VBE) / RB. The collector current is then IC = \u03b2 * IB. The output voltage VCE is found from the collector-emitter loop: VCC = IC*RC + VCE. So, VCE = VCC - IC*RC. This circuit has poor stability against changes in \u03b2.\\n\\n**2. Voltage Divider Bias (Self Bias) Circuit:**\\nThis is the most widely used biasing circuit due to its excellent stability. The base voltage is set by a voltage divider network consisting of two resistors, R1 and R2, connected to VCC. An emitter resistor, RE, is also included for stability.\\n**Operation:** The voltage at the base (VB) is determined by the R1-R2 divider. This voltage remains almost constant regardless of transistor parameters. The emitter voltage VE is VB - VBE. The emitter current is then IE = VE / RE. Since IC is approximately equal to IE, the collector current is stable and independent of \u03b2.\\n\\n**Derivation for Voltage Divider Bias Q-point:**\\nTo simplify the analysis, we find the Thevenin equivalent circuit for the base network.\\n*   **Step 1: Thevenin Voltage (VTH):** Looking from the base terminal, VTH is the open-circuit voltage across R2.\\nVTH = VCC * (R2 / (R1 + R2))\\n*   **Step 2: Thevenin Resistance (RTH):** RTH is the equivalent resistance looking back into the base, with VCC grounded. R1 and R2 are in parallel.\\nRTH = (R1 * R2) / (R1 + R2)\\n*   **Step 3: Finding Base Current (IBQ):** Apply KVL to the Thevenin equivalent base-emitter loop.\\nVTH = IB * RTH + VBE + IE * RE\\nSince IE = (\u03b2 + 1) * IB, we get:\\nVTH = IB * RTH + VBE + (\u03b2 + 1) * IB * RE\\nSolving for IB:\\nIBQ = (VTH - VBE) / (RTH + (\u03b2 + 1) * RE)\\n*   **Step 4: Finding Collector Current (ICQ):**\\nICQ = \u03b2 * IBQ\\n*   **Step 5: Finding Collector-Emitter Voltage (VCEQ):** Apply KVL to the main collector-emitter loop.\\nVCC = IC * RC + VCE + IE * RE\\nAssuming IC \u2248 IE:\\nVCC = IC * (RC + RE) + VCE\\nSolving for VCE:\\nVCEQ = VCC - ICQ * (RC + RE)",
+      "formulas_used": [
+        "Voltage Divider - Thevenin Voltage",
+        "Voltage Divider - Collector-Emitter Voltage",
+        "DC Current Gain (Beta)"
+      ],
+      "diagram_hint": "circuit"
+    },
+    {
+      "topic": "JFET Characteristics and Biasing",
+      "question": "Explain the construction and working of an N-channel JFET. Draw and discuss its Drain and Transfer characteristics.",
+      "answer": "**Construction:**\\nAn N-channel JFET is constructed from a bar of N-type semiconductor material. Ohmic contacts are made at the two ends to form the Source (S) and Drain (D) terminals. On two sides of the central N-channel, heavily doped P-type regions are diffused. These two P-regions are internally connected and form the Gate (G) terminal. The P-N junctions are formed between the gate and the channel.\\n\\n**Working Principle:**\\nThe basic principle is to control the width of the channel, and thus its resistance, by varying the reverse bias on the gate-channel P-N junctions. A more negative Gate-Source voltage (VGS) creates wider depletion regions, which narrow the conductive channel, reducing the drain current (ID).\\n\\n**Drain Characteristics (ID vs VDS):**\\nThis is a family of curves plotting ID versus VDS for different constant values of VGS.\\n*   **Ohmic Region:** For small values of VDS, the channel acts like a variable resistor, and ID increases linearly with VDS. The resistance is controlled by VGS.\\n*   **Saturation (Pinch-off) Region:** As VDS increases, the depletion regions widen near the drain end, constricting the channel. At a certain VDS called the pinch-off voltage (VP), the current ID saturates and becomes nearly constant. The saturation current is maximum (IDSS) when VGS = 0 and decreases as VGS is made more negative.\\n*   **Breakdown Region:** If VDS is increased beyond a certain limit, avalanche breakdown of the gate junction occurs, causing a sharp increase in ID.\\n\\n**Transfer Characteristics (ID vs VGS):**\\nThis is a plot of ID versus VGS for a constant VDS (in the saturation region). It shows how the output current changes with the input voltage.\\n*   The curve is non-linear and follows Shockley's equation: ID = IDSS * (1 - VGS / VGS(off))^2.\\n*   When VGS = 0, the drain current is maximum at IDSS.\\n*   As VGS becomes more negative, ID decreases.\\n*   When VGS equals the cutoff voltage, VGS(off), the channel is fully depleted, and ID drops to zero. VGS(off) has the same magnitude as the pinch-off voltage VP.",
+      "formulas_used": [
+        "JFET Shockley Equation"
+      ],
+      "diagram_hint": "characteristic"
+    },
+    {
+      "topic": "MOSFET Construction and Operation",
+      "question": "Explain the construction, operation, and characteristics of both N-channel Depletion-type (D-MOSFET) and Enhancement-type (E-MOSFET) MOSFETs.",
+      "answer": "**1. N-channel Depletion-type MOSFET (D-MOSFET):**\\n*   **Construction:** It is built on a P-type substrate with two N+ regions for the source and drain. Crucially, a thin N-type channel is physically diffused between the source and drain. A SiO2 layer insulates the metal gate from this channel.\\n*   **Operation:**\\n    *   **Depletion Mode (VGS < 0):** A negative gate voltage repels electrons from the N-channel, 'depleting' it of charge carriers and reducing its conductivity. This decreases the drain current ID. A sufficiently negative VGS will cut off the current.\\n    *   **Enhancement Mode (VGS > 0):** A positive gate voltage attracts more electrons into the channel from the substrate, 'enhancing' its conductivity and increasing the drain current ID above IDSS.\\n*   **Characteristics:** The D-MOSFET is a 'normally ON' device, conducting a current IDSS when VGS = 0. Its transfer characteristic curve extends on both sides of the VGS=0 axis.\\n\\n**2. N-channel Enhancement-type MOSFET (E-MOSFET):**\\n*   **Construction:** Similar to the D-MOSFET, it has a P-type substrate and N+ source/drain regions. However, there is no pre-existing physical channel between the source and drain. The SiO2 layer separates the gate from the P-substrate region.\\n*   **Operation:**\\n    *   **VGS <= V_T (Threshold Voltage):** With zero or small positive gate voltage, there is no channel, so the device is 'OFF' and drain current is zero.\\n    *   **VGS > V_T:** When VGS exceeds a positive 'threshold voltage' V_T, it attracts enough minority carriers (electrons) from the P-substrate to form an 'inversion layer' under the gate. This layer acts as an N-channel. The device turns 'ON', and a drain current flows. Increasing VGS beyond V_T enhances the channel conductivity and increases ID.\\n*   **Characteristics:** The E-MOSFET is a 'normally OFF' device. It only conducts when VGS is greater than its threshold voltage V_T. Its transfer characteristic curve starts at VGS = V_T and ID = 0, and exists only for positive VGS values.",
+      "formulas_used": [],
+      "diagram_hint": "characteristic"
+    },
+    {
+      "topic": "Numerical Applications of Transistors",
+      "question": "For a silicon transistor in a voltage divider bias circuit, VCC = 12V, R1 = 39k\u03a9, R2 = 10k\u03a9, RC = 3.3k\u03a9, RE = 1k\u03a9, and \u03b2 = 90. Determine the Q-point (ICQ and VCEQ).",
+      "answer": "The Q-point of a transistor consists of the DC collector current (ICQ) and the DC collector-emitter voltage (VCEQ).\\n\\n**Step 1: Calculate the Thevenin Voltage (VTH) at the base.**\\nThis is the voltage across resistor R2.\\nVTH = VCC * (R2 / (R1 + R2))\\nVTH = 12V * (10k\u03a9 / (39k\u03a9 + 10k\u03a9))\\nVTH = 12V * (10 / 49) = 2.45 V\\n\\n**Step 2: Calculate the Thevenin Resistance (RTH) at the base.**\\nThis is the parallel combination of R1 and R2.\\nRTH = (R1 * R2) / (R1 + R2)\\nRTH = (39k\u03a9 * 10k\u03a9) / (39k\u03a9 + 10k\u03a9)\\nRTH = 390 / 49 k\u03a9 = 7.96 k\u03a9\\n\\n**Step 3: Calculate the Base Current (IBQ).**\\nApply KVL to the base-emitter loop using the Thevenin equivalent. For a silicon transistor, VBE is approximately 0.7V.\\nVTH = IBQ * RTH + VBE + IEQ * RE\\nSince IEQ = (\u03b2 + 1) * IBQ:\\nVTH = IBQ * RTH + VBE + (\u03b2 + 1) * IBQ * RE\\n2.45V = IBQ * 7.96k\u03a9 + 0.7V + (90 + 1) * IBQ * 1k\u03a9\\n2.45V - 0.7V = IBQ * (7.96k\u03a9 + 91k\u03a9)\\n1.75V = IBQ * (98.96k\u03a9)\\nIBQ = 1.75V / 98.96k\u03a9 = 0.01768 mA or 17.68 \u00b5A\\n\\n**Step 4: Calculate the Collector Current (ICQ).**\\nICQ = \u03b2 * IBQ\\nICQ = 90 * 17.68 \u00b5A = 1591.2 \u00b5A \u2248 1.59 mA\\n\\n**Step 5: Calculate the Collector-Emitter Voltage (VCEQ).**\\nApply KVL to the collector-emitter loop. Assume ICQ \u2248 IEQ.\\nVCEQ = VCC - ICQ * (RC + RE)\\nVCEQ = 12V - 1.59mA * (3.3k\u03a9 + 1k\u03a9)\\nVCEQ = 12V - 1.59mA * 4.3k\u03a9\\nVCEQ = 12V - 6.837V = 5.163 V\\n\\n**Result:** The quiescent operating point (Q-point) for the transistor is (ICQ, VCEQ) = (1.59 mA, 5.16 V).",
+      "formulas_used": [
+        "Voltage Divider - Thevenin Voltage",
+        "DC Current Gain (Beta)",
+        "Voltage Divider - Collector-Emitter Voltage"
+      ],
+      "diagram_hint": "circuit"
+    }
+  ],
+  "numerical_problems": [
+    {
+      "topic": "BJT Biasing Circuits",
+      "problem": "A fixed bias circuit has VCC = 15V, RB = 500k\u03a9, RC = 3k\u03a9. The transistor has a \u03b2 = 80 and VBE = 0.7V. Calculate the base current (IB), collector current (IC), and collector-emitter voltage (VCE).",
+      "solution_steps": [
+        "Calculate the base current using the formula: IB = (VCC - VBE) / RB.",
+        "IB = (15V - 0.7V) / 500k\u03a9 = 14.3V / 500e3\u03a9 = 28.6 \u00b5A.",
+        "Calculate the collector current using: IC = \u03b2 * IB.",
+        "IC = 80 * 28.6 \u00b5A = 2.288 mA.",
+        "Calculate the collector-emitter voltage using: VCE = VCC - IC * RC.",
+        "VCE = 15V - (2.288 mA * 3k\u03a9) = 15V - 6.864V = 8.136 V."
+      ],
+      "final_answer": "IB = 28.6 \u00b5A, IC = 2.29 mA, VCE = 8.14 V",
+      "formulas_used": [
+        "Fixed Bias - Base Current",
+        "DC Current Gain (Beta)",
+        "Fixed Bias - Collector-Emitter Voltage"
+      ]
+    },
+    {
+      "topic": "JFET Characteristics and Biasing",
+      "problem": "An N-channel JFET has IDSS = 10 mA and VGS(off) = -4 V. Determine the drain current ID for VGS = -2 V.",
+      "solution_steps": [
+        "Use the JFET Shockley Equation: ID = IDSS * (1 - VGS / VGS(off))^2.",
+        "Substitute the given values: ID = 10mA * (1 - (-2V) / (-4V))^2.",
+        "ID = 10mA * (1 - 0.5)^2.",
+        "ID = 10mA * (0.5)^2 = 10mA * 0.25 = 2.5 mA."
+      ],
+      "final_answer": "The drain current ID is 2.5 mA.",
+      "formulas_used": [
+        "JFET Shockley Equation"
+      ]
+    },
+    {
+      "topic": "BJT Biasing Circuits",
+      "problem": "For a silicon NPN transistor, the emitter current IE is measured to be 5 mA. If 2% of the charge carriers recombine in the base, find the values of IC and IB.",
+      "solution_steps": [
+        "Given that 2% of carriers recombine, the base current IB is 2% of the emitter current IE. IB = 0.02 * IE.",
+        "IB = 0.02 * 5 mA = 0.1 mA.",
+        "The remaining 98% of the current flows to the collector. IC = 0.98 * IE.",
+        "IC = 0.98 * 5 mA = 4.9 mA.",
+        "Alternatively, using KCL: IC = IE - IB = 5 mA - 0.1 mA = 4.9 mA."
+      ],
+      "final_answer": "IC = 4.9 mA, IB = 0.1 mA",
+      "formulas_used": [
+        "Emitter Current Relation"
+      ]
+    },
+    {
+      "topic": "JFET Characteristics and Biasing",
+      "problem": "The drain characteristics of a JFET show that a change in VGS from -1V to -1.5V causes a change in ID from 3mA to 2.5mA. Calculate the transconductance (gm) of the JFET.",
+      "solution_steps": [
+        "Calculate the change in gate-source voltage: delta(VGS) = (-1.5V) - (-1V) = -0.5V.",
+        "Calculate the change in drain current: delta(ID) = 2.5mA - 3mA = -0.5mA.",
+        "Use the formula for transconductance: gm = delta(ID) / delta(VGS).",
+        "gm = (-0.5mA) / (-0.5V) = 1 mS (milliSiemens)."
+      ],
+      "final_answer": "gm = 1 mS",
+      "formulas_used": [
+        "JFET Transconductance"
+      ]
+    }
+  ],
+  "mcqs": [
+    {
+      "topic": "BJT Construction and Operation",
+      "question": "In a BJT, which region is the most heavily doped?",
+      "options": [
+        "Base",
+        "Collector",
+        "Emitter",
+        "All are equally doped"
+      ],
+      "correct_index": 2,
+      "explanation": "The emitter is heavily doped to inject a large number of charge carriers into the base. The doping profile is Emitter > Collector > Base."
+    },
+    {
+      "topic": "BJT Construction and Operation",
+      "question": "A BJT is a...",
+      "options": [
+        "voltage controlled device",
+        "current controlled device",
+        "power controlled device",
+        "unipolar device"
+      ],
+      "correct_index": 1,
+      "explanation": "A BJT is a current controlled device because the output collector current is controlled by the input base current."
+    },
+    {
+      "topic": "JFET Construction and Operation",
+      "question": "A JFET is a...",
+      "options": [
+        "voltage controlled device",
+        "current controlled device",
+        "bipolar device",
+        "low input impedance device"
+      ],
+      "correct_index": 0,
+      "explanation": "A JFET is a voltage controlled device because the output drain current is controlled by the input gate-source voltage."
+    },
+    {
+      "topic": "BJT Configurations and Characteristics",
+      "question": "Which BJT configuration provides a 180\u00b0 phase shift between the input and output voltage?",
+      "options": [
+        "Common Base (CB)",
+        "Common Collector (CC)",
+        "Common Emitter (CE)",
+        "Both CB and CC"
+      ],
+      "correct_index": 2,
+      "explanation": "The Common Emitter (CE) configuration inverts the signal, resulting in a 180\u00b0 phase shift between input and output voltages."
+    },
+    {
+      "topic": "BJT Configurations and Characteristics",
+      "question": "Which BJT configuration is most suitable for impedance matching?",
+      "options": [
+        "Common Base",
+        "Common Emitter",
+        "Common Collector",
+        "None of the above"
+      ],
+      "correct_index": 2,
+      "explanation": "The Common Collector (CC) configuration has a high input impedance and a low output impedance, making it ideal for impedance matching applications."
+    },
+    {
+      "topic": "JFET vs BJT Comparison",
+      "question": "Compared to a BJT, the input impedance of a JFET is:",
+      "options": [
+        "Very low",
+        "Slightly lower",
+        "About the same",
+        "Very high"
+      ],
+      "correct_index": 3,
+      "explanation": "A JFET has a very high input impedance (Mega-Ohms) because its gate-source junction is reverse-biased."
+    },
+    {
+      "topic": "BJT Modes of Operation",
+      "question": "For a transistor to operate as an amplifier, the junctions must be biased as:",
+      "options": [
+        "EB: Forward, CB: Forward",
+        "EB: Reverse, CB: Reverse",
+        "EB: Forward, CB: Reverse",
+        "EB: Reverse, CB: Forward"
+      ],
+      "correct_index": 2,
+      "explanation": "In the forward active mode, used for amplification, the Emitter-Base junction is forward biased and the Collector-Base junction is reverse biased."
+    },
+    {
+      "topic": "MOSFET Construction and Operation",
+      "question": "The gate of a MOSFET is insulated from the channel by a layer of:",
+      "options": [
+        "Silicon (Si)",
+        "Germanium (Ge)",
+        "Silicon Dioxide (SiO2)",
+        "Aluminum (Al)"
+      ],
+      "correct_index": 2,
+      "explanation": "A MOSFET uses a thin layer of Silicon Dioxide (SiO2) as an insulator, which gives it an extremely high input resistance."
+    },
+    {
+      "topic": "Enhancement-Mode MOSFET (EMOSFET)",
+      "question": "An N-channel E-MOSFET is considered a 'normally OFF' device because it requires a _______ to turn on.",
+      "options": [
+        "Positive VGS greater than V_T",
+        "Negative VGS",
+        "VGS = 0V",
+        "Positive VDS"
+      ],
+      "correct_index": 0,
+      "explanation": "An E-MOSFET has no physical channel and requires a gate-source voltage (VGS) greater than the threshold voltage (V_T) to create a channel and turn the device on."
+    },
+    {
+      "topic": "JFET Characteristics and Biasing",
+      "question": "In a JFET, IDSS is the drain current when...",
+      "options": [
+        "VGS = VGS(off)",
+        "VGS = 0V",
+        "VDS = 0V",
+        "The device is in cutoff"
+      ],
+      "correct_index": 1,
+      "explanation": "IDSS stands for Drain to Source current with gate Shorted, which means it is the maximum drain current that flows when VGS is zero."
+    },
+    {
+      "topic": "BJT Biasing Circuits",
+      "question": "Which biasing circuit provides the best stability against variations in \u03b2?",
+      "options": [
+        "Fixed Bias",
+        "Collector-to-Base Bias",
+        "Voltage Divider Bias",
+        "Emitter Bias"
+      ],
+      "correct_index": 2,
+      "explanation": "Voltage Divider Bias, due to its emitter resistor and stable base voltage, makes the Q-point largely independent of transistor beta (\u03b2), providing excellent stability."
+    },
+    {
+      "topic": "BJT Construction and Operation",
+      "question": "The acronym BJT stands for:",
+      "options": [
+        "Base Junction Transistor",
+        "Bipolar Junction Transfer",
+        "Bipolar Junction Transistor",
+        "Base Junction Transfer-resistor"
+      ],
+      "correct_index": 2,
+      "explanation": "BJT is the acronym for Bipolar Junction Transistor."
+    }
+  ]
+}

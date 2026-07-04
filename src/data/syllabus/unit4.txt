@@ -1,0 +1,1162 @@
+                                                                      05-02-2022
+
+
+
+
+                          U20EST117
+    BASIC ELECTRICAL AND
+  ELECTRONICS ENGINEERING
+
+                             Presented by
+
+
+                        Dr. M. Jayachandran
+                             Dept. of EEE
+                         SMVEC, Puducherry
+
+
+
+
+                               UNIT-4
+        SEMICONDUCTOR DIODES AND
+              APPLICATIONS
+4.1 Introduction                          4.4 Zener diode
+• Semiconductor materials                 • Characteristics
+• Doping                                  • Application (Regulator)
+• Intrinsic and extrinsic semiconductor   4.5 Light emitting diode
+4.2 PN junction Diode                     4.6 Solar Panel
+• Structure
+• Characteristics
+• Diffusion and Depletion capacitance
+4.3 Applications of PN Diode
+• Half-wave Rectifier
+• Full-wave Rectifier
+
+
+
+
+                                                                              1
+                                                                      05-02-2022
+
+
+
+
+                            4.1 INTRODUCTION
+
+▪   The material whose electrical conductivity lie between those of
+    conductors and insulators are known as Semiconductors.
+▪   Semiconductors     can      conduct   electricity   under   preferable
+    conditions or circumstances
+Examples
+    ➢ Silicon (Si)
+
+    ➢ Germanium (Ge)
+
+    ➢ Gallium Arsenide (GaAs)
+
+    ➢ Cadmium Sulfide (CdS)
+
+    ➢ Lead Telluride etc…
+
+
+
+
+Properties of Semiconductors
+
+▪    Semiconductor acts like an insulator at Zero Kelvin. On
+     increasing the temperature, it works as a conductor.
+▪    Due to their exceptional electrical properties, semiconductors
+     can be modified by doping to make semiconductor devices
+     suitable for energy conversion, switches and amplifiers.
+▪    Lesser power losses.
+▪    Smaller in size and possess less weight.
+▪    The resistance of semiconductor materials decreases with the
+     increase in temperature and vice-versa.
+
+
+
+
+                                                                              2
+                                                             05-02-2022
+
+
+
+
+Intrinsic semiconductor:
+
+▪   No impurities
+▪   Pure semiconductor
+▪   No semiconductors are truly pure but
+    less amount of impurity level
+▪   For Silicon – Impurity level less than 1
+    part in 1012 parts
+▪   For germanium – Impurity level less than
+    1 part in 108 parts
+
+
+
+
+Extrinsic semiconductor:
+▪   Making intrinsic semiconductor into useful also called as
+    impurity or extrinsic semiconductor.
+▪   The process of adding impurities to a semiconductor is called
+    ‘DOPING’.
+▪   The purpose to add impurity to increase either number of free
+    electrons (or) holes in a semiconductor.
+
+
+
+
+                                                                     3
+                                                  05-02-2022
+
+
+
+
+Extrinsic semiconductor (N-Type):
+▪   Small amount of pentavalent impurity is
+    added
+    ➢    Antimony (Sb)
+    ➢    Phosphorous (P)
+    ➢    Arsenic (As)
+    ➢    Bismuth (Bi)
+▪   Free electrons are more than the holes.
+▪   So electrons are majority carriers and
+    holes are minority carriers
+▪   Current conduction is predominantly by
+    free      electrons    is   called   n-type
+    conductivity
+
+
+
+
+Extrinsic semiconductor (P-Type):
+▪   Small amount of trivalent impurities is
+    added
+    ➢    Indium (In)
+    ➢    Gallium (Ga)
+    ➢    Boron (B)
+    ➢    Aluminium (Al)
+▪   Holes is more than free electrons.
+▪   So     holes are majority     carrier   and
+    electrons are minority carrier
+▪   Current conduction is predominantly
+    by holes (+ve charge) is called p-type
+    conductivity
+
+
+
+
+                                                          4
+                                                                     05-02-2022
+
+
+
+
+Comparison between Intrinsic and Extrinsic Semiconductors
+    Intrinsic Semiconductor              Extrinsic Semiconductor
+
+Pure semiconductor                 Impure semiconductor
+
+Density of electrons is equal to   Density of electrons is not equal
+the density of holes               to the density of holes
+
+Electrical conductivity is low     Electrical conductivity is high
+
+Dependence on temperature          Dependence on temperature as
+only                               well as on the amount of impurity
+                                   Trivalent impurity, pentavalent
+No impurities
+                                   impurity
+
+
+
+
+                       4.2 PN JUNCTION DIODE
+
+▪ A PN junction diode consists of a PN
+  Junction formed by either in Germanium
+  or Silicon crystal
+▪ Two terminals namely Anode and Cathode
+
+
+                                                       1N 4007
+
+
+
+
+                                                                             5
+                                                                       05-02-2022
+
+
+
+
+Formation of Depletion Layer:
+
+▪    The free electrons and holes near the junction in N-region and P-
+     region begin to diffuse across the junction and combine near the
+     junction to create Positive and Negative Charges.
+▪    These two layers of Positive and Negative charges form the Depletion
+     Region (or) Depletion Layer.
+▪    This region is thin compared to N and P region and behaves like
+     insulator.
+
+
+
+
+                                        P                     N
+
+
+
+
+▪    Contains fixed rows of oppositely charged ions on its two sides
+▪    Because of this charge separation, an Electric Potentaial (VB) is
+     established across the junction even before external voltage.
+▪    This Electrical Potential is called Potential Barrier.
+
+
+
+
+Note: The barrier potential is 0.7V for Si and 0.3V for Ge.
+
+
+
+
+                                                                               6
+                                                                      05-02-2022
+
+
+
+
+Biasing the PN-Junction
+▪   The term Bias in electronics refers to the use of DC voltage to
+    establish certain operating condition for an electronic device.
+▪   A PN Junction connected to an external voltage source is called
+    Biased PN Junction
+▪   The width of the depletion region is controlled by an external voltage
+    across the PN junction
+▪   Resistance is controlled to control the flow of current.
+
+
+Two types of biasing
+    1.   Forward biasing
+    2.   Reverse biasing
+
+
+
+
+Biasing the PN-Junction
+Forward biasing:
+
+
+
+
+                                                                              7
+                                                                                05-02-2022
+
+
+
+
+▪   DC voltage positive terminal connected to the p-region and negative
+    to the n-region.
+▪   Under this forward bias condition the applied positive potential repels
+    the holes in P-type region so that the holes move towards the
+    junction and the applied negative potential repels the electrons in N-
+    type region so that the electrons move towards the junction.
+▪   Width of depletion region is reduced
+▪   When the applied potential is more than the internal barrier potential
+    the depletion region and internal potential barrier disappear.
+▪   A large amount of current flows through the junction under this
+    condition.
+
+
+
+
+Forward characteristics:
+▪   It is seen that the forward current
+    rises exponentially with the applied
+    forward voltage.
+                                                   Knee voltage
+▪   The potential barrier at the junction
+    completely disappears and hence,
+    the holes cross the junction from P
+    to N type and electrons cross the
+    junction to opposite direction,
+    resulting large current flow in
+    external circuit.
+▪   The voltage at which the diode starts
+    conducting, is called a knee voltage
+    (or) cut-in voltage (or) threshold Cut-in voltage for Si=0.7 volt and Ge=0.3 volt.
+    voltage.
+
+
+
+
+                                                                                         8
+                                                                            05-02-2022
+
+
+
+
+Biasing the PN-Junction
+Reverse biasing:
+
+
+
+
+▪   DC voltage negative terminal connected to the p-region and positive to the
+    n-region.
+▪   The holes from the majority carriers of the P side move towards the
+    negative terminal of the battery and electrons which from the majority
+    carrier of the N side are attracted towards the positive terminal of the
+    battery.
+▪   Hence, the width of the depletion region which is depleted of mobile charge
+    carriers increases. Depletion region widens until its potential difference
+    equals the bias voltage, majority-carrier current ceases.
+▪   Thus, the electric field produced by applied reverse bias, is in the same
+    direction as the electric field of the potential barrier.
+▪   Hence the resultant potential barrier is increased which prevents the flow of
+    majority carriers in both directions. The depletion width W is proportional
+    to under reverse bias.
+
+
+
+
+                                                                                    9
+                                                                                                         05-02-2022
+
+
+
+
+Reverse characteristics:
+▪   It is seen that as reverse voltage is
+    increases from zero; the reverse
+    current quickly rises to its maximum
+    or saturation value.                                   Breakdown voltage
+
+▪   This leakage current is due to
+    minority carrier in terms of μA
+▪   As reverse voltage reach certain
+    value, avalanche breakdown occurs
+    and generates large current is
+    termed as reverse breakdown.
+▪   The minimum reverse voltage at
+    which PN junction breaks down with
+    sudden rise in reverse current is                 Note: Majority-carrier current ceases. However, there
+                                                         is still a very small current produced by minority
+    know as reverse breakdown voltage.
+
+
+
+
+Depletion layer capacitance
+▪   When P-N junction is reverse biased the depletion region act as
+    an insulator or as a dielectric medium and the p-type an N-type
+    region have low resistance and act as the plates. Thus this P-N
+    junction can be considered as a parallel plate capacitor. This
+    junction capacitance is called as transition capacitance (CT) .
+▪   Since reverse bias causes the majority charge carriers to move
+    away from the junction, so the thickness of the depletion
+    region denoted as W increases with the increase in reverse bias
+    voltage.
+                                                               The capacitance formed in
+                                                                     𝑑𝑄
+▪   This incremental capacitance CT may be defined as 𝐶𝑇 =              ,
+                                                               junction area is called ‘Depletion
+                                                                     𝑑𝑉
+    where dQ is the increase in charge and dV is the change or region capacitance’ and denoted
+    increase in voltage.                                       by CT
+▪   The depletion region increases with the increase in reverse Space charge capacitance, (or)
+    bias potential the resulting transition capacitance decreases. Transition region capacitance,
+                                                                      𝐴𝜀     (or) Junction capacitance
+    The formula for transition capacitance is given as 𝐶𝑇 =              ,
+                                                                      𝑊
+    where A is the cross sectional area of the region, and W is the
+    width.
+
+
+
+
+                                                                                                                10
+                                                                                                 05-02-2022
+
+
+
+
+Diffuse capacitance
+▪   When the junction is forward biased, a capacitance comes into play, that is known as diffusion
+    capacitance denoted as CD. It is much greater than the transition capacitance.
+▪   During forward biased the potential barrier is reduced. The charge carriers moves away from the
+    junction and recombine.
+▪   The density of the charge carriers is high near the junction and reduces or decays as the distance
+    increases.
+▪   Thus in this case charge is stored on both side of the junction and varies with the applied
+    potential.
+▪   So as per definition change in charge with respect to applied voltage results in capacitance which
+    here is called as diffusion capacitance.
+                                                    𝜏𝐼𝐷
+▪   The formula for diffusion capacitance is 𝐶𝐷 =       ,   where τ is the mean life time of the charge
+                                                    𝜂𝑉𝑇
+    carrier, ID is the diode current and VT is the applied forward voltage, and η is generation
+    recombination factor.
+▪   The diffusion capacitance is directly proportional to the diode current.
+▪   In forward biased CD >> CT . And thus CT can be neglected.
+▪   Capacitance that exists in a forward biased junction is called ‘Diffusion Capacitance or Storage
+    Capacitance’ and denoted by CD. It arises due to arrangement of minority carrier density and
+    larger than Depletion region capacitance.
+
+
+
+
+              4.3 APPLICATIONS OF PN JUNCTION DIODE
+
+▪ A circuit which uses one or more diodes to convert the AC Voltage
+    into DC Voltage.
+
+
+
+
+                                                                                                          11
+                                                                            05-02-2022
+
+
+
+
+1. Half wave rectifier
+
+▪   Circuit consists of a single diode in series with load resistor
+
+
+
+
+▪   In the positive half cycles
+    when the input AC power is
+    given to the primary winding
+    of the step down transformer,
+    we   will    get   the    decreased
+    voltage     at     the    secondary
+    winding which is given to the
+    diode.
+                                            The    diode    will eliminate    the
+▪   During      positive     half   cycle   variations in the supply and give the
+    terminal A is positive with             pulsating DC voltage to the load
+                                            resistance RL.
+    respect to terminal B. So,
+    diode is forward biased, IL
+    flows through the load RL
+
+
+
+
+                                                                                    12
+                                                                        05-02-2022
+
+
+
+
+▪   During negative half cycle,
+    terminal A is more negative
+    than      B.    So,     the   diode
+    becomes reverse biased, and
+    diode will not conduct, no
+    current flow in the circuit
+    (IL=0).
+▪   Only small amount of reverse
+    current    is   flown    from     the
+    diode     but   this    current    is
+    almost negligible. And voltage
+    across the load resistance is
+    also zero.
+
+
+
+
+Characteristics of Half Wave Rectifier:
+▪   Rectification Efficiency: The efficiency is defined as the ratio of input
+    AC to the output DC. η=40%
+▪   Ripple factor: It is defined as the amount of AC content in the output
+    DC. 𝜸=1.21
+▪   Peak Inverse Voltage: It is defined as the maximum voltage that a
+    diode can with stand in reverse bias. PIV=Vm
+▪   Transformer Utilization Factor (TUF): The TUF is defined as the ratio
+    of DC power is delivered to the load and the AC rating of the
+    transformer secondary. TUF=0.287
+▪   DC Output Voltage: Average or dc value of voltage across the load is
+    given as Vdc=Vm/𝝅
+
+
+
+
+                                                                                13
+                                                                      05-02-2022
+
+
+
+
+Advantages:
+▪   Simple (lower number of components)
+▪   Cheaper up front cost (as their is less equipment.)
+▪   Easy to construct
+
+
+Disadvantages:
+▪   Only allow a half-cycle through per sinewave, and the other half-cycle
+    is wasted. This leads to power loss.
+▪   Produces a low output voltage.
+▪   The output current we obtain is not purely DC, and it still contains a
+    lot of ripple (i.e. it has a high ripple factor)
+▪   Efficiency is quite low
+
+
+
+
+2. Full wave rectifier
+
+▪   A Full wave rectifier is a circuit arrangement which makes use of both
+    half cycles of input alternating current (AC) and converts them to
+    direct current (DC).
+Types of Full wave Rectifier
+a) Full wave rectifier with centre tapped transformer
+b) Bridge type rectifier
+
+
+
+
+                                                                             14
+                                                                            05-02-2022
+
+
+
+
+a) Full wave rectifier with centre tapped transformer
+ ▪   Two diodes are used – feed a common load RL with the help of center tapped
+     transformer.
+ ▪   A Full wave rectifier is a circuit arrangement which makes use of both half
+     cycles of input alternating current (AC) and converts them to direct current
+     (DC).
+ ▪   Full wave rectifier conducts during positive and negative half cycles of
+     input.
+
+
+
+
+Working of Centre-Tap Full Wave Rectifier
+
+
+
+
+Note:
+• Load current flows in both the half cycles and in
+  same direction.
+• The two diodes does not conduct simultaneously
+• Ripple content in the output
+
+
+
+
+                                                                                    15
+                                                                                                        05-02-2022
+
+
+
+
+An AC input is applied to the primary coils of the transformer. This input makes the secondary ends A and B
+become positive and negative alternately.
+
+▪   During positive half cycle terminal A is
+    positive with respect to terminal B.
+    Diode D1 is forward biased and hence
+    will conduct the current, while D2 will
+    be reverse biased and will act as open
+    circuit. Load current is supplied
+    through D1 alone.
+
+▪   During negative half cycle, polarity is
+    reversed and terminal A becomes –ve
+    and B becomes +ve. Therefore D2 is
+    forward biased and conducts the
+    current, while D1 does not conduct
+    being reverse biased. In this case,
+    diode D2 supplies the load current.
+
+
+
+
+                                                                                                              32
+
+
+
+
+                                                                                                                   16
+                                                                        05-02-2022
+
+
+
+
+Characteristics of Full Wave Rectifier:
+▪   Rectification Efficiency: The efficiency is defined as the ratio of input
+    AC to the output DC. η=81.2%
+▪   Ripple factor: It is defined as the amount of AC content in the output
+    DC. 𝜸=1.11
+▪   Peak Inverse Voltage: It is defined as the maximum voltage that a
+    diode can with stand in reverse bias. PIV=2Vm
+▪   Transformer Utilization Factor (TUF): The TUF is defined as the ratio
+    of DC power is delivered to the load and the AC rating of the
+    transformer secondary. TUF=0.67
+▪   DC Output Voltage: Average or dc value of voltage across the load is
+    given as Vdc=2Vm/𝝅
+
+
+
+
+Advantages:
+▪   DC output voltage and current are twice than those of half wave
+    rectifier
+▪   Efficiency is twice (81.2%) that of half wave rectifier (40.6 %)
+
+
+Disadvantages:
+▪   The output voltage is half of the secondary voltage
+▪   PIV of diode is twice that of diode used in half wave rectifier
+▪   Cost of center tapped transformer is higher
+
+
+
+
+                                                                                17
+                                                                           05-02-2022
+
+
+
+
+b) Full Wave Bridge Rectifier
+
+▪    Bridge Rectifier is a Full wave rectifier circuit using four diodes
+▪    The main advantage of this circuit is that it does not require center
+     tapped transformer
+
+
+
+
+Working of Full Wave Bridge Rectifier
+
+
+
+
+Note:
+• Load current flows in both the half cycles and in
+  same direction.
+• The two diodes does not conduct simultaneously
+• Ripple content in the output
+
+
+
+
+                                                                                  18
+                                                                                                         05-02-2022
+
+
+
+
+ An AC input is applied to the primary coils of the transformer. This input makes the secondary ends A and B
+ become positive and negative alternately.
+
+▪   During positive half cycle, point A
+    of the secondary becomes positive.
+    D1 and D2 will be forward biased
+    while D3 and D4 are reverse biased.
+    The two diodes D1 and D2 conduct
+    in series with the load and load
+    current flows.
+▪   During negative half cycle, point B
+    of the secondary becomes positive.
+    D3 and D4 will be forward biased
+    while D1 and D2 are reverse biased.
+    The two diodes D3 and D4 conduct
+    in series with the load and load
+    current flows.
+
+
+
+
+Characteristics of Full Wave Bridge Rectifier:
+▪   Rectification Efficiency: The efficiency is defined as the ratio of input
+    AC to the output DC. η=81.2%
+▪   Ripple factor: It is defined as the amount of AC content in the output
+    DC. 𝜸=0.48
+▪   Peak Inverse Voltage: It is defined as the maximum voltage that a
+    diode can with stand in reverse bias. PIV=Vm
+▪   Transformer Utilization Factor (TUF): The TUF is defined as the ratio
+    of DC power is delivered to the load and the AC rating of the
+    transformer secondary. TUF=0.81
+▪   DC Output Voltage: Average or dc value of voltage across the load is
+    given as Vdc=2Vm/𝝅
+
+
+
+
+                                                                                                                19
+                                                                                            05-02-2022
+
+
+
+
+Advantages:
+ ▪   Need for centre tapped transformer is eliminated.
+ ▪   The output is twice that of the centretap circuit for the same
+     secondary voltage.
+ ▪   PIV is one half that of the centre tap circuit.
+
+
+Disadvantages:
+ ▪   It requires four diodes, power loss will be higher.
+
+
+
+
+                                   4.4 ZENER DIODE
+ ▪ Zener diode, junction formed by combining highly
+     doped PN semiconductors.
+ ▪ Heavily     doped     semiconductor        devices    so    its
+     depletion part has less area.
+ ▪ It works on the principle of Zener breakdown and
+     is operated in reverse breakdown region.
+ ▪ In reverse breakdown region high current flow
+     through    the    diode     leading     to   high     power
+     dissipation. It is also called as Voltage reference
+     diode, Voltage regulator diode, or Breakdown
+     diode.
+Note:
+PN junction diode does not operate in the reverse biased condition but Zener diodes are specially
+manufactured for reverse-biased operation.
+
+
+
+
+                                                                                                    20
+                                                          05-02-2022
+
+
+
+
+Zener effect:
+▪   When the voltage across its terminals
+    is reversed and the potential reaches
+    the Zener Voltage (knee voltage), the
+    junction will break down and the
+    current         flows     in     the    reverse
+    direction.
+▪   This effect is known as the Zener
+    Effect.
+
+Break down mechanism:
+▪   The following two processes cause
+    junction        breakdown        due    to    the
+    increase in reverse bias voltage,
+    ➢       Zener Breakdown
+    ➢       Avalanche Breakdown
+
+
+
+
+Zener Diode Operation:
+▪   Operates like normal diode in forward
+    bias. But in reverse bias, as the reverse
+    voltage (VR) is increased, the reverse
+    current (IR) remains extremely small up
+    to the “knee” of the curve. The reverse
+    current is also called the zener current
+    (IZ).
+▪   At      this   point,   the    breakdown     effect
+    begins; the internal zener resistance (or)
+    zener impedance (ZZ), begins to decrease
+    as the reverse current increases rapidly.
+▪   From the bottom of the knee, the zener
+    breakdown          voltage       (VZ)    remains
+    essentially        constant       although       it
+    increases slightly as IZ, increases.
+                                                             42
+
+
+
+
+                                                                  21
+                                                             05-02-2022
+
+
+
+
+Zener Breakdown:
+▪   This type of break-down appears in the high doping
+    diode like Zener, as this diode has less depletion
+    area due to higher doping.
+▪   When the voltage provided to the diode increases, in
+    thin depletion area highly effective electrical field
+    established.
+▪   When the reversed polarity voltage almost equals
+    the Zener voltage, the electric field in depletion
+    portion is such strong that it pulls out the electrons
+    from their valance shells.
+▪   The outermost shell electron that gets enough
+    power from the field will break out from the effect of
+    the mother atom and will move freely.
+▪   Due to the free drift of this election, the reverse
+    current will flow in the diode.
+▪   The less increment in the voltage will cause to move
+    current very fastly at the Zener breakdown portion.
+
+
+
+
+Avalanche Breakdown:
+▪   This type of break-down not only exits in the
+    Zener diode but also in the general diode due
+    to    higher   voltage     in   reversed    biased
+    conditions.
+▪   When the diode is in the reversed biased
+    condition the minority charge carriers get
+    larger energy from the source and move
+    fastly.
+▪   The high-speed charge carriers collide with
+    the   other    particles    and   remove      more
+    electrons from the atom.
+▪   Due to the larger quantity of electrons, the
+    backwards current will flow from cathode to
+    anode, in some condition the general diode
+    can be damaged.
+
+
+
+
+                                                                    22
+                                                                                               05-02-2022
+
+
+
+
+Difference between Zener and Avalanche breakdown:
+               Zener Breakdown                              Avalanche Breakdown
+•   Zener break-down occurs only in the •           This type of break-down not only exits
+    Zener diode (high doping diodes) as they        in the Zener diode but also in the
+    have less area of depletion portion due         general diode (low doping diodes) due to
+    to less value of revered biased voltage.        higher reversed biased voltage.
+•   It is observed in Zener diodes having Vz •      The avalanche breakdown is observed in
+    5 to 8 volts.                                   the Zener Diodes having Vz greater than
+•   The     breakdown   occurs   within   the       8 V.
+    depletion region.                           •   The    breakdown      occurs     outside    the
+•   The valence electrons are pulled into           depletion region.
+    conduction due to very intense electric •       The valence electrons are pushed into
+    field   appearing   across   the   narrow       conduction band due to the energy
+    depletion region.                               imparted    by       colliding    accelerated
+                                                                                                  45
+                                                    minority carriers.
+
+
+
+
+Advantages:
+▪    Small in size, so used in smaller circuits, less expensive
+▪    Can be used as controlling, regulating and stabilizing the voltage in
+     circuit
+▪    Compatibility with other device, so used for regulating voltage
+
+
+Applications:
+▪    Used in Voltage Stabilizers (or) Voltage Regulators
+▪    Used in Over voltage protection circuits
+▪    Used in switching applications.
+
+
+
+
+                                                                                                       23
+                                                                              05-02-2022
+
+
+
+
+Zener diode as a Voltage Regulator:
+▪ A device that regulates the voltage level.
+▪ It essentially steps down the input voltage to the desired level
+  and keeps it in that same level during the supply. This ensures
+  that even when a load is applied the voltage doesn’t drop.
+▪ The voltage regulator is used for two main reasons and they are:
+     ➢ To vary or regulate the output voltage
+     ➢ To keep the output voltage constant at the desired value in spite of
+        variations in the supply voltage.
+
+▪ Voltage regulators are used in computers, power generators,
+  alternators to control the output of the plant
+
+
+
+
+▪ Zener is connected in parallel or shunt
+  with load, therefore also called as
+  shunt regulator.
+
+
+▪ Regulation with varying input voltage
+  (Vin is variable & RL is fixed)
+
+
+▪ Regulation with varying load resistance
+  (Vin is fixed & RL is variable)
+
+
+
+
+                                                                                     24
+                                                                                            05-02-2022
+
+
+
+
+                           4.5 LIGHT EMITTING DIODE
+ ▪ A Light Emitting Diode (LED) is a special type of PN junction diode.
+ ▪ The light emitting diode is specially doped and made of a special type of
+   semiconductor.
+ ▪ This diode can emit light when it is in the forward biased state.
+ ▪ Older LED technologies used gallium arsenide phosphide (GaAsP), gallium
+   phosphide (GaP), and aluminum gallium arsenide (AlGaAs). Aluminum indium
+   gallium phosphide (AlInGaP) and indium gallium nitride (InGaN) are two of
+   the most commonly used semiconductors for LED technologies.
+ ▪ LEDs generate visible radiation by electroluminescence phenomenon when a
+   low-voltage direct current is applied to a suitably doped crystal containing a
+   p-n junction.
+Note: For LEDs, Si and Ge are not used as their forbidden gaps don't allow light emission in the
+visible spectrum. Thus LEDs are made up of GaAs, GaP, etc
+
+
+
+
+                                                                                                   50
+
+
+
+
+                                                                                                        25
+                                                                                   05-02-2022
+
+
+
+
+Working of LED:
+▪   The doping is typically carried out
+    with elements from column III and V
+    of the periodic table.
+▪   When a forward biased current (IF),
+    energizes the p-n junction, it emits
+    light at a wavelength ( 𝝀) under the
+    influence of an electric field, defined
+    by the active region energy gap, Eg.
+
+
+
+
+                                                                                      51
+
+
+
+
+▪   When the forward biased current (IF) is applied through the p-n junction of the
+    diode, electrons in N region are injected into the p-region.
+▪   Photon emission occurs due to electron-hole recombination in the p-region.
+▪   Electron   energy    transitions   across   the   energy   gap,   called   radiative
+    recombinations, produce photons (i.e., light), while shunt energy transitions,
+    called non-radiative recombinations, produce phonons (i.e., heat).
+▪   The luminous efficacies of typical AlInGaP LEDs and InGaN LEDs for different
+    peak wavelengths are shown in the table below
+
+
+
+
+                                                                                      52
+
+
+
+
+                                                                                           26
+                                                                              05-02-2022
+
+
+
+
+▪   The color of an LED device is expressed in terms of the dominant wavelength
+    emitted, λd (in nm).
+▪   AlInGaP LEDs produce the colors red (626 to 630 nm), red-orange (615 to 621
+    nm), orange (605 nm), and amber (590 to 592 nm). InGaN LEDs produce the
+    colors green (525 nm), blue green (498 to 505 nm), and blue (470 nm).
+▪   The color and forward voltage of AlInGaP LEDs depend on the temperature of
+    the LED p-n junction. As the temperature of the LED p-n junction increases, the
+    luminous intensity decreases, the dominant wavelength shifts towards longer
+    wavelengths, and the forward voltage drops.
+▪   The variation in luminous intensity of InGaN LEDs with operating ambient
+    temperature is small (about 10%) from − 20°C to 80°C. However, the dominant
+    wavelength of InGaN LEDs does vary with LED drive current; as the LED drive
+    current increases, dominant wavelength moves toward shorter wavelengths.
+
+                                                                                  53
+
+
+
+
+▪   Luminous efficacy of LED is defined as the emitted luminous flux (in lm) per
+    unit electrical power consumed (in W).
+    ➢   Blue LEDs have a rated internal efficacy in the order of 75 lm/W;
+    ➢   Red LEDs, approximately 155 lm/W; and
+    ➢   Amber LEDs, 500 lm/W.
+▪   Taking into consideration losses due to internal re-absorption, the luminous
+    efficacy is on the order of 20 to 25 lm/W for amber and green LEDs.
+▪   This definition of efficacy is called external efficacy and is analogous to the
+    definition of efficacy typically used for other light source types.
+
+
+
+
+                                                                                  54
+
+
+
+
+                                                                                       27
+                                                                                         05-02-2022
+
+
+
+
+Advantages:
+▪   Very low voltage (1-2 volts) and current (5-20mA) are enough to drive the
+    LED.
+▪   Total power output will be less than 150 mill watts.
+▪   The response time is very less – only about 10 nanoseconds.
+▪   Available in different spectral colors.
+▪   It has longer life span (more than 20 years) compared to lamps.
+▪   Small in size and hence light weight.
+▪   It can be easily integrate with other electronic circuits.
+▪   Operating speed is high (take 1µs to turn ON or OFF).
+Disadvantages:
+▪  Output power and waveleng ae affected by changes in temperature.
+▪  Luminous efficiency of LED is low.
+ ▪ LED gets easily damaged due to overcurrent.
+Applications of LED:
+▪   Signals, Indicators, Signs, Displays, Indoor lighting, Road lighting applications.
+
+
+
+
+                                  4.6 SOLAR PANEL
+▪ A solar cell (also known as a photovoltaic cell or PV cell) is defined as an
+    electrical device that converts light energy into electrical energy through the
+    photovoltaic effect.
+▪ A solar cell is basically a p-n junction diode.
+▪ Solar cells are a form of photoelectric cell, defined as a device whose
+    electrical characteristics – such as current, voltage, or resistance – vary when
+    exposed to light.
+▪ Individual solar cells can be combined to form modules commonly known as
+    solar panels.
+▪ The common single junction silicon solar cell can produce a maximum open-
+    circuit voltage of approximately 0.5 to 0.6 volts. By itself this isn’t much –
+    but remember these solar cells are tiny. When combined into a large solar
+    panel, considerable amounts of renewable energy can be generated.
+
+
+
+
+                                                                                                28
+                                                                                05-02-2022
+
+
+
+
+1.Silicon.
+2.GaAs.
+3.CdTe.
+4.CuInSe2
+
+
+
+
+     1.Must have band gap from 1ev to 1.8ev.
+     2.It must have high optical absorption.
+     3.It must have high electrical conductivity.
+     4.The raw material must be available in abundance
+     and the cost of the material must be low.
+                                                                                   57
+
+
+
+
+ ▪     Photovoltaic effect: When sunlight hits the solar panel, generation of charge
+       carriers (electrons and holes) in a light absorbing material and separation
+       charge carriers to conductive contact, that will transmit electricity.
+
+
+
+
+                                                                                   58
+
+
+
+
+                                                                                        29
+                                                                                       05-02-2022
+
+
+
+
+Working principle of Solar cell:
+▪   When light reaches the p-n junction, the light photons can easily enter in the junction,
+    through very thin p-type layer. The light energy, in the form of photons, supplies
+    sufficient energy to the junction to create a number of electron-hole pairs.
+▪   The incident light breaks the thermal equilibrium condition of the junction.
+▪   The free electrons in the depletion region can quickly come to the n-type side of the
+    junction. Similarly, the holes in the depletion can quickly come to the p-type side of
+    the junction. Once, the newly created free electrons come to the n-type side, cannot
+    further cross the junction because of barrier potential of the junction.
+▪   Similarly, the newly created holes once come to the p-type side cannot further cross the
+    junction became of same barrier potential of the junction. As the concentration of
+    electrons becomes higher in one side, i.e. n-type side of the junction and concentration
+    of holes becomes more in another side, i.e. the p-type side of the junction.
+▪   The p-n junction will behave like a small battery cell. A voltage is set up which is
+    known as photo voltage. If we connect a small load across the junction, there will be a
+    tiny current flowing through it
+                                                                                          59
+
+
+
+
+V-I Characteristics of a Photovoltaic Cell:
+
+
+
+
+                                                                                          60
+
+
+
+
+                                                                                               30
+                                                                        05-02-2022
+
+
+
+
+Advantages:
+▪   It is a renewable energy.
+▪   It is clean and non-polluting.
+▪   They have long time.
+▪   They require less maintenance.
+Disadvantages:
+▪   Expensive and less efficient
+▪   They require large area of land to generate power in large-scale.
+▪   They cannot generate power consistently, due to intermittent nature
+    of sun.
+Applications:
+▪   Clean power generation.
+
+
+
+
+                                                                               31
+

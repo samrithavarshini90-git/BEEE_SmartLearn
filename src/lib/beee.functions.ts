@@ -95,6 +95,60 @@ export interface DashboardData {
   achievements: { code: string; title: string; description: string; icon: string; earned_at: string }[];
 }
 
+type TesseractModule = {
+  recognize?: (
+    image: string,
+    language: string,
+  ) => Promise<{ data: { text?: string } }>;
+  createWorker?: (language?: string) => Promise<{
+    recognize: (image: string) => Promise<{ data: { text?: string } }>;
+    terminate: () => Promise<void>;
+  }>;
+  default?: TesseractModule;
+  "module.exports"?: TesseractModule;
+  t?: TesseractModule | (() => TesseractModule);
+};
+
+async function runTesseractOcr(imageDataUrl: string): Promise<string> {
+  const mod = (await import("tesseract.js")) as TesseractModule;
+  const bundledExport = typeof mod.t === "function" ? mod.t() : mod.t;
+  const tesseract = mod.recognize
+    ? mod
+    : mod.default?.recognize
+      ? mod.default
+      : mod["module.exports"]?.recognize
+        ? mod["module.exports"]
+        : bundledExport?.recognize
+          ? bundledExport
+        : mod.default?.default?.recognize
+          ? mod.default.default
+          : undefined;
+
+  if (tesseract?.recognize) {
+    const result = await tesseract.recognize(imageDataUrl, "eng");
+    return result.data.text?.trim() ?? "";
+  }
+
+  const workerFactory =
+    mod.createWorker ??
+    mod.default?.createWorker ??
+    mod["module.exports"]?.createWorker ??
+    bundledExport?.createWorker ??
+    mod.default?.default?.createWorker;
+
+  if (!workerFactory) {
+    throw new Error("Tesseract.js OCR API was not available after import.");
+  }
+
+  const worker = await workerFactory("eng");
+  try {
+    const result = await worker.recognize(imageDataUrl);
+    return result.data.text?.trim() ?? "";
+  } finally {
+    await worker.terminate();
+  }
+}
+
 // Utility helper to safely parse JSON returned from TiDB (could be object or string)
 function parseJsonField<T>(fieldVal: any): T {
   if (fieldVal === null || fieldVal === undefined) return [] as unknown as T;
@@ -734,9 +788,7 @@ export const solveProblem = createServerFn({ method: "POST" })
         console.log("[OCR] Running local Tesseract.js OCR on uploaded image...");
         // Dynamic import prevents Nitro from bundling tesseract.js as ESM at build time,
         // which would crash the server with "__dirname is not defined" in ES module scope.
-        const Tesseract = (await import("tesseract.js")).default;
-        const result = await Tesseract.recognize(data.imageDataUrl, "eng");
-        extractedText = result.data.text.trim();
+        extractedText = await runTesseractOcr(data.imageDataUrl);
         console.log("[OCR] Text extracted successfully:", extractedText.slice(0, 120));
       } catch (ocrErr: any) {
         console.error("[OCR] Local OCR processing failed:", ocrErr);

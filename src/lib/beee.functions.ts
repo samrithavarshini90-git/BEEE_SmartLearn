@@ -122,51 +122,56 @@ export const signUpUser = createServerFn({ method: "POST" })
       .parse(raw),
   )
   .handler(async ({ data }) => {
-    await ensureDb();
-    // Check if username or email already exists
-    const existing = await query(
-      "SELECT id, username, email FROM users WHERE username = ? OR email = ?",
-      [data.username, data.email]
-    );
-    if (existing.length > 0) {
-      const match = existing[0];
-      if (match.username.toLowerCase() === data.username.toLowerCase()) {
-        throw new Error("Username is already taken.");
+    try {
+      await ensureDb();
+      // Check if username or email already exists
+      const existing = await query(
+        "SELECT id, username, email FROM users WHERE username = ? OR email = ?",
+        [data.username, data.email]
+      );
+      if (existing.length > 0) {
+        const match = existing[0];
+        if (match.username.toLowerCase() === data.username.toLowerCase()) {
+          throw new Error("Username is already taken.");
+        }
+        if (match.email.toLowerCase() === data.email.toLowerCase()) {
+          throw new Error("Email is already registered.");
+        }
       }
-      if (match.email.toLowerCase() === data.email.toLowerCase()) {
-        throw new Error("Email is already registered.");
-      }
-    }
 
-    const userId = crypto.randomUUID();
-    const passHash = hashPassword(data.password);
-    const role = "student";
+      const userId = crypto.randomUUID();
+      const passHash = hashPassword(data.password);
+      const role = "student";
 
-    await query(
-      "INSERT INTO users (id, username, email, password_hash, full_name, role) VALUES (?, ?, ?, ?, ?, ?)",
-      [userId, data.username, data.email, passHash, data.fullName || "", role]
-    );
+      await query(
+        "INSERT INTO users (id, username, email, password_hash, full_name, role) VALUES (?, ?, ?, ?, ?, ?)",
+        [userId, data.username, data.email, passHash, data.fullName || "", role]
+      );
 
-    // Create session token (JWT)
-    const tokenPayload = {
-      sub: userId,
-      username: data.username,
-      email: data.email,
-      fullName: data.fullName || "",
-      role,
-    };
-    const token = signToken(tokenPayload);
-
-    return {
-      token,
-      user: {
-        id: userId,
-        email: data.email,
+      // Create session token (JWT)
+      const tokenPayload = {
+        sub: userId,
         username: data.username,
+        email: data.email,
+        fullName: data.fullName || "",
         role,
-        user_metadata: { full_name: data.fullName || "" },
-      },
-    };
+      };
+      const token = signToken(tokenPayload);
+
+      return {
+        token,
+        user: {
+          id: userId,
+          email: data.email,
+          username: data.username,
+          role,
+          user_metadata: { full_name: data.fullName || "" },
+        },
+      };
+    } catch (err) {
+      console.error("[signUpUser] Error details:", err);
+      throw err;
+    }
   });
 
 export const signInUser = createServerFn({ method: "POST" })
@@ -179,41 +184,46 @@ export const signInUser = createServerFn({ method: "POST" })
       .parse(raw),
   )
   .handler(async ({ data }) => {
-    await ensureDb();
-    const users = await query(
-      "SELECT id, username, email, password_hash, full_name, role FROM users WHERE username = ? OR email = ?",
-      [data.loginIdentifier, data.loginIdentifier]
-    );
-    if (users.length === 0) {
-      throw new Error("Invalid username or password.");
-    }
+    try {
+      await ensureDb();
+      const users = await query(
+        "SELECT id, username, email, password_hash, full_name, role FROM users WHERE username = ? OR email = ?",
+        [data.loginIdentifier, data.loginIdentifier]
+      );
+      if (users.length === 0) {
+        throw new Error("Invalid username or password.");
+      }
 
-    const user = users[0];
-    const passHash = hashPassword(data.password);
-    if (user.password_hash !== passHash) {
-      throw new Error("Invalid username or password.");
-    }
+      const user = users[0];
+      const passHash = hashPassword(data.password);
+      if (user.password_hash !== passHash) {
+        throw new Error("Invalid username or password.");
+      }
 
-    // Create session token (JWT)
-    const tokenPayload = {
-      sub: user.id,
-      username: user.username,
-      email: user.email,
-      fullName: user.full_name,
-      role: user.role,
-    };
-    const token = signToken(tokenPayload);
-
-    return {
-      token,
-      user: {
-        id: user.id,
-        email: user.email,
+      // Create session token (JWT)
+      const tokenPayload = {
+        sub: user.id,
         username: user.username,
+        email: user.email,
+        fullName: user.full_name,
         role: user.role,
-        user_metadata: { full_name: user.full_name },
-      },
-    };
+      };
+      const token = signToken(tokenPayload);
+
+      return {
+        token,
+        user: {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          role: user.role,
+          user_metadata: { full_name: user.full_name },
+        },
+      };
+    } catch (err) {
+      console.error("[signInUser] Error details:", err);
+      throw err;
+    }
   });
 
 // ---------- Units ----------

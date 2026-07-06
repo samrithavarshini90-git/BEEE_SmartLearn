@@ -3,7 +3,6 @@ import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { callLovableAI, safeParseJson } from "@/lib/ai-gateway.server";
 import { query, ensureDb } from "@/lib/db.server";
-// tesseract.js is dynamically imported inside solveProblem handler to avoid __dirname ESM crash on Render
 import { hashPassword, signToken } from "@/lib/auth-utils.server";
 import crypto from "crypto";
 import fs from "fs";
@@ -110,7 +109,15 @@ type TesseractModule = {
 };
 
 async function runTesseractOcr(imageDataUrl: string): Promise<string> {
-  const mod = (await import("tesseract.js")) as TesseractModule;
+  let mod: TesseractModule;
+  try {
+    const { createRequire } = await import("module");
+    const nodeRequire = createRequire(import.meta.url);
+    mod = nodeRequire("tesseract.js") as TesseractModule;
+  } catch {
+    mod = (await import("tesseract.js")) as TesseractModule;
+  }
+
   const bundledExport = typeof mod.t === "function" ? mod.t() : mod.t;
   const tesseract = mod.recognize
     ? mod

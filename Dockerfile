@@ -11,6 +11,7 @@ RUN npm install
 COPY . .
 
 # Build the Nitro server for production
+ENV NITRO_PRESET=node-server
 RUN npm run build
 
 # Stage 2: Production runtime with Python and Node.js
@@ -35,6 +36,7 @@ COPY --from=builder /app/.output ./.output
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/src/lib/python ./src/lib/python
+COPY --from=builder /app/src/data ./src/data
 
 # Expose port for Render
 ENV PORT=8080

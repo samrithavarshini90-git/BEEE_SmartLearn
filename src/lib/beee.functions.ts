@@ -779,7 +779,8 @@ export const solveProblem = createServerFn({ method: "POST" })
         const jsonInput = JSON.stringify(parsed.diagram.schemdraw_instructions);
         
         const svg = await new Promise<string>((resolve, reject) => {
-          const child = execFile("python3", [pyScript], (error, stdout, stderr) => {
+          const pyCommand = process.platform === "win32" ? "python" : "python3";
+          const child = execFile(pyCommand, [pyScript], (error, stdout, stderr) => {
             if (error) {
               console.error("[Schemdraw] Error:", stderr);
               resolve(""); // fallback silently

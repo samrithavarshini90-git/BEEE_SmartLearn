@@ -810,21 +810,40 @@ function firstMatch(text: string, pattern: RegExp): string | undefined {
   return text.match(pattern)?.[1]?.trim();
 }
 
+function uniqueMatches(text: string, pattern: RegExp): string[] {
+  return Array.from(text.matchAll(pattern))
+    .map((match) => match[1]?.trim())
+    .filter((value): value is string => Boolean(value))
+    .filter((value, index, values) => values.findIndex((v) => v.toLowerCase() === value.toLowerCase()) === index);
+}
+
 function createBasicCircuitDiagram(questionText: string): DiagramData {
   const text = questionText.replace(/\s+/g, " ");
   const lower = text.toLowerCase();
   const voltage = firstMatch(text, /(?:v(?:oltage)?|supply|source)\s*[=:]?\s*(\d+(?:\.\d+)?\s*(?:v|volts?)?)/i);
   const current = firstMatch(text, /(?:i|current)\s*[=:]?\s*(\d+(?:\.\d+)?\s*(?:a|amps?)?)/i);
+  const resistorValues = uniqueMatches(
+    text,
+    /(\d+(?:\.\d+)?\s*(?:k\s*(?:ohms?|\u03a9|\u2126)?|kohms?|ohms?|\u03a9|\u2126))/gi,
+  ).slice(0, 5);
   const resistance =
-    firstMatch(text, /(?:r|resistance)\s*[=:]?\s*(\d+(?:\.\d+)?\s*(?:ohm|ohms|Ω|Ω)?)/i) ??
-    firstMatch(text, /(\d+(?:\.\d+)?\s*(?:ohm|ohms|Ω|Ω))/i);
+    firstMatch(text, /(?:r|resistance)\s*[=:]?\s*(\d+(?:\.\d+)?\s*(?:ohms?|\u03a9|\u2126)?)/i) ??
+    resistorValues[0];
 
   const sourceLabel = voltage ? `V = ${voltage}` : current ? `I = ${current}` : "Source";
-  const resistorLabel = resistance ? `R = ${resistance}` : "R";
+  const resistorLabels = resistorValues.length > 0 ? resistorValues : [resistance ? resistance : "R"];
   const instructions: SchemdrawInstruction[] = [
-    { type: "SourceV", direction: "right", label: sourceLabel, length: 2 },
-    { type: "Resistor", direction: "right", label: resistorLabel, length: 3 },
+    { type: current && !voltage ? "SourceI" : "SourceV", direction: "right", label: sourceLabel, length: 2 },
   ];
+
+  resistorLabels.forEach((label, index) => {
+    instructions.push({
+      type: "Resistor",
+      direction: "right",
+      label: resistorLabels.length > 1 ? `R${index + 1} = ${label}` : `R = ${label}`,
+      length: 2.5,
+    });
+  });
 
   if (lower.includes("capacitor") || lower.includes(" capacitance") || /\bc\s*=/.test(lower)) {
     const capacitance = firstMatch(text, /(?:c|capacitance)\s*[=:]?\s*(\d+(?:\.\d+)?\s*(?:uf|µf|f)?)/i);
@@ -944,14 +963,25 @@ export const solveProblem = createServerFn({ method: "POST" })
     };
 
     const parsed = safeParseJson<SolverResponse>(raw, fallback);
+    parsed.topic = parsed.topic || data.topic || "General";
+    parsed.question = parsed.question || data.question || questionText;
+    parsed.steps = Array.isArray(parsed.steps) ? parsed.steps : [];
+    parsed.formulas_used = Array.isArray(parsed.formulas_used) ? parsed.formulas_used : [];
+    if (parsed.diagram && typeof parsed.diagram !== "object") {
+      parsed.diagram = null;
+    }
+    if (parsed.diagram && !Array.isArray(parsed.diagram.schemdraw_instructions)) {
+      parsed.diagram.schemdraw_instructions = [];
+    }
     if (extractedText && !parsed.extracted_text) {
       parsed.extracted_text = extractedText;
     }
 
+    const diagramInstructions = parsed.diagram?.schemdraw_instructions ?? [];
     let usedBasicDiagramFallback = false;
     if (
       diagramRequired &&
-      (!parsed.diagram?.schemdraw_instructions || parsed.diagram.schemdraw_instructions.length === 0)
+      diagramInstructions.length === 0
     ) {
       parsed.diagram = createBasicCircuitDiagram(questionText);
       usedBasicDiagramFallback = true;

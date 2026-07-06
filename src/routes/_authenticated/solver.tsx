@@ -70,8 +70,8 @@ function SolverPage() {
         </div>
         <h1 className="mt-3 text-3xl font-bold text-foreground">Solve any BEEE problem</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Type a question or upload a photo. Get step-by-step reasoning, formulas, and optional
-          circuit diagram.
+          Type a question or upload a photo. Get step-by-step reasoning, formulas, and circuit
+          diagrams when the problem needs one.
         </p>
       </header>
 
@@ -168,6 +168,9 @@ function SolverPage() {
 }
 
 function SolutionCard({ result }: { result: SolverResponse }) {
+  const steps = Array.isArray(result.steps) ? result.steps : [];
+  const formulas = Array.isArray(result.formulas_used) ? result.formulas_used : [];
+
   return (
     <article className="card-soft space-y-5 p-6 sm:p-8">
       <header className="flex items-start justify-between gap-3">
@@ -207,7 +210,7 @@ function SolutionCard({ result }: { result: SolverResponse }) {
           Step-by-step
         </div>
         <ol className="mt-3 space-y-3">
-          {result.steps.map((s) => (
+          {steps.map((s) => (
             <li key={s.step} className="flex gap-3">
               <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-border bg-surface-muted text-xs font-semibold text-foreground">
                 {s.step}
@@ -225,13 +228,13 @@ function SolutionCard({ result }: { result: SolverResponse }) {
         </ol>
       </div>
 
-      {result.formulas_used.length > 0 && (
+      {formulas.length > 0 && (
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Formulas used
           </div>
           <ul className="mt-2 flex flex-wrap gap-2">
-            {result.formulas_used.map((f, i) => (
+            {formulas.map((f, i) => (
               <li
                 key={i}
                 className="rounded-lg border border-border bg-surface-muted px-2.5 py-1 font-mono text-xs text-foreground"

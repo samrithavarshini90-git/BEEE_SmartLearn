@@ -50,6 +50,7 @@ export interface DiagramData {
   description: string;
   schemdraw_instructions?: SchemdrawInstruction[];
   svg?: string; // We'll inject the python-generated SVG here
+  error?: string;
   ascii?: string;
   image_url?: string;
 }
@@ -839,14 +840,15 @@ export const solveProblem = createServerFn({ method: "POST" })
         const pyScript = path.join(process.cwd(), "src/lib/python/schematic_generator.py");
         const jsonInput = JSON.stringify(parsed.diagram.schemdraw_instructions);
 
-        const svg = await new Promise<string>((resolve, reject) => {
+        const diagramResult = await new Promise<{ svg: string; error?: string }>((resolve) => {
           const pyCommand = process.platform === "win32" ? "python" : "python3";
           const child = execFile(pyCommand, [pyScript], (error, stdout, stderr) => {
             if (error) {
-              console.error("[Schemdraw] Error:", stderr);
-              resolve(""); // fallback silently
+              const message = stderr?.trim() || error.message;
+              console.error("[Schemdraw] Error:", message);
+              resolve({ svg: "", error: message });
             } else {
-              resolve(stdout);
+              resolve({ svg: stdout });
             }
           });
           if (child.stdin) {
@@ -855,11 +857,15 @@ export const solveProblem = createServerFn({ method: "POST" })
           }
         });
 
-        if (svg) {
-          parsed.diagram.svg = svg;
+        if (diagramResult.svg) {
+          parsed.diagram.svg = diagramResult.svg;
+          delete parsed.diagram.error;
+        } else if (diagramResult.error) {
+          parsed.diagram.error = diagramResult.error;
         }
       } catch (err) {
         console.error("[Schemdraw] Failed to execute python:", err);
+        parsed.diagram.error = err instanceof Error ? err.message : "Failed to execute Python diagram generator.";
       }
     }
 

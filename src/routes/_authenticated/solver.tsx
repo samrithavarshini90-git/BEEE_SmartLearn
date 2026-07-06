@@ -260,7 +260,9 @@ function SolutionCard({ result }: { result: SolverResponse }) {
         <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Final answer
         </div>
-        <p className="mt-1 text-base font-semibold text-foreground">{result.final_answer}</p>
+        <pre className="mt-2 whitespace-pre-wrap break-words font-sans text-base font-semibold leading-7 text-foreground">
+          {result.final_answer}
+        </pre>
       </div>
     </article>
   );

@@ -66,7 +66,6 @@ def generate_svg(instructions):
     if schemdraw is None or elm is None:
         raise RuntimeError(f"Schemdraw is not available: {SCHEMDRAW_IMPORT_ERROR}")
 
-    schemdraw.theme("dark")
     d = schemdraw.Drawing(show=False)
 
     element_map = {

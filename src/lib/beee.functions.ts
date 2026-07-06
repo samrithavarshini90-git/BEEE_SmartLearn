@@ -778,8 +778,11 @@ CRITICAL RULES FOR OUTPUT:
 Rules:
 - If the problem is contained in an image, first perform OCR into "extracted_text", then solve.
 - For image uploads, circuit questions, resistor networks, Ohm's law examples, KCL/KVL, Thevenin/Norton, AC RLC, diode, transistor, and rectifier problems, emit a diagram object with schemdraw_instructions.
+- Every circuit diagram must be a closed circuit/closed loop. Add Line elements as return wires so the path comes back to its starting point.
 - Only emit null diagram for pure theory questions where no electrical circuit/block diagram is relevant.
 - If an exact uploaded circuit topology is not readable from OCR text, still create the simplest faithful educational schematic from the known components and values; do not pretend unknown connections are exact.
+- Put derivations/formulas in "steps", not in "final_answer".
+- Format "final_answer" as a short display-ready answer. For multiple values, put each result on its own line inside the string, e.g. "V_R1 = 1.33 V\nV_R2 = 4.40 V\nV_R3 = 6.27 V".
 - Every "expression" must be plain ASCII math like V = I*R, Z = sqrt(R^2 + (Xl-Xc)^2), pf = cos(phi).`;
 
 function shouldRequestDiagram(data: z.infer<typeof solverInput>, questionText: string): boolean {
@@ -817,6 +820,69 @@ function uniqueMatches(text: string, pattern: RegExp): string[] {
     .filter((value, index, values) => values.findIndex((v) => v.toLowerCase() === value.toLowerCase()) === index);
 }
 
+function formatFinalAnswer(answer: string): string {
+  return answer
+    .replace(/\s+/g, " ")
+    .replace(/\.\s+For\s+/g, ".\nFor ")
+    .replace(/,\s+(?=(?:V|I|R|P|Z|X|pf|PF|V_[A-Za-z0-9]+|I_[A-Za-z0-9]+)\s*(?:=|≈))/g, "\n")
+    .replace(/,\s+(?=and\s+)/gi, "\n")
+    .trim();
+}
+
+function instructionLength(instruction: SchemdrawInstruction): number {
+  const length = Number(instruction.length);
+  return Number.isFinite(length) && length > 0 ? length : 1;
+}
+
+function closeCircuitInstructions(instructions: SchemdrawInstruction[]): SchemdrawInstruction[] {
+  let x = 0;
+  let y = 0;
+
+  for (const instruction of instructions) {
+    if (instruction.type === "Ground") continue;
+
+    const length = instructionLength(instruction);
+    switch (instruction.direction) {
+      case "left":
+        x -= length;
+        break;
+      case "up":
+        y += length;
+        break;
+      case "down":
+        y -= length;
+        break;
+      default:
+        x += length;
+        break;
+    }
+  }
+
+  const closed = [...instructions];
+  const roundedX = Math.round(x * 100) / 100;
+  const roundedY = Math.round(y * 100) / 100;
+
+  if (Math.abs(roundedY) > 0.01) {
+    closed.push({
+      type: "Line",
+      direction: roundedY > 0 ? "down" : "up",
+      label: "",
+      length: Math.abs(roundedY),
+    });
+  }
+
+  if (Math.abs(roundedX) > 0.01) {
+    closed.push({
+      type: "Line",
+      direction: roundedX > 0 ? "left" : "right",
+      label: "",
+      length: Math.abs(roundedX),
+    });
+  }
+
+  return closed;
+}
+
 function createBasicCircuitDiagram(questionText: string): DiagramData {
   const text = questionText.replace(/\s+/g, " ");
   const lower = text.toLowerCase();
@@ -833,7 +899,7 @@ function createBasicCircuitDiagram(questionText: string): DiagramData {
   const sourceLabel = voltage ? `V = ${voltage}` : current ? `I = ${current}` : "Source";
   const resistorLabels = resistorValues.length > 0 ? resistorValues : [resistance ? resistance : "R"];
   const instructions: SchemdrawInstruction[] = [
-    { type: current && !voltage ? "SourceI" : "SourceV", direction: "right", label: sourceLabel, length: 2 },
+    { type: current && !voltage ? "SourceI" : "SourceV", direction: "up", label: sourceLabel, length: 2 },
   ];
 
   resistorLabels.forEach((label, index) => {
@@ -873,15 +939,12 @@ function createBasicCircuitDiagram(questionText: string): DiagramData {
     instructions.push({ type: "BjtNpn", direction: "right", label: "Q", length: 2 });
   }
 
-  instructions.push(
-    { type: "Line", direction: "down", label: "", length: 2 },
-    { type: "Ground", direction: "down", label: "GND", length: 1 },
-  );
+  instructions.push({ type: "Line", direction: "down", label: "", length: 2 });
 
   return {
     description:
-      "Simplified Schemdraw circuit generated from the readable problem text because the AI did not return diagram instructions.",
-    schemdraw_instructions: instructions,
+      "Simplified closed Schemdraw circuit generated from the readable problem text because the AI did not return diagram instructions.",
+    schemdraw_instructions: closeCircuitInstructions(instructions),
   };
 }
 
@@ -967,6 +1030,7 @@ export const solveProblem = createServerFn({ method: "POST" })
     parsed.question = parsed.question || data.question || questionText;
     parsed.steps = Array.isArray(parsed.steps) ? parsed.steps : [];
     parsed.formulas_used = Array.isArray(parsed.formulas_used) ? parsed.formulas_used : [];
+    parsed.final_answer = formatFinalAnswer(parsed.final_answer || fallback.final_answer);
     if (parsed.diagram && typeof parsed.diagram !== "object") {
       parsed.diagram = null;
     }
@@ -985,6 +1049,10 @@ export const solveProblem = createServerFn({ method: "POST" })
     ) {
       parsed.diagram = createBasicCircuitDiagram(questionText);
       usedBasicDiagramFallback = true;
+    }
+
+    if (parsed.diagram?.schemdraw_instructions && parsed.diagram.schemdraw_instructions.length > 0) {
+      parsed.diagram.schemdraw_instructions = closeCircuitInstructions(parsed.diagram.schemdraw_instructions);
     }
 
     if (parsed.diagram?.schemdraw_instructions && parsed.diagram.schemdraw_instructions.length > 0) {

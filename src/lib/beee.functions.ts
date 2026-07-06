@@ -777,8 +777,118 @@ CRITICAL RULES FOR OUTPUT:
 
 Rules:
 - If the problem is contained in an image, first perform OCR into "extracted_text", then solve.
-- Only emit a diagram when it materially aids understanding.
+- For image uploads, circuit questions, resistor networks, Ohm's law examples, KCL/KVL, Thevenin/Norton, AC RLC, diode, transistor, and rectifier problems, emit a diagram object with schemdraw_instructions.
+- Only emit null diagram for pure theory questions where no electrical circuit/block diagram is relevant.
+- If an exact uploaded circuit topology is not readable from OCR text, still create the simplest faithful educational schematic from the known components and values; do not pretend unknown connections are exact.
 - Every "expression" must be plain ASCII math like V = I*R, Z = sqrt(R^2 + (Xl-Xc)^2), pf = cos(phi).`;
+
+function shouldRequestDiagram(data: z.infer<typeof solverInput>, questionText: string): boolean {
+  if (data.imageDataUrl) return true;
+
+  const text = `${data.topic ?? ""} ${questionText}`.toLowerCase();
+  return [
+    "circuit",
+    "resistor",
+    "resistance",
+    "ohm",
+    "voltage",
+    "current",
+    "kcl",
+    "kvl",
+    "thevenin",
+    "norton",
+    "rlc",
+    "capacitor",
+    "inductor",
+    "diode",
+    "transistor",
+    "rectifier",
+  ].some((term) => text.includes(term));
+}
+
+function firstMatch(text: string, pattern: RegExp): string | undefined {
+  return text.match(pattern)?.[1]?.trim();
+}
+
+function createBasicCircuitDiagram(questionText: string): DiagramData {
+  const text = questionText.replace(/\s+/g, " ");
+  const lower = text.toLowerCase();
+  const voltage = firstMatch(text, /(?:v(?:oltage)?|supply|source)\s*[=:]?\s*(\d+(?:\.\d+)?\s*(?:v|volts?)?)/i);
+  const current = firstMatch(text, /(?:i|current)\s*[=:]?\s*(\d+(?:\.\d+)?\s*(?:a|amps?)?)/i);
+  const resistance =
+    firstMatch(text, /(?:r|resistance)\s*[=:]?\s*(\d+(?:\.\d+)?\s*(?:ohm|ohms|Ω|Ω)?)/i) ??
+    firstMatch(text, /(\d+(?:\.\d+)?\s*(?:ohm|ohms|Ω|Ω))/i);
+
+  const sourceLabel = voltage ? `V = ${voltage}` : current ? `I = ${current}` : "Source";
+  const resistorLabel = resistance ? `R = ${resistance}` : "R";
+  const instructions: SchemdrawInstruction[] = [
+    { type: "SourceV", direction: "right", label: sourceLabel, length: 2 },
+    { type: "Resistor", direction: "right", label: resistorLabel, length: 3 },
+  ];
+
+  if (lower.includes("capacitor") || lower.includes(" capacitance") || /\bc\s*=/.test(lower)) {
+    const capacitance = firstMatch(text, /(?:c|capacitance)\s*[=:]?\s*(\d+(?:\.\d+)?\s*(?:uf|µf|f)?)/i);
+    instructions.push({
+      type: "Capacitor",
+      direction: "right",
+      label: capacitance ? `C = ${capacitance}` : "C",
+      length: 2,
+    });
+  }
+
+  if (lower.includes("inductor") || lower.includes(" inductance") || /\bl\s*=/.test(lower)) {
+    const inductance = firstMatch(text, /(?:l|inductance)\s*[=:]?\s*(\d+(?:\.\d+)?\s*(?:mh|h)?)/i);
+    instructions.push({
+      type: "Inductor",
+      direction: "right",
+      label: inductance ? `L = ${inductance}` : "L",
+      length: 2,
+    });
+  }
+
+  if (lower.includes("diode") || lower.includes("rectifier")) {
+    instructions.push({ type: "Diode", direction: "right", label: "D", length: 2 });
+  }
+
+  if (lower.includes("transistor") || lower.includes("bjt")) {
+    instructions.push({ type: "BjtNpn", direction: "right", label: "Q", length: 2 });
+  }
+
+  instructions.push(
+    { type: "Line", direction: "down", label: "", length: 2 },
+    { type: "Ground", direction: "down", label: "GND", length: 1 },
+  );
+
+  return {
+    description:
+      "Simplified Schemdraw circuit generated from the readable problem text because the AI did not return diagram instructions.",
+    schemdraw_instructions: instructions,
+  };
+}
+
+async function renderSchemdrawSvg(
+  instructions: SchemdrawInstruction[],
+): Promise<{ svg: string; error?: string }> {
+  const pyScript = path.join(process.cwd(), "src/lib/python/schematic_generator.py");
+  const jsonInput = JSON.stringify(instructions);
+
+  return new Promise((resolve) => {
+    const pyCommand = process.platform === "win32" ? "python" : "python3";
+    const child = execFile(pyCommand, [pyScript], (error, stdout, stderr) => {
+      if (error) {
+        const message = stderr?.trim() || error.message;
+        console.error("[Schemdraw] Error:", message);
+        resolve({ svg: "", error: message });
+      } else {
+        resolve({ svg: stdout });
+      }
+    });
+    if (child.stdin) {
+      child.stdin.write(jsonInput);
+      child.stdin.end();
+    }
+  });
+}
 
 export const solveProblem = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
@@ -809,7 +919,11 @@ export const solveProblem = createServerFn({ method: "POST" })
         ? extractedText
         : "Analyze and explain the circuit details provided in the image.";
 
+    const diagramRequired = shouldRequestDiagram(data, questionText);
     const promptText = `${data.unit_number ? `Target Unit: ${data.unit_number}\n` : ""}${data.topic ? `Topic hint: ${data.topic}\n` : ""
+      }${diagramRequired
+        ? "Diagram requirement: return a non-null diagram object with schemdraw_instructions. If the uploaded image/OCR is unclear, generate the simplest faithful schematic from the readable component values and state the limitation in diagram.description.\n"
+        : ""
       }Problem statement:\n${questionText}`;
 
     const raw = await callLovableAI({
@@ -834,28 +948,30 @@ export const solveProblem = createServerFn({ method: "POST" })
       parsed.extracted_text = extractedText;
     }
 
+    let usedBasicDiagramFallback = false;
+    if (
+      diagramRequired &&
+      (!parsed.diagram?.schemdraw_instructions || parsed.diagram.schemdraw_instructions.length === 0)
+    ) {
+      parsed.diagram = createBasicCircuitDiagram(questionText);
+      usedBasicDiagramFallback = true;
+    }
+
     if (parsed.diagram?.schemdraw_instructions && parsed.diagram.schemdraw_instructions.length > 0) {
       try {
         console.log("[Schemdraw] Generating SVG via Python backend...");
-        const pyScript = path.join(process.cwd(), "src/lib/python/schematic_generator.py");
-        const jsonInput = JSON.stringify(parsed.diagram.schemdraw_instructions);
+        let diagramResult = await renderSchemdrawSvg(parsed.diagram.schemdraw_instructions);
 
-        const diagramResult = await new Promise<{ svg: string; error?: string }>((resolve) => {
-          const pyCommand = process.platform === "win32" ? "python" : "python3";
-          const child = execFile(pyCommand, [pyScript], (error, stdout, stderr) => {
-            if (error) {
-              const message = stderr?.trim() || error.message;
-              console.error("[Schemdraw] Error:", message);
-              resolve({ svg: "", error: message });
-            } else {
-              resolve({ svg: stdout });
-            }
-          });
-          if (child.stdin) {
-            child.stdin.write(jsonInput);
-            child.stdin.end();
+        if (!diagramResult.svg && diagramRequired && !usedBasicDiagramFallback) {
+          const aiDiagramError = diagramResult.error;
+          const fallbackDiagram = createBasicCircuitDiagram(questionText);
+          console.warn("[Schemdraw] Retrying with simplified generated instructions.");
+          diagramResult = await renderSchemdrawSvg(fallbackDiagram.schemdraw_instructions ?? []);
+          parsed.diagram = fallbackDiagram;
+          if (!diagramResult.svg && aiDiagramError) {
+            diagramResult.error = `${aiDiagramError}\n${diagramResult.error ?? ""}`.trim();
           }
-        });
+        }
 
         if (diagramResult.svg) {
           parsed.diagram.svg = diagramResult.svg;

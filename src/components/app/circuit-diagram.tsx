@@ -13,8 +13,8 @@ export function CircuitDiagram({ diagram }: { diagram: DiagramData }) {
 
   if (diagram.svg) {
     return (
-      <div 
-        className="overflow-x-auto rounded-xl border border-border bg-surface shadow-soft max-w-xl my-4 p-4 flex justify-center items-center"
+      <div
+        className="my-4 flex min-h-40 max-w-xl items-center justify-center overflow-x-auto rounded-xl border border-border bg-surface p-4 shadow-soft [&_svg]:h-auto [&_svg]:max-w-full"
         dangerouslySetInnerHTML={{ __html: diagram.svg }}
       />
     );

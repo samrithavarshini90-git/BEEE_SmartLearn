@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  nitro: {
+    // Prevent tesseract.js from being bundled into ESM chunks.
+    // It uses __dirname internally (CJS) which is not available in ESM scope at startup.
+    externals: {
+      external: ["tesseract.js"],
+    },
+  },
 });

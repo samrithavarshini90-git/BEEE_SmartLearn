@@ -3,7 +3,7 @@ import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { callLovableAI, safeParseJson } from "@/lib/ai-gateway.server";
 import { query, ensureDb } from "@/lib/db.server";
-import Tesseract from "tesseract.js";
+// tesseract.js is dynamically imported inside solveProblem handler to avoid __dirname ESM crash on Render
 import { hashPassword, signToken } from "@/lib/auth-utils.server";
 import crypto from "crypto";
 import fs from "fs";
@@ -20,18 +20,18 @@ export interface SolutionStep {
 export interface DiagramNode {
   id: string;
   kind:
-    | "resistor"
-    | "inductor"
-    | "capacitor"
-    | "battery"
-    | "ac_source"
-    | "switch"
-    | "diode"
-    | "transistor_npn"
-    | "transistor_pnp"
-    | "ground"
-    | "node"
-    | "label";
+  | "resistor"
+  | "inductor"
+  | "capacitor"
+  | "battery"
+  | "ac_source"
+  | "switch"
+  | "diode"
+  | "transistor_npn"
+  | "transistor_pnp"
+  | "ground"
+  | "node"
+  | "label";
   label?: string;
   value?: string;
   x: number;
@@ -122,56 +122,51 @@ export const signUpUser = createServerFn({ method: "POST" })
       .parse(raw),
   )
   .handler(async ({ data }) => {
-    try {
-      await ensureDb();
-      // Check if username or email already exists
-      const existing = await query(
-        "SELECT id, username, email FROM users WHERE username = ? OR email = ?",
-        [data.username, data.email]
-      );
-      if (existing.length > 0) {
-        const match = existing[0];
-        if (match.username.toLowerCase() === data.username.toLowerCase()) {
-          throw new Error("Username is already taken.");
-        }
-        if (match.email.toLowerCase() === data.email.toLowerCase()) {
-          throw new Error("Email is already registered.");
-        }
+    await ensureDb();
+    // Check if username or email already exists
+    const existing = await query(
+      "SELECT id, username, email FROM users WHERE username = ? OR email = ?",
+      [data.username, data.email]
+    );
+    if (existing.length > 0) {
+      const match = existing[0];
+      if (match.username.toLowerCase() === data.username.toLowerCase()) {
+        throw new Error("Username is already taken.");
       }
-
-      const userId = crypto.randomUUID();
-      const passHash = hashPassword(data.password);
-      const role = "student";
-
-      await query(
-        "INSERT INTO users (id, username, email, password_hash, full_name, role) VALUES (?, ?, ?, ?, ?, ?)",
-        [userId, data.username, data.email, passHash, data.fullName || "", role]
-      );
-
-      // Create session token (JWT)
-      const tokenPayload = {
-        sub: userId,
-        username: data.username,
-        email: data.email,
-        fullName: data.fullName || "",
-        role,
-      };
-      const token = signToken(tokenPayload);
-
-      return {
-        token,
-        user: {
-          id: userId,
-          email: data.email,
-          username: data.username,
-          role,
-          user_metadata: { full_name: data.fullName || "" },
-        },
-      };
-    } catch (err) {
-      console.error("[signUpUser] Error details:", err);
-      throw err;
+      if (match.email.toLowerCase() === data.email.toLowerCase()) {
+        throw new Error("Email is already registered.");
+      }
     }
+
+    const userId = crypto.randomUUID();
+    const passHash = hashPassword(data.password);
+    const role = "student";
+
+    await query(
+      "INSERT INTO users (id, username, email, password_hash, full_name, role) VALUES (?, ?, ?, ?, ?, ?)",
+      [userId, data.username, data.email, passHash, data.fullName || "", role]
+    );
+
+    // Create session token (JWT)
+    const tokenPayload = {
+      sub: userId,
+      username: data.username,
+      email: data.email,
+      fullName: data.fullName || "",
+      role,
+    };
+    const token = signToken(tokenPayload);
+
+    return {
+      token,
+      user: {
+        id: userId,
+        email: data.email,
+        username: data.username,
+        role,
+        user_metadata: { full_name: data.fullName || "" },
+      },
+    };
   });
 
 export const signInUser = createServerFn({ method: "POST" })
@@ -184,46 +179,41 @@ export const signInUser = createServerFn({ method: "POST" })
       .parse(raw),
   )
   .handler(async ({ data }) => {
-    try {
-      await ensureDb();
-      const users = await query(
-        "SELECT id, username, email, password_hash, full_name, role FROM users WHERE username = ? OR email = ?",
-        [data.loginIdentifier, data.loginIdentifier]
-      );
-      if (users.length === 0) {
-        throw new Error("Invalid username or password.");
-      }
-
-      const user = users[0];
-      const passHash = hashPassword(data.password);
-      if (user.password_hash !== passHash) {
-        throw new Error("Invalid username or password.");
-      }
-
-      // Create session token (JWT)
-      const tokenPayload = {
-        sub: user.id,
-        username: user.username,
-        email: user.email,
-        fullName: user.full_name,
-        role: user.role,
-      };
-      const token = signToken(tokenPayload);
-
-      return {
-        token,
-        user: {
-          id: user.id,
-          email: user.email,
-          username: user.username,
-          role: user.role,
-          user_metadata: { full_name: user.full_name },
-        },
-      };
-    } catch (err) {
-      console.error("[signInUser] Error details:", err);
-      throw err;
+    await ensureDb();
+    const users = await query(
+      "SELECT id, username, email, password_hash, full_name, role FROM users WHERE username = ? OR email = ?",
+      [data.loginIdentifier, data.loginIdentifier]
+    );
+    if (users.length === 0) {
+      throw new Error("Invalid username or password.");
     }
+
+    const user = users[0];
+    const passHash = hashPassword(data.password);
+    if (user.password_hash !== passHash) {
+      throw new Error("Invalid username or password.");
+    }
+
+    // Create session token (JWT)
+    const tokenPayload = {
+      sub: user.id,
+      username: user.username,
+      email: user.email,
+      fullName: user.full_name,
+      role: user.role,
+    };
+    const token = signToken(tokenPayload);
+
+    return {
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        role: user.role,
+        user_metadata: { full_name: user.full_name },
+      },
+    };
   });
 
 // ---------- Units ----------
@@ -264,7 +254,7 @@ export const listFormulas = createServerFn({ method: "GET" })
       params.push(data.topic);
     }
     sql += " ORDER BY unit_number, topic, name";
-    
+
     const rows = await query(sql, params);
     return rows.map((r: any) => ({
       id: r.id,
@@ -407,7 +397,7 @@ export const submitQuizAttempt = createServerFn({ method: "POST" })
       throw new Error("No answers provided.");
     }
     const placeholders = ids.map(() => "?").join(",");
-    
+
     const rows = await query(
       `SELECT id, correct_index, explanation, question, options, topic FROM quiz_questions WHERE id IN (${placeholders})`,
       ids
@@ -420,7 +410,7 @@ export const submitQuizAttempt = createServerFn({ method: "POST" })
       options: parseJsonField<string[]>(q.options),
       topic: q.topic,
     }));
-    
+
     const map = new Map(qs.map((q) => [q.id, q]));
 
     let correct = 0;
@@ -466,7 +456,7 @@ export const submitQuizAttempt = createServerFn({ method: "POST" })
       "SELECT id, items_completed, points_earned FROM user_progress WHERE user_id = ? AND unit_number = ?",
       [context.userId, data.unit_number]
     );
-    
+
     if (existingRows.length > 0) {
       const existing = existingRows[0];
       await query(
@@ -495,7 +485,7 @@ async function maybeAwardAchievements(
   const grants: string[] = [];
   if (total > 0) grants.push("quiz_first");
   if (score === 100) grants.push("quiz_perfect");
-  
+
   for (const code of grants) {
     const existing = await query("SELECT 1 FROM user_achievements WHERE user_id = ? AND achievement_code = ?", [context.userId, code]);
     if (existing.length === 0) {
@@ -514,15 +504,15 @@ export const getLeaderboard = createServerFn({ method: "GET" })
   .handler(async ({ context }) => {
     // 1. Get all student profiles — admins never appear on the leaderboard
     const users = await query("SELECT id, username, email, full_name FROM users WHERE role != 'admin'");
-    
+
     // 2. Get user progress totals
     const progress = await query("SELECT user_id, points_earned, items_completed FROM user_progress");
-    
+
     // 3. Get quiz attempt stats
     const attempts = await query("SELECT user_id, score FROM quiz_attempts");
 
     const pointsMap = new Map<string, { points: number; items: number }>();
-    
+
     // Pre-populate all users with 0 points
     for (const u of users) {
       pointsMap.set(u.id, { points: 0, items: 0 });
@@ -601,7 +591,7 @@ export const getDashboard = createServerFn({ method: "GET" })
     const isAdmin = profile?.role === "admin";
     const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
     const topicMap = new Map<string, { solved: number; marks: number }>();
-    
+
     for (const s of solvedRows) {
       const t = s.topic ?? "General";
       const cur = topicMap.get(t) ?? { solved: 0, marks: 0 };
@@ -742,6 +732,9 @@ export const solveProblem = createServerFn({ method: "POST" })
     if (data.imageDataUrl) {
       try {
         console.log("[OCR] Running local Tesseract.js OCR on uploaded image...");
+        // Dynamic import prevents Nitro from bundling tesseract.js as ESM at build time,
+        // which would crash the server with "__dirname is not defined" in ES module scope.
+        const Tesseract = (await import("tesseract.js")).default;
         const result = await Tesseract.recognize(data.imageDataUrl, "eng");
         extractedText = result.data.text.trim();
         console.log("[OCR] Text extracted successfully:", extractedText.slice(0, 120));
@@ -756,9 +749,8 @@ export const solveProblem = createServerFn({ method: "POST" })
         ? extractedText
         : "Analyze and explain the circuit details provided in the image.";
 
-    const promptText = `${data.unit_number ? `Target Unit: ${data.unit_number}\n` : ""}${
-      data.topic ? `Topic hint: ${data.topic}\n` : ""
-    }Problem statement:\n${questionText}`;
+    const promptText = `${data.unit_number ? `Target Unit: ${data.unit_number}\n` : ""}${data.topic ? `Topic hint: ${data.topic}\n` : ""
+      }Problem statement:\n${questionText}`;
 
     const raw = await callLovableAI({
       messages: [
@@ -776,7 +768,7 @@ export const solveProblem = createServerFn({ method: "POST" })
       formulas_used: [],
       final_answer: "Could not parse the AI response. Please try again.",
     };
-    
+
     const parsed = safeParseJson<SolverResponse>(raw, fallback);
     if (extractedText && !parsed.extracted_text) {
       parsed.extracted_text = extractedText;
@@ -787,7 +779,7 @@ export const solveProblem = createServerFn({ method: "POST" })
         console.log("[Schemdraw] Generating SVG via Python backend...");
         const pyScript = path.join(process.cwd(), "src/lib/python/schematic_generator.py");
         const jsonInput = JSON.stringify(parsed.diagram.schemdraw_instructions);
-        
+
         const svg = await new Promise<string>((resolve, reject) => {
           const pyCommand = process.platform === "win32" ? "python" : "python3";
           const child = execFile(pyCommand, [pyScript], (error, stdout, stderr) => {
@@ -803,7 +795,7 @@ export const solveProblem = createServerFn({ method: "POST" })
             child.stdin.end();
           }
         });
-        
+
         if (svg) {
           parsed.diagram.svg = svg;
         }
@@ -813,7 +805,7 @@ export const solveProblem = createServerFn({ method: "POST" })
     }
 
     const marks = Math.min(10, Math.max(2, parsed.steps.length));
-    
+
     const solvedId = crypto.randomUUID();
     await query(
       "INSERT INTO solved_problems (id, user_id, topic, question, solution, marks) VALUES (?, ?, ?, ?, ?, ?)",
@@ -865,7 +857,7 @@ export const solveProblem = createServerFn({ method: "POST" })
     const achievementsToAward = [];
     if (solvedCount >= 1) achievementsToAward.push("first_solve");
     if (solvedCount >= 10) achievementsToAward.push("solver_10");
-    
+
     for (const code of achievementsToAward) {
       const exists = await query("SELECT 1 FROM user_achievements WHERE user_id = ? AND achievement_code = ?", [context.userId, code]);
       if (exists.length === 0) {
@@ -909,7 +901,7 @@ export const explainTopic = createServerFn({ method: "POST" })
         const mark5 = (unit.questions_5_mark || []).filter((q: any) => q.topic.toLowerCase().trim() === topicLower);
 
         const summary = mark2[0]?.answer || `Detailed tutorial and analytical equations for ${data.topic} within Unit ${data.unit_number}.`;
-        
+
         const key_points = [
           ...mark2.map((q: any) => `Q: ${q.question} A: ${q.answer}`),
           ...mark5.map((q: any) => `Q: ${q.question} A: ${q.answer.slice(0, 180)}...`),
@@ -1089,7 +1081,7 @@ export const resetUserPassword = createServerFn({ method: "POST" })
 
     const passHash = hashPassword(data.newPassword);
     await query("UPDATE users SET password_hash = ? WHERE id = ?", [passHash, data.userId]);
-    
+
     return { success: true };
   });
 
@@ -1170,5 +1162,7 @@ export const getMyProfile = createServerFn({ method: "GET" })
         const m = achMap.get(ua.achievement_code);
         return { code: ua.achievement_code, title: m?.title ?? ua.achievement_code, icon: m?.icon ?? "trophy", earned_at: ua.earned_at };
       }),
+    };
+  });
     };
   });

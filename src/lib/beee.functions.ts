@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { callLovableAI, safeParseJson } from "@/lib/ai-gateway.server";
+import { callLovableAI, callCerebrasVision, safeParseJson } from "@/lib/ai-gateway.server";
 import { query, ensureDb } from "@/lib/db.server";
 import { hashPassword, signToken } from "@/lib/auth-utils.server";
 import crypto from "crypto";
@@ -93,68 +93,6 @@ export interface DashboardData {
     created_at: string;
   }[];
   achievements: { code: string; title: string; description: string; icon: string; earned_at: string }[];
-}
-
-type TesseractModule = {
-  recognize?: (
-    image: string,
-    language: string,
-  ) => Promise<{ data: { text?: string } }>;
-  createWorker?: (language?: string) => Promise<{
-    recognize: (image: string) => Promise<{ data: { text?: string } }>;
-    terminate: () => Promise<void>;
-  }>;
-  default?: TesseractModule;
-  "module.exports"?: TesseractModule;
-  t?: TesseractModule | (() => TesseractModule);
-};
-
-async function runTesseractOcr(imageDataUrl: string): Promise<string> {
-  let mod: TesseractModule;
-  try {
-    const { createRequire } = await import("module");
-    const nodeRequire = createRequire(import.meta.url);
-    mod = nodeRequire("tesseract.js") as TesseractModule;
-  } catch {
-    mod = (await import("tesseract.js")) as TesseractModule;
-  }
-
-  const bundledExport = typeof mod.t === "function" ? mod.t() : mod.t;
-  const tesseract = mod.recognize
-    ? mod
-    : mod.default?.recognize
-      ? mod.default
-      : mod["module.exports"]?.recognize
-        ? mod["module.exports"]
-        : bundledExport?.recognize
-          ? bundledExport
-        : mod.default?.default?.recognize
-          ? mod.default.default
-          : undefined;
-
-  if (tesseract?.recognize) {
-    const result = await tesseract.recognize(imageDataUrl, "eng");
-    return result.data.text?.trim() ?? "";
-  }
-
-  const workerFactory =
-    mod.createWorker ??
-    mod.default?.createWorker ??
-    mod["module.exports"]?.createWorker ??
-    bundledExport?.createWorker ??
-    mod.default?.default?.createWorker;
-
-  if (!workerFactory) {
-    throw new Error("Tesseract.js OCR API was not available after import.");
-  }
-
-  const worker = await workerFactory("eng");
-  try {
-    const result = await worker.recognize(imageDataUrl);
-    return result.data.text?.trim() ?? "";
-  } finally {
-    await worker.terminate();
-  }
 }
 
 // Utility helper to safely parse JSON returned from TiDB (could be object or string)
@@ -778,7 +716,7 @@ CRITICAL RULES FOR OUTPUT:
 Rules:
 - If the problem is contained in an image, first perform OCR into "extracted_text", then solve.
 - For image uploads, circuit questions, resistor networks, Ohm's law examples, KCL/KVL, Thevenin/Norton, AC RLC, diode, transistor, and rectifier problems, emit a diagram object with schemdraw_instructions.
-- Every circuit diagram must be a closed circuit/closed loop. Add Line elements as return wires so the path comes back to its starting point.
+- Every circuit diagram must be a cyclic closed circuit, not a single straight line. Use return wires on a separate path so the visual shape is a loop, usually rectangular.
 - Only emit null diagram for pure theory questions where no electrical circuit/block diagram is relevant.
 - If an exact uploaded circuit topology is not readable from OCR text, still create the simplest faithful educational schematic from the known components and values; do not pretend unknown connections are exact.
 - Put derivations/formulas in "steps", not in "final_answer".
@@ -824,7 +762,7 @@ function formatFinalAnswer(answer: string): string {
   return answer
     .replace(/\s+/g, " ")
     .replace(/\.\s+For\s+/g, ".\nFor ")
-    .replace(/,\s+(?=(?:V|I|R|P|Z|X|pf|PF|V_[A-Za-z0-9]+|I_[A-Za-z0-9]+)\s*(?:=|≈))/g, "\n")
+    .replace(/,\s+(?=(?:V|I|R|P|Z|X|pf|PF|V_[A-Za-z0-9]+|I_[A-Za-z0-9]+)\s*(?:=|\u2248|~))/g, "\n")
     .replace(/,\s+(?=and\s+)/gi, "\n")
     .trim();
 }
@@ -834,33 +772,72 @@ function instructionLength(instruction: SchemdrawInstruction): number {
   return Number.isFinite(length) && length > 0 ? length : 1;
 }
 
+function circuitPositionAfter(
+  position: { x: number; y: number },
+  instruction: SchemdrawInstruction,
+): { x: number; y: number } {
+  const length = instructionLength(instruction);
+  switch (instruction.direction) {
+    case "left":
+      return { x: position.x - length, y: position.y };
+    case "up":
+      return { x: position.x, y: position.y + length };
+    case "down":
+      return { x: position.x, y: position.y - length };
+    default:
+      return { x: position.x + length, y: position.y };
+  }
+}
+
 function closeCircuitInstructions(instructions: SchemdrawInstruction[]): SchemdrawInstruction[] {
-  let x = 0;
-  let y = 0;
+  let position = { x: 0, y: 0 };
+  const points = [position];
 
   for (const instruction of instructions) {
     if (instruction.type === "Ground") continue;
 
-    const length = instructionLength(instruction);
-    switch (instruction.direction) {
-      case "left":
-        x -= length;
-        break;
-      case "up":
-        y += length;
-        break;
-      case "down":
-        y -= length;
-        break;
-      default:
-        x += length;
-        break;
-    }
+    position = circuitPositionAfter(position, instruction);
+    points.push(position);
   }
 
   const closed = [...instructions];
-  const roundedX = Math.round(x * 100) / 100;
-  const roundedY = Math.round(y * 100) / 100;
+  const roundedX = Math.round(position.x * 100) / 100;
+  const roundedY = Math.round(position.y * 100) / 100;
+  const minX = Math.min(...points.map((point) => point.x));
+  const maxX = Math.max(...points.map((point) => point.x));
+  const minY = Math.min(...points.map((point) => point.y));
+  const maxY = Math.max(...points.map((point) => point.y));
+  const horizontalSpan = maxX - minX;
+  const verticalSpan = maxY - minY;
+  const loopOffset = 2;
+
+  if (Math.abs(roundedX) <= 0.01 && Math.abs(roundedY) <= 0.01) {
+    return closed;
+  }
+
+  if (Math.abs(roundedX) > 0.01 && Math.abs(roundedY) <= 0.01 && verticalSpan <= 0.01) {
+    closed.push({ type: "Line", direction: "down", label: "", length: loopOffset });
+    closed.push({
+      type: "Line",
+      direction: roundedX > 0 ? "left" : "right",
+      label: "",
+      length: Math.abs(roundedX),
+    });
+    closed.push({ type: "Line", direction: "up", label: "", length: loopOffset });
+    return closed;
+  }
+
+  if (Math.abs(roundedY) > 0.01 && Math.abs(roundedX) <= 0.01 && horizontalSpan <= 0.01) {
+    closed.push({ type: "Line", direction: "right", label: "", length: loopOffset });
+    closed.push({
+      type: "Line",
+      direction: roundedY > 0 ? "down" : "up",
+      label: "",
+      length: Math.abs(roundedY),
+    });
+    closed.push({ type: "Line", direction: "left", label: "", length: loopOffset });
+    return closed;
+  }
 
   if (Math.abs(roundedY) > 0.01) {
     closed.push({
@@ -983,15 +960,48 @@ export const solveProblem = createServerFn({ method: "POST" })
   })
   .handler(async ({ context, data }): Promise<SolverResponse> => {
     let extractedText = "";
+    let visionDiagram: any = null;
+
     if (data.imageDataUrl) {
       try {
-        console.log("[OCR] Running local Tesseract.js OCR on uploaded image...");
-        // Dynamic import prevents Nitro from bundling tesseract.js as ESM at build time,
-        // which would crash the server with "__dirname is not defined" in ES module scope.
-        extractedText = await runTesseractOcr(data.imageDataUrl);
-        console.log("[OCR] Text extracted successfully:", extractedText.slice(0, 120));
-      } catch (ocrErr: any) {
-        console.error("[OCR] Local OCR processing failed:", ocrErr);
+        console.log("[Vision API] Scanning image with Cerebras gemma-4-31b...");
+        const visionPrompt = `Analyze the uploaded image. It contains a Basic Electrical & Electronics Engineering (BEEE) question and/or a circuit diagram.
+You must extract the text of the question and, if a circuit diagram is present, read its components and topology to generate Python schemdraw instructions.
+
+Return a STRICT JSON object in this format:
+{
+  "extracted_text": "The exact text/question read from the image. If there is only a circuit diagram, describe what to find.",
+  "diagram": null | {
+    "description": "A clear description of the circuit diagram",
+    "schemdraw_instructions": [
+      {
+        "type": "Resistor"|"Capacitor"|"Inductor"|"BatteryCell"|"SourceV"|"SourceI"|"Diode"|"BjtNpn"|"Line"|"Ground",
+        "direction": "right"|"left"|"up"|"down",
+        "label": "component name/value (e.g. R1 = 10 Ohm or 12V)",
+        "length": 2
+      }
+    ]
+  }
+}
+
+Rules for schemdraw_instructions:
+- Every circuit diagram must be a cyclic closed circuit. Use return wires/lines so it forms a loop.
+- Use typical schemdraw component names: "Resistor", "Capacitor", "Inductor", "BatteryCell", "SourceV", "SourceI", "Diode", "BjtNpn", "Line", "Ground".
+- If no circuit diagram is present in the image, return null for "diagram".`;
+
+        const visionRaw = await callCerebrasVision(data.imageDataUrl, visionPrompt);
+        const parsedVision = safeParseJson<{
+          extracted_text?: string;
+          diagram?: any;
+        }>(visionRaw, {});
+
+        extractedText = parsedVision.extracted_text || "";
+        if (parsedVision.diagram && typeof parsedVision.diagram === "object") {
+          visionDiagram = parsedVision.diagram;
+        }
+        console.log("[Vision API] Scanned text successfully:", extractedText.slice(0, 120));
+      } catch (err: any) {
+        console.error("[Vision API] Processing failed:", err);
       }
     }
 
@@ -1002,9 +1012,20 @@ export const solveProblem = createServerFn({ method: "POST" })
         : "Analyze and explain the circuit details provided in the image.";
 
     const diagramRequired = shouldRequestDiagram(data, questionText);
-    const promptText = `${data.unit_number ? `Target Unit: ${data.unit_number}\n` : ""}${data.topic ? `Topic hint: ${data.topic}\n` : ""
-      }${diagramRequired
-        ? "Diagram requirement: return a non-null diagram object with schemdraw_instructions. If the uploaded image/OCR is unclear, generate the simplest faithful schematic from the readable component values and state the limitation in diagram.description.\n"
+    
+    // Inject the vision diagram context into the prompt for the text model solver
+    let promptText = "";
+    if (data.unit_number) promptText += `Target Unit: ${data.unit_number}\n`;
+    if (data.topic) promptText += `Topic hint: ${data.topic}\n`;
+    if (visionDiagram) {
+      promptText += `Image Circuit Diagram details:\nDescription: ${visionDiagram.description}\n`;
+      if (Array.isArray(visionDiagram.schemdraw_instructions) && visionDiagram.schemdraw_instructions.length > 0) {
+        promptText += `Topology Instructions: ${JSON.stringify(visionDiagram.schemdraw_instructions)}\n`;
+      }
+      promptText += `\n`;
+    }
+    promptText += `${diagramRequired
+        ? "Diagram requirement: return a non-null diagram object with schemdraw_instructions. If the uploaded image is unclear, generate the simplest faithful schematic from the readable component values and state the limitation in diagram.description.\n"
         : ""
       }Problem statement:\n${questionText}`;
 
@@ -1047,9 +1068,14 @@ export const solveProblem = createServerFn({ method: "POST" })
       diagramRequired &&
       diagramInstructions.length === 0
     ) {
-      parsed.diagram = createBasicCircuitDiagram(questionText);
-      usedBasicDiagramFallback = true;
+      if (visionDiagram && Array.isArray(visionDiagram.schemdraw_instructions) && visionDiagram.schemdraw_instructions.length > 0) {
+        parsed.diagram = visionDiagram;
+      } else {
+        parsed.diagram = createBasicCircuitDiagram(questionText);
+        usedBasicDiagramFallback = true;
+      }
     }
+
 
     if (parsed.diagram?.schemdraw_instructions && parsed.diagram.schemdraw_instructions.length > 0) {
       parsed.diagram.schemdraw_instructions = closeCircuitInstructions(parsed.diagram.schemdraw_instructions);

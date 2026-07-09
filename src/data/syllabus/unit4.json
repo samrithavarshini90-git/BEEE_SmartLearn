@@ -304,8 +304,13 @@
     },
     {
       "topic": "Intrinsic and Extrinsic Semiconductors",
-      "question": "Define doping.",
-      "answer": "Doping is the process of intentionally adding impurities to a pure (intrinsic) semiconductor material. The purpose of doping is to increase either the number of free electrons or holes to improve its conductivity and control its electrical properties."
+      "question": "What is doping?",
+      "answer": "Doping is the process of intentionally adding impurities (called dopants) to a pure (intrinsic) semiconductor material to modify its electrical properties. The purpose of doping is to increase either the number of free electrons (N-type) or holes (P-type) to improve its conductivity and make it suitable for electronic device fabrication."
+    },
+    {
+      "topic": "Intrinsic and Extrinsic Semiconductors",
+      "question": "What is the difference between intrinsic and extrinsic semiconductors?",
+      "answer": "An intrinsic semiconductor is a pure semiconductor (e.g., pure Silicon or Germanium) with no added impurities. Its electrical conductivity is very low at room temperature, and the number of electrons equals the number of holes. An extrinsic semiconductor is formed by adding impurities (doping) to an intrinsic semiconductor. Doping creates either N-type (excess electrons as majority carriers) or P-type (excess holes as majority carriers) semiconductors, with significantly higher conductivity."
     },
     {
       "topic": "Intrinsic and Extrinsic Semiconductors",
@@ -324,8 +329,18 @@
     },
     {
       "topic": "Diode Biasing and V-I Characteristics",
+      "question": "Define biasing.",
+      "answer": "Biasing refers to the application of an external DC voltage to a PN junction diode to control its operation. Forward biasing (positive terminal to P-side) reduces the potential barrier and allows current to flow. Reverse biasing (negative terminal to P-side) increases the potential barrier and blocks current flow. Biasing determines whether the diode is 'ON' or 'OFF'."
+    },
+    {
+      "topic": "Diode Biasing and V-I Characteristics",
       "question": "What is knee voltage or cut-in voltage?",
       "answer": "Knee voltage (or cut-in voltage) is the forward voltage at which a diode starts to conduct significant current. Below this voltage, the current is negligible. For silicon, the cut-in voltage is about 0.7V, and for germanium, it is about 0.3V."
+    },
+    {
+      "topic": "Depletion and Diffusion Capacitance",
+      "question": "What is the difference between diffusion capacitance and depletion capacitance?",
+      "answer": "Depletion capacitance (CT) occurs under reverse bias. The depletion region acts as a dielectric between P and N regions (acting as capacitor plates), and CT decreases as reverse voltage increases (CT ∝ 1/W). Diffusion capacitance (CD) occurs under forward bias. It arises due to the storage of injected minority carriers near the junction, and CD is directly proportional to the diode forward current. CD is generally much larger in magnitude than CT."
     },
     {
       "topic": "Half-wave Rectifier",
@@ -336,6 +351,11 @@
       "topic": "Zener Diode",
       "question": "What is a Zener diode and in which region is it operated?",
       "answer": "A Zener diode is a special type of diode designed to operate reliably in the reverse breakdown region. It is heavily doped to have a sharp breakdown voltage, and it is primarily used as a voltage regulator by operating it in the reverse-biased breakdown condition."
+    },
+    {
+      "topic": "Zener Diode as Voltage Regulator",
+      "question": "How is a Zener diode used as a voltage regulator?",
+      "answer": "A Zener diode is connected in reverse bias, parallel to the load. When the input voltage exceeds the Zener breakdown voltage (Vz), the diode conducts and clamps the output voltage at Vz. A series resistor (Rs) drops the excess voltage. This keeps the output voltage constant regardless of variations in input voltage or load current, thus acting as a voltage regulator."
     },
     {
       "topic": "Light Emitting Diode (LED)",
@@ -349,6 +369,16 @@
     }
   ],
   "questions_5_mark": [
+    {
+      "topic": "PN Junction Diode",
+      "question": "Explain the construction and working of a PN Junction Diode.",
+      "answer": "A PN junction diode is formed by joining a P-type semiconductor and an N-type semiconductor together.\n\nConstruction:\nThe P-type region has an excess of holes (majority carriers) and N-type region has an excess of electrons (majority carriers). When joined, a depletion region forms at the junction due to diffusion of charge carriers, creating a potential barrier.\n\nWorking:\n1. Forward Bias: The positive terminal is connected to the P-side and negative to the N-side. The applied voltage opposes the potential barrier. When the applied voltage exceeds the barrier potential (0.7V for Si), the depletion layer narrows and a large current flows. The diode behaves as a closed switch (ON).\n2. Reverse Bias: The positive terminal is connected to the N-side and negative to the P-side. The applied voltage adds to the potential barrier. The depletion layer widens, and only a negligible leakage current (due to minority carriers) flows. The diode behaves as an open switch (OFF).\n\nApplications: PN junction diodes are used in rectifiers, clippers, clampers, and as protection devices.",
+      "formulas_used": [
+        "Barrier Potential Silicon",
+        "Barrier Potential Germanium"
+      ],
+      "diagram_hint": "circuit"
+    },
     {
       "topic": "PN Junction Diode",
       "question": "Explain the formation of the depletion layer and barrier potential in a PN junction.",
@@ -377,6 +407,28 @@
       "diagram_hint": "none"
     },
     {
+      "topic": "Diode Biasing and V-I Characteristics",
+      "question": "Explain the V-I characteristics of a PN junction diode with a neat diagram.",
+      "answer": "The V-I (Voltage-Current) characteristic of a PN junction diode shows the relationship between the applied voltage and the resulting current.\n\nForward Bias Characteristics:\n- For voltages below the cut-in voltage (0.7V for Si, 0.3V for Ge), the current is nearly zero.\n- At the cut-in (knee) voltage, the barrier is overcome and current rises exponentially with voltage.\n- The curve bends sharply upward at the knee voltage — this is the forward conduction region.\n\nReverse Bias Characteristics:\n- The applied voltage increases the depletion width, blocking majority carriers.\n- Only a very small reverse saturation current (minority carriers) flows, in the order of microamperes.\n- At the breakdown voltage (Vbr), the reverse current increases sharply due to Zener/avalanche effect.\n\nThree Regions:\n1. Forward Bias Region: Exponential current rise after knee voltage.\n2. Reverse Bias Region: Tiny constant leakage current.\n3. Breakdown Region: Sharp reverse current rise at Vbr.",
+      "formulas_used": [
+        "Barrier Potential Silicon",
+        "Barrier Potential Germanium"
+      ],
+      "diagram_hint": "characteristic"
+    },
+    {
+      "topic": "Full-wave Center-Tapped Rectifier",
+      "question": "Explain the operation of a full-wave rectifier with a neat circuit diagram and waveforms.",
+      "answer": "A full-wave rectifier converts both halves of the AC input cycle into pulsating DC output.\n\nCircuit Diagram (Center-Tapped):\nIt consists of a center-tapped transformer, two diodes (D1 and D2), and a load resistor (RL).\n\nWorking:\n1. Positive Half-Cycle: The top of the secondary is positive. D1 is forward biased and conducts. D2 is reverse biased and does not conduct. Current flows through RL in a fixed direction, producing a positive output.\n2. Negative Half-Cycle: The bottom of the secondary is positive. D2 is forward biased and conducts. D1 is reverse biased. Current again flows through RL in the same fixed direction, producing another positive output.\n\nOutput Waveform:\nBoth half-cycles appear as positive pulses at the output. The output frequency is twice the input frequency. This gives a smoother DC output with lower ripple factor (0.48 for bridge rectifier) compared to a half-wave rectifier.\n\nFormula:\n- Vdc = 2Vm/π\n- Efficiency = 81.2%\n- Ripple factor (bridge) = 0.48\n- PIV (center-tapped) = 2Vm",
+      "formulas_used": [
+        "DC Voltage FWR",
+        "Efficiency FWR",
+        "Ripple Factor FWR Bridge",
+        "PIV FWR Center-Tapped"
+      ],
+      "diagram_hint": "circuit"
+    },
+    {
       "topic": "Half-wave Rectifier",
       "question": "Explain the operation of a half-wave rectifier with a neat circuit diagram and waveforms.",
       "answer": "A half-wave rectifier is a circuit that converts AC voltage into pulsating DC voltage by allowing only one half of the AC cycle to pass.\n\nCircuit Diagram:\nIt consists of a step-down transformer, a single PN junction diode (D), and a load resistor (RL).\n\nWorking:\n1. Positive Half-Cycle: During the positive half-cycle of the input AC voltage, the top of the transformer secondary (A) is positive with respect to the bottom (B). This makes the diode forward biased. The diode conducts, and current (IL) flows through the load resistor RL, producing an output voltage across it. The output waveform is the same as the positive half-cycle of the input.\n2. Negative Half-Cycle: During the negative half-cycle, terminal A becomes negative with respect to B. This makes the diode reverse biased. The diode does not conduct and acts as an open circuit. No current flows through the load (IL = 0), and the output voltage is zero.\n\nOutput Waveform:\nThe output consists only of the positive half-cycles of the input sine wave, with the negative half-cycles being clipped off. This results in a pulsating DC output. The major drawback is that half of the input power is wasted.",
@@ -401,6 +453,20 @@
     }
   ],
   "questions_10_mark": [
+    {
+      "topic": "Zener Diode",
+      "question": "Explain the construction, working, characteristics, and applications of a Zener diode. Also explain its use as a voltage regulator.",
+      "answer": "A Zener diode is a specially designed heavily-doped PN junction diode that is operated in the reverse breakdown region.\n\nConstruction:\nA Zener diode is constructed like a normal PN junction diode but with heavier doping of both P and N regions. Due to heavy doping, the depletion region is very thin (~1 µm), which creates an extremely intense electric field (≈ 3×10^7 V/m) across it even at low reverse voltages. The device is mounted in a metal case with heat-dissipating capacity to handle the power in breakdown.\n\nWorking Principle:\nWhen reverse bias voltage is increased to the Zener breakdown voltage (Vz):\n1. Zener Effect: The intense electric field across the thin depletion region directly pulls valence electrons out of their covalent bonds, creating electron-hole pairs. This occurs at Vz < 8V.\n2. Avalanche Effect: At higher voltages (Vz > 8V), minority carriers gain enough energy to ionize atoms by collision, causing a chain reaction. Current rises sharply while voltage remains nearly constant at Vz.\n\nV-I Characteristics:\n- Forward Bias: Behaves like a normal diode (conducts at ~0.7V for Si).\n- Reverse Bias: A very small leakage current flows until Vz is reached.\n- Breakdown Region: At Vz, current increases sharply while voltage stays constant at Vz. This flat, vertical breakdown characteristic is the key property used in voltage regulation.\n\nVoltage Regulator Application:\nCircuit: The Zener diode is connected in reverse bias, in parallel with the load resistor (RL). A series resistor (Rs) is placed between the unregulated input (Vin) and the Zener.\n\nRegulation Mechanism:\n1. If Vin increases: More current flows through Rs and Zener (Iz increases). The voltage drop across Rs increases proportionally. The output voltage Vout stays constant at Vz.\n2. If Vin decreases: Less current flows, Iz decreases. Voltage drop across Rs decreases. Vout remains at Vz.\n3. Load variation: If load increases (RL decreases), load current IL increases, but Zener compensates by reducing Iz to keep Vout = Vz.\n\nKey Parameter: Vout = Vz (constant)\n\nAdvantages: Simple, low cost, highly reliable.\nLimitations: Power dissipation in Zener and Rs, suitable only for low power applications.",
+      "formulas_used": [],
+      "diagram_hint": "circuit"
+    },
+    {
+      "topic": "Light Emitting Diode (LED)",
+      "question": "Explain the construction, working, V-I characteristics, and applications of a Light Emitting Diode (LED) with neat diagrams.",
+      "answer": "A Light Emitting Diode (LED) is a forward-biased PN junction diode that emits light through the process of electroluminescence.\n\nConstruction:\n- An LED is made from compound semiconductors such as Gallium Arsenide (GaAs), Gallium Phosphide (GaP), or Gallium Arsenide Phosphide (GaAsP).\n- The P-type layer is on top and kept very thin to allow emitted light to escape easily.\n- Metal contacts are provided at the bottom (cathode on N-side, anode on P-side).\n- The LED is encased in a transparent plastic dome that also serves as a lens to focus the emitted light.\n- The color of the light depends on the energy bandgap of the semiconductor material used.\n\nWorking Principle:\n1. When a forward bias voltage is applied (greater than the cut-in voltage of ~1.5V to 3.5V depending on material), electrons from the N-region and holes from the P-region are injected across the junction.\n2. These minority carriers diffuse into the opposite regions and recombine with majority carriers near the junction.\n3. Recombination releases energy. In LEDs (made from direct-bandgap materials), this energy is released as photons (light) — this phenomenon is called electroluminescence.\n4. The wavelength (color) of the emitted light depends on the energy bandgap: E = hf = hc/λ.\n\nColors and Materials:\n- Red: GaAsP (Gallium Arsenide Phosphide)\n- Green: GaP (Gallium Phosphide)\n- Blue/White: GaN (Gallium Nitride)\n- Infrared: GaAs (Gallium Arsenide)\n\nV-I Characteristics:\n- The LED has a similar V-I curve to a normal diode but with a higher cut-in voltage (1.5V–3.5V).\n- Forward Region: After the cut-in voltage, current increases rapidly and light is emitted.\n- Reverse Region: The LED does not emit light in reverse bias. The PIV rating is low (~5V), so it must not be over-reversed.\n- The light intensity is directly proportional to the forward current (IF).\n\nAdvantages:\n- Very low power consumption\n- Long operational life (>100,000 hours)\n- Small size and fast switching speed\n- Available in various colors\n- Generates less heat than incandescent bulbs\n\nDisadvantages:\n- Requires current limiting resistor\n- Low PIV rating\n- Affected by high temperatures\n\nApplications:\n- Display indicators in electronic equipment\n- Seven-segment displays and dot-matrix panels\n- Traffic signals and automotive lighting\n- Optical fiber communication (as light source)\n- Remote controls (infrared LEDs)\n- Backlighting in TVs, monitors, and mobile phones",
+      "formulas_used": [],
+      "diagram_hint": "circuit"
+    },
     {
       "topic": "Full-wave Bridge Rectifier",
       "question": "Explain the construction and working of a full-wave bridge rectifier using a neat circuit diagram and waveforms. Mention its characteristics and advantages over a center-tapped rectifier.",

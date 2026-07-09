@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ListChecks, AlertCircle } from "lucide-react";
+import { ListChecks, AlertCircle, ChevronDown } from "lucide-react";
 import { listImportantQuestions } from "@/lib/beee.functions";
 import { UnitTabs } from "@/components/app/unit-tabs";
 
@@ -255,6 +255,75 @@ function FormattedAnswer({ text }: { text: string }) {
   return <div className="space-y-1.5">{elements}</div>;
 }
 
+function QuestionCard({ q, index }: { q: any; index: number }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <li className="card-soft p-6">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1 min-w-0">
+          <span className="font-mono text-xs font-semibold text-muted-foreground">
+            Q{index + 1}
+          </span>
+          <h3 className="mt-1 text-base font-semibold text-foreground leading-snug">
+            {q.question}
+          </h3>
+        </div>
+        <span className="shrink-0 rounded-full border border-border bg-secondary px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+          U{q.unit_number} · {q.marks}m
+        </span>
+      </div>
+
+      {(q.answer_outline || q.diagram_hint) && (
+        <div className="mt-4">
+          <button
+            type="button"
+            onClick={() => setOpen((prev) => !prev)}
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-muted-foreground shadow-soft transition-all hover:text-foreground hover:border-brand hover:bg-surface-muted"
+            aria-expanded={open}
+          >
+            <AlertCircle className="h-3.5 w-3.5 text-brand shrink-0" />
+            {open ? "Hide Answer" : "Show Answer"}
+            <ChevronDown
+              className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          {open && (
+            <div className="mt-3 space-y-3 animate-in fade-in slide-in-from-top-1 duration-200">
+              {q.answer_outline && (
+                <div className="rounded-2xl border border-border bg-surface-muted/50 p-5">
+                  <div className="flex items-center gap-2 border-b border-border/60 pb-2 mb-2">
+                    <AlertCircle className="h-4 w-4 text-brand shrink-0" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-foreground">
+                      Model Answer Outline
+                    </span>
+                  </div>
+                  <FormattedAnswer text={q.answer_outline} />
+                </div>
+              )}
+
+              {q.diagram_hint && (
+                <div className="rounded-2xl border border-dashed border-border bg-surface-muted/30 p-4 text-center">
+                  <div className="flex flex-col items-center justify-center gap-1.5">
+                    <span className="text-lg">📐</span>
+                    <div className="text-xs font-semibold text-foreground uppercase tracking-wider">
+                      Model Schematic Guide
+                    </div>
+                    <p className="text-xs text-muted-foreground max-w-md">
+                      Draw a standard <span className="font-semibold text-brand">{q.diagram_hint}</span> diagram labeling all voltages, currents, and component parameters.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </li>
+  );
+}
+
 function QuestionsPage() {
   const fetchQuestions = useServerFn(listImportantQuestions);
   const [marks, setMarks] = useState<2 | 5 | 10>(2);
@@ -329,47 +398,7 @@ function QuestionsPage() {
               </h2>
               <ol className="space-y-6">
                 {rows.map((q, i) => (
-                  <li key={q.id} className="card-soft p-6">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <span className="font-mono text-xs font-semibold text-muted-foreground">
-                          Q{i + 1}
-                        </span>
-                        <h3 className="mt-1 text-base font-semibold text-foreground leading-snug">
-                          {q.question}
-                        </h3>
-                      </div>
-                      <span className="shrink-0 rounded-full border border-border bg-secondary px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                        U{q.unit_number} · {q.marks}m
-                      </span>
-                    </div>
-
-                    {q.answer_outline && (
-                      <div className="mt-4 rounded-2xl border border-border bg-surface-muted/50 p-5">
-                        <div className="flex items-center gap-2 border-b border-border/60 pb-2 mb-2">
-                          <AlertCircle className="h-4 w-4 text-brand shrink-0" />
-                          <span className="text-xs font-bold uppercase tracking-wider text-foreground">
-                            Model Answer Outline
-                          </span>
-                        </div>
-                        <FormattedAnswer text={q.answer_outline} />
-                      </div>
-                    )}
-
-                    {q.diagram_hint && (
-                      <div className="mt-4 rounded-2xl border border-dashed border-border bg-surface-muted/30 p-4 text-center">
-                        <div className="flex flex-col items-center justify-center gap-1.5">
-                          <span className="text-lg">📐</span>
-                          <div className="text-xs font-semibold text-foreground uppercase tracking-wider">
-                            Model Schematic Guide
-                          </div>
-                          <p className="text-xs text-muted-foreground max-w-md">
-                            Draw a standard <span className="font-semibold text-brand">{q.diagram_hint}</span> diagram labeling all voltages, currents, and component parameters.
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </li>
+                  <QuestionCard key={q.id} q={q} index={i} />
                 ))}
               </ol>
             </section>

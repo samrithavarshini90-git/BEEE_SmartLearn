@@ -289,6 +289,21 @@
       "answer": "Transistor biasing is the process of setting up DC operating conditions (currents and voltages) for the transistor using an external circuit. It is necessary to ensure the transistor operates in the desired region (e.g., active region for amplification) and to avoid distortion in the output signal."
     },
     {
+      "topic": "BJT Modes of Operation",
+      "question": "What is saturation current and pinch-off voltage?",
+      "answer": "Saturation current (IDSS) in a JFET is the maximum drain current that flows when the gate-source voltage is zero (VGS = 0) and VDS is greater than the pinch-off voltage. It is the drain current with the gate shorted to the source.\nPinch-off voltage (VP) is the value of drain-source voltage (VDS) at which the JFET channel becomes fully constricted (pinched off) and the drain current reaches its saturation value IDSS for VGS = 0. Beyond VP, further increase in VDS does not significantly increase the drain current."
+    },
+    {
+      "topic": "Half-wave Rectifier",
+      "question": "What is peak inverse voltage (PIV) and why is it important for a transistor/diode circuit?",
+      "answer": "Peak Inverse Voltage (PIV) is the maximum reverse-bias voltage that a diode (or transistor junction) must withstand without breaking down during the non-conducting half-cycle. It is important because if the applied reverse voltage exceeds the PIV rating, the device may undergo avalanche or Zener breakdown and get permanently damaged. Device selection must ensure PIV rating > maximum reverse voltage in the circuit."
+    },
+    {
+      "topic": "BJT Configurations and Characteristics",
+      "question": "What is the Early effect in a BJT?",
+      "answer": "The Early effect (also called base-width modulation) is the phenomenon in which the effective base width of a BJT decreases as the reverse bias on the collector-base (CB) junction increases. A larger VCE widens the CB depletion region into the base, reducing effective base width. This causes the collector current (IC) to increase slightly with increasing VCE even in the active region. On output characteristics, this manifests as a slight upward slope in the otherwise flat IC curves."
+    },
+    {
       "topic": "JFET Construction and Operation",
       "question": "What is a JFET and why is it called a unipolar device?",
       "answer": "A JFET, or Junction Field-Effect Transistor, is a voltage-controlled device where an electric field controls conductivity. It is called 'unipolar' because its operation depends on the flow of only one type of charge carrier, either electrons (N-channel) or holes (P-channel)."
@@ -315,11 +330,42 @@
     },
     {
       "topic": "BJT vs FET Comparison",
+      "question": "How is a BJT different from a FET?",
+      "answer": "BJT (Bipolar Junction Transistor) is a current-controlled bipolar device. It uses both electrons and holes as charge carriers. Its input impedance is low (due to forward-biased BE junction).\nFET (Field Effect Transistor) is a voltage-controlled unipolar device. It uses only one type of carrier (electrons or holes). Its input impedance is very high (Mega-ohms) since its gate is reverse-biased (JFET) or insulated (MOSFET). FETs are generally less noisy and more thermally stable than BJTs."
+    },
+    {
+      "topic": "BJT vs FET Comparison",
       "question": "State two major advantages of FET over BJT.",
       "answer": "1. FET has a very high input impedance (in Mega-ohms) because its input gate is reverse-biased (JFET) or insulated (MOSFET). 2. FETs are unipolar devices and are generally less noisy and have better thermal stability than bipolar BJTs."
     }
   ],
   "questions_5_mark": [
+    {
+      "topic": "BJT Configurations and Characteristics",
+      "question": "Compare the input and output characteristics of CE, CB, and CC configurations of a BJT.",
+      "answer": "The three BJT configurations differ significantly in their characteristics:\n\n**Common Emitter (CE):**\n- Input Characteristics (IB vs VBE): Curve resembles a forward-biased diode. IB increases rapidly after cut-in voltage (~0.7V). Input resistance is moderate (~750Ω).\n- Output Characteristics (IC vs VCE): Family of curves for constant IB values. Three regions: Active (IC ≈ βIB, nearly flat), Saturation (IC rises steeply at low VCE), Cutoff (IC ≈ 0).\n- Current Gain: High (β > 50). Phase Shift: 180°. Most commonly used for amplification.\n\n**Common Base (CB):**\n- Input Characteristics (IE vs VEB): Curve shows low input resistance (~100Ω). Current starts after ~0.7V.\n- Output Characteristics (IC vs VCB): Very flat curves showing IC ≈ αIE (α ≈ 0.95-0.99). High output resistance (~450kΩ).\n- Current Gain: Less than 1 (α). No phase shift. Used in high-frequency circuits.\n\n**Common Collector (CC):**\n- Input Characteristics (IB vs VBC): High input resistance (~750kΩ).\n- Output Characteristics (IE vs VCE): Shows high current gain ≈ β+1.\n- Voltage Gain < 1. No phase shift. Used for impedance matching (emitter follower).",
+      "formulas_used": [
+        "DC Current Gain (Beta)"
+      ],
+      "diagram_hint": "characteristic"
+    },
+    {
+      "topic": "BJT Configurations and Characteristics",
+      "question": "Explain the Common Emitter (CE) and Common Base (CB) configurations of BJT with circuit diagrams.",
+      "answer": "**Common Emitter (CE) Configuration:**\nIn CE configuration, the emitter terminal is common to both input and output circuits.\n- Input is applied between Base and Emitter (B-E).\n- Output is taken between Collector and Emitter (C-E).\n- The emitter is grounded.\n\nCharacteristics:\n- Input Resistance: Moderate (~750Ω)\n- Output Resistance: Moderate (~45kΩ)\n- Current Gain: High (β = IC/IB, typically 50–300)\n- Voltage Gain: High (~500)\n- Phase Shift: 180° (signal is inverted)\n- Application: Audio amplifiers, general-purpose amplification.\n\n**Common Base (CB) Configuration:**\nIn CB configuration, the base terminal is common to both input and output circuits.\n- Input is applied between Emitter and Base (E-B).\n- Output is taken between Collector and Base (C-B).\n- The base is grounded.\n\nCharacteristics:\n- Input Resistance: Low (~100Ω)\n- Output Resistance: Very High (~450kΩ)\n- Current Gain: Less than 1 (α = IC/IE ≈ 0.95–0.99)\n- Voltage Gain: High (~150)\n- Phase Shift: 0° (no inversion)\n- Application: High-frequency amplifiers, impedance matching from low to high impedance.",
+      "formulas_used": [
+        "Emitter Current Relation",
+        "DC Current Gain (Beta)"
+      ],
+      "diagram_hint": "circuit"
+    },
+    {
+      "topic": "MOSFET Construction and Operation",
+      "question": "Explain the types of MOSFET with their construction, operation and characteristics.",
+      "answer": "MOSFETs are classified into two main types based on their mode of operation:\n\n**1. Depletion-Mode MOSFET (D-MOSFET):**\n- Construction: Built on a P-type substrate with N+ source and drain regions. A thin N-type channel physically exists between source and drain. The metal gate is separated from the channel by a SiO2 layer.\n- Operation:\n  * VGS = 0: The device conducts drain current IDSS through the existing channel.\n  * VGS < 0 (Depletion mode): Negative gate voltage repels electrons from the channel, depleting it and reducing ID.\n  * VGS > 0 (Enhancement mode): Positive gate voltage attracts more electrons, enhancing the channel and increasing ID above IDSS.\n- Characteristic: Called 'normally ON' device. Transfer curve extends on both sides of VGS = 0 axis.\n\n**2. Enhancement-Mode MOSFET (E-MOSFET):**\n- Construction: Built on a P-type substrate with N+ source and drain regions. There is NO pre-existing physical channel. Gate is insulated from P-substrate by SiO2.\n- Operation:\n  * VGS = 0 or VGS < VT: No channel → device is OFF, ID = 0.\n  * VGS > VT (Threshold voltage): Positive gate voltage attracts electrons from P-substrate, forming an inversion layer (N-channel). Device turns ON.\n  * Increasing VGS > VT: More electrons attracted, channel conductivity enhanced, ID increases.\n- Characteristic: Called 'normally OFF' device. Transfer curve starts at VGS = VT and exists only for VGS > VT.\n\n**Comparison:**\n| Feature | D-MOSFET | E-MOSFET |\n|---|---|---|\n| Physical Channel | Yes | No |\n| Operation at VGS=0 | ON (IDSS flows) | OFF |\n| Type | Normally ON | Normally OFF |\n| Gate Voltage | ±VGS | Only +VGS > VT |",
+      "formulas_used": [],
+      "diagram_hint": "characteristic"
+    },
     {
       "topic": "BJT Construction and Operation",
       "question": "With a suitable diagram, explain the operation of an NPN transistor in the forward active mode.",

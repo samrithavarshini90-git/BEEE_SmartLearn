@@ -189,9 +189,29 @@
       "answer": "Modulation is the process of combining low-frequency audio waves (modulating wave) with a very-high frequency radio wave (carrier wave). The resultant wave is called a modulated carrier."
     },
     {
+      "topic": "Types of Modulation (AM, FM, PM)",
+      "question": "What is modulation index?",
+      "answer": "Modulation index (m) is a measure of the degree to which the carrier wave is modulated by the message signal. For Amplitude Modulation (AM), it is defined as the ratio of the amplitude of the modulating signal to the amplitude of the carrier signal: m = Am / Ac. The modulation index determines the depth of modulation. A value of m = 1 represents 100% modulation (ideal). m > 1 causes over-modulation, leading to signal distortion."
+    },
+    {
       "topic": "Need for Modulation",
       "question": "State any two reasons why modulation is necessary.",
       "answer": "Modulation is necessary to (1) reduce the height of the antenna required for transmission, as antenna size is inversely proportional to frequency, and (2) avoid mixing of signals from different transmitters by allocating different carrier frequencies."
+    },
+    {
+      "topic": "Analog Communication System",
+      "question": "What is an analog communication system?",
+      "answer": "An analog communication system is a system that transmits information in the form of a continuously varying (analog) signal. The information (such as speech or music) is represented by variations in the amplitude, frequency, or phase of an analog carrier wave. Examples include AM radio, FM radio, and traditional telephone systems. The transmitted signal varies smoothly and continuously with time."
+    },
+    {
+      "topic": "Digital Communication System",
+      "question": "What is a digital communication system?",
+      "answer": "A digital communication system is a system that transmits information in discrete digital form (binary 0s and 1s). The analog message is first converted to digital format using sampling and quantization (ADC), then transmitted as a coded digital signal. Digital systems offer better noise immunity, error correction capability, and are suitable for encryption and multiplexing. Examples include mobile networks (4G, 5G), Wi-Fi, and digital TV."
+    },
+    {
+      "topic": "Need for Modulation",
+      "question": "What is the need for modulation?",
+      "answer": "Modulation is needed because: (1) Low-frequency baseband signals require impractically large antennas for direct transmission. (2) Multiple signals at the same frequency would interfere with each other. (3) Modulation increases the range of communication. (4) It allows multiplexing (multiple signals sharing one channel). (5) It improves the quality of received signal. Without modulation, long-distance wireless communication would be impossible."
     },
     {
       "topic": "Analog Communication System",
@@ -200,8 +220,8 @@
     },
     {
       "topic": "Types of Modulation (AM, FM, PM)",
-      "question": "Define Amplitude Modulation (AM) and Frequency Modulation (FM).",
-      "answer": "Amplitude Modulation (AM) is a process where the amplitude of the carrier wave is varied by the message signal, while its frequency and phase remain constant. Frequency Modulation (FM) is a process where the frequency of the carrier is varied by the message signal, while its amplitude remains constant."
+      "question": "What is AM, FM and PM? Differentiate them.",
+      "answer": "AM (Amplitude Modulation): The amplitude of the carrier wave is varied in proportion to the message signal. Frequency and phase remain constant. Susceptible to noise.\nFM (Frequency Modulation): The frequency of the carrier is varied by the message signal. Amplitude remains constant. Better noise immunity than AM.\nPM (Phase Modulation): The phase of the carrier is varied by the message signal. Amplitude and frequency remain constant. Closely related to FM."
     },
     {
       "topic": "Types of Digital Modulation (ASK, FSK, PSK)",

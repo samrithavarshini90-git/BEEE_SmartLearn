@@ -1,0 +1,871 @@
+                                                                28-01-2022
+
+
+
+
+                                  U20EST117
+     BASIC ELECTRICAL AND
+   ELECTRONICS ENGINEERING
+
+
+
+
+                                       UNIT-2
+
+                         AC CIRCUITS
+2.1 Representation of Sinusoidal Waveforms
+• Peak & RMS values, form and peak factors
+• Phasor Representation
+• Real, Reactive, & Apparent Power
+• Power Factor
+2.2 Analysis of 𝟏Ф AC circuits
+• R, RL, RC, and RLC (Series & parallel) combinations
+• Series and parallel resonance
+• Bandwidth and quality factors
+2.3 Analysis of 𝟑Ф balanced AC circuits
+• Voltage and Current relations in star and delta connections
+• Power measurement by two wattmeter method
+
+
+
+
+                                                                        1
+                                                                28-01-2022
+
+
+
+
+         2.1 Representation of Sinusoidal Waveforms
+
+❑A sinusoid is a signal that has the form of the sine or cosine
+ function.
+
+
+
+
+❑A sinusoidal current is usually referred to as alternating current
+ (ac).
+❑ Circuits driven by sinusoidal current or voltage sources are called
+ ac circuits.
+                                                                    3
+
+
+
+
+❑Let I be the value of the direct current that produces the same
+ energy dissipated in the resistance as produced by the periodic
+ waveform. This value is termed as effective or RMS value.
+
+
+
+
+❑The effective or RMS value of a periodic current is the dc
+ current that delivers the same average power to a resistor as
+ the periodic current.
+                                                                    4
+
+
+
+
+                                                                        2
+                                                                    28-01-2022
+
+
+
+
+Time domain representation of sinusoidal signal
+
+
+
+
+                                                                    𝑽𝒎
+                                                           𝑽𝒓𝒎𝒔 =
+                                                                     𝟐
+ 𝑽 𝒕 = 𝒊𝒏𝒔𝒕𝒂𝒏𝒕𝒂𝒏𝒆𝒐𝒖𝒔 𝒗𝒐𝒍𝒕𝒂𝒈𝒆 in volts
+ 𝑽𝒎 = 𝒕𝒉𝒆 𝒂𝒎𝒑𝒍𝒊𝒕𝒖𝒅𝒆 𝒐𝒇 𝒔𝒊𝒏𝒖𝒔𝒐𝒊𝒅 in volts
+ 𝝎 = 𝒕𝒉𝒆 𝒂𝒏𝒈𝒖𝒍𝒂𝒓 𝒇𝒓𝒆𝒒𝒖𝒆𝒏𝒄𝒚 𝒊𝒏 𝒓𝒂𝒅/𝒔𝒆𝒄
+ 𝝎𝒕 = 𝒕𝒉𝒆 𝒂𝒓𝒈𝒖𝒎𝒆𝒏𝒕 𝒐𝒇 𝒔𝒊𝒏𝒖𝒔𝒐𝒊𝒅
+ 𝑻 = 𝒑𝒆𝒓𝒊𝒐𝒅 𝒐𝒇 𝒔𝒊𝒏𝒖𝒔𝒐𝒊𝒅in seconds
+ 𝒇 = 𝒇𝒓𝒆𝒒𝒖𝒆𝒏𝒄𝒚 𝒊𝒏 𝑯𝒛 (𝒏𝒐 𝒐𝒇 𝒄𝒚𝒄𝒍𝒆𝒔 𝒑𝒆𝒓 𝒔𝒆𝒄)                              5
+
+
+
+
+Problem-2.1
+Find the amplitude, phase, frequency, and period of the sinusoid.
+
+
+Sol:
+𝑽𝒎 = 𝟏𝟐𝑽
+𝝓 = 𝟏𝟎°
+𝝎 = 𝟐𝝅𝒇 = 𝟓𝟎 𝒓𝒂𝒅/𝒔𝒆𝒄
+     𝟓𝟎
+𝒇=      = 𝟕. 𝟗𝟔 𝑯𝒛
+     𝟐𝝅
+     𝟏    𝟏
+T= 𝒇 = 𝟕.𝟗𝟔 = 𝟎. 𝟏𝟐𝟓 𝒔𝒆𝒄
+
+                                                                         6
+
+
+
+
+                                                                             3
+                                                                                                 28-01-2022
+
+
+
+
+Average and RMS values of sinusoidal waveform
+                    Average value                                        RMS value
+
+
+                   𝑨𝒓𝒆𝒂 𝒐𝒗𝒆𝒓 𝒉𝒂𝒍𝒇 𝒄𝒚𝒄𝒍𝒆                            𝑨𝒓𝒆𝒂 𝒐𝒇 𝒊𝟐 𝒄𝒖𝒓𝒗𝒆 𝒐𝒗𝒆𝒓 𝒉𝒂𝒍𝒇 𝒄𝒚𝒄𝒍𝒆
+        𝑽𝒂𝒗𝒈 =                                       𝑽𝒓𝒎𝒔 =
+                 𝑻𝒊𝒎𝒆 𝒑𝒆𝒓𝒊𝒐𝒅 𝒐𝒇 𝒉𝒂𝒍𝒇 𝒄𝒚𝒄𝒍𝒆                            𝑻𝒊𝒎𝒆 𝒑𝒆𝒓𝒊𝒐𝒅 𝒐𝒇 𝒉𝒂𝒍𝒇 𝒄𝒚𝒄𝒍𝒆
+
+
+                      𝟏   𝑻/𝟐
+          𝑰𝒂𝒗 =         ‫׬‬     𝒊(𝒕) 𝒅𝒕                                    𝟏   𝑻/𝟐 𝟐
+                     𝑻/𝟐 𝟎                               𝑰𝒓𝒎𝒔 =            ‫׬‬    𝒊 𝒅𝒕
+                                                                        𝑻/𝟐 𝟎
+                       𝟏   𝑻/𝟐
+          𝑽𝒂𝒗 =          ‫׬‬     𝒗(𝒕) 𝒅𝒕
+                      𝑻/𝟐 𝟎                                               𝟏   𝑻/𝟐 𝟐
+                                                         𝑽𝒓𝒎𝒔 =             ‫׬‬    𝒗 𝒅𝒕
+                                                                         𝑻/𝟐 𝟎
+❑The average waveform over full cycle is zero.
+                                                   ❑This indicates that the effective value is the square
+                                                     root of the mean (or average) of the square of the
+                                                     periodic signal. Thus, the effective value is often
+                                                     known as the root-mean-square value, or rms value.
+                                                                                                     7
+
+
+
+
+Average and RMS values of sinusoidal voltage waveform
+                    Average value                                        RMS value
+
+                                                              𝟏  𝑻/𝟐
+           𝑻/𝟐
+            𝟏                                      𝑽𝒓𝒎𝒔 =       ‫𝒕𝒅 𝟐𝒗 ׬‬
+𝑽𝒂𝒗𝒈 =    ‫𝒕𝒅 )𝒕(𝒗 ׬‬                                          𝑻/𝟐 𝟎
+       𝑻/𝟐 𝟎
+           𝟏    𝝅                                            𝟏 𝝅 𝟐
+𝑽𝒂𝒗𝒈 = ‫𝜽𝒅 𝜽 𝒏𝒊𝒔 𝒎𝒗 𝟎׬‬                              𝑽𝒓𝒎𝒔 =     ‫𝜽𝒅 𝜽 𝟐𝒏𝒊𝒔 𝒗 ׬‬
+                                                             𝝅 𝟎 𝒎
+      𝝅
+           𝑽𝒎                                                𝑽𝟐𝒎 𝝅 𝟏−𝒄𝒐𝒔𝟐𝜽
+𝑽𝒂𝒗𝒈 =           −𝒄𝒐𝒔 𝜽 𝝅𝟎                         𝑽𝒓𝒎𝒔 =       ‫׬‬
+                                                              𝝅 𝟎     𝟐
+                                                                           𝒅𝜽
+            𝝅
+         𝑽𝒎
+𝑽𝒂𝒗𝒈 =      𝟏+𝟏                                              𝑽𝟐𝒎    𝒔𝒊𝒏𝟐𝜽
+                                                                               𝝅
+                                                                                      𝑽𝟐𝒎
+          𝝅                                        𝑽𝒓𝒎𝒔 =        𝜽−       =               ×𝝅
+                                                             𝟐𝝅       𝟐 𝟎             𝟐𝝅
+
+
+
+
+                   𝑹𝑴𝑺 𝒗𝒂𝒍𝒖𝒆    𝟎. 𝟕𝟎𝟕𝑽𝒎                           𝑴𝒂𝒙𝒊𝒎𝒖𝒎 𝒗𝒂𝒍𝒖𝒆       𝑽𝒎
+𝑭𝒐𝒓𝒎 𝒇𝒂𝒄𝒕𝒐𝒓 =                 =          = 𝟏. 𝟏𝟏   𝑷𝒆𝒂𝒌 𝒇𝒂𝒄𝒕𝒐𝒓 =                 =          = 𝟏. 𝟒𝟏𝟒8
+                 𝑨𝒗𝒆𝒓𝒂𝒈𝒆 𝒗𝒂𝒍𝒖𝒆 𝟎. 𝟔𝟑𝟕𝑽𝒎                              𝑹𝑴𝑺 𝒗𝒂𝒍𝒖𝒆     𝟎. 𝟕𝟎𝟕𝑽𝒎
+
+
+
+
+                                                                                                            4
+                                                                            28-01-2022
+
+
+
+
+Time and Phase representation
+of sinusoidal signal
+
+
+
+
+                                                                                 9
+
+
+
+
+❑Sinusoids are easily expressed in terms of phasors, which are more
+ convenient to work with than sine and cosine functions.
+❑A phasor is a complex number that represents the amplitude and phase
+ of a sinusoid.
+
+
+                                                          𝑹𝒆𝒄𝒕𝒂𝒏𝒈𝒖𝒍𝒂𝒓 𝒇𝒐𝒓𝒎)
+                                                              𝑷𝒐𝒍𝒂𝒓 𝒇𝒐𝒓𝒎)
+                                                              𝑬𝒙𝒑𝒐𝒏𝒆𝒏𝒕𝒊𝒂𝒍 𝒇𝒐𝒓𝒎
+
+                                                          ;
+                                           Then,                    𝒋
+                                           Note:
+
+                                                   ∠𝝓 = 𝒆𝒋𝝓 = 𝒄𝒐𝒔 𝝓 + 𝒋𝒔𝒊𝒏 𝝓
+   Fig. Representation of complex number                                         10
+
+
+
+
+                                                                                      5
+                                                                                                         28-01-2022
+
+
+
+
+                                                                                    Note: + indicates leading
+
+
+                                                                                                   𝑰𝒎
+                                                                                         𝑰𝒓𝒎𝒔 =
+                                                                                                     𝟐
+
+                                                                                 ❖ Current leads voltage
+                                                                                   by the angle Ф
+
+
+I 𝒕 = 𝒊𝒏𝒔𝒕𝒂𝒏𝒕𝒂𝒏𝒆𝒐𝒖𝒔 𝒄𝒖𝒓𝒓𝒆𝒏𝒕 in amps
+𝑰𝒎 = 𝒕𝒉𝒆 𝒂𝒎𝒑𝒍𝒊𝒕𝒖𝒅𝒆 𝒐𝒇 𝒔𝒊𝒏𝒖𝒔𝒐𝒊𝒅 in amps
+𝝎 = 𝒕𝒉𝒆 𝒂𝒏𝒈𝒖𝒍𝒂𝒓 𝒇𝒓𝒆𝒒𝒖𝒆𝒏𝒄𝒚 𝒊𝒏 𝒓𝒂𝒅/𝒔𝒆𝒄
+𝝎𝒕 = 𝒕𝒉𝒆 𝒂𝒓𝒈𝒖𝒎𝒆𝒏𝒕 𝒐𝒇 𝒔𝒊𝒏𝒖𝒔𝒐𝒊𝒅
+𝑻 = 𝒑𝒆𝒓𝒊𝒐𝒅 𝒐𝒇 𝒔𝒊𝒏𝒖𝒔𝒐𝒊𝒅in seconds
+𝒇 = 𝒇𝒓𝒆𝒒𝒖𝒆𝒏𝒄𝒚 𝒊𝒏 𝑯𝒛 (𝒏𝒐 𝒐𝒇 𝒄𝒚𝒄𝒍𝒆𝒔 𝒑𝒆𝒓 𝒔𝒆𝒄)
+𝝓 = 𝒕𝒉𝒆 𝒑𝒉𝒂𝒔𝒆 𝒊𝒏 𝒓𝒂𝒅𝒊𝒂𝒏𝒔 𝒐𝒓 𝒅𝒆𝒈𝒓𝒆𝒆𝒔                                                                             11
+                                             Fig. Phasor representation of voltage and current
+
+
+
+
+Problem-2.2
+Calculate the phase angle between                   v1 and v2. State which sinusoid is
+leading.
+
+
+
+
+Sol:
+
+
+
+
+                                                                                                                12
+
+
+
+
+                                                                                                                     6
+                                                        28-01-2022
+
+
+
+
+Sinusoid-phasor transformation
+
+               Time domain             Phasor domain
+              representation           representation
+
+
+
+
+                                                           13
+
+
+
+
+Addition/Subtraction/Multiplication/Division Phasors
+                     𝑨𝒅𝒅𝒊𝒕𝒊𝒐𝒏:
+                     𝑺𝒖𝒃𝒕𝒓𝒂𝒄𝒕𝒊𝒐𝒏:
+                     𝑴𝒖𝒍𝒕𝒊𝒑𝒍𝒊𝒄𝒂𝒕𝒊𝒐𝒏:
+
+                     𝑫𝒊𝒗𝒊𝒔𝒊𝒐𝒏:
+
+
+                     𝑹𝒆𝒄𝒆𝒑𝒓𝒐𝒄𝒂𝒍:
+
+                     𝑺𝒒𝒖𝒂𝒓𝒆 𝑹𝒐𝒐𝒕:
+                     𝑪𝒐𝒎𝒑𝒍𝒆𝒙 𝒄𝒐𝒏𝒋𝒖𝒈𝒂𝒕𝒆:
+
+
+                                                           14
+
+
+
+
+                                                                7
+                               28-01-2022
+
+
+
+
+Problem-2.3
+Evaluate the complex number.
+ 𝟒 − 𝟓𝒋 + −𝟐 + 𝟑𝒋
+ 𝟒 − 𝟓𝒋 − −𝟐 + 𝟑𝒋
+
+
+
+
+𝟑∠ − 𝟒𝟎° × −𝟐∠𝟑𝟎° =
+𝟑∠ − 𝟒𝟎° ÷ −𝟐∠𝟑𝟎° =
+
+                                  15
+
+
+
+
+Problem-2.4
+Evaluate the complex number.
+
+
+
+
+Sol:
+
+
+
+
+                                  16
+
+
+
+
+                                       8
+                                                         28-01-2022
+
+
+
+
+Problem-2.5                             Hint:
+Transform these sinusoids to phasors:   𝒔𝒊𝒏 𝟗𝟎𝒐 − 𝜽 = 𝒄𝒐𝒔𝜽
+                                        𝒔𝒊𝒏 𝟗𝟎𝒐 + 𝜽 = 𝒄𝒐𝒔𝜽
+                                        cos 𝟗𝟎𝒐 − 𝜽 = 𝒔𝒊𝒏𝜽
+                                        cos 𝟗𝟎𝒐 + 𝜽 = −𝒔𝒊𝒏𝜽
+
+
+Sol:
+
+
+
+
+                                                              17
+
+
+
+
+Problem-2.6
+
+
+
+Find
+
+
+Sol:
+
+
+
+
+                                                              18
+
+
+
+
+                                                                   9
+                                                                                                                          28-01-2022
+
+
+
+
+❑ The impedance (Z in Ω) of a circuit is the ratio of the phasor                                          𝑹𝒆𝒄𝒕𝒂𝒏𝒈𝒖𝒍𝒂𝒓 𝒇𝒐𝒓𝒎)
+   voltage (V) to the phasor current (I).                                                               (𝑷𝒐𝒍𝒂𝒓 𝒇𝒐𝒓𝒎)
+
+𝒁 → 𝑰𝒎𝒑𝒆𝒅𝒂𝒏𝒄𝒆                              𝑽
+𝑹 → 𝑹𝒆𝒔𝒊𝒔𝒕𝒂𝒏𝒄𝒆                       𝒁=
+𝑿 → 𝑹𝒆𝒂𝒄𝒕𝒂𝒏𝒄𝒆                              𝑰
+𝜽 → 𝑷𝒉𝒂𝒔𝒆 𝒂𝒏𝒈𝒍𝒆
+
+
+
+
+                                                 Fig: Impedance triangle
+
+
+
+
+❑ The admittance (Y in mho) is the reciprocal of impedance.
+                                                                                                          𝑹𝒆𝒄𝒕𝒂𝒏𝒈𝒖𝒍𝒂𝒓 𝒇𝒐𝒓𝒎)
+𝒀 → 𝑨𝒅𝒎𝒊𝒕𝒕𝒂𝒏𝒄𝒆                          𝟏 𝑰
+𝑮 → conductance                   𝐘=     =
+𝑩 → susceptance                         𝒁 𝑽                                                                                  19
+
+
+
+
+Phasor Relationships for Circuit Elements:                                                             Z = R + jX
+Pure resistive circuit (R):                                                                            Z = R + j(XL − Xc )
+
+
+
+
+                                                                                   Current & voltage are in phase Ф=00
+                                                                                                                  𝑽
+Note: The impedance (Z in Ω) of a circuit is the ratio of the phasor voltage (V) to the phasor current (I). 𝒁 =
+                                                                                                                  𝑰
+                                                                                                                      .
+                                                                𝟏                                                            20
+The admittance (Y in siemens) is the reciprocal of impedance 𝐘 = .
+                                                                𝒁
+
+
+
+
+                                                                                                                                  10
+                                                                         28-01-2022
+
+
+
+
+                                                         Z = R + jX
+Pure inductive circuit (L):                              Z = R + j(XL − Xc )
+
+
+
+
+                                     Current lags voltage by the angle Ф=900
+                                     only the inductive reactance (        )
+
+                                                                                21
+Note:               (1st quadrant)
+
+
+
+
+                                                         Z = R + jX
+Pure capacitive circuit (C):                             Z = R + j(XL − Xc )
+
+
+
+
+                                     Current leads voltage by the angle Ф=900
+                                      only the capacitive reactance (      )
+
+                                                                                22
+Note:               (2nd quadrant)
+
+
+
+
+                                                                                     11
+                                                                                                                      28-01-2022
+
+
+
+
+                                                                                                   Z = R + jX
+Inductive circuit (RL):                                                                            Z = R + j(XL − Xc )
+
+
+
+
+                                                                               Current lags voltage by the angle Ф
+
+ Note: The impedance is inductive when X is positive. Thus, impedance is said to be inductive or lagging since current lags
+ voltage.                                                                                                                   23
+
+
+
+
+                                                                                                   Z = R + jX
+Capacitive circuit (RC):                                                                           Z = R + j(XL − Xc )
+
+
+
+
+                                                                              Current leads voltage by the angle Ф
+
+Note: The impedance is capacitive when X is negative. Thus, impedance is said to be capacitive or leading because current
+leads voltage                                                                                                             24
+
+
+
+
+                                                                                                                                 12
+                                                                    28-01-2022
+
+
+
+
+Series RLC circuit:
+
+
+
+
+                                                                       25
+
+
+
+
+Case-1: Inductive
+           𝟏
+  [𝝎𝑳 >      ]
+          𝝎𝑪
+                                    𝟏
+•   The total reactance 𝑿 = 𝝎𝑳 −         is positive.
+                                    𝝎𝑪
+•   Then the current lags voltage by the angle Ф. (𝟎° ≤ 𝝓 ≤ 𝟗𝟎°)
+•   power factor is lagging. (𝒑𝒇 < 𝟏)
+Case-2: Capacitive
+           𝟏
+   [𝝎𝑳 <      ]
+          𝝎𝑪
+                                    𝟏
+•   The total reactance 𝑿 = 𝝎𝑳 −        is negative.
+                                    𝝎𝑪
+•   Then the current leads voltage by the angle Ф. (𝟎° ≤ 𝝓 ≤ 𝟗𝟎°)
+•   power factor is leading. (𝒑𝒇 < 𝟏)
+Case-3: Resistive
+           𝟏
+  [𝝎𝑳 =       ]
+          𝝎𝑪
+                                    𝟏
+•   The total reactance 𝑿 = 𝝎𝑳 −        is zero.
+                                    𝝎𝑪
+•   Then the current and voltage are in-phase. (𝝓 = 𝟎°)
+•   power factor is lagging. (𝒑𝒇 = 𝟏)                                  26
+
+
+
+
+                                                                            13
+                                                                    28-01-2022
+
+
+
+
+Parallel RLC circuit:
+
+
+
+
+                                                                       27
+
+
+
+
+Case-1: Inductive
+  𝟏
+     > 𝝎𝑪 𝒊. 𝒆 𝑰𝑳 > 𝑰𝑪
+ 𝝎𝑳
+•   Then the current lags voltage by the angle Ф. (𝟎° ≤ 𝝓 ≤ 𝟗𝟎°)
+•   power factor is lagging. (𝒑𝒇 < 𝟏)
+
+
+Case-2: Capacitive
+  𝟏
+     < 𝝎𝑪 𝒊. 𝒆 𝑰𝑳 < 𝑰𝑪
+ 𝝎𝑳
+•   Then the current leads voltage by the angle Ф. (𝟎° ≤ 𝝓 ≤ 𝟗𝟎°)
+•   power factor is leading. (𝒑𝒇 < 𝟏)
+
+
+Case-3: Resistive
+  𝟏
+     = 𝝎𝑪 𝒊. 𝒆 |𝑰𝑳 | = |𝑰𝑪 |
+ 𝝎𝑳
+•   Then the current and voltage are in-phase. (𝝓 = 𝟎°)
+•   power factor is lagging. (𝒑𝒇 = 𝟏)
+                                                                       28
+
+
+
+
+                                                                            14
+                                                                                                          28-01-2022
+
+
+
+
+Characteristics of the passive elements:
+        Relation       Resistor (R)           Inductor (L)                       Capacitor (C)
+           v-i
+
+           i-v
+
+            Z
+
+            Y
+
+          p or w
+
+          Series
+
+         Parallel
+
+          at dc &         𝒔𝒂𝒎𝒆              𝑺𝒉𝒐𝒓𝒕 𝒄𝒊𝒓𝒄𝒖𝒊𝒕 at dc                 𝑶𝒑𝒆𝒏 𝒄𝒊𝒓𝒄𝒖𝒊𝒕 at dc
+      high frequency                   Open circuit at high frequencies   Short circuit at high frequencies
+
+        Property            --         The current through an inductor      The voltage on a capacitor
+                                                                                                              29
+                                        cannot change instantaneously        cannot change abruptly
+
+
+
+
+Power terms in a 𝟏𝝓 AC circuit:
+
+❑The instantaneous power “p(t)” absorbed
+ by an element is the product of the
+ instantaneous          voltage       v(t)     across            the
+ element and the instantaneous current
+ i(t) through it.
+                                                                                𝒑(𝒕) = 𝒗 𝒕 𝒊(𝒕)
+❑The instantaneous power (in watts) is
+ the power at any instant of time.
+
+
+                                                                                                              30
+
+
+
+
+                                                                                                                   15
+                                                                                                                    28-01-2022
+
+
+
+
+𝑰𝒏𝒔𝒕𝒂𝒏𝒕𝒂𝒏𝒆𝒐𝒖𝒔 𝒑𝒐𝒘𝒆𝒓 𝒑(𝒕),
+
+
+
+
+                    𝒄𝒐𝒏𝒔𝒕𝒂𝒏𝒕                 𝒔𝒊𝒏𝒖𝒔𝒐𝒊𝒅𝒂𝒍 𝒇𝒖𝒏𝒄𝒕𝒊𝒐𝒏 𝒘𝒉𝒐𝒔𝒆 𝒇𝒓𝒆𝒒𝒖𝒆𝒏𝒄𝒚 𝒊𝒔 𝟐𝝎
+
+
+
+
+                                                                                                                       31
+
+
+
+
+❑The average power “P” (in watts) is the average of the instantaneous
+ power over one period.
+
+
+
+
+                                                                                                         0
+
+
+
+                                                𝑻𝒉𝒆 𝒂𝒗𝒆𝒓𝒂𝒈𝒆 𝒐𝒇 𝒂 𝒔𝒊𝒏𝒖𝒔𝒐𝒊𝒅 𝒐𝒗𝒆𝒓 𝒊𝒕𝒔 𝒑𝒆𝒓𝒊𝒐𝒅 𝒊𝒔 𝒛𝒆𝒓𝒐
+
+
+Note: A resistive load (R) absorbs power at all times, while a reactive load (L or C) absorbs zero average power.      32
+
+
+
+
+                                                                                                                            16
+                                                           28-01-2022
+
+
+
+
+❑The apparent power “S” (in VA) is the product of the rms values
+
+ of voltage and current.
+
+
+
+
+                                                              33
+
+
+
+
+❑The power factor      is the cosine of the phase difference
+ between voltage and current. It is also the cosine of the
+ angle of the load impedance.
+
+
+
+
+           𝒑𝒐𝒘𝒆𝒓 𝒇𝒂𝒄𝒕𝒐𝒓 𝒂𝒏𝒈𝒍𝒆
+
+
+
+
+                                                              34
+
+
+
+
+                                                                   17
+                                                              28-01-2022
+
+
+
+
+Complex power:
+
+
+
+
+the complex power S absorbed by the ac load is,
+
+
+
+
+         𝑹𝒆𝒂𝒍 𝒑𝒐𝒘𝒆𝒓              𝑹𝒆𝒂𝒄𝒕𝒊𝒗𝒆 𝒑𝒐𝒘𝒆𝒓
+
+                                                                 35
+
+
+
+
+❑The real power “P” (in watt) is the average power in watts
+ delivered to a load; it is the only useful power. It is the actual
+ power dissipated by the load.
+❑The reactive power “Q” (in VAR) is a measure of the energy
+ exchange between the source and the reactive part of the load.
+
+
+Note: The energy storage elements neither dissipate nor supply
+power, but exchange power back and forth with the rest of the
+network. In the same way, the reactive power is being
+transferred back and forth between the load and the source. It
+represents a lossless interchange between the load and the
+source.                                                          36
+
+
+
+
+                                                                      18
+                                                                       28-01-2022
+
+
+
+
+❑Complex power (in VA) is the product of the rms voltage phasor and
+ the complex conjugate of the rms current phasor. As a
+ complex quantity, its real part is real power (P) and its
+ imaginary part is reactive power (Q).
+
+ 𝑪𝒐𝒎𝒑𝒍𝒆𝒙 𝑷𝒐𝒘𝒆𝒓                                                        VA
+ 𝑨𝒑𝒑𝒂𝒓𝒂𝒏𝒕 𝑷𝒐𝒘𝒆𝒓                                         VA
+ 𝑹𝒆𝒂𝒍 𝑷𝒐𝒘𝒆𝒓                             Watts
+ 𝑹𝒆𝒂𝒄𝒕𝒊𝒗𝒆 𝑷𝒐𝒘𝒆𝒓                             VAR
+
+ 𝑷𝒐𝒘𝒆𝒓 𝑭𝒂𝒄𝒕𝒐𝒓
+
+                                                                           37
+
+
+
+
+❑A standard practice to represent S, P, and Q in the form of a
+ triangle, known as the power triangle.
+
+
+
+
+                  Fig: Power triangle       Fig: Impedance triangle
+
+
+
+
+                                                                           38
+
+
+
+
+                                                                                19
+                                                                        28-01-2022
+
+
+
+
+❑S contains all power information of a load. The real part of S is the real
+ power P ; its imaginary part is the reactive power Q ; its magnitude is the
+ apparent power S; and the cosine of its phase angle is the power factor pf.
+
+
+
+
+                                                                               39
+
+
+
+
+ Problem-2.7
+ Find the instantaneous power and the average power absorbed by the
+ passive linear network.
+
+
+
+
+ Sol:
+
+
+
+
+ 𝑰𝒏𝒔𝒕𝒂𝒏𝒕𝒂𝒏𝒆𝒐𝒖𝒔 𝒑𝒐𝒘𝒆𝒓,
+
+
+
+        𝑨𝒗𝒆𝒓𝒂𝒈𝒆 𝑷𝒐𝒘𝒆𝒓
+
+
+                                                                               40
+
+
+
+
+                                                                                    20
+                                                                            28-01-2022
+
+
+
+
+Problem-2.8
+Calculate the average power absorbed by an impedance
+when a voltage                        is applied across it.
+Sol:
+
+𝑻𝒉𝒆 𝒄𝒖𝒓𝒓𝒆𝒏𝒕 𝒕𝒉𝒓𝒐𝒖𝒈𝒉 𝒕𝒉𝒆 𝒊𝒎𝒑𝒆𝒅𝒂𝒏𝒄𝒆 𝒊𝒔,
+
+
+
+
+                                                                                41
+
+
+
+
+Problem-2.9
+The voltage across a load is                       and the current through the
+element in the direction of the voltage drop is                     Find: (a) the
+complex and apparent powers, (b) the real and reactive powers, and (c) the power
+factor and the load impedance.
+Sol:
+
+
+
+
+𝑻𝒉𝒆 𝒄𝒐𝒎𝒑𝒍𝒆𝒙 𝒑𝒐𝒘𝒆𝒓:                           𝑽𝑨
+                        𝟒𝟓 𝒄𝒐𝒔 −𝟔𝟎° + 𝒋𝒔𝒊𝒏 −𝟔𝟎°               𝑽𝑨
+𝑻𝒉𝒆 𝒂𝒑𝒑𝒂𝒓𝒆𝒏𝒕 𝒑𝒐𝒘𝒆𝒓: |          𝑽𝑨
+𝑻𝒉𝒆 𝒂𝒄𝒕𝒊𝒗𝒆 𝒑𝒐𝒘𝒆𝒓:          𝑾
+𝑻𝒉𝒆 𝒓𝒆𝒂𝒄𝒕𝒊𝒗𝒆 𝒑𝒐𝒘𝒆𝒓:                 𝑽𝑨𝑹
+𝑻𝒉𝒆 𝒑𝒐𝒘𝒆𝒓 𝒇𝒂𝒄𝒕𝒐𝒓:
+
+𝑻�

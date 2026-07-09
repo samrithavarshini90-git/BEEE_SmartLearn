@@ -1,0 +1,1488 @@
+                                   U20EST117
+     BASIC ELECTRICAL AND
+   ELECTRONICS ENGINEERING
+
+
+
+
+                                         UNIT-1
+                           DC CIRCUITS
+1.1 Electrical Circuit Elements
+• Resistors, Inductors, Capacitors
+• Definition for Voltage, Current, Power & Energy
+1.2 Electric circuit laws
+• Ohm’s law
+• Kirchoff’s Voltage & Current law
+1.3 Analysis of simple circuits with DC voltage
+• Voltage and Current division in series and parallel circuits
+• Star-Delta Conversion
+• Node and Mesh method
+1.4 Network Theorems
+• Thevenin
+• Norton
+• Superposition
+• Maximum Power Transfer
+
+
+
+
+                                                                 1
+                     1.1 Electric Networks
+
+❑An   electric   circuit   is   an   interconnection   of   electrical
+ elements.
+
+
+
+
+❑A    combination    of    various   electric   elements    (Resistor,
+ Inductor, Capacitor, Voltage source, Current source) connected
+ in any manner is called an electrical network.                     3
+
+
+
+
+❑The element which receives energy (or
+ absorbs energy) and then either converts it
+ into heat (R) or stored it in an electric (C)
+ or magnetic (L) field is called passive
+ element.
+❑The elements that supply energy to the
+ circuit is called active element. (Ex: voltage
+ & current sources, generators, transistor
+ etc. Transformer)
+
+                                                                    4
+
+
+
+
+                                                                         2
+❑Conduction of current in both directions
+ in an element with same magnitude is
+ termed       as   bilateral      element.       (ex:
+ Resistance, Inductance, Capacitance)
+
+
+❑Conduction of current in one direction is
+ termed as unilateral element. (ex: Diode,
+ Transistor)
+
+
+
+                                                        5
+
+
+
+
+❑ An ideal independent source is an active
+ element that provides a specified voltage
+ or current that is completely independent
+ of other circuit elements.
+
+
+❑An   ideal    voltage   source   produces   a
+ specific voltage across its terminals and
+ independent of load current.
+
+
+❑An   ideal    current   source   supplies   a
+ specific current through its terminals
+ irrespective of load resistor.                         6
+
+
+
+
+                                                            3
+❑ An ideal dependent (or controlled)
+ source is an active element in which
+ the source quantity is controlled by
+ another voltage or current.
+
+
+1. A voltage-controlled voltage source (VCVS).
+2. A current-controlled voltage source (CCVS).
+3. A voltage-controlled current source (VCCS).
+4. A current-controlled current source (CCCS).
+
+
+
+                                                      7
+
+
+
+
+❑A linear circuit is one whose parameters
+ do not change with voltage or current.
+ More specifically, a linear system is one
+ that satisfies homogeneity and additive
+ property.
+❑A    non-linear    circuit    is   that   whose
+ parameters      change     with     voltage     or
+ current.    More    specifically,    non-linear
+ circuit does not obey the homogeneity
+ and additive properties.
+                                                      8
+
+
+
+
+                                                          4
+❑Charge is an electrical property of the atomic
+ particles of which matter consists, measured
+ in coulombs (C).
+❑Electric current is the time rate of change of
+ charge in a conductor, measured in amperes
+ (A).
+                                         1 ampere = 1 coulomb/second
+❑The law of conservation of charge states that
+ charge can neither be created nor destroyed,     Note:
+                                                  Current flows from a higher
+ only transferred. Thus the algebraic sum of      potential to a lower potential
+ the electric charges in a system does not        in a resistor.
+
+ change.                                                                       9
+
+
+
+
+❑A direct current (dc) is a current that
+ remains constant with time.
+
+
+❑An alternating current (ac) is a current
+ that varies sinusoidally with time.
+
+
+❑Voltage (or potential difference) is the
+ energy required to move a unit charge
+ through an element, measured in volts (V).
+
+                                                                               10
+
+
+
+
+                                                                                    5
+❑Power is the time rate of expending or absorbing energy,
+ measured in watts (W).
+
+
+❑The law of conservation of energy must be obeyed in any
+ electric circuit. For this reason, the algebraic sum of power in
+ a circuit, at any instant of time, must be zero.
+
+
+Total power supplied to the circuit = Total power absorbed by the elements
+❑Energy is the capacity to do work, measured in joules (J).
+
+                                                                         11
+
+
+
+
+❑Current direction and voltage polarity play a major role in determining
+ the sign of power. The voltage polarity and current direction must
+ conform with those shown in Fig. in order for the power to have a
+ positive sign. This is known as the passive sign convention.
+❑Passive sign convention is satisfied when the current enters through the
+ positive terminal of an element and P = +VI. If the current enters through
+ the negative terminal, P = -VI
+
+
+
+                                          Note:
+                                          P1 = -VI (Supplying power)
+                                          P2 = +VI (Absorbing power)
+                                          P3 = +VI (Absorbing power)
+                                          P4 = -VI (Supplying power)
+                                                                         12
+
+
+
+
+                                                                              6
+Summary
+     Electrical quantity Symbol Related equation      Units
+          Charge                          -         Coulomb (C)
+
+          Current                                  Coulomb/sec
+                                                    Ampere (A)
+
+          Voltage                                  Joule/Coulomb
+                                                      Volts (V)
+
+          Power                                      Joule/sec
+                                                      Watt (W)
+
+          Energy                                     Joule (J)
+
+
+
+
+                                                                   13
+
+
+
+
+SI prefixes         Multiplier   Prefix   Symbol
+                      𝟏𝟎   𝟏𝟖     exa       E
+                      𝟏𝟎𝟏𝟓       peta         P
+                      𝟏𝟎𝟏𝟐       tera         T
+                       𝟏𝟎   𝟗    giga         G
+                       𝟏𝟎𝟔       mega         M
+                       𝟏𝟎   𝟑     kilo        k
+                       𝟏𝟎        deca         da
+                      𝟏𝟎   −𝟑    milli        m
+                      𝟏𝟎−𝟔       micro        µ
+                      𝟏𝟎−𝟗       nano         n
+                      𝟏𝟎   −𝟏𝟐   pico         p
+                      𝟏𝟎−𝟏𝟓      femto        f
+                      𝟏𝟎   −𝟏𝟖   atto         a                    14
+
+
+
+
+                                                                        7
+Problem-1.1
+The total charge entering a terminal given by 300t mc. If 30J is given in the form
+of light and heat energy, calculate current at t=0.5s, voltage drop and power.
+Sol:
+Q=300t mc; t=0.5s; W=30J
+
+
+
+
+                                           𝒅𝒒 𝟑𝟎𝟎 × 𝟏𝟎−𝟑
+                             𝑪𝒖𝒓𝒓𝒆𝒏𝒕 𝑰 =      =          = 𝟎. 𝟔 𝑨
+                                           𝒅𝒕    𝟎. 𝟓
+
+                                           𝒅𝒘     𝟑𝟎
+                             𝑽𝒐𝒍𝒕𝒂𝒈𝒆 𝑽 =      =          = 𝟏𝟎𝟎 𝑽
+                                           𝒅𝒒 𝟑𝟎𝟎 × 𝟏𝟎−𝟑
+                                 𝑷 = 𝑽 × 𝑰 = 𝟏𝟎𝟎 × 𝟎. 𝟔 = 𝟔𝟎 𝑾                   15
+
+
+
+
+Problem-1.2
+Calculate the power supplied or absorbed by each element in Fig
+Sol:
+
+
+
+
+𝑷𝟏 = 𝟐𝟎 × −𝟓         = −𝟏𝟎𝟎 𝑾(𝒔𝒖𝒑𝒑𝒍𝒊𝒆𝒅 𝒑𝒐𝒘𝒆𝒓)
+𝑷𝟐 = 𝟏𝟐 × 𝟓          =     𝟔𝟎 𝑾(𝒂𝒃𝒔𝒐𝒓𝒃𝒆𝒅 𝒑𝒐𝒘𝒆𝒓)
+𝑷𝟑 = 𝟖 × 𝟔           =     𝟒𝟖 𝑾(𝒂𝒃𝒔𝒐𝒓𝒃𝒆𝒅 𝒑𝒐𝒘𝒆𝒓)
+𝑷𝟒 = 𝟖 × −𝟎. 𝟐𝑰
+   = 𝟖 × −𝟎. 𝟐 × 𝟓 = −𝟖 𝑾(𝒔𝒖𝒑𝒑𝒍𝒊𝒆𝒅 𝒑𝒐𝒘𝒆𝒓)
+
+
+
+
+                                 100 + 8 = 60 + 48
+                    Total supplied power = Total absorbed power                  16
+
+
+
+
+                                                                                      8
+                                    1.2. Electric circuit laws
+ Ohm’s law (Relation between voltage and current)
+
+
+
+
+                                                                 𝑽∝𝑰
+
+ A linear circuit is one whose output is linearly related (or
+ directly proportional) to its input.                       17
+
+
+
+
+Ohm’s law
+❑“The voltage (V) across a resistor is directly
+  proportional to the current                         (I) flowing through
+  the resistor.” 𝑽 ∝ 𝑰
+                                                                                             𝑽 = 𝑰𝑹
+❑The resistance (R) of an element denotes its
+  ability to resist the flow of electric current; it is                                             𝑽
+                                                                                               𝑹=
+  measured in 𝛀.                                                                                    𝑰
+
+                                                                                            𝑽𝒉𝒊𝒈𝒉𝒆𝒓 − 𝑽𝒍𝒐𝒘𝒆𝒓
+❑Current flows from a higher potential to a lower                                      𝒊=
+                                                                                                   𝑹
+  potential in a resistor.
+                                                                                   𝟏
+Note: The conductance (G) of a resistor is the reciprocal of its resistance: 𝑮 =                               18
+                                                                                   𝑹
+
+
+
+
+                                                                                                                    9
+                                                            22-12-2021
+
+
+
+
+❑A short circuit is a resistor (a perfectly conducting wire) with
+ zero resistance.
+❑An open circuit is a resistor with infinite resistance.
+
+
+                                                               19
+
+
+
+
+Nodes, Branches, and Loops
+
+❑A branch represents a single element
+ such as a voltage source or a resistor.
+ (b=5), [a-b, b-c, b-c, b-c, c-a].
+❑A node is the point of connection
+ between two or more branches.
+ (n=3), [a,b,c].
+❑A loop is any closed path in a circuit.
+ (l=3), [a-b-c-a].
+❑A mesh is a loop which does not
+ contain any other loops within it.             𝒃 =l+n-1       20
+
+
+
+
+                                                                    10
+                                                             22-12-2021
+
+
+
+
+ Problem-1.3
+ How many branches and
+ nodes does the circuit in
+ Fig. have? Identify the
+ elements that are in series
+ and in parallel.
+ Sol:
+
+
+
+
+                                                                21
+
+
+
+
+Kirchoff’s current law
+
+“At any node (junction) in a circuit, the
+algebraic sum of currents entering and
+leaving a node at any instant of time
+must be equal to zero”.
+
+
+
+
+Sum of the entering currents = Sum of the leaving currents
+
+
+
+                                                                22
+
+
+
+
+                                                                     11
+                                                22-12-2021
+
+
+
+
+ Problem-1.4
+ Find current (𝒊𝒐 ) and voltage
+ ( 𝒗𝒐 ) in the circuit shown in
+ Fig.
+ Sol:
+ Applying KCL to node a,
+ 𝟑 + 𝟎. 𝟓𝒊𝒐 = 𝒊𝒐
+ 𝒊𝒐 = 𝟔𝑨
+ For the 4𝛀 resistor, Ohm’s law gives,
+ 𝒗𝒐 = 𝟒𝒊𝒐 = 𝟐𝟒𝑽
+                                                   23
+
+
+
+
+Kirchoff’s voltage law
+
+“In a closed circuit, the algebraic
+sum of all voltages around a closed
+path (or loop) is zero”.
+
+
+
+
+Sum of voltage sources = Sum of voltage drops
+
+
+
+                                                   24
+
+
+
+
+                                                        12
+                                                            22-12-2021
+
+
+
+
+ Problem-1.5
+ Find      the     voltage   across
+ 𝟏𝒌𝜴, 𝟑. 𝟑𝒌𝜴 & 𝟒. 𝟕𝒌𝜴 resistors as
+ the circuit shown in Fig.
+ Sol:
+ Applying KVL to the circuit,
+ 𝑽 = 𝑽𝟏𝒌 + 𝑽𝟑.𝟑𝒌 + 𝑽𝟒.𝟕𝒌
+
+𝟓 = 𝑰 𝟏𝒌 + 𝟑. 𝟑𝒌 + 𝟒. 𝟕𝒌                 Ohm′s law
+⇒𝑰=
+𝑽𝟏𝒌 = 𝟎. 𝟓𝟔𝒎 × 𝟏𝒌          =                 Ohm′s law
+𝑽𝟑.𝟑𝒌 = 𝟎. 𝟓𝟔𝒎 × 𝟑. 𝟑𝒌 =                     Ohm′s law
+𝑽𝟒.𝟕𝒌 = 𝟎. 𝟓𝟔𝒎 × 𝟒. 𝟕𝒌 =                     Ohm′s law
+                                             KVL 𝒗𝒆𝒓𝒊𝒇𝒊𝒆𝒅
+                                                               25
+
+
+
+
+     1.3. Analysis of simple circuits with DC voltage
+Series Resistors and Voltage Division:
+𝐴𝑝𝑝𝑙𝑦𝑖𝑛𝑔 𝑂ℎ𝑚’𝑠 𝑙𝑎𝑤 𝑡𝑜 𝑒𝑎𝑐ℎ 𝑜𝑓 𝑡ℎ𝑒 𝑟𝑒𝑠𝑖𝑠𝑡𝑜𝑟𝑠,
+𝑽𝟏 = 𝒊𝑹𝟏 ;          𝑽𝟐 = 𝒊𝑹𝟐 ➔ 1
+𝐾𝑉𝐿 𝑡𝑜 𝑡ℎ𝑒 𝑙𝑜𝑜𝑝,
+𝑽 = 𝑽𝟏 + 𝑽 𝟐        ➔2
+𝑠𝑢𝑏𝑡𝑖𝑡𝑢𝑡𝑒 𝑒𝑞𝑛 1 𝑖𝑛 2,
+
+𝑽 = 𝒊(𝑹𝟏 + 𝑹𝟐 )
+
+            𝑽        𝑽
+𝒊=                =        ➔3
+        (𝑹𝟏 +𝑹𝟐 )   𝑹𝒆𝒒
+𝑠𝑢𝑏𝑡𝑖𝑡𝑢𝑡𝑒 𝑒𝑞𝑛 3 𝑖𝑛 1,
+
+           𝑹𝟏                 𝑹𝟐
+𝑽𝟏 =              𝑽 ; 𝑽𝟐 =           𝑽
+        (𝑹𝟏 +𝑹𝟐 )          (𝑹𝟏 +𝑹𝟐 )
+                                                               26
+
+
+
+
+                                                                    13
+                                                                         22-12-2021
+
+
+
+
+Problem-1.6
+Find the voltage across resistors for the following circuit shown in Figs.,
+Sol:
+
+
+
+
+                                                                              27
+
+
+
+
+Parallel Resistors and Current Division:
+ 𝐴𝑝𝑝𝑙𝑦𝑖𝑛𝑔 𝑂ℎ𝑚’𝑠 𝑙𝑎𝑤 𝑡𝑜 𝑒𝑎𝑐ℎ 𝑜𝑓 𝑡ℎ𝑒 𝑟𝑒𝑠𝑖𝑠𝑡𝑜𝑟𝑠,
+ 𝑽 = 𝒊𝟏 𝑹𝟏 = 𝒊𝟐 𝑹𝟐
+        𝑽             𝑽
+ 𝒊𝟏 =
+        𝑹𝟏
+             ; 𝒊𝟐 =
+                      𝑹𝟐
+                         ➔1
+ 𝐾𝐶𝐿 𝑎𝑡 𝑛𝑜𝑑𝑒 𝑎,
+ 𝒊 = 𝒊 𝟏 + 𝒊𝟐    ➔2
+ 𝑠𝑢𝑏𝑡𝑖𝑡𝑢𝑡𝑒 𝑒𝑞𝑛 1 𝑖𝑛 2,
+
+       𝑽   𝑽
+ 𝒊=      +
+       𝑹𝟏 𝑹𝟐
+
+             𝟏        𝟏       𝑽
+ 𝒊 = 𝑽(𝑹 + 𝑹 ) = 𝑹
+             𝟏        𝟐       𝒆𝒒
+             𝒊𝑹𝟏 𝑹𝟐
+ 𝑽 = 𝒊𝑹𝒆𝒒 =          ➔3
+            (𝑹𝟏 +𝑹𝟐 )
+ 𝑠𝑢𝑏𝑡𝑖𝑡𝑢𝑡𝑒 𝑒𝑞𝑛 3 𝑖𝑛 1,
+
+           𝑹𝟐                 𝑹𝟏
+ 𝒊𝟏 =             𝒊 ; 𝒊𝟐 =
+        (𝑹𝟏 +𝑹𝟐 )          (𝑹𝟏 +𝑹𝟐 )
+                                                                              28
+
+
+
+
+                                                                                   14
+                                                                                 22-12-2021
+
+
+
+
+Problem-1.7
+Find the current through resistors for the following circuit shown in Fig.,
+Sol:
+
+
+
+
+                                                                                      29
+
+
+
+
+ Problem-1.8                                       Step:2:
+
+ Find (𝐑 𝐞𝐪) for the circuit shown in Fig.
+ Sol:
+ Step:1:
+                                    𝟏𝛀 + 𝟓𝛀 = 𝟔𝛀
+
+
+
+                                                                        𝟔×𝟒
+                                      Step:3:                𝟔𝛀||𝟒𝛀 =       = 𝟐. 𝟒𝛀
+                                                                        𝟔+𝟒
+
+
+
+
+                         𝟔×𝟑
+              𝟔𝛀||𝟑𝛀 =       = 𝟐𝛀
+                         𝟔+𝟑
+
+
+
+                                                                                      30
+
+
+
+
+                                                                                           15
+                                                                              22-12-2021
+
+
+
+
+ Problem-1.9
+ Find      the     current     flowing
+ through 𝟏𝒌𝜴, 𝟒. 𝟕𝒌𝜴 & 𝟑. 𝟑𝒌𝜴 resistors
+ as the circuit shown in Fig.
+ Sol:
+ Applying KCL to node a,
+ 𝑰 = 𝑰𝟏 + 𝑰𝟐
+                𝟏𝟓
+𝑰 =                            =      Ohm′s law
+             (𝟑. 𝟑𝒌 × 𝟒. 𝟕𝒌)
+       (𝟏𝒌 +
+             (𝟑. 𝟑𝒌 + 𝟒. 𝟕𝒌)
+             𝟑. 𝟑𝒌
+𝑰𝟏 =                   × 𝟓. 𝟏𝒎 =   current division rule
+        (𝟑. 𝟑 + 𝟒. 𝟕)𝒌
+
+             𝟒. 𝟕𝒌
+𝑰𝟐 =                   × 𝟓. 𝟏𝒎 =   current division rule
+        (𝟑. 𝟑 + 𝟒. 𝟕)𝒌
+                                                                                 31
+
+
+
+
+Star-Delta Network:
+               Y (or) T Network                            Δ (or) Π Network
+
+
+
+
+                                                                                 32
+
+
+
+
+                                                                                      16
+                                                                                         22-12-2021
+
+
+
+
+Star-Delta / Delta-star Conversion:
+                     Y-Network                           𝚫-Network
+
+“Each resistor in the Y network is the   “Each resistor in the         network is the
+
+product of the resistors in the two      sum of all possible products of Y
+                                         resistors taken two at a time, divided
+adjacent branches, divided by the sum
+                                         by the opposite Y resistor”.
+of the three resistors”.
+
+
+     𝐑 𝐚 , 𝐑 𝒃 , 𝑹𝒄 𝒂𝒓𝒆 𝒈𝒊𝒗𝒆𝒏,                       𝑹𝟏 , 𝑹𝟐 , 𝑹𝟑 𝒂𝒓𝒆 𝒈𝒊𝒗𝒆𝒏,
+
+               𝐑𝐛𝐑𝐜                                         𝐑 𝟏 𝐑 𝟐 + 𝐑 𝟐𝐑 𝟑 + 𝐑 𝟑 𝐑 𝟏
+     𝑹𝟏 =                                            𝑹𝒂 =
+            𝑹𝒂 + 𝑹𝒃 + 𝑹𝒄                                               𝑹𝟏
+
+               𝐑 𝐜𝐑 𝒂                                       𝐑𝟏𝐑𝟐 + 𝐑𝟐𝐑𝟑 + 𝐑𝟑𝐑𝟏
+     𝑹𝟐 =                                            𝑹𝒃 =
+            𝑹𝒂 + 𝑹𝒃 + 𝑹𝒄                                            𝑹𝟐
+
+               𝐑𝐚𝐑𝒃                                         𝐑𝟏𝐑𝟐 + 𝐑𝟐𝐑𝟑 + 𝐑𝟑𝐑𝟏
+     𝑹𝟑 =                                            𝑹𝒄 =
+            𝑹𝒂 + 𝑹𝒃 + 𝑹𝒄                                            𝑹𝟑                      33
+
+
+
+
+Star-Delta / Delta-star Conversion:
+
+                                  𝑹𝚫 = 𝟑𝑹𝒀
+                                 𝑹𝟏 = 𝑹𝟐 = 𝑹𝟑
+                                 𝑹𝒂 = 𝑹𝒃 = 𝑹𝒄
+
+                                         𝑹𝚫
+                                  𝑹𝒀 =
+                                         𝟑
+
+
+
+
+                                                                                            34
+
+
+
+
+                                                                                                 17
+                                                                                                22-12-2021
+
+
+
+
+ Problem-1.10
+ Convert the Δ network in Fig. to an equivalent Y network
+
+
+
+
+ Problem-1.11
+ Transform the wye network in Fig. to a delta network.
+
+                                                       35
+
+
+
+
+                                                                                                    35
+
+
+
+
+ Problem-1.12
+ Find equivalent resistance (𝐑 𝐞𝐪 ) between the terminals ‘a’ & ‘b’ and assume all resistors values are
+ 1Ω.                             Step-1:                             Step-2:
+
+
+
+
+Step-3:
+                                 Step-4:                            Step-5:
+
+
+
+
+                                                                                                    36
+
+
+
+
+                                                                                                          18
+                                                              22-12-2021
+
+
+
+
+Node voltage analysis of DC resistive circuit:
+Steps to Determine Node Voltages:
+1. Select a node as the reference node.
+    Assign     voltages      (𝑽𝟏 , 𝑽𝟐 , … . 𝑽𝒏−𝟏 ) to   the
+    remaining         nodes.        The   voltages      are
+    referenced        with       respect        to      the
+    nonreference node.
+2. Apply KCL to each of the               nonreference
+    nodes. Use Ohm’s law to express the
+    branch currents in terms of node voltages.
+3. Solve        the      resulting        simultaneous
+    equations to obtain the unknown node
+    voltages.                                                    37
+
+
+
+
+ Problem-1.13
+ Calculate the node voltages in the
+ circuit shown in Fig.
+ Sol:
+
+
+
+
+ Step-1
+ Select a node as the reference node.
+ Assign voltages (𝑽𝟏 , 𝑽𝟐 , … . 𝑽𝒏−𝟏 ) to the
+ remaining       nodes. The voltages are
+ referenced       with     respect        to    the
+ reference node.
+                                                                 38
+
+
+
+
+                                                                      19
+                                                       22-12-2021
+
+
+
+
+Step-2
+Apply KCL to each of the            non-reference
+nodes. Use Ohm’s law to express the branch
+currents in terms of node voltages.
+        KCL to Node-1              KCL to Node-2
+         𝑰 = 𝑰𝟏 + 𝑰𝟐                 𝑰𝟐 = 𝑰𝑳
+   𝟐𝟎 − 𝑽𝟏    𝑽𝟏     𝑽𝟏 − 𝑽𝟐       𝑽𝟏 − 𝑽𝟐    𝑽𝟐
+           =       +                       =
+     𝟏𝒌      𝟐. 𝟐𝒌     𝟏𝒌            𝟏𝒌      𝟒𝟕𝟎
+  𝟏    𝟏   𝟏        𝟏     𝟐𝟎    𝟏        𝟏  𝟏
+     +   +   𝑽𝟏 − ( )𝑽𝟐 =         𝑽𝟏 − ( +    )𝑽 = 𝟎
+𝟐. 𝟐𝒌 𝟏𝒌 𝟏𝒌        𝟏𝒌     𝟏𝒌   𝟏𝒌       𝟏𝒌 𝟒𝟕𝟎 𝟐
+
+
+
+
+                                                          39
+
+
+
+
+Step-3
+Solve the resulting simultaneous equations
+to obtain the unknown node voltages.
+
+               𝟐. 𝟒𝟓𝑽𝟏 − 𝑽𝟐 = 𝟐𝟎
+               𝑽𝟏 − 𝟑. 𝟏𝟐𝟕𝑽𝟐 = 𝟎
+
+
+
+
+                                                          40
+
+
+
+
+                                                               20
+                                                                                   22-12-2021
+
+
+
+
+Nodal Analysis with Voltage Sources:
+“                   is defined as the voltage
+rise from the reference node to the
+corresponding nonreference node”
+Case:1
+❑If a voltage source is connected
+    between the reference node and a
+    non-reference node, we simply set
+    the   voltage     at   the   non-reference
+    node equal to the voltage of the
+    voltage source.
+                                                  Note:
+                                                  •Reference node is ground.
+                                                  •Non-reference nodes are V1, V2 & V3. 41
+
+
+
+
+Nodal Analysis with Voltage Sources:
+Case:2
+❑If the voltage source (dependent or
+    independent) is connected between two
+    nonreference       nodes,        the    two
+    nonreference nodes form a generalized
+    node or supernode; we apply both KCL
+    and   KVL    to    determine     the   node
+    voltages.
+
+
+❑A supernode is formed by enclosing a
+    voltage source connected between two
+    non-reference nodes and any elements
+    connected in parallel with it.
+                                                                                       42
+
+
+
+
+                                                                                             21
+                                                          22-12-2021
+
+
+
+
+Mesh current analysis of DC resistive circuit:
+Steps to Determine Mesh Current:
+
+1. Assign mesh currents (𝒊𝟏 , 𝒊𝟐 , … . 𝒊𝒏−𝟏 )
+    to the n meshes.
+2. Apply KVL to each of the n meshes.
+    Use     Ohm’s       law        to    express    the
+    voltages      in    terms           of   the   mesh
+    currents.
+3. Solve the resulting simultaneous
+    equations        to     obtain           the   mesh
+    currents.
+                                                             43
+
+
+
+
+ Problem-1.14
+ Calculate the mesh currents in
+ the circuit shown in Fig.
+ Sol:
+
+
+
+
+ Step-1
+ Assign             mesh                 currents
+ (𝒊𝟏 , 𝒊𝟐 , … . 𝒊𝒏−𝟏 ) to the n meshes.
+
+
+
+                                                             44
+
+
+
+
+                                                                  22
+                                                                22-12-2021
+
+
+
+
+Step-2
+Apply KVL to each of the          n meshes. Use
+Ohm’s law to express the voltages in terms
+of the mesh currents.
+
+
+
+
+         KVL to loop-1                  KVL to loop-2
+𝟏𝒌 𝑰𝟏 + 𝟐. 𝟐𝒌 𝑰𝟏 − 𝑰𝟐 = 𝟐𝟓   𝟐. 𝟐𝒌 𝑰𝟐 − 𝑰𝟏 + (𝟏𝒌 + 𝟒𝟕𝟎)𝑰𝟐 = 𝟎
+  𝟑. 𝟐𝒌 𝑰𝟏 − 𝟐. 𝟐𝒌 𝑰𝟐 = 𝟐𝟓        𝟐. 𝟐𝒌 𝑰𝟏 − 𝟑. 𝟔𝟕𝒌 𝑰𝟐 = 𝟎
+                                                                   45
+
+
+
+
+Step-3
+Solve the resulting simultaneous equations
+to obtain the mesh currents.
+
+    𝟑. 𝟐𝒌 𝑰𝟏 − 𝟐. 𝟐𝒌 𝑰𝟐 = 𝟐𝟓
+    𝟐. 𝟐𝒌 𝑰𝟏 − 𝟑. 𝟔𝟕𝒌 𝑰𝟐 = 𝟎
+
+
+
+
+                                                                   46
+
+
+
+
+                                                                        23
+                                                       22-12-2021
+
+
+
+
+Mesh Analysis with Current Sources:
+“                            is   defined   as   a
+current through a mesh”
+Case:1
+❑When a current source exists only
+    in one mesh: Consider the circuit
+    in Fig.,
+❑For example, We set                          and
+    write a mesh equation for the
+    other mesh in the usual way; that
+    is,.
+
+                                                          47
+
+
+
+
+Mesh Analysis with Current Sources:
+Case:2
+❑ When a current source exists between two meshes:
+    Consider the circuit in Fig (a),
+❑ For example, We create a supermesh by excluding
+    the current source and any elements connected in
+    series with it, as shown in Fig(b).
+    A supermesh results when two meshes have a
+    current source in common.
+Applying KCL in Fig. (a),
+
+
+                                   ➔1
+Applying KVL to supermesh in Fig. (b),
+
+
+                                       ➔2
+Solving equation 1 & 2,
+                                                          48
+
+
+
+
+                                                               24
+                                                                                                                   22-12-2021
+
+
+
+
+                               1.4. Network Theorems
+
+Superposition Theorem:
+“The voltage across (or current through)
+an element in a linear circuit is the
+algebraic              sum       of       the         voltages
+across (or currents through) that element
+due to each independent source
+acting alone”.
+
+
+Note: Independent sources are voltage or current sources or combination of voltage and current sources                  49
+
+
+
+
+Procedure to find a current (IL) through the load resistance (RL)
+as shown in fig, using Superposition theorem:
+1.   Retain one source at a time in the circuit and
+     replace     all   other   sources     with    their    internal
+     resistances.
+2.   Determine the output (current or voltage) due to the
+     single source acting alone using Voltage or current
+     division / mesh or node analysis methods.
+3.   Retain another source at a time in the circuit and
+     replace     all   other   sources     with    their    internal
+     resistances.
+4.   Determine the output (current or voltage) due to the                               𝑰𝑳 = 𝑰𝟏 + 𝑰𝟐
+     single source acting alone using Voltage or current
+     division / mesh or node analysis methods.
+5.   Find the total contribution by adding algebraically
+     all   the   contributions     due    to    the    independent              Note:
+     sources.                                                                   •Voltage sources should be short-circuited.
+                                                                                •Current sources should be open-circuited.
+                                                                                                                         50
+
+
+
+
+                                                                                                                              25
+                                                                         22-12-2021
+
+
+
+
+  Problem-1.15
+  Find IL in the circuit of Fig. using
+  superposition.
+  Sol:
+
+
+
+  Step-1
+  ❑Retain 𝑽𝟏             source at a time in the
+    circuit and replace all other sources
+    with their internal resistances.
+
+
+  Note:
+  • Voltage sources should be short-circuited.
+  • Current sources should be open-circuited.
+                                                                            51
+
+
+
+
+Step-2
+Determine the output current 𝑰𝟏 due
+to the 𝑽𝟏 source acting alone.
+              To calculate current through 1kΩ resistor
+The equivalent resistor is calculated as,
+
+                               𝟒𝟕𝟎 × 𝟏𝒌
+                𝑹𝒆𝒒 = 𝟐𝟐𝟎 +             = 𝟓𝟑𝟗. 𝟕𝟑𝛀
+                               𝟒𝟕𝟎 + 𝟏𝒌
+The total current (I) flowing through the circuit as shown in Fig. is,
+
+                               𝟏𝟐
+                        𝑰=           = 𝟐𝟐. 𝟐𝒎𝑨
+                             𝟓𝟑𝟗. 𝟕𝟑
+Using current division rule,
+
+                          𝟒𝟕𝟎
+                 𝑰𝟏 =            × 𝟐𝟐. 𝟐𝒎 =                                 52
+                        𝟒𝟕𝟎 + 𝟏𝒌
+
+
+
+
+                                                                                 26
+                                                                         22-12-2021
+
+
+
+
+Step-3
+❑Retain 𝑽𝟐                source at a time in the
+  circuit and replace all other sources
+  with their internal resistances.
+
+
+Note:
+• Voltage sources should be short-circuited.
+• Current sources should be open-circuited.
+
+
+                                                                            53
+
+
+
+
+Step-4
+Determine the output current 𝑰𝟐 due to
+the 𝑽𝟐 source acting alone.
+                To calculate current through 1kΩ resistor
+The equivalent resistor is calculated as,
+
+                                  𝟐𝟐𝟎 × 𝟏𝒌
+                   𝑹𝒆𝒒 = 𝟒𝟕𝟎 +             = 𝟔𝟓𝟎. 𝟑𝟑𝛀
+                                  𝟐𝟐𝟎 + 𝟏𝒌
+The total current (I) flowing through the circuit as shown in Fig. is,
+
+                                 𝟏𝟎
+                          𝑰=           = 𝟏𝟓. 𝟒𝒎𝑨
+                               𝟔𝟓𝟎. 𝟑𝟑
+Using current division rule,
+
+                            𝟐𝟐𝟎
+                   𝑰𝟐 =            × 𝟏𝟓. 𝟒𝒎 =                               54
+                          𝟐𝟐𝟎 + 𝟏𝒌
+
+
+
+
+                                                                                 27
+                                                                                               22-12-2021
+
+
+
+
+Step-5
+Find     the     total    contribution          by
+adding         algebraically         all       the
+contributions            due        to         the
+independent sources.
+
+
+ The total current (IL) flowing through 𝟏𝒌𝛀 load as shown in Fig. is,
+                         𝑰𝑳 = 𝑰𝟏 + 𝑰𝟐 =
+
+                                                                                                   55
+
+
+
+
+Limitations of superposition theorem:
+❑Superposition theorem doesn’t work for power calculation. Because power
+ calculations involve either the product of voltage and current, the square of
+ current or the square of the voltage, they are not linear operations.
+❑Superposition theorem can not be applied for non linear circuit (Diodes or
+ Transistors).
+
+
+                                           𝑷𝑾𝟏 = 𝟏𝟐 𝒘𝒂𝒕𝒕𝒔
+                                           𝑷𝑾𝟐 = 𝟏𝟐 𝒘𝒂𝒕𝒕𝒔
+                                           Then, According to superposition theorem, Total power
+                                           consumed by 𝟏𝟐 𝜴
+                                           𝑷𝑾 = 𝟐𝟒 𝒘𝒂𝒕𝒕𝒔
+
+                                                                                                   56
+
+
+
+
+                                                                                                        28
+                                                                                                         22-12-2021
+
+
+
+
+Thevenin’s Theorem:
+
+
+
+
+“A linear two-terminal circuit can be replaced by an equivalent circuit
+consisting of a voltage source (VTh) in series with a resistor (RTh).”
+
+where,
+VTh = Voc ➔ Open circuit voltage at terminals
+RTh ➔ Equivalent resistant of network
+                                                                                                              57
+
+
+
+
+Procedure to find a current (IL) through the load resistance (RL)
+as shown in fig, using Thevenin’s theorem:
+1.   Disconnect the load resistance (RL) from the
+     circuit, as indicated in fig.
+2.   Calculate the open-circuit voltage (VTh) at the load
+     terminals using mesh-current (or) node-voltage
+     method.
+3.   Redraw the circuit with each practical source
+     replaced by its internal resistance.
+4.   Calculate   the      equivalent   resistance      (RTh)   that                            𝑽𝒕𝒉
+                                                                                   𝑰𝑳 =
+     would exist between the load terminals.                                                𝑹𝒕𝒉 +𝑹𝑳
+5.   Place   (RTh)   in   series   with   (VTh)   to   form    the               𝑽𝑳 = 𝑰𝑳 × 𝑹𝑳
+     Thevenin’s equivalent circuit.
+6.   Reconnect the original load to the Thevenin                                𝑷𝑳 = 𝑰𝟐𝑳 × 𝑹𝑳
+     voltage circuit. The load’s voltage, current and                 Note in step-3:
+                                                                      •Voltage sources should be short-circuited.
+     power may be calculated by                                       •Current sources should be open-circuited.
+                                                                                                               58
+
+
+
+
+                                                                                                                    29
+                                                                          22-12-2021
+
+
+
+
+  Problem-1.16
+  Find the                 Thevenin            equivalent
+  circuit for the circuit shown in
+  Fig., at load terminals. Then find
+  IL
+  Sol:
+
+
+
+ Step-1
+ ❑Disconnect                        the              load
+   resistance               (RL)         from         the
+   circuit, as indicated in fig.
+                                                                             59
+
+
+
+
+Step-2
+Calculate the open-circuit voltage (VTh) at
+the load terminals using mesh-current (or)
+node-voltage method.
+
+                Method-1                             Method-2
+Apply voltage division method in Fig.,   Applying mesh current in Fig.,
+
+                 (𝑹𝟐 + 𝑹𝟑 )                   𝑽 = 𝑰(𝑹𝟏 + 𝑹𝟐 + 𝑹𝟑 )
+       𝑽𝒕𝒉 =                   ×𝑽
+               (𝑹𝟏 + 𝑹𝟐 + 𝑹𝟑 )             𝟐𝟎 = 𝑰(𝟏𝒌 + 𝟑. 𝟑𝒌 + 𝟐. 𝟕𝒌)
+
+             (𝟑. 𝟑𝒌 + 𝟐. 𝟕𝒌)                         𝟐𝟎
+  𝑽𝒕𝒉 =                        × 𝟐𝟎             𝑰=      = 𝟐. 𝟗𝒎𝑨
+          (𝟑. 𝟑𝒌 + 𝟐. 𝟕𝒌 + 𝟏𝒌)                       𝟕𝒌
+                                               𝟐𝟎 = 𝑰 𝟏𝒌 + 𝑽𝒕𝒉
+
+
+                                                                             60
+
+
+
+
+                                                                                  30
+                                                 22-12-2021
+
+
+
+
+Step-3
+Redraw the circuit with each
+practical source replaced by its
+internal resistance.
+
+
+Note:
+• Voltage   sources     should   be     short-
+ circuited.
+• Current     sources   should    be    open-
+ circuited.
+                                                    61
+
+
+
+
+Step-4
+Calculate          the       equivalent
+resistance        (RTh)    that        would
+exist       between         the         load
+terminals.
+                𝑹𝟏 × (𝑹𝟐 + 𝑹𝟑 )
+        𝑹𝒕𝒉 =
+                 𝑹𝟏 + 𝑹𝟐 + 𝑹𝟑
+
+                     𝟏𝒌 × 𝟔𝒌
+        𝑹𝒕𝒉 =                      =
+                𝟑. 𝟑𝒌 + 𝟐. 𝟕𝒌 + 𝟏𝒌                  62
+
+
+
+
+                                                         31
+                                         22-12-2021
+
+
+
+
+Step-5
+Place (RTh) in series with (VTh)
+to   form             the   Thevenin’s
+equivalent circuit.
+
+
+
+
+                                            63
+
+
+
+
+Step-6
+Reconnect the original load to
+the Thevenin voltage circuit.
+The load’s voltage, current and
+power may be calculated by
+         𝑽𝒕𝒉
+ 𝑰𝑳 =             =
+        𝑹𝒕𝒉 +𝑹𝑳
+
+  𝑽𝑳 = 𝑰𝑳 × 𝑹𝑳 =
+𝑷𝑳 = 𝑰𝟐𝑳 × 𝑹𝑳 =                             64
+
+
+
+
+                                                 32
+                                                                                                22-12-2021
+
+
+
+
+Norton’s Theorem:
+
+
+
+
+“A linear two-terminal circuit can be replaced by an equivalent circuit
+consisting of a current source (IN) in parallel with a resistor (RN).”
+
+Where,
+IN=Isc➔ Short circuit current through the terminals
+RN ➔ Equivalent resistant of network
+
+                                                                                                     65
+
+
+
+
+Procedure to find a current (IL) through the load resistance (RL)
+as shown in fig, using Norton’s theorem:
+1.   Disconnect the load resistance (RL) from the
+     circuit, as indicated in fig.
+2.   Calculate the short-circuit current (IN) at the load
+     terminals using mesh-current (or) node-voltage
+     method.
+3.   Redraw the circuit with each practical source
+     replaced by its internal resistance.                                       𝑹𝑵
+4.   Calculate the equivalent resistance (RN) that would            𝑰𝑳 =                × 𝑰𝑵
+                                                                             𝑹𝒕𝒉 +𝑹𝑳
+     exist between the load terminals.
+5.   Place (RN) in parallel with (IN) to form the Norton’s            𝑽𝑳 = 𝑰𝑳 × 𝑹𝑳
+     equivalent circuit.
+                                                                      𝑷𝑳 = 𝑰𝟐𝑳 × 𝑹𝑳
+6.   Reconnect the original load to the Norton current
+     circuit. The load’s voltage, current and power may      Note in step-3:
+                                                             •Voltage sources should be short-circuited.
+     be calculated by                                        •Current sources should be open-circuited.
+                                                                                                      66
+
+
+
+
+                                                                                                           33
+                                                                                           22-12-2021
+
+
+
+
+ Problem-1.17
+ Find       the      Norton         equivalent
+ circuit for the circuit shown in
+ Fig., at load terminals. Then find
+ IL
+ Sol:
+
+
+
+ Step-1
+ ❑Disconnect the load resistance
+   (RL)      from       the        circuit,       as
+   indicated in fig.
+                                                                                              67
+
+
+
+
+Step-2
+Calculate the short-circuit current (IN) at
+the load terminals using mesh-current
+(or) node-voltage method.
+
+
+
+
+                                     Mesh current Method
+Loop-1, 𝑽 = 𝑹𝟏 𝑰𝟏 + 𝑹𝟑 𝑰𝟏 − 𝑰𝟐 ➔ 𝟏𝟎 = 𝟏𝟎𝒌𝑰𝟏 + 𝟒. 𝟕𝒌 𝑰𝟏 − 𝑰𝟐 ➔ 𝟏𝟒. 𝟕𝒌𝑰𝟏 − 𝟒. 𝟕𝒌𝑰𝟐 = 𝟏𝟎
+Loop-2, 𝟎 = 𝑹𝟐 𝑰𝟐 + 𝑹𝟑 𝑰𝟐 − 𝑰𝟏 ➔    𝟎 = 𝟖𝒌𝑰𝟐 + 𝟒. 𝟕𝒌 𝑰𝟐 − 𝑰𝟏   ➔ −𝟒. 𝟕𝒌𝑰𝟏 + 𝟏𝟐. 𝟕𝒌𝑰𝟐 = 𝟎
+                               𝑰𝟏 = 𝟎. 𝟕𝟕𝒎𝑨 ;                                                 68
+
+
+
+
+                                                                                                   34
+                                                    22-12-2021
+
+
+
+
+Step-3
+Redraw the circuit with each
+practical source replaced by its
+internal resistance.
+
+
+Note:
+• Voltage   sources      should    be      short-
+ circuited.
+• Current     sources    should      be    open-
+ circuited.
+                                                       69
+
+
+
+
+Step-4
+Calculate          the        equivalent
+resistance        (RN)      that          would
+exist       between           the          load
+terminals.
+                        (𝑹𝟏 × 𝑹𝟑 )
+        𝑹𝑵 = 𝐑 𝟐 +
+                         𝑹𝟏 + 𝑹𝟑
+
+                        (𝟏𝟎𝒌 × 𝟒. 𝟕𝒌)
+        𝑹𝑵 = 𝟖𝐤 +                     =
+                         𝟏𝟎𝒌 + 𝟒. 𝟕𝒌                   70
+
+
+
+
+                                                            35
+                                                 22-12-2021
+
+
+
+
+Step-5
+Place (RN) in parallel with (IN)
+to       form         the       Norton’s
+equivalent circuit.
+
+
+
+
+                                                    71
+
+
+
+
+Step-6
+Reconnect the original load to
+the Norton current circuit. The
+                                             8
+load’s      voltage,      current      and
+power may be calculated by
+        𝑹𝑵              𝟏𝟏.𝟐𝒌
+𝑰𝑳 =          × 𝑰𝑵 =            × 𝟎. 𝟐𝟖𝒎 =
+       𝑹𝑵 +𝑹𝑳        𝟏𝟏.𝟐𝒌+𝟓.𝟔𝒌
+
+𝑽𝑳 = 𝑰𝑳 × 𝑹𝑳 =
+𝑷𝑳 = 𝑰𝟐𝑳 × 𝑹𝑳 =
+                                                    72
+
+
+
+
+                                                         36
+                                                                                       22-12-2021
+
+
+
+
+Maximum Power Transfer Theorem:                                                     RL = RTh
+
+
+
+
+Maximum power is transfe

@@ -1,0 +1,1926 @@
+                                                                 05-02-2022
+
+
+
+
+                          U20EST117
+    BASIC ELECTRICAL AND
+  ELECTRONICS ENGINEERING
+
+                             Presented by
+
+
+                        Dr. M. Jayachandran
+                             Dept. of EEE
+                         SMVEC, Puducherry
+
+
+
+
+                               UNIT-3
+ ELECTRICAL SAFETY AND ELECTRICAL
+             MACHINES
+3.1 Layout of Electrical Power Systems   3.9 Elementary Concept of
+3.2 Safety Devices and Systems           Rotating Machines
+3.3 Types of Wires & Cables              • Left hand rule
+3.4 Sensors and its types                • Right hand rule
+3.5 Wiring                               3.10 DC Machines
+• Types of Domestic wiring               • DC Motor
+3.6 Earthing                             • DC Generator
+3.7 Laws of Electromagnetic Induction    3.11 AC Machines
+3.8 Transformer                          • 3Φ/1Φ Induction machine,
+• Two winding Transformer                • 3Φ Sync machine
+• Auto Transformer
+
+
+
+
+                                                                         1
+                                                                                     05-02-2022
+
+
+
+
+             3.1 Layout of Electrical Power Systems
+
+
+
+
+•   Generation
+•   Transmission
+•   Distribution
+•   Loads
+
+
+               Fig: Single line representation of power system (One line diagram).
+                                                                                        3
+
+
+
+
+                   3.2 Safety Devices and Systems
+
+Switch Fuse Unit (SFU):
+Simplest form of protection element is “Fuse”.
+The rewireable SFU are used for distributing
+power and protecting electrical devices and
+cables from damage due to fluctuations.
+
+
+
+
+                                                                                        4
+
+
+
+
+                                                                                             2
+                                                                                                   05-02-2022
+
+
+
+
+Circuit Breaker
+
+A CB (Circuit breaker) is a device which:
+▪ Control     (make   or   break)      a      circuit
+ manually or by remote control under
+ normal and fault conditions.
+▪ Break a circuit automatically under
+ fault conditions (like over current, Short
+ circuit, etc).
+
+
+
+                                                                                                      5
+
+
+
+
+Components of LT Switch Gear Products:
+1. Air Circuit Breakers (ACB)                         “Switch       gear      is     used    for    the
+
+2. Moulded Case Circuit Breakers (MCCB)               control       of   electricity        and     the
+                                                      protection of electrical devices.
+3. Miniature circuit breakers (MCB)
+                                                      Switchgear of all sizes and types
+4. Earth leakage circuit breakers (ELCB)
+                                                      get used for switching, controlling
+5. Starters
+                                                      and     for    carrying        the    different
+6. Contactors                                         electrical loads”.
+7. Relays
+                                      It can differentiated based on the voltage of operation,
+8. Switch disconnector fuses
+                                      ▪High tension or high voltage (above 3.3 KV)
+9. Timers                             ▪Medium tension or medium voltage, (between 1 KV and 3.3 KV)
+10.Actuators and indicators           ▪Low tension or low voltage (less than 1 KV)
+
+11.Meters
+12.Capacitors                                                                                         6
+
+
+
+
+                                                                                                           3
+                                                                 05-02-2022
+
+
+
+
+1. Air Circuit Breakers (ACB):
+▪ A circuit breaker carry normal current continuously
+  (rated current), Under abnormal current (more than rated
+  current), this can break the electrical circuit. (eg:
+  overload, fault and short).
+▪ Air circuit breakers are breakers where the arc
+  quenching is done in air.
+▪ Used in low tension applications (Irating up to 6500A).
+2. Moulded Case Circuit Breakers (MCCB):
+▪ It can give protection through thermal-magnetic, static
+  or microprocessor based releases. They can have
+  communication capabilities and can be networked with
+  other circuit breakers and meters.
+▪ MCCB are breakers where the arc quenching is done in
+  moulded chamber.
+▪ (Irating up to 200A; Breaking capacity 200kA).                    7
+
+
+
+
+3. Miniature circuit breakers (MCB):
+
+▪ A MCBs are used for protection of both industrial
+ and domestic circuits. They are miniature forms of
+ MCCBs.
+4. Earth leakage circuit breakers (ELCB) :
+
+▪ Earth    leakage     circuit    breakers   protect   against
+ leakage currents that flow into the earth. These
+ currents can cause electrical shocks to operating
+ personnel.
+
+
+
+
+                                                                    8
+
+
+
+
+                                                                         4
+                                                                     05-02-2022
+
+
+
+
+                                                                        9
+
+
+
+
+5. Starters:
+
+▪ Starters are used to switch on and switch off electrical motors.
+
+
+
+
+                                                                        10
+
+
+
+
+                                                                             5
+                                                                   05-02-2022
+
+
+
+
+6. Contactors:
+
+▪ Contactors are switching devices. They have a moving magnet, which
+ gets magnetized, whenever the coil of the contactor gets energized.
+
+
+
+
+                                                                       11
+
+
+
+
+7. Relays:
+
+▪ Relays are the devices that sense the faults in the electrical circuit
+ and send the tripping impulse to the switching device.
+▪ A release sends a mechanical impulse for tripping, as different from a
+ relay that sends electrical signal.
+
+
+
+
+                                                                       12
+
+
+
+
+                                                                            6
+                                                                     05-02-2022
+
+
+
+
+8. Switch disconnector fuses :
+
+▪ These devices are used for switching applications and for protection
+ against short circuit. The protection is offered by the fuses. The fuses
+ let nominal current flow through them, and rupture as soon as the
+ current rises to dangerous levels.
+
+
+
+
+                                                                        13
+
+
+
+
+9. Timers:
+
+▪ Timers are used to measure time interval that has elapsed. As an
+ example, in a star-delta starter, the switch from star to delta has to be
+ after the motor current has reached steady state value.
+
+
+
+
+                                                                        14
+
+
+
+
+                                                                             7
+                                                                    05-02-2022
+
+
+
+
+10. Actuators and indicators:
+
+▪ An actuator is a component of a machine that is responsible for
+ moving and controlling a mechanism or system, for example by
+ opening a valve. In simple terms, it is a "mover". An actuator requires
+ a control signal and a source of energy. They are available in many
+ types and colours based on the application.
+▪ Indicators are used to give display of the health of a device or an
+ electrical circuit.
+
+
+
+
+                                                                       15
+
+
+
+
+11. Meters:
+
+▪ Analog and digital meters are used for indicating electrical parameters
+ like current, voltage, power factor, frequency etc. Their size, shape,
+ type, accuracy get determined by the application for which they have
+ to be used.
+
+
+
+
+                                                                       16
+
+
+
+
+                                                                            8
+                                                                                         05-02-2022
+
+
+
+
+12. Capacitors:
+
+▪ Capacitors are the most common device used for improvement of
+ power factor. They have two conductors separated by an insulator.
+ Capacitors       are   used      for    high      voltage   as      well   as   low   voltage
+ applications. Capacitors are available in many types of constructions
+ depending on the desired usage.
+
+
+
+
+                                                                                            17
+
+
+
+
+Summary of Switchgear products
+1. Power gear Products                             4. Energy metering and protection
+   ▪ Air circuit breakers                             products
+   ▪ Moulded case circuit breakers                    ▪ Meters
+   ▪ Switch-disconnector fuses                        ▪ Relays
+2. Control gear Products                           5. Reactive power management
+   ▪ Contactors                                       products
+   ▪ Starters                                         ▪ Capacitors
+   ▪ Timers and other panel accessories               ▪ Harmonic filters
+3. Distribution products for 240 V
+    segment
+   ▪ Miniature circuit breakers
+   ▪ Earth   leakage    and   other     residual
+     current circuit breakers
+                                                                                            18
+
+
+
+
+                                                                                                 9
+                                                                                                 05-02-2022
+
+
+
+
+                           3.3 Types of Wires & Cables
+“Wire is a single electrical conductor, whereas a cable is a group of wires swathed in sheathing that
+ensures a smooth electricity supply”.
+❑ Size of Wires – Each application requires a certain wire size for installation, and the right size for
+ a specific application is determined by the wire gauge. Sizing of wire is done by the American
+ wire gauge system. Common wire sizes are 10, 12 and 14 – a higher number means a smaller wire
+ size, and affects the amount of power it can carry. For example, a low-voltage lamp cord with 10
+ Amps will require 18-gauge wire, while service panels or subpanels with 100 Amps will require 2-
+ gauge wire.
+❑ Wire Lettering – The letters THHN, THWN, THW and XHHN represent the main insulation types of
+ individual wires. These letters depict the following NEC requirements:.
+   ▪ T – Thermoplastic insulation
+   ▪ H – Heat resistance
+   ▪ HH – High heat resistance (up to 194°F)
+   ▪ W – Suitable for wet locations
+   ▪ N – Nylon coating, resistant to damage by oil or gas
+                                                                                                     19
+   ▪ X – Synthetic polymer that is flame-resistant
+
+
+
+
+1. Triplex Wires :
+▪ Triplex wires are usually used in overhead single-
+  phase service drop conductors, between the
+  power pole and weather heads.
+▪ They are composed of two insulated aluminum
+  wires (hot legs) wrapped with a third bare or
+  uninsulated wire which is used as a common
+  neutral.
+▪ If a circuit is connected between the two hot legs,
+  the circuit voltage is 240 volts. If a circuit is
+  connected between the neutral and either hot leg
+  of the service, the circuit voltage will be 120
+  volts.
+▪ The neutral is usually of a smaller gauge and
+  grounded at both the electric meter and the
+  transformer.
+                                                                                                     20
+
+
+
+
+                                                                                                           10
+                                          05-02-2022
+
+
+
+
+2. Main Feeder Wires :
+
+❑Main power feeder wires are the wires
+ that connect the service weather head
+ to the house.
+❑They’re made with stranded or solid
+ THHN wire and the cable installed is
+ 25% more than the load required.
+
+
+
+
+                                             21
+
+
+
+
+3. Panel Feed Wires :
+
+❑Panel feed cables are generally black
+ insulated THHN wire.
+❑These are used to power the main
+ junction box and the circuit breaker
+ panels.
+❑Just like main power feeder wires, the
+ cables should be rated for 25% more
+ than the actual load.
+
+
+                                             22
+
+
+
+
+                                                  11
+                                                                              05-02-2022
+
+
+
+
+4. Non-Metallic Sheathed Wires :
+
+❑Non-metallic sheath wire, or Romex, is
+ used      in    most      homes    and    has    2-3
+ conductors, each with plastic insulation,
+ and a bare ground wire.
+❑The individual wires are covered with                       NM 14/3 Romex
+ another layer of non-metallic sheathing.
+❑Since it’s relatively cheaper and available
+ in ratings for 15, 20 and 20 amps, this
+ type is preferred for in-house wiring.
+
+
+                                                                                     23
+
+
+
+
+5. Single Strand Wires :
+
+❑Single strand wire also uses THHN
+ wire, though there are other variants.
+❑Each wire is separate and multiple
+ wires can be drawn together through a
+ pipe easily.
+❑Single         strand     wires   are    the    most   Single Core / Single Stand
+                                                        Breadboard Hook Up Wire
+ popular choice for layouts that use
+ pipes to contain wires.
+
+
+                                                                                     24
+
+
+
+
+                                                                                          12
+                                                                 05-02-2022
+
+
+
+
+Types of Cables
+1. Non-Metallic Sheathed Cable (NM Cable):
+
+❑These cables have a flexible plastic jacket with two to four
+ wires that are commonly used for indoor residential cabling
+ and special varieties are for underground and outdoor cabling.
+
+
+
+
+                                                                    25
+
+
+
+
+2. Underground Feeder Cable (UF Cable)
+
+❑The wires in such cables are grouped together and embedded
+ in the flexible material. These are useful for outdoor lighting
+ and in-ground application.
+
+
+
+
+                10/3 UF-B Wire
+ UF-B is an underground feeder and branch circuit wiring cable      26
+
+
+
+
+                                                                         13
+                                                             05-02-2022
+
+
+
+
+3. Metallic Sheathed Cable (BX cable)
+
+❑There are three stranded copper wires insulated with cross-
+ linked Polyethylene and PVC sheathing. These cables are used
+ for outdoor application and high-stress installation.
+
+
+
+
+                                                                27
+
+
+
+
+4. Multi-Conductor Cable (MC Cable)
+
+❑More than one conductor that is insulated individually. The
+ outer insulation gives extra security. The different varieties of
+ MC cables are used in homes and music industries. For
+ example, the audio multicore ‘snake cable’.
+
+
+
+
+                                                                28
+
+
+
+
+                                                                     14
+                                                                05-02-2022
+
+
+
+
+5. Coaxial Cable (Heliax cable)
+
+❑A tubular insulating layer with a tubular conducting shield protects
+ the inner conductor of the cable. As the two inner sheaths share
+ the same geometrical axis, the name coaxial is justified. It is used
+ for carrying television signals and connecting video equipment.
+
+
+
+
+                                                                   29
+
+
+
+
+6. Paired Cable
+
+❑There are two individually insulated conductors, which are
+ used in DC or low frequency AC applications.
+
+
+
+
+                                                                   30
+
+
+
+
+                                                                        15
+                                                           05-02-2022
+
+
+
+
+7. Twisted Pair Cable
+
+❑The inner insulated wires in TPC are twisted or intertwined;
+ otherwise, it is same as paired cable.
+
+
+
+
+                                                              31
+
+
+
+
+8. Unshielded Twisted Pair Cable (UTP)
+
+❑UTP cable consists of two wires twisted together with solid
+ copper cores and not insulated individually. These are often
+ used in telephones, security cameras and data networks.
+
+
+
+
+CAT-6 Network Cable Unshielded 305m
+                                                              32
+
+
+
+
+                                                                   16
+                                                                   05-02-2022
+
+
+
+
+9. Ribbon Cable
+
+❑It has various conducting wires running parallel to each other
+ on a flat plane. Ribbon cables are applicable for low voltage
+ applications such as in computers and its peripherals.
+
+
+
+
+                                                                        33
+
+
+
+
+10. Direct Buried Cable (DB cable)
+
+❑It either is a specially designed coaxial cable or bundled fiber optic
+ cables, which have many layers of banded metal sheathing, heavy
+ rubber coverings, and shock absorbing gel waterproof wrapped
+ thread-fortified tape. This is considered a popular choice for
+ transmission and communication requirements.
+
+
+
+                                                                RS-232 Serial
+                                                                Male Adapter
+
+
+
+
+                                                                        34
+
+
+
+
+                                                                                17
+                                                                 05-02-2022
+
+
+
+
+11. Twin Lead Cable (TL cable)
+
+❑The TL cable consists of two wires that are generally used in
+ the transmission of a signal from the antenna to receivers like
+ TV and radio.
+
+
+
+
+                                                                       35
+
+
+
+
+                                 3.4 Sensors
+  Sensor/Detectors/Transducers:
+
+
+  “A device that detects the changes in electrical or physical
+  or other quantities and thereby produces an output as an
+  acknowledgement of change in the quantity is called as a
+  Sensor”.
+
+  Generally, this sensor output will be in the form of electrical or
+  optical signal.
+
+                                                                       36
+
+
+
+
+                                                                            18
+                                                                             05-02-2022
+
+
+
+
+Types of Sensors:
+1. Sensors in Electronics                  2. Sensors in Robotics
+   ▪ Temperature Sensor (Temp,               ▪ Acceleration Sensor (speed)
+    humidity)
+                                             ▪ Sound Sensor (Mic)
+   ▪ IR Sensor (TV remote)
+                                             ▪ Light Sensor (PV)
+   ▪ Ultrasonic Sensor (echo, distance)
+                                             ▪ Photo Resistor (LDR)
+   ▪ Touch Sensor (Capacitive type)
+                                             ▪ Tactile Sensors
+   ▪ Proximity Sensors (object)
+                                             (lamps   those   dim   or   enhance
+   ▪ Pressure Sensor (force or pressure)
+                                             brightness by touching)
+   ▪ Level Sensors (water level)
+   ▪ Smoke and Gas Sensors
+   (LPG, Propane, Butane, Methane (CH4))                                        37
+
+
+
+
+Types of Sensors:
+
+3. Sensors in Building                     4. Sensors in Remote Sensing
+   ▪ Temperature sensors                     ▪ Active Sensor
+   ▪ Motion Detection Sensors                ▪ Passive Sensor
+   ▪ Electric voltage and current
+    sensors
+   ▪ Smoke      and    fire   detection
+    sensors
+   ▪ Camera sensors
+   ▪ Gas sensors
+                                                                                38
+
+
+
+
+                                                                                     19
+                                                               05-02-2022
+
+
+
+
+                         3.5 Wiring
+
+ “Electrical Wiring is a process of connecting cables and
+ wires to the related devices such as fuse, switches, sockets,
+ lights, fans etc to the main distribution board is a specific
+ structure to the utility pole for continues power supply.”.
+
+
+
+
+                                                                  39
+
+
+
+
+Types of Domestic Wiring
+                                     Cleat wiring
+
+
+                                       Battern
+
+
+                                     Casing and
+                   WIRING          Capping wiring
+
+                                    Lead sheathed
+                                      (or) Metal
+                                   sheathed wiring
+
+
+                                   Conduit wiring
+                                                                  40
+
+
+
+
+                                                                       20
+                                                             05-02-2022
+
+
+
+
+1. Cleat wiring:
+
+❑This system of wiring comprise of ordinary
+  VIR or PVC insulated wires (occasionally,
+  sheathed and weather proof cable) braided
+  and compounded held on walls or ceilings by
+  means of porcelain cleats, Plastic or wood.
+❑Cleat wiring system is a temporary wiring
+  system therefore it is not suitable for
+  domestic premises. The use of cleat wiring
+  system is over nowadays.
+
+
+
+
+                                                                41
+
+
+
+
+2. Casing and Capping wiring:
+
+
+❑Casing and Capping wiring system was famous
+  wiring system in the past but, it is considered
+  obsolete this days because of Conduit and
+  sheathed wiring system. The cables used in
+  this kind of wiring were either VIR or PVC or
+  any other approved insulated cables.
+❑The cables were carried through the wooden
+  casing enclosures. The casing is made up of a
+  strip of wood with parallel grooves cut length
+  wise so as to accommodate VIR cables. The
+  grooves          were    made   to   separate   opposite
+  polarity. the capping (also made of wood) used
+  to cover the wires and cables installed and
+  fitted in the casing.
+                                                                42
+
+
+
+
+                                                                     21
+                                                              05-02-2022
+
+
+
+
+3. Batten Wiring:
+
+❑Single core or double core or three core TRS
+  cables with a circular oval shape cables are used
+  in this kind of wiring. Mostly, single core cables
+  are preferred. TRS cables are chemical proof,
+  water      proof,   steam   proof,   but   are   slightly
+  affected by lubricating oil. The TRS cables are
+  run on well seasoned and straight teak wood
+  batten with at least a thickness of 10mm.
+
+
+❑The cables are held on the wooden batten by
+  means of tinned brass link clips (buckle clip)
+  already fixed on the batten with brass pins and
+  spaced at an interval of 10cm for horizontal runs
+  and 15cm for vertical runs.
+
+                                                                 43
+
+
+
+
+4. Lead Sheathed Wiring:
+
+❑The type of wiring employs conductors that are
+  insulated with VIR and covered with an outer
+  sheath of lead aluminum alloy containing about
+  95% of lead. The metal sheath given protection to
+  cables from mechanical damage, moisture and
+  atmospheric corrosion.
+
+
+❑The whole lead covering is made electrically
+  continuous and is connected to earth at the point
+  of entry to protect against electrolytic action due
+  to leaking current and to provide safety in case
+  the sheath becomes alive. The cables are run on
+  wooden batten and fixed by means of link clips
+  just as in TRS wiring.                                         44
+
+
+
+
+                                                                      22
+                                                             05-02-2022
+
+
+
+
+5. Conduit Wiring:
+
+
+
+
+                                                                45
+
+
+
+
+5. Conduit Wiring:
+
+❑Surface Conduit Wiring: When GI or PVC conduits are
+ installed on walls or roof, it is known as surface conduit
+ wiring. The conduits are attached to the walls with a 2-hole
+ strap and base clip at regular distances. Electrical wires are
+ laid inside the conduits.
+❑Concealed Conduit Wiring: The electrical wiring system
+ inside wall, roof or floor with the help of plastic or metallic
+ piping is called concealed conduit wiring. obliviously, It is
+ the most popular, beautiful, stronger and common electrical
+ wiring system nowadays.                                        46
+
+
+
+
+                                                                     23
+                                                                05-02-2022
+
+
+
+
+                            3.6 Earthing
+  “Earthing is the method of transmitting the instant electricity
+  discharge directly to the ground through low resistance wires or
+  electrical cables”.
+
+
+  ▪ It refers to the connection of non-current carrying part of the
+   equipment     (or) neutral supply system to the ground, which
+   represents the zero potential.
+  ▪ The leakage current chooses the simple low resistance path to
+   flow.
+  ▪ Thus, the electrical system and equipment are protected from
+   damage.                                                            47
+
+
+
+
+Necessity of Earthing
+
+1. To protect the operating personnel from danger of shock in
+  case they come in contact with the charged frame due to
+  defective insulation.
+2. To maintain line voltage constant under unbalanced load
+  condition.
+3. To protect equipments.
+4. To protect large building and all machines fed from overhead
+  lines against lighting.
+                                                                      48
+
+
+
+
+                                                                           24
+                                                                 05-02-2022
+
+
+
+
+Difference between Earthing and Grounding
+
+
+
+
+                                                                    49
+
+
+
+
+Difference between Earthing and Grounding
+             Earthing                           Grounding
+
+ This method protects the human This method protects the entire
+ being from electrocuted.       power system from malfunctioning.
+
+                                     Grounding does not possess any
+ Earthing contains zero potential.
+                                     zero potential.
+ The earth wire used is green in The wire used for grounding is
+ colour.                         black in colour
+                                     Grounding is primarily used for
+ Earthing is primarily used     to
+                                     unbalancing when the electric
+ avoid shocking the humans.
+                                     system overloads.
+ Earthing is located under the It is located between the neutral of
+ earth pit, between the equipment the equipment being used and the
+ body underground.                ground.                         50
+
+
+
+
+                                                                         25
+                                                                                               05-02-2022
+
+
+
+
+Types of Earthing                          Plate Earthing
+
+
+
+                                           Pipe Earthing
+
+
+
+               EARTHING                     Rod Earthing
+
+
+
+                                           Strip Earthing
+
+
+                                         Earthing through
+                                           Water Mains
+                                                                                                    51
+
+
+
+
+              3.7 Laws of Electromagnetic Induction
+
+A current carrying conductor carries a current,
+produces a magnetic field.
+                  Magnetic 𝒇𝒊𝒆𝒍𝒅𝒔: 𝑩 𝒐𝒓 𝑯
+
+
+A magnetic field is characterized by
+ 𝑩=𝑴𝒂𝒈𝒏𝒆𝒕𝒊𝒄 𝒇𝒍𝒖𝒙 𝒅𝒆𝒏𝒔𝒊𝒕𝒚
+ 𝑯=𝑴𝒂𝒈𝒏𝒆𝒕𝒊𝒄 𝒇𝒊𝒆𝒍𝒅 𝒊𝒏𝒕𝒆𝒏𝒔𝒊𝒕𝒚
+
+
+These two vectors are connected by a rather simple relation
+
+                                                        𝝁𝟎 = 𝒑𝒆𝒓𝒎𝒊𝒂𝒃𝒊𝒍𝒊𝒕𝒚 𝒊𝒏 𝒂𝒊𝒓 = 𝟒𝝅 × 𝟏𝟎−𝟕 𝑯/𝒎
+                                                        𝝁𝒓 = 𝒓𝒆𝒍𝒂𝒕𝒊𝒗𝒆 𝒑𝒆𝒓𝒎𝒊𝒕𝒊𝒗𝒊𝒕𝒚 𝒐𝒇 𝒕𝒉𝒆 𝒎𝒂𝒕𝒆𝒓𝒊𝒂𝒍
+                                                                                                    52
+
+
+
+
+                                                                                                         26
+                                                                               05-02-2022
+
+
+
+
+Ampere’s circuital law
+“This law states that the line integral of the
+vector 𝑯 along any arbitrary closed path is
+equal to the current enclosed by the path”.
+
+
+                                                           𝒍
+                       ර 𝑯 𝒅𝒍 = 𝑰
+
+           Magnetic Field:                             Magnetic 𝒇𝒊𝒆𝒍𝒅𝒔: 𝑩 𝒐𝒓 𝑯
+
+
+
+Note:
+Ampere’s circuital law is used to calculate the field strength within a core of a 53
+magnetic material.
+
+
+
+
+Faraday’s law
+
+
+
+
+                                                                                  54
+
+
+
+
+                                                                                       27
+                                                                        05-02-2022
+
+
+
+
+Faraday’s law
+                       𝒅𝝓
+“The changing flux (      )   through the                         EMF
+                       𝒅𝒕
+coil creates an induced emf (e)”.
+
+
+                                  The voltage across the coil is directly
+                                  proportional to the rate of change of
+It should be noted that the –ve
+sign is due to Lenz’s law which current through the inductor
+states that any induced emf will                      𝒅𝒊(𝒕)
+                                          𝒆𝒎𝒇: 𝒆 = −𝑳
+circulate a current in such a                          𝒅𝒕
+                                                                        𝑵𝝓
+direction so as to oppose the          𝑺𝒆𝒍𝒇 𝑰𝒏𝒅𝒖𝒄𝒕𝒂𝒏𝒄𝒆 𝒐𝒇 𝒂 𝒄𝒐𝒊𝒍: 𝑳 =
+                                                                         𝑰   55
+cause producing it.
+
+
+
+
+                                                    EMF
+
+
+
+
+                                                                             56
+
+
+
+
+                                                                                  28
+                                                                05-02-2022
+
+
+
+
+                        3.8 Transformer
+
+❑When two loops with or without contacts between them affect each
+ other through the magnetic field generated by one of them, they
+ are said to be magnetically coupled.
+❑The transformer is an electrical device designed on the basis of the
+ concept of magnetic coupling. It uses magnetically coupled coils to
+ transfer energy from one circuit to another.
+❑Transformers are key circuit elements. They are used in power
+ systems for stepping up or stepping down ac voltages or currents.
+
+                                                                     57
+
+
+
+
+❑When two inductors (or coils) are in a close proximity to each
+ other, the magnetic flux caused by current in one coil links with
+ the other coil, thereby inducing voltage in the latter. This
+ phenomenon is known as mutual inductance.
+
+
+
+
+                                                                     58
+
+
+
+
+                                                                          29
+                                                                                                 05-02-2022
+
+
+
+
+❑Mutual inductance is the ability of one inductor to induce a
+ voltage across a neighboring inductor, measured in henrys (H).
+
+                                                    Although two coils are physically separated,
+                                                    they are said to be magnetically coupled.
+
+                                                                               𝒅𝝓𝟏𝟐
+                                                                  𝑴𝟐𝟏 = 𝑵𝟐
+                                                                                𝒅𝒊𝟏
+                                                    The inductance 𝑴𝟐𝟏 relates the voltage induced
+                                                    in coil 2 (𝒗𝟐 ) to the current in coil 1 (𝒊𝟏 ).
+
+                                                                                 𝒅𝒊𝟏
+                                                                   𝒗𝟐 = 𝑴𝟐𝟏
+                                                                                 𝒅𝒕
+
+
+
+                                                                                                      59
+
+
+
+
+Dot convention:
+❑If a current enters the dotted terminal of one coil, the reference polarity of the mutual
+ voltage in the second coil is positive at the dotted terminal of the second coil.
+❑Alternatively, If a current leaves the dotted terminal of one coil, the reference polarity
+ of the mutual voltage in the second coil is negative at the dotted terminal of the second
+ coil.
+
+
+
+
+                                                                                𝑴 = 𝒌 𝑳𝟏 𝑳𝟐
+                                                                     Where, k is the coupling coefficient
+
+
+
+
+                                                                                                      60
+
+
+
+
+                                                                                                            30
+                                                                                                                05-02-2022
+
+
+
+
+                          3.8.1 Single Phase Transformer
+Transformer
+ A transformer consist of a
+ rectangular laminated magnetic
+ structure on which two coils of
+ different number of turns are
+ wound as shown in Figure.
+
+
+❑A transformer is a static device which uses the phenomenon of mutual
+ induction to change the values of alternating voltages and currents,
+ without changing the frequency.
+❑A transformer transfers electrical energy from one circuit to another
+ through inductively coupled conductors—the transformer's coils.
+
+ Note: A transformer is generally a four-terminal device comprising two (or more) magnetically coupled coils.      61
+
+
+
+
+Principle of Operation
+of Transformer
+
+
+
+
+A alternating electric current in the primary winding creates a
+time varying magnetic flux in the transformer's core. This
+alternating flux links with both primary and secondary coils and
+induces in them emf’s of                                       . This effect is called “Mutual
+Induction”                                                                               𝒅𝝓
+                    Induced voltage in the coil:                       𝒆 𝒕 = −𝑵
+                                                                                         𝒅𝒕                        62
+
+
+
+
+                                                                                                                        31
+                                                                               05-02-2022
+
+
+
+
+Equivalent circuit of ideal transformer:
+
+                                              ❑Primary winding connected
+                                               to AC supply.
+                                              ❑Secondary winding may be
+                                               connected to load.
+
+                                                   Turns ratio,
+
+
+ ❑When primary is energized and secondary is opened no current is drawn,
+  however current is drawn when a load is present on the secondary side.
+ ❑Although supply two terminals are physically joined by the primary winding,
+  the current drawn depends upon the load on the secondary side.                   63
+
+
+
+
+Ideal Transformer
+
+
+
+
+Properties of ideal transformer:
+1. Primary and secondary windings has no resistance.
+2. All the flux produced by the primary links the secondary winding i,e., there is
+   no leakage flux.
+3. Permeability μr of the core is infinitely large. In other words, to establish flux
+   in the core vanishingly small (or zero) current is required.
+4. Core loss comprising of eddy current and hysteresis losses are neglected.       64
+
+
+
+
+                                                                                        32
+                                                                                                       05-02-2022
+
+
+
+
+Analysis of ideal transformer:
+𝑽𝟏 = 𝑽𝒎𝒂𝒙 sin 𝝎𝒕
+                    𝝅
+𝝓 𝒕 = 𝝓𝒎𝒂𝒙 sin (𝝎𝒕 − )
+                    𝟐
+The time varying flux 𝝓 𝒕 will link both the
+primary and secondary turns inducing in
+                                                         Thus under no load condition, the
+voltages 𝒆𝟏 and 𝒆𝟐 respectively
+                                                         relationship           between          terminal
+         𝒅𝝓
+𝒆𝟏 = −𝑵𝟏    = 𝝎𝑵𝟏 𝝓𝒎𝒂𝒙 sin 𝝎𝒕 = 𝟐𝝅𝒇 𝑵𝟏 𝝓𝒎𝒂𝒙 sin 𝝎𝒕       voltages (𝑽𝟏 & 𝑽𝟐 ) and (𝑬𝟏 & 𝑬𝟐 )            rms
+         𝒅𝒕
+                                                         induced voltages are,
+           𝒅𝝓
+𝒆𝟐 = −𝑵𝟐      = 𝝎𝑵𝟏 𝝓𝒎𝒂𝒙 sin 𝝎𝒕 = 𝟐𝝅𝒇 𝑵𝟐 𝝓𝒎𝒂𝒙 sin 𝝎𝒕
+           𝒅𝒕
+The magnitude of RMS induced voltages,
+𝑬𝟏 = 𝟐 𝝅 𝒇𝑵𝟏 𝝓𝒎𝒂𝒙 = 𝟒. 𝟒𝟒 𝒇𝑵𝟏 𝝓𝒎𝒂𝒙         EMF Equation
+𝑬𝟐 = 𝟐 𝝅 𝒇𝑵𝟐 𝝓𝒎𝒂𝒙 = 𝟒. 𝟒𝟒 𝒇𝑵𝟐 𝝓𝒎𝒂𝒙                       Note: supply Voltage & induced emf are
+                                                         in-phase but the flux lags by 90o   65
+
+
+
+
+Analysis of ideal transformer:
+When load is connected across the
+secondary winding, a current I2 flows. In
+an ideal transformer losses are neglected
+and 100% efficient.
+
+Hence, the primary and secondary rating
+(volt-amperes) are equal. Then, the 𝑴𝑴𝑭
+𝒃𝒂𝒍𝒂𝒏𝒄𝒆 𝒆𝒒𝒖𝒂𝒕𝒊𝒐𝒏 𝒇𝒐𝒓 𝒕𝒉𝒆 𝒕𝒘𝒐 𝒘𝒊𝒏𝒅𝒊𝒏𝒈
+transformer is,
+                                                                        Step up transformer
+                                                                        Step down transformer
+      𝑽𝟏 𝑬 𝟏               𝑵𝟏
+        =    =         =      =𝒂       Where,     𝑽𝒐𝒍𝒕𝒂𝒈𝒆 𝒓𝒂𝒕𝒊𝒐 / Turns ratio / Transformation ratio
+      𝑽𝟐 𝑬 𝟐               𝑵𝟐
+                                                       A step-down transformer is one whose secondary
+Showing that the primary and secondary                 voltage is less than its primary voltage. (𝑽𝟐 <𝑽𝟏 )
+currents are related to the turns ratio in             A step-up transformer is one whose secondary
+the inverse manner as the voltages.                    voltage is greater than its primary voltage(𝑽𝟐 >𝑽𝟏 ) 66
+
+
+
+
+                                                                                                                 33
+                                                                        05-02-2022
+
+
+
+
+Load Test on 1Φ transformer (OC Test):
+
+
+
+
+ • During this test, rated flux is produced in the core and the current
+   drawn is the no-load current which is quite small about 2 to 5% of the
+   rated current.
+ • Therefore low range ammeter and wattmeter current coil should be
+   selected.
+ • Strictly speaking the wattmeter will record the core loss as well as the
+   LV winding copper loss. But the winding copper loss is very small
+   compared to the core loss as the flux in the core is rated.             67
+
+
+
+
+                                                                           68
+
+
+
+
+                                                                                34
+                                                                       05-02-2022
+
+
+
+
+Load Test on 1Φ transformer (SC Test):
+
+
+
+
+ • Short circuit test is generally carried out by energizing the HV side
+   with LV side shorted.
+ • Voltage applied is such that the rated current flows in the windings.
+ • voltage required to be applied for rated short circuit current is quite
+   small (typically about 5%). Therefore flux level in the core of the
+   transformer will be also very small. Hence core loss is negligibly small
+   compared to the winding copper losses as rated current now flows in
+   the windings. Magnetizing current too, will be pretty small.           69
+
+
+
+
+• under the condition of the experiment, the parallel branch impedance
+  comprising of Rcl (HV) and Xm (LV) can be considered to be absent.
+
+
+
+
+                                                                          70
+
+
+
+
+                                                                               35
+                                                                                             05-02-2022
+
+
+
+
+Why transformer rating in kVA?
+
+
+The copper and iron losses are occur in the transformer. The copper
+loss depends on the current (ampere) flows through the windings of the
+transformer while the iron loss depends on the voltage (volts). i.e., total
+losses depends on voltage (V) and current (I) which expressed in Volt
+ampere (VA) and not on the load power factor (p.f). That’s why the
+transformer rating may be expressed in VA or kVA, not in W or kW.
+
+
+
+
+                                                                                                    71
+
+
+
+
+                                                    To find the condition for maximum efficiency,
+Efficiency of Transformer
+                                                          𝒅            𝑷𝒄𝒐𝒓𝒆
+                                                             𝑺 𝒄𝒐𝒔 𝜽 +       + 𝒙𝑷𝒄𝒖 = 𝟎
+                                                          𝒅𝒙            𝒙
+                                                                    𝑷𝒄𝒐𝒓𝒆
+                                                                −         + 𝑷𝒄𝒖 = 𝟎
+                                                                     𝒙𝟐
+                𝑶𝒖𝒕𝒑𝒖𝒕 𝒑𝒐𝒘𝒆𝒓 𝒊𝒏 𝑲𝑾
+𝜼=                                                                  𝒙𝟐 𝑷𝒄𝒖 = 𝑷𝒄𝒐𝒓𝒆
+     𝑶𝒖𝒕𝒑𝒖𝒕 𝒑𝒐𝒘𝒆𝒓 𝒊𝒏 𝑲𝑾 + 𝑪𝒐𝒓𝒆 𝒍𝒐𝒔𝒔 + 𝑪𝒐𝒑𝒑𝒆𝒓 𝒍𝒐𝒔𝒔
+                                                    The maximum efficiency occurs at a loading (x)
+                                                    of,
+
+
+
+                                                                             𝑷𝒄𝒐𝒓𝒆
+Where,                                                               𝒙=
+                                                                              𝑷𝒄𝒖
+x= degree of loading
+                                                    The value of x for max efficiency for
+                       𝑷
+𝒄𝒐𝒔 𝜽 = power factor =                              distribution transformer is
+                       𝑺
+                                                                    (𝟎. 𝟕𝟓 < 𝒙 < 𝟎. 𝟖)              72
+
+
+
+
+                                                                                                         36
+                                                                                 05-02-2022
+
+
+
+
+                                                    Note:
+                                                    For a given load (i.e., fixed x), if
+                                                    power factor is allowed to vary
+                                                    then maximum efficiency occurs at
+                                                    unity power factor.
+
+
+    Fig: Efficiency VS degree of loading curves
+
+
+
+
+                                                                                     73
+
+
+
+
+Regulation of Transformer
+❑The output voltage in a transformer will not be maintained constant from no
+ load to the full load condition, for a fixed input voltage in the primary.
+❑This is because there will be internal voltage drop in the series leakage
+ impedance of the transformer the magnitude of which will depend upon the
+ degree of loading as well as on the power factor of the load.
+❑Thus the change in the magnitude of the secondary voltage from no load to full
+ load condition at a given power factor is called Regulation.
+
+
+
+
+Note:
+• For an ideal transformer voltage regulation is zero.
+• Smaller is the voltage regulation, better is the operations of the transformer.
+• For a well designed transformer at full load and 0.8 power factor load percentage
+  regulation may lie in the range of 2 to 5%.                                     74
+
+
+
+
+                                                                                           37
+                                                                                        05-02-2022
+
+
+
+
+Regulation of Transformer
+
+
+
+
+                            Fig: Regulation VS Power factor curve
+Note: For leading power factor load, regulation may be negative indicating that secondary
+terminal voltage is more than the no load voltage.                                          75
+
+
+
+
+                           3.8.2 Auto Transformer
+ ❑When the primary and secondary windings are
+   electrically connected so that part of the winding
+   is common to the both, the transformer is known
+   as “Autotransformer”
+
+
+ ❑An autotransformer is a transformer in which
+   both the primary and the secondary are in a single
+   winding.
+
+
+ Applications:
+ 1. Induction motor starters
+ 2. Variable voltage power supply
+ Note: For two winding transformers, the windings are electrically isolated and all VA is
+ transferred magnetically.                                                              76
+
+
+
+
+                                                                                                 38
+                                                                                       05-02-2022
+
+
+
+
+Autotransformer
+
+
+
+
+    Fig: A Autotransformer or Variac.       Fig: Schematic representation of autotransformer
+
+
+Note: Auto transformer has lower reactance, lower losses, smaller exciting
+current and better voltage regulation compared to two winding transformer 77
+
+
+
+
+Autotransformer
+𝑰𝒏𝒑𝒖𝒕 𝒗𝒐𝒍𝒕𝒂𝒈𝒆 = 𝑽𝟏
+𝑶𝒖𝒕𝒑𝒖𝒕 𝒗𝒐𝒍𝒕𝒂𝒈𝒆 𝒓𝒆𝒒𝒖𝒊𝒓𝒆𝒅 𝒂𝒄𝒓𝒐𝒔𝒔 𝒕𝒉𝒆 𝒍𝒐𝒂𝒅 = 𝑽𝟐
+𝑪𝒖𝒓𝒓𝒆𝒏𝒕 𝒅𝒓𝒂𝒘𝒏 𝒇𝒓𝒐𝒎 𝒕𝒉𝒆 𝒔𝒖𝒑𝒑𝒍𝒚 𝒂𝒕 𝒓𝒂𝒕𝒆𝒅 𝒄𝒐𝒏𝒅𝒊𝒕𝒊𝒐𝒏 = 𝑰𝟏
+𝑹𝒂𝒕𝒆𝒅 𝒄𝒖𝒓𝒓𝒆𝒏𝒕 𝒕𝒐 𝒃𝒆 𝒔𝒖𝒑𝒑𝒍𝒊𝒆𝒅 𝒕𝒐 𝒕𝒉𝒆 𝒍𝒐𝒂𝒅 = 𝑰𝟐
+𝑲𝑽𝑨 𝒕𝒐 𝒃𝒆 𝒉𝒂𝒏𝒅𝒍𝒆𝒅 𝒃𝒚 𝑨𝒖𝒕𝒐𝒕𝒓𝒂𝒏𝒔𝒇𝒐𝒓𝒎𝒆𝒓 ⇒ 𝑽𝟏 𝑰𝟏 = 𝑽𝟐 𝑰𝟐
+𝑻𝒉𝒆𝒓𝒆𝒇𝒐𝒓𝒆, 𝒏𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒕𝒖𝒓𝒏𝒔 𝒃𝒆𝒕𝒘𝒆𝒆𝒏 𝑨 & 𝑬 = 𝑵𝟏
+𝑵𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒕𝒖𝒓𝒏𝒔 𝒃𝒆𝒕𝒘𝒆𝒆𝒏 𝑬 & 𝑪 = 𝑵𝟐
+𝑵𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒕𝒖𝒓𝒏𝒔 𝒃𝒆𝒕𝒘𝒆𝒆𝒏 𝑨 & 𝑪 = 𝑵𝟏 + 𝑵𝟐                         Fig: Autotransformer
+𝑴𝑴𝑭 𝒃𝒂𝒍𝒂𝒏𝒄𝒆 𝒆𝒒𝒖𝒂𝒕𝒊𝒐𝒏 𝒇𝒐𝒓 𝒕𝒉𝒆 𝒂𝒖𝒕𝒐𝒕𝒓𝒂𝒏𝒔𝒇𝒐𝒓𝒎𝒆𝒓: (𝑵𝟏 +𝑵𝟐 )𝑰𝟏 = 𝑵𝟐 𝑰𝟐
+
+
+
+
+                                                                                          78
+
+
+
+
+                                                                                               39
+                                                                                05-02-2022
+
+
+
+
+ Note:
+ A major differences between conventional transformers and autotransformers is that,
+ • The primary and secondary sides of the autotransformer are not only coupled
+   magnetically but also coupled conductively. The autotransformer can be used in
+   place of a conventional transformer when electrical isolation is not required.
+ • Auto transformer has lower reactance, lower losses, smaller exciting current and
+   better voltage regulation compare to its two winding transformer.
+                                                                                   79
+
+
+
+
+Comparison between two winding transformer and autotransformer
+                 Two winding transformer                  Autotransformer
+Definition    It is a static machine which A transformer, having only
+              transfers   electrical energy one winding a part of which
+              from one end to another acts as a primary and the
+              without changing frequency.   other as a secondary.
+
+Number of It has two separate winding, Auto-transformer has only
+Windings i.e., primary and secondary one winding wound on a
+          winding.                     laminated core
+
+Insulation The primary and secondary The primary and secondary
+           winding     are    electrically winding are not electrically
+           isolated from each other.       isolated.
+
+Principle     Mutual Induction                    Self Induction
+                                                                                   80
+
+
+
+
+                                                                                        40
+                                                                                       05-02-2022
+
+
+
+
+                    Two winding                             Autotransformer
+                     transformer
+Power Transfer Through                           Partly by transformation and
+               transformation                    partly by direct electrical
+                                                 connection
+Output voltage                Constant                      Variable
+
+Leakage    flux
+and resistance                   High                              Low
+/Losses
+Efficient                        Less                              More
+Applications         Use in power system Use as a starter in an
+                     for step up and step induction motor, as a voltage
+                     down the voltage.    regulator, in railways, in a
+                                          laboratory.                   81
+
+
+
+
+         3.9 Elementary Concept of Rotating Machines
+Fleming’s right hand rule (for generators)      Fleming’s left hand rule (for motors)
+
+
+
+
+❑Whenever conductor is moving with           ❑Whenever current ( ) carrying conductor
+ velocity ( ) in the magnetic field ( ) ,     placed   in   a   magnetic   field   (   ),   it
+ an emf ( ) is induced.                       experiences force ( ) and the conductor
+                                              will start moving.
+❑The direction of induced emf can be
+                                             ❑The direction of force can be obtained by
+ determined by Fleming's right hand
+                                              applying Fleming's left hand rule.
+ rule.                                                                                      82
+
+
+
+
+                                                                                                 41
+                                                                                  05-02-2022
+
+
+
+
+                             3.10 DC Machines
+
+
+DC machine means,
+(A) DC Generator
+(B) DC motor
+(C) Both DC Motor and DC Generator
+(D) Either DC Motor or DC Generator
+
+                      Motor
+
+
+
+Electrical           Magnetic             Mechanical
+
+
+
+                    Generator                                                        83
+
+
+
+
+Construction of DC Machine
+ DC Machine consists of,
+
+ • Stationary part:
+ It is designed for producing
+ magnetic flux.
+
+ • Rotating part:
+ It is called the armature,
+ where mechanical energy
+ converted into electrical
+ energy     (generator),    or
+ conversely, electrical energy
+ into    mechanical     energy
+ (motor).
+
+Note: The stationary and rotating parts are separated from each other by an air-gap. 84
+
+
+
+
+                                                                                          42
+                                                                           05-02-2022
+
+
+
+
+                                          Yoke
+
+
+
+
+1. Yoke:
+
+▪ It provides mechanical support for the poles and acts as a protecting
+  cover for the whole machine.
+▪ It carries the magnetic flux produced by the poles since the yoke
+  should have sufficient mechanical strength and high permeability.
+For smaller machines yoke is made up of cast iron but for longer
+machines cast steel or rolled steel is employed.                              85
+
+
+
+
+Stator: Stationary part of a machine.
+                      Pole core
+                              Pole shoe
+
+
+
+
+                                     Flux
+2. Pole core and pole shoe:
+The Pole core and pole shoes are built of thin laminations and purpose of pole
+core is to receive field winding and pole shoes is to spread the flux in the air
+gap and also to support field coils.
+3. Field coils:
+The field coils are former wound copper wire or strip.                        86
+
+
+
+
+                                                                                   43
+                                                                                        05-02-2022
+
+
+
+
+Rotor: Rotating part of a machine (armature).
+
+
+
+
+                                The armature consists of,
+                                ▪ armature core
+                                ▪ armature winding.
+4. Armature core and winding:
+▪ The armature is a laminated core with slots (generally open type) to receive
+  conductors on it.
+▪ The purpose of the armature is to rotate the conductors.
+▪ It should be noted that the e.m.f induced in the armature conductors are A.C only.
+Note: The generated voltage in a coil when rotated relative to a magnetic field, is inherently
+alternating in nature. To convert this A.C voltage into a D.C voltage we therefore need a unit
+(Commutator & Brushes) after the coil terminals.                                           87
+
+
+
+
+5. Commutator:
+▪ The function of commutator is to facilitate collection of current from the armature
+  conductors and to convert it into d.c.
+▪ In other wards it converts A.C current (or voltage) to D.C current (or voltage).
+6. Brushes and Bearing:
+▪ Stationary carbon brushes are placed over the rotating commutator in such a way that
+  they always make electrical contact with the commutator segments.
+▪ The function of brushes is to collect current from commutator into external load.
+▪ Usually the brushes are made up of carbon or graphite with rectangular shape.
+▪ These brushes are housed in brush holders.                                               88
+
+
+
+
+                                                                                                 44
+                                                                          05-02-2022
+
+
+
+
+7. Armature windings:
+(a) Pole pitch (YP):
+
+It may be defined as:
+I. The periphery of the armature divided by the number of poles of the
+    generator. i.e the distance between two adjacent poles.
+II. Pole pitch is equal to the number of armature conductors (or armature
+    slots) per pole.
+EX: If there are 48 conductors and 4 poles the pole pitch is 48/4=12.        89
+
+
+
+
+(b) Coil pitch or Coil span (Ys):
+
+❑Spacing between two coil sides of a coil. The spacing is expressed in
+  terms of number of slots between the sides.
+Ex: If S be the total number of slots and P be the total number of poles
+then coil span is S/P. For 20 slots, 4 poles winding, coil span is 5.
+❑If coil pitch=pole pitch then the winding is called full pitched coil.
+❑If the coil span or coil pitch is less than the pole pitch then it is called
+  fractional pitched coil.                                                   90
+
+
+
+
+                                                                                  45
+                                                                                            05-02-2022
+
+
+
+
+   Yc = 2-1=1                          Yc = 8-1=7
+
+           Types of armature winding < lap winding
+          Types of armature winding < wave winding
+
+
+(c) Commutator pitch (Yc):
+
+The commutator pitch is the number of commutator segments spanned
+by each coil of the winding.
+
+                                                                                               91
+
+
+
+
+d) Lap winding                                       e) Wave winding
+• In this case, if connection is started             • In this type of connection, winding
+  from conductor in slot 1 then                        always     travels    ahead      avoiding
+  connections overlap each other as                    overlapping. It travel like a progressive
+  winding proceeds, till starting point is             wave hence called wave winding. To get
+  reached again.                                       an idea of wave winding a part of
+• Developed view of part of the armature               armature winding in wave fashion is
+  winding in lap fashion shown in the                  shown in the Fig.
+  Fig.                                               • Both coils starting from slot 1 and slot
+• As seen from the Fig, there is                       2 are progressing in wave fashion.
+                                                                                               92
+  overlapping of coils while proceeding.
+
+
+
+
+                                                                                                    46
+                                                                 05-02-2022
+
+
+
+
+Comparison of Lap and Wave type winding
+           Lap winding                      Wave winding
+ Number of parallel paths (A) = No. of parallel paths (A) = 2
+ poles (p)
+ Number of brush sets required is Number of brush sets required is
+ equal to number of poles.        equal to two.
+ Preferable for high current, low Preferable for high voltage, low
+ voltage capacity generators.     current capacity generators.
+
+ Normally used for generators of Preferred for generators of capacity
+ capacity more than 500A.        less than 500A.
+
+
+
+
+                                                                    93
+
+
+
+
+DC Machine: DC Generator & DC Motor
+
+
+
+
+                                                                    94
+
+
+
+
+                                                                         47
+                                                                                  05-02-2022
+
+
+
+
+DC Machine: DC Generator
+
+
+
+
+                                                                                     95
+
+
+
+
+Principle of operation of DC Generator
+
+An electrical generator is a machine
+which converts mechanical energy into
+electrical       energy.        This       energy
+conversion is based on the principle of
+the production of dynamically induced
+emf.
+“Whenever           a     moving        conductor           cuts      magnetic   flux,
+dynamically induced emf is produced across the ends of the
+moving conductor”. (Faraday’s law of electromagnetic induction)
+Note: The direction of induced voltage is given by Fleming's right-hand rule         96
+
+
+
+
+                                                                                          48
+                                                                                          05-02-2022
+
+
+
+
+Principle of operation of DC Motor
+
+An electrical motor is a machine
+which converts electri

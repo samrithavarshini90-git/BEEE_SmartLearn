@@ -1,0 +1,489 @@
+{
+  "unit_number": 3,
+  "unit_title": "ELECTRICAL SAFETY AND ELECTRICAL MACHINES",
+  "topics": [
+    "Layout of Electrical Power Systems",
+    "Safety Devices and Systems",
+    "Types of Wires & Cables",
+    "Sensors and its types",
+    "Wiring",
+    "Earthing",
+    "Laws of Electromagnetic Induction",
+    "Transformer",
+    "Elementary Concept of Rotating Machines",
+    "DC Machines",
+    "AC Machines"
+  ],
+  "formulas": [
+    {
+      "name": "Faraday's Law of Induction",
+      "topic": "Laws of Electromagnetic Induction",
+      "expression": "e = -N * (dΦ/dt)",
+      "latex": "e = -N \\frac{d\\Phi}{dt}",
+      "variables": [
+        {
+          "symbol": "e",
+          "meaning": "Induced electromotive force (EMF)",
+          "unit": "V"
+        },
+        {
+          "symbol": "N",
+          "meaning": "Number of turns in the coil",
+          "unit": ""
+        },
+        {
+          "symbol": "dΦ/dt",
+          "meaning": "Rate of change of magnetic flux",
+          "unit": "Wb/s"
+        }
+      ],
+      "explanation": "This law states that the induced EMF in any closed circuit is equal to the negative of the time rate of change of the magnetic flux through the circuit."
+    },
+    {
+      "name": "Transformer Voltage Ratio",
+      "topic": "Transformer",
+      "expression": "Vp / Vs = Np / Ns",
+      "latex": "\\frac{V_p}{V_s} = \\frac{N_p}{N_s}",
+      "variables": [
+        {
+          "symbol": "Vp",
+          "meaning": "Primary Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "Vs",
+          "meaning": "Secondary Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "Np",
+          "meaning": "Number of turns in Primary coil",
+          "unit": ""
+        },
+        {
+          "symbol": "Ns",
+          "meaning": "Number of turns in Secondary coil",
+          "unit": ""
+        }
+      ],
+      "explanation": "For an ideal transformer, the ratio of primary to secondary voltage is equal to the ratio of the number of turns in their respective coils."
+    },
+    {
+      "name": "Transformer Current Ratio",
+      "topic": "Transformer",
+      "expression": "Ip / Is = Ns / Np",
+      "latex": "\\frac{I_p}{I_s} = \\frac{N_s}{N_p}",
+      "variables": [
+        {
+          "symbol": "Ip",
+          "meaning": "Primary Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "Is",
+          "meaning": "Secondary Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "Np",
+          "meaning": "Number of turns in Primary coil",
+          "unit": ""
+        },
+        {
+          "symbol": "Ns",
+          "meaning": "Number of turns in Secondary coil",
+          "unit": ""
+        }
+      ],
+      "explanation": "For an ideal transformer, the ratio of primary to secondary current is the inverse of the ratio of the number of turns in their coils."
+    },
+    {
+      "name": "Motor Principle Force",
+      "topic": "Elementary Concept of Rotating Machines",
+      "expression": "F = B * I * L",
+      "latex": "F = BIL",
+      "variables": [
+        {
+          "symbol": "F",
+          "meaning": "Force on the conductor",
+          "unit": "N"
+        },
+        {
+          "symbol": "B",
+          "meaning": "Magnetic field strength",
+          "unit": "T"
+        },
+        {
+          "symbol": "I",
+          "meaning": "Current in the conductor",
+          "unit": "A"
+        },
+        {
+          "symbol": "L",
+          "meaning": "Length of the conductor",
+          "unit": "m"
+        }
+      ],
+      "explanation": "A current-carrying conductor placed in a magnetic field experiences a force, which is the fundamental principle behind electric motors. This assumes the field and current are perpendicular."
+    },
+    {
+      "name": "Generator Principle EMF",
+      "topic": "Elementary Concept of Rotating Machines",
+      "expression": "e = B * L * v",
+      "latex": "e = BLv",
+      "variables": [
+        {
+          "symbol": "e",
+          "meaning": "Induced EMF",
+          "unit": "V"
+        },
+        {
+          "symbol": "B",
+          "meaning": "Magnetic field strength",
+          "unit": "T"
+        },
+        {
+          "symbol": "L",
+          "meaning": "Length of the conductor",
+          "unit": "m"
+        },
+        {
+          "symbol": "v",
+          "meaning": "Velocity of the conductor",
+          "unit": "m/s"
+        }
+      ],
+      "explanation": "When a conductor moves through a magnetic field, an electromotive force (voltage) is induced across it, which is the basic principle of electric generators."
+    }
+  ],
+  "questions_2_mark": [
+    {
+      "topic": "Sensors and its types",
+      "question": "Define a sensor.",
+      "answer": "A sensor is a device that detects changes in electrical, physical, or other quantities and produces an output, typically an electrical or optical signal, as an acknowledgment of that change."
+    },
+    {
+      "topic": "Safety Devices and Systems",
+      "question": "What is a circuit breaker?",
+      "answer": "A circuit breaker (CB) is a switching device that can control (make or break) a circuit manually or by remote control under normal conditions, and automatically break the circuit under fault conditions like overcurrent or short circuit."
+    },
+    {
+      "topic": "Layout of Electrical Power Systems",
+      "question": "What are the four main stages of an electrical power system?",
+      "answer": "The four main stages of an electrical power system as shown in a single line representation are Generation, Transmission, Distribution, and Loads."
+    },
+    {
+      "topic": "Types of Wires & Cables",
+      "question": "Distinguish between a wire and a cable.",
+      "answer": "A wire is a single electrical conductor, which can be solid or stranded. A cable is a group of two or more wires grouped together, typically swathed in an outer sheathing for protection and to ensure a smooth electricity supply."
+    },
+    {
+      "topic": "Safety Devices and Systems",
+      "question": "What is the function of an Earth Leakage Circuit Breaker (ELCB)?",
+      "answer": "An Earth Leakage Circuit Breaker (ELCB) is a safety device used to protect against leakage currents that flow to the earth. These currents can cause dangerous electrical shocks to personnel, and the ELCB automatically disconnects the power supply when such a leakage is detected."
+    },
+    {
+      "topic": "Wiring",
+      "question": "What is cleat wiring primarily used for?",
+      "answer": "Cleat wiring is a temporary wiring system that is not suitable for permanent domestic or commercial premises. It uses VIR or PVC insulated wires held on walls or ceilings by porcelain, plastic, or wood cleats."
+    },
+    {
+      "topic": "Transformer",
+      "question": "What is the primary function of a transformer?",
+      "answer": "A transformer is a static electrical device that transfers electrical energy from one circuit to another through electromagnetic induction. It is most commonly used to increase ('step-up') or decrease ('step-down') voltage levels between circuits."
+    },
+    {
+      "topic": "Elementary Concept of Rotating Machines",
+      "question": "State Fleming's Left-Hand Rule.",
+      "answer": "Fleming's Left-Hand Rule helps determine the direction of force on a current-carrying conductor in a magnetic field. If the forefinger points in the direction of the magnetic field and the middle finger points in the direction of the current, then the thumb will point in the direction of the force or motion (motor principle)."
+    },
+    {
+      "topic": "Elementary Concept of Rotating Machines",
+      "question": "State Fleming's Right-Hand Rule.",
+      "answer": "Fleming's Right-Hand Rule helps determine the direction of induced current when a conductor moves through a magnetic field. If the forefinger points in the direction of the magnetic field and the thumb points in the direction of motion, then the middle finger will point in the direction of the induced current (generator principle)."
+    },
+    {
+      "topic": "Types of Wires & Cables",
+      "question": "What do the letters in THWN wire insulation stand for?",
+      "answer": "The letters in THWN stand for: T - Thermoplastic insulation, H - Heat resistant, W - Suitable for wet locations, and N - Nylon coating for resistance to oil or gas damage."
+    }
+  ],
+  "questions_5_mark": [
+    {
+      "topic": "Safety Devices and Systems",
+      "question": "Explain the functions of an ACB, MCCB, and MCB.",
+      "answer": "ACB, MCCB, and MCB are all types of circuit breakers used for protection.\n\nAir Circuit Breaker (ACB): Used in low-tension, high-current applications (up to 6500A). It carries normal current but breaks the circuit during overloads or faults, using air as the arc quenching medium.\n\nMoulded Case Circuit Breaker (MCCB): Used for currents up to 200A with high breaking capacity. The arc quenching occurs in a moulded chamber. They offer thermal-magnetic or microprocessor-based protection and can have communication capabilities.\n\nMiniature Circuit Breaker (MCB): These are miniature forms of MCCBs used for lower current applications in industrial and domestic circuits for overload and short-circuit protection.",
+      "formulas_used": [],
+      "diagram_hint": "none"
+    },
+    {
+      "topic": "Types of Wires & Cables",
+      "question": "Describe the construction and application of Triplex wires.",
+      "answer": "Triplex wires are used for overhead single-phase service drop conductors, connecting the power pole to the weather head of a building.\n\nConstruction: They are composed of two insulated aluminum wires, which act as the 'hot legs'. These two wires are wrapped around a third bare or uninsulated wire, which serves as the common neutral.\n\nApplication & Voltage: They provide two voltage levels. If a circuit is connected between the two hot legs, the voltage is 240V. If a circuit is connected between one hot leg and the neutral, the voltage is 120V. The neutral is typically grounded at the meter and transformer.",
+      "formulas_used": [],
+      "diagram_hint": "none"
+    },
+    {
+      "topic": "Wiring",
+      "question": "List and briefly explain five types of domestic wiring systems.",
+      "answer": "Five common types of domestic wiring systems are:\n1. Cleat Wiring: A temporary system using VIR/PVC wires on porcelain cleats. It is not suitable for permanent installations.\n2. Casing and Capping Wiring: Cables are carried through wooden casing enclosures with grooves, which are then covered by a wooden cap. It is now considered obsolete.\n3. Batten Wiring: TRS (Tough Rubber Sheathed) cables are run on well-seasoned teak wood battens and held by tinned brass link clips. It is a neat and durable wiring method.\n4. Lead Sheathed Wiring: Uses VIR insulated conductors covered with a lead-aluminum alloy sheath for protection against moisture and mechanical damage. The sheath is earthed for safety.\n5. Conduit Wiring: Wires are drawn through pipes (conduits), which can be on the surface or concealed within walls. This system provides the best protection for the wires and is the most common modern method.",
+      "formulas_used": [],
+      "diagram_hint": "none"
+    },
+    {
+      "topic": "Transformer",
+      "question": "Explain the working principle of a two-winding transformer.",
+      "answer": "A two-winding transformer operates on the principle of mutual electromagnetic induction.\n\nPrinciple: When an alternating voltage (Vp) is applied to the primary winding, it drives an alternating current (Ip) which produces a changing magnetic flux in the iron core. This alternating flux links with the secondary winding. \n\nInduction: According to Faraday's Law of Electromagnetic Induction, this changing flux induces an alternating electromotive force (EMF) or voltage (Vs) in the secondary winding. This induced voltage drives a current (Is) through the load connected to the secondary side.\n\nVoltage Transformation: The ratio of the secondary voltage to the primary voltage is approximately equal to the ratio of the number of turns in the secondary winding (Ns) to the primary winding (Np). If Ns > Np, it is a step-up transformer. If Ns < Np, it is a step-down transformer.",
+      "formulas_used": [
+        "Faraday's Law of Induction",
+        "Transformer Voltage Ratio"
+      ],
+      "diagram_hint": "circuit"
+    },
+    {
+      "topic": "Sensors and its types",
+      "question": "Explain the role of sensors in electronics and robotics with two examples for each.",
+      "answer": "Sensors are crucial components that allow electronic and robotic systems to perceive and interact with their environment.\n\nIn Electronics:\nSensors convert physical quantities into electrical signals that can be processed by microcontrollers.\n1. Temperature Sensor: Measures temperature and is used in a wide range of devices from digital thermostats and air conditioners to computer CPU protection circuits.\n2. IR Sensor: Detects infrared radiation. A common application is in TV remotes, where it receives signals to control the television.\n\nIn Robotics:\nSensors provide robots with data about their surroundings, enabling navigation, interaction, and task execution.\n1. Ultrasonic Sensor: Measures distance by emitting a sound wave and calculating the time it takes for the echo to return. Used for obstacle avoidance in mobile robots.\n2. Sound Sensor (Microphone): Detects sound levels. Used in robots that need to respond to voice commands or react to specific noises in their environment.",
+      "formulas_used": [],
+      "diagram_hint": "block"
+    },
+    {
+      "topic": "Elementary Concept of Rotating Machines",
+      "question": "Using Fleming's rules, explain the elementary concept of motor and generator action.",
+      "answer": "The elementary concept of rotating machines is based on the interaction between electricity and magnetism, described by Fleming's rules.\n\nMotor Action (Fleming's Left-Hand Rule): The principle of an electric motor is that a current-carrying conductor in a magnetic field experiences a force. Fleming's Left-Hand Rule states that if you point your forefinger in the direction of the magnetic field and your middle finger in the direction of the current, your thumb will point in the direction of the force (motion). This force creates the torque that causes the motor to rotate.\n\nGenerator Action (Fleming's Right-Hand Rule): The principle of an electric generator is that moving a conductor through a magnetic field induces a voltage (and thus a current if the circuit is closed). Fleming's Right-Hand Rule states that if you point your forefinger in the direction of the magnetic field and your thumb in the direction of the conductor's motion, your middle finger will point in the direction of the induced current. This principle is used to generate electricity.",
+      "formulas_used": [
+        "Motor Principle Force",
+        "Generator Principle EMF"
+      ],
+      "diagram_hint": "none"
+    }
+  ],
+  "questions_10_mark": [
+    {
+      "topic": "Layout of Electrical Power Systems",
+      "question": "Draw and explain the single-line diagram of an electrical power system, detailing the function of each stage from generation to load.",
+      "answer": "A single-line diagram is a simplified representation of a complex three-phase power system. It shows the main connections and components without detailing all three phases. The system consists of four main stages:\n\n1. Generation:\nThis is the first stage where electrical power is produced. Power plants (generating stations) use various sources like hydro, thermal, or nuclear energy to drive large alternators (synchronous generators) that convert mechanical energy into electrical energy. The voltage is typically generated at a medium level (e.g., 11 kV).\n\n2. Transmission:\nTo transmit power over long distances with minimal loss, the voltage from the generating station is 'stepped-up' to a very high level (e.g., 220 kV, 400 kV) using step-up transformers. High-voltage transmission lines carry this power from the generating stations to major load centers. The primary reason for high voltage is to reduce the current (since P = VI), which in turn minimizes I²R power losses in the transmission lines.\n\n3. Distribution:\nAt substations near load centers, the high transmission voltage is 'stepped-down' to lower levels using step-down transformers. The power is then distributed to various areas. This stage is often divided into:\n   - Primary Distribution: Power is stepped down to a medium voltage (e.g., 11 kV, 33 kV) and supplied to large industrial consumers or local distribution substations.\n   - Secondary Distribution: At local substations, the voltage is further stepped-down to the final utilization level (e.g., 415V three-phase or 240V single-phase) for residential, commercial, and small industrial consumers.\n\n4. Loads:\nThis is the final stage where the electrical energy is consumed by various devices. Loads can be residential (lighting, appliances), commercial (offices, shops), or industrial (motors, furnaces). The entire power system is designed to supply power to these loads reliably and efficiently.",
+      "formulas_used": [],
+      "diagram_hint": "block"
+    },
+    {
+      "topic": "Safety Devices and Systems",
+      "question": "Describe in detail various safety devices and LT switchgear products used for control and protection in electrical systems.",
+      "answer": "Safety devices and LT (Low Tension) switchgear are essential for controlling electrical circuits and protecting equipment and personnel from faults. Key components include:\n\n1. Switch Fuse Unit (SFU): The simplest protection element, consisting of a switch and a fuse in one unit. The fuse is a wire that melts and breaks the circuit during overcurrent, while the switch allows for manual disconnection.\n\n2. Circuit Breakers: Automatic switches that protect against overcurrent and short circuits.\n   - Air Circuit Breaker (ACB): Used for high current low voltage applications (up to 6500A). It uses air to extinguish the arc created when the circuit is broken.\n   - Moulded Case Circuit Breaker (MCCB): Enclosed in a moulded case, it provides thermal-magnetic or microprocessor-based protection for currents up to 200A. It is more advanced than an MCB.\n   - Miniature Circuit Breaker (MCB): A smaller version of the MCCB, commonly used in domestic and light industrial applications to protect against overload and short circuits.\n\n3. Earth Leakage Circuit Breaker (ELCB): A critical safety device that protects personnel from electric shock by detecting small leakage currents to the earth and quickly tripping the circuit.\n\n4. Relays: These are sensing devices. They detect fault conditions (like overcurrent, undervoltage, etc.) in the circuit and send an electrical trip signal to a circuit breaker to open the circuit.\n\n5. Starters: Used specifically to control the starting and stopping of electric motors. They often provide overload protection and may reduce starting current (e.g., Star-Delta starter).\n\n6. Contactors: Electromagnetically operated switches used for repeatedly switching a circuit on and off. A small control current through its coil can switch a much larger load current.\n\n7. Timers: Used to control the timing of operations, such as the delay in a star-delta starter when switching from the star to the delta connection.",
+      "formulas_used": [],
+      "diagram_hint": "none"
+    },
+    {
+      "topic": "Types of Wires & Cables",
+      "question": "Classify and describe various types of cables such as Non-Metallic Sheathed, Underground Feeder, Metallic Sheathed, and Coaxial cables used in electrical installations.",
+      "answer": "Cables are essential for transmitting power and signals. They consist of one or more insulated conductors within an outer protective sheath. Key types include:\n\n1. Non-Metallic Sheathed Cable (NM Cable):\n   - Also known as Romex, this is one of the most common cables for indoor residential wiring.\n   - Construction: It has a flexible plastic jacket containing two to four insulated wires (conductors) and a bare copper ground wire.\n   - Application: Used for in-house wiring for outlets, switches, and fixtures. It is not suitable for outdoor or underground use unless specified.\n\n2. Underground Feeder Cable (UF Cable):\n   - Construction: Similar to NM cable, but the individual insulated conductors and the ground wire are embedded in a solid, flexible, moisture-resistant material rather than just a jacket.\n   - Application: Designed for direct burial in the ground without the need for conduit. It is used for outdoor circuits such as landscape lighting and supplying power to outbuildings.\n\n3. Metallic Sheathed Cable (BX or AC Cable):\n   - Construction: Features insulated conductors enclosed in a flexible metallic armor (sheath), typically made of steel or aluminum. This metal casing provides excellent mechanical protection.\n   - Application: Used in situations where physical protection is required, such as in high-stress installations or for outdoor applications where it might be exposed.\n\n4. Coaxial Cable (Heliax Cable):\n   - Construction: It has a central inner conductor, surrounded by a tubular insulating layer. This is then enclosed by a tubular conducting shield (often braided wire), and finally an outer insulation jacket. The two conductors share a common geometric axis, hence the name 'coaxial'.\n   - Application: Specifically designed to carry high-frequency signals with minimal interference. It is widely used for cable television (CATV), internet connections, and connecting video equipment.",
+      "formulas_used": [],
+      "diagram_hint": "none"
+    },
+    {
+      "topic": "Transformer",
+      "question": "Based on the law of electromagnetic induction, explain the working principle of a transformer. Also, differentiate between a two-winding transformer and an autotransformer.",
+      "answer": "A transformer is a static device that transfers AC electrical power from one circuit to another at a different voltage level, without a change in frequency. Its operation is based on Faraday's Law of Electromagnetic Induction.\n\nWorking Principle:\n1. A transformer consists of two coils, a primary winding and a secondary winding, wound on a common laminated iron core.\n2. When an alternating voltage source is connected to the primary winding, an alternating current flows through it.\n3. This current produces an alternating magnetic flux in the iron core.\n4. According to Faraday's Law (e = -N dΦ/dt), this changing flux that links with the secondary winding induces an alternating EMF (voltage) across it. This phenomenon is called mutual induction.\n5. The magnitude of the induced secondary voltage depends on the ratio of turns between the secondary (Ns) and primary (Np) windings. The voltage is stepped up if Ns > Np and stepped down if Ns < Np.\n\nTypes of Transformers:\n\nTwo-Winding Transformer:\n- Construction: It has two electrically separate and insulated windings: a primary and a secondary winding, wound on a common magnetic core.\n- Operation: Power is transferred from primary to secondary purely by magnetic coupling (mutual induction).\n- Isolation: It provides electrical isolation between the primary and secondary circuits, which is a key safety feature.\n- Application: Widely used for stepping voltage up or down in power distribution, power supplies, and electronics.\n\nAutotransformer:\n- Construction: It has only one winding, a portion of which is common to both the primary and secondary circuits. The secondary voltage is tapped from points along this single winding.\n- Operation: Power is transferred through both induction (like a two-winding transformer) and direct electrical conduction.\n- Isolation: It does not provide electrical isolation between the primary and secondary circuits.\n- Application: Used where a smaller change in voltage is required and electrical isolation is not necessary, such as in motor starters or for interconnecting power grids of slightly different voltage levels. They are generally smaller, lighter, and cheaper than two-winding transformers of the same rating.",
+      "formulas_used": [
+        "Faraday's Law of Induction",
+        "Transformer Voltage Ratio"
+      ],
+      "diagram_hint": "circuit"
+    }
+  ],
+  "numerical_problems": [
+    {
+      "topic": "Transformer",
+      "problem": "A two-winding transformer has 500 turns on the primary winding and 100 turns on the secondary winding. If the primary voltage is 240 V, calculate the secondary voltage.",
+      "solution_steps": [
+        "Identify the given values: Np = 500, Ns = 100, Vp = 240 V.",
+        "Use the transformer voltage ratio formula: Vp / Vs = Np / Ns.",
+        "Rearrange the formula to solve for Vs: Vs = Vp * (Ns / Np).",
+        "Substitute the values: Vs = 240 V * (100 / 500).",
+        "Calculate the result: Vs = 240 * 0.2 = 48 V."
+      ],
+      "final_answer": "The secondary voltage is 48 V.",
+      "formulas_used": [
+        "Transformer Voltage Ratio"
+      ]
+    },
+    {
+      "topic": "Elementary Concept of Rotating Machines",
+      "problem": "A straight conductor of length 0.5 m carries a current of 10 A and is placed perpendicular to a uniform magnetic field of strength 0.2 T. Calculate the force experienced by the conductor.",
+      "solution_steps": [
+        "Identify the given values: L = 0.5 m, I = 10 A, B = 0.2 T.",
+        "Use the motor principle force formula for a perpendicular conductor: F = B * I * L.",
+        "Substitute the values: F = 0.2 T * 10 A * 0.5 m.",
+        "Calculate the result: F = 1 N."
+      ],
+      "final_answer": "The force experienced by the conductor is 1 N.",
+      "formulas_used": [
+        "Motor Principle Force"
+      ]
+    },
+    {
+      "topic": "Elementary Concept of Rotating Machines",
+      "problem": "A conductor of length 0.2 m moves at a constant velocity of 5 m/s perpendicular to a magnetic field of 1.5 T. Calculate the EMF induced in the conductor.",
+      "solution_steps": [
+        "Identify the given values: L = 0.2 m, v = 5 m/s, B = 1.5 T.",
+        "Use the generator principle EMF formula: e = B * L * v.",
+        "Substitute the values: e = 1.5 T * 0.2 m * 5 m/s.",
+        "Calculate the result: e = 1.5 V."
+      ],
+      "final_answer": "The induced EMF in the conductor is 1.5 V.",
+      "formulas_used": [
+        "Generator Principle EMF"
+      ]
+    },
+    {
+      "topic": "Transformer",
+      "problem": "An ideal transformer steps down a voltage from 200 V to 50 V. If the current in the secondary coil is 8 A, what is the current in the primary coil?",
+      "solution_steps": [
+        "Identify the given values: Vp = 200 V, Vs = 50 V, Is = 8 A.",
+        "For an ideal transformer, the power is conserved: Pp = Ps, which means Vp * Ip = Vs * Is.",
+        "Alternatively, use the current and voltage ratios: Ip / Is = Vs / Vp.",
+        "Rearrange to solve for Ip: Ip = Is * (Vs / Vp).",
+        "Substitute the values: Ip = 8 A * (50 V / 200 V).",
+        "Calculate the result: Ip = 8 * 0.25 = 2 A."
+      ],
+      "final_answer": "The current in the primary coil is 2 A.",
+      "formulas_used": [
+        "Transformer Current Ratio"
+      ]
+    }
+  ],
+  "mcqs": [
+    {
+      "topic": "Safety Devices and Systems",
+      "question": "Which device is specifically designed to protect humans from electric shock by detecting small leakage currents to earth?",
+      "options": [
+        "MCB",
+        "MCCB",
+        "ELCB",
+        "SFU"
+      ],
+      "correct_index": 2,
+      "explanation": "The Earth Leakage Circuit Breaker (ELCB) is designed to detect small leakage currents that may pass through a person's body and quickly disconnect the power."
+    },
+    {
+      "topic": "Layout of Electrical Power Systems",
+      "question": "In a power system, what is the primary reason for using very high voltages for transmission?",
+      "options": [
+        "To increase the speed of electricity",
+        "To reduce power loss (I²R loss)",
+        "To step down the frequency",
+        "To make the power lines safer"
+      ],
+      "correct_index": 1,
+      "explanation": "Transmitting power at high voltage reduces the current for the same amount of power (P=VI), which significantly minimizes the resistive power loss (I²R) in the transmission lines."
+    },
+    {
+      "topic": "Types of Wires & Cables",
+      "question": "In the American Wire Gauge (AWG) system, if wire A has a gauge of 10 and wire B has a gauge of 14, which statement is true?",
+      "options": [
+        "Wire A is smaller than wire B",
+        "Wire B is smaller than wire A",
+        "Both wires are the same size",
+        "Gauge number is unrelated to size"
+      ],
+      "correct_index": 1,
+      "explanation": "In the AWG system, a higher gauge number corresponds to a smaller wire diameter and cross-sectional area. Therefore, 14-gauge wire is smaller than 10-gauge wire."
+    },
+    {
+      "topic": "Wiring",
+      "question": "Which type of wiring is described as a temporary system and is not suitable for domestic premises?",
+      "options": [
+        "Conduit wiring",
+        "Batten wiring",
+        "Casing and Capping wiring",
+        "Cleat wiring"
+      ],
+      "correct_index": 3,
+      "explanation": "Cleat wiring is a temporary, open wiring system that is easy to install and remove but offers little mechanical protection, making it unsuitable for permanent domestic use."
+    },
+    {
+      "topic": "Types of Wires & Cables",
+      "question": "What does the letter 'W' in THWN wire lettering signify?",
+      "options": [
+        "White color",
+        "Wide diameter",
+        "Suitable for Wet locations",
+        "Withstands high voltage"
+      ],
+      "correct_index": 2,
+      "explanation": "The letter 'W' in wire insulation codes like THWN or THW indicates that the wire is rated as suitable for use in wet locations."
+    },
+    {
+      "topic": "Sensors and its types",
+      "question": "A device that detects a change in a physical quantity and produces an output signal is called a:",
+      "options": [
+        "Relay",
+        "Actuator",
+        "Sensor",
+        "Contactor"
+      ],
+      "correct_index": 2,
+      "explanation": "A sensor's function is to detect physical phenomena and convert them into a signal, typically electrical, for measurement or control."
+    },
+    {
+      "topic": "Elementary Concept of Rotating Machines",
+      "question": "Fleming's Left-Hand Rule is used to determine the direction of:",
+      "options": [
+        "Induced EMF",
+        "Magnetic Flux",
+        "Force on a conductor in a magnetic field",
+        "Current in a generator"
+      ],
+      "correct_index": 2,
+      "explanation": "Fleming's Left-Hand Rule relates the directions of magnetic field, current, and the resulting force (motion). It is the principle behind electric motors."
+    },
+    {
+      "topic": "Transformer",
+      "question": "The working principle of a transformer is:",
+      "options": [
+        "Self Induction",
+        "Mutual Induction",
+        "Static Induction",
+        "Dynamic Induction"
+      ],
+      "correct_index": 1,
+      "explanation": "A transformer works on the principle of mutual induction, where the changing magnetic flux produced by the primary winding induces a voltage in the secondary winding."
+    },
+    {
+      "topic": "Safety Devices and Systems",
+      "question": "A timer in a star-delta starter is used to:",
+      "options": [
+        "Measure the motor speed",
+        "Control the switch from star to delta connection",
+        "Prevent overheating",
+        "Indicate a fault"
+      ],
+      "correct_index": 1,
+      "explanation": "The timer controls the transition from the star connection (used for starting) to the delta connection (for running) after the motor has reached a certain speed and the current has stabilized."
+    },
+    {
+      "topic": "Types of Wires & Cables",
+      "question": "Which type of cable is commonly known as 'Romex' and used for most in-house wiring?",
+      "options": [
+        "Underground Feeder (UF) Cable",
+        "Metallic Sheathed (BX) Cable",
+        "Non-Metallic Sheathed (NM) Cable",
+        "Coaxial Cable"
+      ],
+      "correct_index": 2,
+      "explanation": "Non-Metallic Sheathed (NM) cable, often referred to by the brand name Romex, is the standard choice for interior residential wiring for outlets and switches."
+    },
+    {
+      "topic": "Transformer",
+      "question": "Which of the following differentiates an autotransformer from a two-winding transformer?",
+      "options": [
+        "It can only step-up voltage",
+        "It has only one winding",
+        "It works on DC",
+        "It uses capacitive coupling"
+      ],
+      "correct_index": 1,
+      "explanation": "An autotransformer uses a single winding with a tap for the secondary connection, whereas a two-winding transformer has two electrically isolated primary and secondary windings."
+    }
+  ]
+}

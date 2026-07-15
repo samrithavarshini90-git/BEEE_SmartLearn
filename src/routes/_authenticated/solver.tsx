@@ -21,10 +21,21 @@ const UNITS = [1, 2, 3, 4, 5, 6] as const;
 // ── KaTeX renderer ────────────────────────────────────────────────────────────
 // Renders a string that may contain inline LaTeX ($...$) or display LaTeX ($$...$$)
 // mixed with plain text. Falls back to plain text if KaTeX throws.
-function preprocessLatex(text: string): string {
-  if (text.includes("$")) return text;
+function unescapeMarkdown(text: string): string {
+  return text
+    .replace(/\\_/g, "_")
+    .replace(/\\\{/g, "{")
+    .replace(/\\\}/g, "}")
+    .replace(/\\\[/g, "[")
+    .replace(/\\\]/g, "]")
+    .replace(/\\\$/g, "$");
+}
 
-  let processed = text;
+function preprocessLatex(text: string): string {
+  const unescaped = unescapeMarkdown(text);
+  if (unescaped.includes("$")) return unescaped;
+
+  let processed = unescaped;
   // Wrap subscript patterns like R_1, V_in, V_A, I_branch, R_{eq}, R_{45}
   processed = processed.replace(/\b([A-Za-z]_\{?[A-Za-z0-9]+\}?)\b/g, "$$$1$");
 
@@ -68,7 +79,7 @@ function MathText({ text }: { text: string }) {
 
 // Render a pure LaTeX string (no delimiters) in display mode
 function MathDisplay({ latex }: { latex: string }) {
-  const cleaned = latex.trim();
+  const cleaned = unescapeMarkdown(latex).trim();
   try {
     const html = katex.renderToString(cleaned, {
       displayMode: true,
@@ -88,7 +99,7 @@ function MathDisplay({ latex }: { latex: string }) {
 
 // Render a pure LaTeX string inline
 function MathInline({ latex }: { latex: string }) {
-  const cleaned = latex.trim();
+  const cleaned = unescapeMarkdown(latex).trim();
   try {
     const html = katex.renderToString(cleaned, {
       displayMode: false,
@@ -132,26 +143,28 @@ function splitMath(raw: string): MathPart[] {
 
 // Detect if a string looks like raw LaTeX (no $ delimiters) so we can render it
 function looksLikeLatex(s: string): boolean {
+  const unescaped = unescapeMarkdown(s);
   // Match common LaTeX commands or subscript/superscript patterns
-  return /\\(?:frac|sqrt|sum|int|cdot|times|Omega|omega|alpha|beta|theta|phi|infty|left|right|text|mathrm|mathbf|begin|end|dfrac|tfrac|approx|leq|geq|pm|mp|Delta|partial|nabla|hat|bar|vec|,|;|quad|qquad)/.test(s)
-    || /[_^]\{/.test(s)   // e.g. R_{eq} or x^{2}
-    || /\\[A-Za-z]+/.test(s); // any backslash command
+  return /\\(?:frac|sqrt|sum|int|cdot|times|Omega|omega|alpha|beta|theta|phi|infty|left|right|text|mathrm|mathbf|begin|end|dfrac|tfrac|approx|leq|geq|pm|mp|Delta|partial|nabla|hat|bar|vec|,|;|quad|qquad)/.test(unescaped)
+    || /[_^]\{/.test(unescaped)   // e.g. R_{eq} or x^{2}
+    || /\\[A-Za-z]+/.test(unescaped); // any backslash command
 }
 
 // Smart expression renderer: handles $...$, raw LaTeX, and plain text
 function ExpressionBlock({ expr }: { expr: string }) {
-  const hasDollar = /\$/.test(expr);
+  const unescaped = unescapeMarkdown(expr);
+  const hasDollar = /\$/.test(unescaped);
   if (hasDollar) {
     return (
       <div className="mt-1.5 overflow-x-auto rounded-lg border border-border bg-surface-muted px-3 py-2 text-sm">
-        <MathText text={expr} />
+        <MathText text={unescaped} />
       </div>
     );
   }
-  if (looksLikeLatex(expr)) {
+  if (looksLikeLatex(unescaped)) {
     return (
       <div className="mt-1.5 overflow-x-auto rounded-lg border border-border bg-surface-muted px-3 py-2 text-sm">
-        <MathDisplay latex={expr} />
+        <MathDisplay latex={unescaped} />
       </div>
     );
   }

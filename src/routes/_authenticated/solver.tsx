@@ -112,9 +112,12 @@ function splitMath(raw: string): MathPart[] {
   return parts;
 }
 
-// Detect if a string looks like raw LaTeX (no $ delimiters) so we can wrap it
+// Detect if a string looks like raw LaTeX (no $ delimiters) so we can render it
 function looksLikeLatex(s: string): boolean {
-  return /\\(?:frac|sqrt|sum|int|cdot|times|Omega|alpha|beta|theta|infty|left|right|text|mathrm|mathbf|begin|end|dfrac|tfrac|over|approx|leq|geq|pm|mp|Delta|partial|nabla|hat|bar|vec)/.test(s);
+  // Match common LaTeX commands or subscript/superscript patterns
+  return /\\(?:frac|sqrt|sum|int|cdot|times|Omega|omega|alpha|beta|theta|phi|infty|left|right|text|mathrm|mathbf|begin|end|dfrac|tfrac|approx|leq|geq|pm|mp|Delta|partial|nabla|hat|bar|vec|,|;|quad|qquad)/.test(s)
+    || /[_^]\{/.test(s)   // e.g. R_{eq} or x^{2}
+    || /\\[A-Za-z]+/.test(s); // any backslash command
 }
 
 // Smart expression renderer: handles $...$, raw LaTeX, and plain text
@@ -397,16 +400,26 @@ function SolutionCard({ result }: { result: SolverResponse }) {
         <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
           Final Answer
         </div>
-        <div className="space-y-1">
-          {result.final_answer.split("\n").map((line, i) => (
-            <p key={i} className="text-base font-semibold text-foreground leading-relaxed">
-              {looksLikeLatex(line) || line.includes("$") ? (
-                <MathText text={line} />
-              ) : (
-                line
-              )}
-            </p>
-          ))}
+        <div className="space-y-1.5">
+          {result.final_answer.split("\n").map((line, i) => {
+            const trimmed = line.trim();
+            if (!trimmed) return null;
+            const hasDollar = trimmed.includes("$");
+            const isLatex = looksLikeLatex(trimmed);
+            return (
+              <p key={i} className="text-base font-semibold text-foreground leading-relaxed">
+                {hasDollar ? (
+                  // Mixed text + $...$ tokens
+                  <MathText text={trimmed} />
+                ) : isLatex ? (
+                  // Raw LaTeX without $ delimiters — render inline directly
+                  <MathInline latex={trimmed} />
+                ) : (
+                  trimmed
+                )}
+              </p>
+            );
+          })}
         </div>
       </div>
     </article>

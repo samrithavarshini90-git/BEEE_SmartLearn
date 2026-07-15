@@ -716,27 +716,30 @@ CRITICAL RULES FOR OUTPUT:
 
 DIAGRAM RULES — read carefully:
 
-### When the question asks to SOLVE a circuit (find currents, voltages, equivalent resistance, Thevenin, etc.):
-- Generate a SIMPLE, CLEAN solved circuit diagram — a straightforward rectangular loop.
-- DO NOT try to reproduce a complex multi-branch topology. Keep it simple.
-- Place the source on the left side (direction "up"), then wire across the top ("right"), then add each key component one by one ("right" or "down"), then close with return lines.
-- LABEL RULE (CRITICAL): Each component label must be SHORT — at most ONE name and ONE value. Examples: "R=6.42Ω", "I=1.56A", "10V". NEVER put two values in one label like "R3=3Ω I=0.984A". If you want to show current through a resistor, put the current on a separate Line element.
-- Use at most 5 components total (source + 2-3 resistors/components + current label). The goal is clarity, not topology accuracy.
-- description must say "Solved circuit: [brief summary of what was found and the answer]".
+IMPORTANT: The backend will automatically arrange all schemdraw components into a clean RECTANGULAR LOOP. You do NOT need to specify directions or worry about topology. Just provide:
+  1. One source element (SourceV/SourceI/BatteryCell) with its voltage/current label
+  2. The key components (Resistor, Capacitor, Inductor, Diode, etc.) with short labels
 
-### When the question is a general/theory question (explain a concept, derive a formula, state a theorem):
-- Generate a REPRESENTATIVE EDUCATIONAL circuit that clearly illustrates the concept being asked.
-- Use simple, clean values. Keep it to a single rectangular loop with ≤5 components.
-- Each label: ONE name + ONE value only.
+### When the question asks to SOLVE a circuit (find currents, voltages, equivalent resistance, Thevenin, etc.):
+- List the source and the KEY components that illustrate the solution.
+- Label each component with the COMPUTED answer value only. ONE value per label.
+  Good: label="R=6.42Ω"  label="I=1.56A"  label="10V"
+  Bad: label="R3=3Ω I=0.984A"  (never combine two values)
+- Include a "Resistor" element with the solved current or voltage annotated if relevant.
+- description must say "Solved circuit: [what was found and the numeric answer]".
+
+### When the question is a general/theory question:
+- List the source and components that best illustrate the concept.
+- Use simple clean values. Each label: ONE name + ONE value.
 - description must say what concept the circuit illustrates.
 
-### Never emit null diagram for circuit/electrical questions. Only use null for pure theory with no circuit relevance.
+### Never emit null diagram for circuit/electrical questions. Only use null for pure theory with no circuit.
 
 OTHER RULES:
-- Every circuit must form a closed loop — use return Line elements at corners.
+- Set direction="right" and length=3 for all components. Set direction="up" for sources. The backend will override layout anyway.
 - Put derivations/formulas in "steps", not in "final_answer".
-- "final_answer" MUST use LaTeX for all math. Each result on its own line. Examples: "I_{3\\Omega} = 0.984\\,\\text{A}", "V_{R1} = 1.33\\,\\text{V}", "R_{eq} = 6.42\\,\\Omega". Do NOT mix plain text and LaTeX escapes — use pure LaTeX.
-- Every "expression" MUST use LaTeX syntax for math. Examples: "R_{eq} = \\frac{R_1 R_2}{R_1+R_2}", "I = \\frac{V}{R} = \\frac{10}{6.42} = 1.557\\,A".
+- "final_answer" MUST use LaTeX for all math. Each result on its own line. Examples: "I_{3\\Omega} = 0.984\\,\\text{A}", "V_{R1} = 1.33\\,\\text{V}", "R_{eq} = 6.42\\,\\Omega".
+- Every "expression" MUST use LaTeX syntax. Examples: "R_{eq} = \\frac{R_1 R_2}{R_1+R_2}", "I = \\frac{V}{R} = \\frac{10}{6.42} = 1.557\\,A".
 - Every "formulas_used" entry MUST also be LaTeX, e.g. "I = \\frac{V}{R}", "R_{eq} = R_1 + R_2".`;
 
 function shouldRequestDiagram(data: z.infer<typeof solverInput>, questionText: string): boolean {
@@ -958,6 +961,86 @@ function createBasicCircuitDiagram(questionText: string): DiagramData {
   };
 }
 
+/**
+ * forceRectangularLayout – takes ANY schemdraw instruction list and rebuilds it
+ * into a clean rectangular loop:
+ *
+ *    ┌──[comp1]──[comp2]──[comp3]──┐
+ *    │                             │
+ * [source]                        wire
+ *    │                             │
+ *    └─────────────────────────────┘
+ *
+ * Source goes UP on the left side.
+ * Non-source, non-wire components go RIGHT along the top.
+ * Return wires close the right side and bottom.
+ *
+ * This guarantees a clean rectangle regardless of what the AI generates.
+ */
+function forceRectangularLayout(instructions: SchemdrawInstruction[]): SchemdrawInstruction[] {
+  const SOURCE_TYPES = new Set(["SourceV", "SourceI", "BatteryCell"]);
+  const WIRE_TYPES = new Set(["Line", "Ground"]);
+
+  // Separate sources from functional components; skip bare wire/ground elements
+  const sources: SchemdrawInstruction[] = [];
+  const components: SchemdrawInstruction[] = [];
+
+  for (const inst of instructions) {
+    if (WIRE_TYPES.has(inst.type)) continue;
+    if (SOURCE_TYPES.has(inst.type)) {
+      sources.push(inst);
+    } else {
+      components.push(inst);
+    }
+  }
+
+  // Nothing useful — return untouched so we at least render something
+  if (sources.length === 0 && components.length === 0) return instructions;
+
+  const COMP_LEN = 3;   // length of each component element
+  const WIRE_LEN = 1.5; // corner wire length
+
+  const result: SchemdrawInstruction[] = [];
+
+  // ① Left side: primary source going UP
+  const primarySource = sources[0] ?? { type: "SourceV", direction: "up", label: "Source", length: COMP_LEN };
+  result.push({ ...primarySource, direction: "up", length: COMP_LEN });
+
+  // ② Top-left corner: short wire to the right
+  if (components.length === 0) {
+    result.push({ type: "Line", direction: "right", label: "", length: WIRE_LEN * 2 });
+  } else {
+    result.push({ type: "Line", direction: "right", label: "", length: WIRE_LEN });
+  }
+
+  // ③ Top: all non-source components going RIGHT
+  for (const comp of components) {
+    result.push({ ...comp, direction: "right", length: COMP_LEN });
+  }
+
+  // ④ Top-right corner: short wire down to start the right side
+  result.push({ type: "Line", direction: "right", label: "", length: WIRE_LEN });
+
+  // ⑤ Right side: wire going DOWN (height = same as source)
+  result.push({ type: "Line", direction: "down", label: "", length: COMP_LEN });
+
+  // ⑥ Bottom: return wire going LEFT to close the rectangle
+  // Width = corner + components + corner
+  const topWidth = WIRE_LEN + components.length * COMP_LEN + WIRE_LEN;
+  result.push({ type: "Line", direction: "left", label: "", length: topWidth });
+
+  // If there's a second source (less common — e.g. two-source circuits),
+  // annotate the source label to mention it rather than trying to draw it.
+  if (sources.length > 1) {
+    const extra = sources.slice(1).map(s => s.label).filter(Boolean).join(", ");
+    if (extra) {
+      result[0] = { ...result[0], label: `${result[0].label} (+${extra})` };
+    }
+  }
+
+  return result;
+}
+
 async function renderSchemdrawSvg(
   instructions: SchemdrawInstruction[],
 ): Promise<{ svg: string; error?: string }> {
@@ -1166,6 +1249,8 @@ CIRCUIT TRACING RULES — follow these carefully to produce a correct diagram:
 
 
     if (parsed.diagram?.schemdraw_instructions && parsed.diagram.schemdraw_instructions.length > 0) {
+      // Normalize every diagram to a clean rectangular layout before rendering
+      parsed.diagram.schemdraw_instructions = forceRectangularLayout(parsed.diagram.schemdraw_instructions);
       parsed.diagram.schemdraw_instructions = closeCircuitInstructions(parsed.diagram.schemdraw_instructions);
     }
 

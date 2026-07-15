@@ -21,8 +21,26 @@ const UNITS = [1, 2, 3, 4, 5, 6] as const;
 // ── KaTeX renderer ────────────────────────────────────────────────────────────
 // Renders a string that may contain inline LaTeX ($...$) or display LaTeX ($$...$$)
 // mixed with plain text. Falls back to plain text if KaTeX throws.
+function preprocessLatex(text: string): string {
+  if (text.includes("$")) return text;
+
+  let processed = text;
+  // Wrap subscript patterns like R_1, V_in, V_A, I_branch, R_{eq}, R_{45}
+  processed = processed.replace(/\b([A-Za-z]_\{?[A-Za-z0-9]+\}?)\b/g, "$$$1$");
+
+  // Wrap backslash units like 1\,\k\Omega, 470\,\Omega, 20\,\V
+  processed = processed.replace(/(\d+(?:\.\d+)?\s*\\,\s*\\[A-Za-z]+)/g, "$$$1$");
+  processed = processed.replace(/(\d+(?:\.\d+)?\s*\\[A-Za-z]+)/g, "$$$1$");
+
+  // Wrap stand-alone backslash commands (like \Omega, \approx, etc.)
+  processed = processed.replace(/(\\[A-Za-z]+)/g, "$$$1$");
+
+  return processed;
+}
+
 function MathText({ text }: { text: string }) {
-  const parts = splitMath(text);
+  const processed = preprocessLatex(text);
+  const parts = splitMath(processed);
   return (
     <>
       {parts.map((part, i) => {
@@ -337,7 +355,7 @@ function SolutionCard({ result }: { result: SolverResponse }) {
           <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Question
           </div>
-          <p className="mt-1 text-sm text-foreground leading-relaxed">{result.question}</p>
+          <p className="mt-1 text-sm text-foreground leading-relaxed"><MathText text={result.question} /></p>
         </div>
       )}
 
@@ -353,7 +371,7 @@ function SolutionCard({ result }: { result: SolverResponse }) {
                 {s.step}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-sm text-foreground leading-relaxed">{s.description}</p>
+                <p className="text-sm text-foreground leading-relaxed"><MathText text={s.description} /></p>
                 {s.expression && <ExpressionBlock expr={s.expression} />}
               </div>
             </li>

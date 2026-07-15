@@ -740,6 +740,7 @@ IMPORTANT: The backend will automatically arrange all schemdraw components into 
 OTHER RULES:
 - Set direction="right" and length=3 for all components. Set direction="up" for sources. The backend will override layout anyway.
 - Put derivations/formulas in "steps", not in "final_answer".
+- Every step "description" MUST wrap all inline math symbols, variables (e.g. $R_1$, $V_A$, $I_{3\Omega}$), values with units (e.g. $1\,\mathrm{k}\Omega$, $470\,\Omega$, $20\,\mathrm{V}$), or equations inside single dollar signs ($) for proper rendering. Do not write raw LaTeX commands directly in plain text without $ signs.
 - "final_answer" MUST use LaTeX for all math. Each result on its own line. Examples: "I_{3\\Omega} = 0.984\\,\\text{A}", "V_{R1} = 1.33\\,\\text{V}", "R_{eq} = 6.42\\,\\Omega".
 - Every "expression" MUST use LaTeX syntax. Examples: "R_{eq} = \\frac{R_1 R_2}{R_1+R_2}", "I = \\frac{V}{R} = \\frac{10}{6.42} = 1.557\\,A".
 - Every "formulas_used" entry MUST also be LaTeX, e.g. "I = \\frac{V}{R}", "R_{eq} = R_1 + R_2".`;

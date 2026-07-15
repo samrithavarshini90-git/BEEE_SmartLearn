@@ -717,14 +717,16 @@ CRITICAL RULES FOR OUTPUT:
 DIAGRAM RULES — read carefully:
 
 ### When the question asks to SOLVE a circuit (find currents, voltages, equivalent resistance, Thevenin, etc.):
-- Generate a SOLVED CIRCUIT diagram — show the circuit WITH the computed answer values annotated on each component.
-- Use the labels to display calculated values, e.g. label="R1=4Ω, I=1.5A" or label="V_th=8V" or label="I3=0.6A".
-- The diagram should visually represent the RESULT of the calculation, not just a bare input schematic.
-- description must say "Solved circuit showing [what was found]".
+- Generate a SIMPLE, CLEAN solved circuit diagram — a straightforward rectangular loop.
+- DO NOT try to reproduce a complex multi-branch topology. Keep it simple.
+- Place the source on the left side (direction "up"), then wire across the top ("right"), then add each key component one by one ("right" or "down"), then close with return lines.
+- Label each component with the COMPUTED answer value, e.g. label="R_total=6.42Ω" or label="I=1.56A" or label="V=6.89V".
+- Use at most 4-6 components total. The goal is clarity, not topology accuracy.
+- description must say "Solved circuit: [brief summary of what was found and the answer]".
 
 ### When the question is a general/theory question (explain a concept, derive a formula, state a theorem):
 - Generate a REPRESENTATIVE EDUCATIONAL circuit that clearly illustrates the concept being asked.
-- Use simple, clean component values that best demonstrate the concept.
+- Use simple, clean values. Keep it to a single rectangular loop with ≤5 components.
 - description must say what concept the circuit illustrates.
 
 ### Never emit null diagram for circuit/electrical questions. Only use null for pure theory with no circuit relevance.
@@ -733,7 +735,8 @@ OTHER RULES:
 - Every circuit must form a closed loop — use return Line elements at corners.
 - Put derivations/formulas in "steps", not in "final_answer".
 - Format "final_answer" as a short display-ready answer. For multiple values, each on its own line e.g. "V_R1 = 1.33 V\nV_R2 = 4.40 V".
-- Every "expression" must be plain ASCII math like V = I*R, Z = sqrt(R^2 + (Xl-Xc)^2).`;
+- Every "expression" MUST use LaTeX syntax for math. Examples: "R_{eq} = \\frac{R_1 R_2}{R_1+R_2}", "I = \\frac{V}{R} = \\frac{10}{6.42} = 1.557\\,A", "Z = \\sqrt{R^2 + X_L^2}".
+- Every "formulas_used" entry MUST also be LaTeX, e.g. "I = \\frac{V}{R}", "R_{eq} = R_1 + R_2".`;
 
 function shouldRequestDiagram(data: z.infer<typeof solverInput>, questionText: string): boolean {
   if (data.imageDataUrl) return true;

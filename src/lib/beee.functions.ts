@@ -1089,15 +1089,15 @@ YOUR JOB:
 1. Extract ALL text/question from the image exactly.
 2. If a circuit diagram is visible, trace it component-by-component, following the actual wires in the image, and produce schemdraw drawing instructions that faithfully reproduce the circuit topology.
 
-Return ONLY a strict JSON object (no prose) in this exact format:
+Return ONLY a strict JSON object (no prose) in this format:
 {
   "extracted_text": "The complete question text or problem statement read from the image verbatim.",
-  "diagram": null | {
+  "diagram": {
     "description": "Concise description of the circuit topology",
     "schemdraw_instructions": [
       {
-        "type": "Resistor"|"Capacitor"|"Inductor"|"BatteryCell"|"SourceV"|"SourceI"|"Diode"|"BjtNpn"|"Line"|"Ground",
-        "direction": "right"|"left"|"up"|"down",
+        "type": "Resistor",
+        "direction": "right",
         "label": "exact component label and value from image e.g. R1 = 4Ω",
         "length": 2
       }
@@ -1105,33 +1105,59 @@ Return ONLY a strict JSON object (no prose) in this exact format:
   }
 }
 
-CIRCUIT TRACING RULES — follow these carefully to produce a correct diagram:
-- Start at the positive terminal of the voltage/current source and trace the circuit clockwise.
-- Place each component in the exact order it appears along the wire path.
-- Use "Line" elements ONLY to connect components at corners or junction points.
-- Include ALL resistors, capacitors, inductors, sources with their EXACT values from the image labels.
-- For parallel branches: draw the main branch first, then add lines for junctions.
-- Every circuit MUST form a closed loop — add return Line elements if needed.
-- For "length": sources and resistors are typically 2–3, lines at corners are 1–2.
+Rules:
+- Valid types: "Resistor", "Capacitor", "Inductor", "BatteryCell", "SourceV", "SourceI", "Diode", "BjtNpn", "Line", "Ground".
+- Valid directions: "right", "left", "up", "down".
 - If the image has NO circuit diagram (only text/formulas), set "diagram" to null.
-- If text is unclear but circuit is present, still trace the circuit and set extracted_text to what you can read.`;
+- Every circuit MUST form a closed loop.`;
 
 
-        const visionRaw = await callCerebrasVision(data.imageDataUrl, visionPrompt);
-        const parsedVision = safeParseJson<any>(visionRaw, {});
+        let visionRaw = await callCerebrasVision(data.imageDataUrl, visionPrompt);
+        console.log("[Vision API] raw response:", visionRaw);
+        let parsedVision = safeParseJson<any>(visionRaw, {});
+        console.log("[Vision API] parsed response:", JSON.stringify(parsedVision));
 
-        const rawExtracted = parsedVision.extracted_text || 
+        // OCR-only retry fallback if first attempt returned empty or failed to parse
+        let rawExtracted = parsedVision.extracted_text || 
                              parsedVision.question_text || 
                              parsedVision.question || 
                              parsedVision.text || 
                              parsedVision.extractedText || 
                              parsedVision.ocr_text || "";
-        extractedText = typeof rawExtracted === "string" ? rawExtracted : JSON.stringify(rawExtracted);
 
         let parsedDiag = parsedVision.diagram || 
                          parsedVision.circuit || 
                          parsedVision.circuit_diagram || 
                          parsedVision.schematic;
+
+        if (!rawExtracted && (!parsedDiag || typeof parsedDiag !== "object")) {
+          console.warn("[Vision API] First attempt returned empty or invalid JSON. Retrying with simplified OCR prompt...");
+          const retryPrompt = `Analyze the uploaded image. Extract all readable text and describe any circuit diagrams present.
+Return ONLY a strict JSON object in this format:
+{
+  "extracted_text": "The text read from the image",
+  "diagram": null
+}`;
+          const retryRaw = await callCerebrasVision(data.imageDataUrl, retryPrompt);
+          console.log("[Vision API] retry raw response:", retryRaw);
+          parsedVision = safeParseJson<any>(retryRaw, {});
+          console.log("[Vision API] retry parsed response:", JSON.stringify(parsedVision));
+
+          rawExtracted = parsedVision.extracted_text || 
+                        parsedVision.question_text || 
+                        parsedVision.question || 
+                        parsedVision.text || 
+                        parsedVision.extractedText || 
+                        parsedVision.ocr_text || "";
+
+          parsedDiag = parsedVision.diagram || 
+                       parsedVision.circuit || 
+                       parsedVision.circuit_diagram || 
+                       parsedVision.schematic;
+        }
+
+        extractedText = typeof rawExtracted === "string" ? rawExtracted : JSON.stringify(rawExtracted);
+
         if (parsedDiag && typeof parsedDiag === "object") {
           visionDiagram = parsedDiag;
           if (!visionDiagram.schemdraw_instructions && visionDiagram.instructions) {

@@ -39,61 +39,23 @@
       "explanation": "Modulation is the conceptual process of combining a low-frequency message signal with a high-frequency carrier wave to produce a modulated signal suitable for transmission."
     },
     {
-      "name": "Amplitude Modulation (AM)",
-      "topic": "Types of Modulation (AM, FM, PM)",
-      "expression": "In AM, Amplitude varies, Frequency is constant, Phase is constant.",
-      "latex": "A_{carrier} \\propto m(t)",
+      "name": "Satellite Frequency Translation",
+      "topic": "Satellite Communication",
+      "expression": "f_downlink is not equal to f_uplink",
+      "latex": "f_{downlink} \\neq f_{uplink}",
       "variables": [
         {
-          "symbol": "A_carrier",
-          "meaning": "Amplitude of the Carrier Wave",
-          "unit": "V"
-        },
-        {
-          "symbol": "m(t)",
-          "meaning": "Modulating signal",
-          "unit": "V"
-        }
-      ],
-      "explanation": "In amplitude modulation, the amplitude of the high-frequency carrier wave is varied in accordance with the instantaneous value of the low-frequency message signal."
-    },
-    {
-      "name": "Frequency Modulation (FM)",
-      "topic": "Types of Modulation (AM, FM, PM)",
-      "expression": "In FM, Amplitude is constant, Frequency varies, Phase is constant.",
-      "latex": "f_{carrier} \\propto m(t)",
-      "variables": [
-        {
-          "symbol": "f_carrier",
-          "meaning": "Frequency of the Carrier Wave",
+          "symbol": "f_downlink",
+          "meaning": "Downlink frequency",
           "unit": "Hz"
         },
         {
-          "symbol": "m(t)",
-          "meaning": "Modulating signal",
-          "unit": "V"
+          "symbol": "f_uplink",
+          "meaning": "Uplink frequency",
+          "unit": "Hz"
         }
       ],
-      "explanation": "In frequency modulation, the frequency of the carrier wave is varied in accordance with the message signal, while its amplitude remains unchanged."
-    },
-    {
-      "name": "Phase Modulation (PM)",
-      "topic": "Types of Modulation (AM, FM, PM)",
-      "expression": "In PM, Amplitude is constant, Frequency is constant, Phase varies.",
-      "latex": "\\phi_{carrier} \\propto m(t)",
-      "variables": [
-        {
-          "symbol": "phi_carrier",
-          "meaning": "Phase of the Carrier Wave",
-          "unit": "radians"
-        },
-        {
-          "symbol": "m(t)",
-          "meaning": "Modulating signal",
-          "unit": "V"
-        }
-      ],
-      "explanation": "In phase modulation, the phase of the carrier wave is varied according to the information signal, while its amplitude and frequency remain constant."
+      "explanation": "A satellite transponder receives signals at an uplink frequency and retransmits them at a different downlink frequency to prevent interference between the powerful transmitted signal and the weak received signal."
     },
     {
       "name": "Amplitude Shift Keying (ASK)",
@@ -163,23 +125,61 @@
       "explanation": "In PSK, the phase of the carrier signal is shifted between a set of discrete values to represent the digital data."
     },
     {
-      "name": "Satellite Frequency Translation",
-      "topic": "Satellite Communication",
-      "expression": "f_downlink is not equal to f_uplink",
-      "latex": "f_{downlink} \\neq f_{uplink}",
+      "name": "Amplitude Modulation (AM)",
+      "topic": "Types of Modulation (AM, FM, PM)",
+      "expression": "In AM, Amplitude varies, Frequency is constant, Phase is constant.",
+      "latex": "A_{carrier} \\propto m(t)",
       "variables": [
         {
-          "symbol": "f_downlink",
-          "meaning": "Downlink frequency",
+          "symbol": "A_carrier",
+          "meaning": "Amplitude of the Carrier Wave",
+          "unit": "V"
+        },
+        {
+          "symbol": "m(t)",
+          "meaning": "Modulating signal",
+          "unit": "V"
+        }
+      ],
+      "explanation": "In amplitude modulation, the amplitude of the high-frequency carrier wave is varied in accordance with the instantaneous value of the low-frequency message signal."
+    },
+    {
+      "name": "Frequency Modulation (FM)",
+      "topic": "Types of Modulation (AM, FM, PM)",
+      "expression": "In FM, Amplitude is constant, Frequency varies, Phase is constant.",
+      "latex": "f_{carrier} \\propto m(t)",
+      "variables": [
+        {
+          "symbol": "f_carrier",
+          "meaning": "Frequency of the Carrier Wave",
           "unit": "Hz"
         },
         {
-          "symbol": "f_uplink",
-          "meaning": "Uplink frequency",
-          "unit": "Hz"
+          "symbol": "m(t)",
+          "meaning": "Modulating signal",
+          "unit": "V"
         }
       ],
-      "explanation": "A satellite transponder receives signals at an uplink frequency and retransmits them at a different downlink frequency to prevent interference between the powerful transmitted signal and the weak received signal."
+      "explanation": "In frequency modulation, the frequency of the carrier wave is varied in accordance with the message signal, while its amplitude remains unchanged."
+    },
+    {
+      "name": "Phase Modulation (PM)",
+      "topic": "Types of Modulation (AM, FM, PM)",
+      "expression": "In PM, Amplitude is constant, Frequency is constant, Phase varies.",
+      "latex": "\\phi_{carrier} \\propto m(t)",
+      "variables": [
+        {
+          "symbol": "phi_carrier",
+          "meaning": "Phase of the Carrier Wave",
+          "unit": "radians"
+        },
+        {
+          "symbol": "m(t)",
+          "meaning": "Modulating signal",
+          "unit": "V"
+        }
+      ],
+      "explanation": "In phase modulation, the phase of the carrier wave is varied according to the information signal, while its amplitude and frequency remain constant."
     }
   ],
   "questions_2_mark": [

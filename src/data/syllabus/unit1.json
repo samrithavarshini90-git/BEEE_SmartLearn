@@ -4,8 +4,8 @@
   "topics": [
     "Electrical Circuit Elements",
     "Voltage, Current, Power & Energy",
-    "Ohm\u2019s law",
-    "Kirchoff\u2019s Voltage & Current law",
+    "Ohm’s law",
+    "Kirchoff’s Voltage & Current law",
     "Series and Parallel Circuits",
     "Voltage and Current Division",
     "Star-Delta Conversion",
@@ -16,6 +16,270 @@
     "Maximum Power Transfer Theorem"
   ],
   "formulas": [
+    {
+      "name": "Kirchhoff's Current Law (KCL)",
+      "topic": "Kirchoff’s Voltage & Current law",
+      "expression": "Sum of entering currents = Sum of leaving currents",
+      "latex": "\\sum I_{in} = \\sum I_{out}",
+      "variables": [
+        {
+          "symbol": "I",
+          "meaning": "Current",
+          "unit": "A"
+        }
+      ],
+      "explanation": "The algebraic sum of currents entering and leaving a node at any instant of time must be equal to zero."
+    },
+    {
+      "name": "Kirchhoff's Voltage Law (KVL)",
+      "topic": "Kirchoff’s Voltage & Current law",
+      "expression": "Sum of voltage sources = Sum of voltage drops",
+      "latex": "\\sum V_{sources} = \\sum V_{drops}",
+      "variables": [
+        {
+          "symbol": "V",
+          "meaning": "Voltage",
+          "unit": "V"
+        }
+      ],
+      "explanation": "In any closed circuit, the algebraic sum of all voltages around a closed path (or loop) is zero."
+    },
+    {
+      "name": "Maximum Power Transfer Theorem",
+      "topic": "Maximum Power Transfer Theorem",
+      "expression": "RL = Rth",
+      "latex": "R_L = R_{Th}",
+      "variables": [
+        {
+          "symbol": "RL",
+          "meaning": "Load Resistance",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "Rth",
+          "meaning": "Thevenin Resistance",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "Maximum power is transferred from a source to a load when the load resistance equals the Thevenin equivalent resistance of the source."
+    },
+    {
+      "name": "Norton's Theorem",
+      "topic": "Norton's Theorem",
+      "expression": "IL = IN * RN / (RN + RL)",
+      "latex": "I_L = I_N \\frac{R_N}{R_N + R_L}",
+      "variables": [
+        {
+          "symbol": "IL",
+          "meaning": "Load Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "IN",
+          "meaning": "Norton Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "RN",
+          "meaning": "Norton Resistance",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "RL",
+          "meaning": "Load Resistance",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "The current through the load is found using the current divider rule on the Norton equivalent circuit."
+    },
+    {
+      "name": "Ohm's Law (Conductance)",
+      "topic": "Ohm’s law",
+      "expression": "G = 1 / R",
+      "latex": "G = \\frac{1}{R}",
+      "variables": [
+        {
+          "symbol": "G",
+          "meaning": "Conductance",
+          "unit": "Siemens (S)"
+        },
+        {
+          "symbol": "R",
+          "meaning": "Resistance",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "Conductance is the reciprocal of resistance and represents a material's ability to conduct electric current."
+    },
+    {
+      "name": "Ohm's Law",
+      "topic": "Ohm’s law",
+      "expression": "V = I * R",
+      "latex": "V = IR",
+      "variables": [
+        {
+          "symbol": "V",
+          "meaning": "Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I",
+          "meaning": "Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "R",
+          "meaning": "Resistance",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "The voltage across a resistor is directly proportional to the current flowing through it."
+    },
+    {
+      "name": "Delta-to-Star Conversion",
+      "topic": "Star-Delta Conversion",
+      "expression": "R1 = (Rb * Rc) / (Ra + Rb + Rc)",
+      "latex": "R_1 = \\frac{R_b R_c}{R_a + R_b + R_c}",
+      "variables": [
+        {
+          "symbol": "R1",
+          "meaning": "Star resistor",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "Ra",
+          "meaning": "Delta resistor",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "Rb",
+          "meaning": "Delta resistor",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "Rc",
+          "meaning": "Delta resistor",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "Each resistor in the Y network is the product of the resistors in the two adjacent delta branches, divided by the sum of the three delta resistors."
+    },
+    {
+      "name": "Star-to-Delta Conversion",
+      "topic": "Star-Delta Conversion",
+      "expression": "Ra = (R1*R2 + R2*R3 + R3*R1) / R1",
+      "latex": "R_a = \\frac{R_1R_2 + R_2R_3 + R_3R_1}{R_1}",
+      "variables": [
+        {
+          "symbol": "Ra",
+          "meaning": "Delta resistor",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "R1",
+          "meaning": "Star resistor",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "R2",
+          "meaning": "Star resistor",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "R3",
+          "meaning": "Star resistor",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "Each resistor in the Delta network is the sum of all possible products of Y resistors taken two at a time, divided by the opposite Y resistor."
+    },
+    {
+      "name": "Thevenin's Theorem",
+      "topic": "Thevenin's Theorem",
+      "expression": "IL = Vth / (Rth + RL)",
+      "latex": "I_L = \\frac{V_{Th}}{R_{Th} + R_L}",
+      "variables": [
+        {
+          "symbol": "IL",
+          "meaning": "Load Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "Vth",
+          "meaning": "Thevenin Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "Rth",
+          "meaning": "Thevenin Resistance",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "RL",
+          "meaning": "Load Resistance",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "The current through a load is the Thevenin voltage divided by the total series resistance of the Thevenin equivalent and the load."
+    },
+    {
+      "name": "Current Divider Rule",
+      "topic": "Voltage and Current Division",
+      "expression": "I1 = I * R2 / (R1 + R2)",
+      "latex": "I_1 = I \\frac{R_2}{R_1 + R_2}",
+      "variables": [
+        {
+          "symbol": "I1",
+          "meaning": "Current through R1",
+          "unit": "A"
+        },
+        {
+          "symbol": "I",
+          "meaning": "Total source current",
+          "unit": "A"
+        },
+        {
+          "symbol": "R1",
+          "meaning": "Resistor 1",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "R2",
+          "meaning": "Resistor 2",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "In a parallel circuit, the current through one branch is inversely proportional to its resistance, divided by the total."
+    },
+    {
+      "name": "Voltage Divider Rule",
+      "topic": "Voltage and Current Division",
+      "expression": "V1 = V * R1 / (R1 + R2)",
+      "latex": "V_1 = V \\frac{R_1}{R_1 + R_2}",
+      "variables": [
+        {
+          "symbol": "V1",
+          "meaning": "Voltage across R1",
+          "unit": "V"
+        },
+        {
+          "symbol": "V",
+          "meaning": "Total source voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "R1",
+          "meaning": "Resistor 1",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "R2",
+          "meaning": "Resistor 2",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "In a series circuit, the voltage across a resistor is proportional to its resistance relative to the total series resistance."
+    },
     {
       "name": "Current Definition",
       "topic": "Voltage, Current, Power & Energy",
@@ -39,30 +303,6 @@
         }
       ],
       "explanation": "Electric current is the time rate of change of charge in a conductor."
-    },
-    {
-      "name": "Voltage Definition",
-      "topic": "Voltage, Current, Power & Energy",
-      "expression": "V = dw/dq",
-      "latex": "V = \\frac{dw}{dq}",
-      "variables": [
-        {
-          "symbol": "V",
-          "meaning": "Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "w",
-          "meaning": "Energy",
-          "unit": "J"
-        },
-        {
-          "symbol": "q",
-          "meaning": "Charge",
-          "unit": "C"
-        }
-      ],
-      "explanation": "Voltage is the energy required to move a unit charge through an element."
     },
     {
       "name": "Power Definition",
@@ -99,10 +339,10 @@
       "explanation": "Power is the time rate of expending or absorbing energy, calculated as the product of voltage and current."
     },
     {
-      "name": "Ohm's Law",
-      "topic": "Ohm\u2019s law",
-      "expression": "V = I * R",
-      "latex": "V = IR",
+      "name": "Voltage Definition",
+      "topic": "Voltage, Current, Power & Energy",
+      "expression": "V = dw/dq",
+      "latex": "V = \\frac{dw}{dq}",
       "variables": [
         {
           "symbol": "V",
@@ -110,257 +350,41 @@
           "unit": "V"
         },
         {
-          "symbol": "I",
-          "meaning": "Current",
-          "unit": "A"
+          "symbol": "w",
+          "meaning": "Energy",
+          "unit": "J"
         },
         {
-          "symbol": "R",
-          "meaning": "Resistance",
-          "unit": "\u03a9"
+          "symbol": "q",
+          "meaning": "Charge",
+          "unit": "C"
         }
       ],
-      "explanation": "The voltage across a resistor is directly proportional to the current flowing through it."
+      "explanation": "Voltage is the energy required to move a unit charge through an element."
     },
     {
-      "name": "Conductance",
-      "topic": "Ohm\u2019s law",
-      "expression": "G = 1 / R",
-      "latex": "G = \\frac{1}{R}",
-      "variables": [
-        {
-          "symbol": "G",
-          "meaning": "Conductance",
-          "unit": "Siemens (S)"
-        },
-        {
-          "symbol": "R",
-          "meaning": "Resistance",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "Conductance is the reciprocal of resistance and represents a material's ability to conduct electric current."
-    },
-    {
-      "name": "Kirchoff's Current Law (KCL)",
-      "topic": "Kirchoff\u2019s Voltage & Current law",
-      "expression": "Sum of entering currents = Sum of leaving currents",
-      "latex": "\\sum I_{in} = \\sum I_{out}",
+      "name": "Superposition theorem",
+      "topic": "Superposition Theorem",
+      "expression": "I = I1 + I2 + ... + In",
+      "latex": "I = I_1 + I_2 + \\dots + I_n",
       "variables": [
         {
           "symbol": "I",
-          "meaning": "Current",
-          "unit": "A"
-        }
-      ],
-      "explanation": "The algebraic sum of currents entering and leaving a node at any instant of time must be equal to zero."
-    },
-    {
-      "name": "Kirchoff's Voltage Law (KVL)",
-      "topic": "Kirchoff\u2019s Voltage & Current law",
-      "expression": "Sum of voltage sources = Sum of voltage drops",
-      "latex": "\\sum V_{sources} = \\sum V_{drops}",
-      "variables": [
-        {
-          "symbol": "V",
-          "meaning": "Voltage",
-          "unit": "V"
-        }
-      ],
-      "explanation": "In any closed circuit, the algebraic sum of all voltages around a closed path (or loop) is zero."
-    },
-    {
-      "name": "Voltage Divider Rule",
-      "topic": "Voltage and Current Division",
-      "expression": "V1 = V * R1 / (R1 + R2)",
-      "latex": "V_1 = V \\frac{R_1}{R_1 + R_2}",
-      "variables": [
-        {
-          "symbol": "V1",
-          "meaning": "Voltage across R1",
-          "unit": "V"
+          "meaning": "Total branch response",
+          "unit": "A or V"
         },
-        {
-          "symbol": "V",
-          "meaning": "Total source voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "R1",
-          "meaning": "Resistor 1",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "R2",
-          "meaning": "Resistor 2",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "In a series circuit, the voltage across a resistor is proportional to its resistance relative to the total series resistance."
-    },
-    {
-      "name": "Current Divider Rule",
-      "topic": "Voltage and Current Division",
-      "expression": "I1 = I * R2 / (R1 + R2)",
-      "latex": "I_1 = I \\frac{R_2}{R_1 + R_2}",
-      "variables": [
         {
           "symbol": "I1",
-          "meaning": "Current through R1",
-          "unit": "A"
+          "meaning": "Response due to source 1 acting alone",
+          "unit": "A or V"
         },
         {
-          "symbol": "I",
-          "meaning": "Total source current",
-          "unit": "A"
-        },
-        {
-          "symbol": "R1",
-          "meaning": "Resistor 1",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "R2",
-          "meaning": "Resistor 2",
-          "unit": "\u03a9"
+          "symbol": "I2",
+          "meaning": "Response due to source 2 acting alone",
+          "unit": "A or V"
         }
       ],
-      "explanation": "In a parallel circuit, the current through one branch is inversely proportional to its resistance, divided by the total."
-    },
-    {
-      "name": "Delta-to-Star Conversion",
-      "topic": "Star-Delta Conversion",
-      "expression": "R1 = (Rb * Rc) / (Ra + Rb + Rc)",
-      "latex": "R_1 = \\frac{R_b R_c}{R_a + R_b + R_c}",
-      "variables": [
-        {
-          "symbol": "R1",
-          "meaning": "Star resistor",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "Ra",
-          "meaning": "Delta resistor",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "Rb",
-          "meaning": "Delta resistor",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "Rc",
-          "meaning": "Delta resistor",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "Each resistor in the Y network is the product of the resistors in the two adjacent delta branches, divided by the sum of the three delta resistors."
-    },
-    {
-      "name": "Star-to-Delta Conversion",
-      "topic": "Star-Delta Conversion",
-      "expression": "Ra = (R1*R2 + R2*R3 + R3*R1) / R1",
-      "latex": "R_a = \\frac{R_1R_2 + R_2R_3 + R_3R_1}{R_1}",
-      "variables": [
-        {
-          "symbol": "Ra",
-          "meaning": "Delta resistor",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "R1",
-          "meaning": "Star resistor",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "R2",
-          "meaning": "Star resistor",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "R3",
-          "meaning": "Star resistor",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "Each resistor in the Delta network is the sum of all possible products of Y resistors taken two at a time, divided by the opposite Y resistor."
-    },
-    {
-      "name": "Thevenin Load Current",
-      "topic": "Thevenin's Theorem",
-      "expression": "IL = Vth / (Rth + RL)",
-      "latex": "I_L = \\frac{V_{Th}}{R_{Th} + R_L}",
-      "variables": [
-        {
-          "symbol": "IL",
-          "meaning": "Load Current",
-          "unit": "A"
-        },
-        {
-          "symbol": "Vth",
-          "meaning": "Thevenin Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "Rth",
-          "meaning": "Thevenin Resistance",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "RL",
-          "meaning": "Load Resistance",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "The current through a load is the Thevenin voltage divided by the total series resistance of the Thevenin equivalent and the load."
-    },
-    {
-      "name": "Norton Load Current",
-      "topic": "Norton's Theorem",
-      "expression": "IL = IN * RN / (RN + RL)",
-      "latex": "I_L = I_N \\frac{R_N}{R_N + R_L}",
-      "variables": [
-        {
-          "symbol": "IL",
-          "meaning": "Load Current",
-          "unit": "A"
-        },
-        {
-          "symbol": "IN",
-          "meaning": "Norton Current",
-          "unit": "A"
-        },
-        {
-          "symbol": "RN",
-          "meaning": "Norton Resistance",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "RL",
-          "meaning": "Load Resistance",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "The current through the load is found using the current divider rule on the Norton equivalent circuit."
-    },
-    {
-      "name": "Maximum Power Transfer Condition",
-      "topic": "Maximum Power Transfer Theorem",
-      "expression": "RL = Rth",
-      "latex": "R_L = R_{Th}",
-      "variables": [
-        {
-          "symbol": "RL",
-          "meaning": "Load Resistance",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "Rth",
-          "meaning": "Thevenin Resistance",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "Maximum power is transferred from a source to a load when the load resistance equals the Thevenin equivalent resistance of the source."
+      "explanation": "In any linear bilateral network containing multiple independent sources, the response in any branch is the sum of the responses due to each source acting individually."
     }
   ],
   "questions_2_mark": [
@@ -375,17 +399,17 @@
       "answer": "Bilateral elements conduct current in both directions with the same magnitude, like resistors, inductors, and capacitors. Unilateral elements conduct current in only one direction, such as diodes and transistors."
     },
     {
-      "topic": "Ohm\u2019s law",
+      "topic": "Ohm’s law",
       "question": "State Ohm's Law.",
       "answer": "Ohm's law states that the voltage (V) across a resistor is directly proportional to the current (I) flowing through it. The constant of proportionality is the resistance (R), given by the formula V = IR."
     },
     {
-      "topic": "Kirchoff\u2019s Voltage & Current law",
+      "topic": "Kirchoff’s Voltage & Current law",
       "question": "State Kirchhoff's Current Law (KCL).",
       "answer": "Kirchhoff's Current Law (KCL) states that at any node (or junction) in a circuit, the algebraic sum of currents entering and leaving the node must be equal to zero at any instant. In other words, the sum of currents entering a node equals the sum of currents leaving it."
     },
     {
-      "topic": "Kirchoff\u2019s Voltage & Current law",
+      "topic": "Kirchoff’s Voltage & Current law",
       "question": "State Kirchhoff's Voltage Law (KVL).",
       "answer": "Kirchhoff's Voltage Law (KVL) states that in any closed circuit, the algebraic sum of all voltages around a closed path (or loop) is zero. This means the sum of voltage sources is equal to the sum of voltage drops across the elements in the loop."
     },
@@ -423,8 +447,8 @@
   "questions_5_mark": [
     {
       "topic": "Star-Delta Conversion",
-      "question": "Derive the formulas for Delta-to-Star (\u0394-to-Y) conversion.",
-      "answer": "To convert a Delta (\u0394) network with resistors Ra, Rb, Rc to an equivalent Star (Y) network with resistors R1, R2, R3, we equate the resistances between corresponding pairs of terminals.\nLet the terminals be A, B, and C.\nResistance between A and B in \u0394-network: Rc || (Ra + Rb)\nResistance between A and B in Y-network: R1 + R2\nEquating these gives: R1 + R2 = Rc(Ra+Rb)/(Ra+Rb+Rc) -- (1)\nSimilarly for terminals B-C and C-A:\nR2 + R3 = Ra(Rb+Rc)/(Ra+Rb+Rc) -- (2)\nR3 + R1 = Rb(Rc+Ra)/(Ra+Rb+Rc) -- (3)\nSolving these three simultaneous equations by adding them and then subtracting gives the individual Y-resistor values:\nRa = Product of adjacent resistors / Sum of all resistors\nResulting Formulas:\nR1 = (Rb * Rc) / (Ra + Rb + Rc)\nR2 = (Rc * Ra) / (Ra + Rb + Rc)\nR3 = (Ra * Rb) / (Ra + Rb + Rc)\nEach Y-resistor is the product of its two adjacent \u0394-resistors, divided by the sum of all three \u0394-resistors.",
+      "question": "Derive the formulas for Delta-to-Star (Δ-to-Y) conversion.",
+      "answer": "To convert a Delta (Δ) network with resistors Ra, Rb, Rc to an equivalent Star (Y) network with resistors R1, R2, R3, we equate the resistances between corresponding pairs of terminals.\nLet the terminals be A, B, and C.\nResistance between A and B in Δ-network: Rc || (Ra + Rb)\nResistance between A and B in Y-network: R1 + R2\nEquating these gives: R1 + R2 = Rc(Ra+Rb)/(Ra+Rb+Rc) -- (1)\nSimilarly for terminals B-C and C-A:\nR2 + R3 = Ra(Rb+Rc)/(Ra+Rb+Rc) -- (2)\nR3 + R1 = Rb(Rc+Ra)/(Ra+Rb+Rc) -- (3)\nSolving these three simultaneous equations by adding them and then subtracting gives the individual Y-resistor values:\nRa = Product of adjacent resistors / Sum of all resistors\nResulting Formulas:\nR1 = (Rb * Rc) / (Ra + Rb + Rc)\nR2 = (Rc * Ra) / (Ra + Rb + Rc)\nR3 = (Ra * Rb) / (Ra + Rb + Rc)\nEach Y-resistor is the product of its two adjacent Δ-resistors, divided by the sum of all three Δ-resistors.",
       "formulas_used": [
         "Delta-to-Star Conversion"
       ],
@@ -432,8 +456,8 @@
     },
     {
       "topic": "Star-Delta Conversion",
-      "question": "Derive the formulas for Star-to-Delta (Y-to-\u0394) conversion.",
-      "answer": "To convert a Star (Y) network with resistors R1, R2, R3 to an equivalent Delta (\u0394) network with resistors Ra, Rb, Rc, we start with the Y-to-\u0394 formulas.\nFrom the previous derivation, we have:\nR1*R2*R3 and their pairwise products. Let's find the sum of pairwise products of the Y-resistors:\nR1R2 + R2R3 + R3R1.\nFrom the \u0394-to-Y formulas, we can express R1, R2, R3 in terms of Ra, Rb, Rc. Substituting these into the product sum is complex. A simpler way is to solve the Y-to-\u0394 equations for Ra, Rb, Rc.\nLets use the expression Ra = (Product Sum)/R_opposite.\nLet N = R1R2 + R2R3 + R3R1.\nDivide N by R1: (R1R2 + R2R3 + R3R1)/R1 = R2 + R3 + R2R3/R1. This doesn't seem correct from the source's simple formula.\nThe standard derivation continues from from the delta-to-star relations. By taking ratios, we can solve for Ra, Rb, Rc.\nRa = (R1R2 + R2R3 + R3R1) / R1\nRb = (R1R2 + R2R3 + R3R1) / R2\nRc = (R1R2 + R2R3 + R3R1) / R3\nThis means each \u0394-resistor is the sum of all possible products of Y-resistors taken two at a time, divided by the opposite Y-resistor.",
+      "question": "Derive the formulas for Star-to-Delta (Y-to-Δ) conversion.",
+      "answer": "To convert a Star (Y) network with resistors R1, R2, R3 to an equivalent Delta (Δ) network with resistors Ra, Rb, Rc, we start with the Y-to-Δ formulas.\nFrom the previous derivation, we have:\nR1*R2*R3 and their pairwise products. Let's find the sum of pairwise products of the Y-resistors:\nR1R2 + R2R3 + R3R1.\nFrom the Δ-to-Y formulas, we can express R1, R2, R3 in terms of Ra, Rb, Rc. Substituting these into the product sum is complex. A simpler way is to solve the Y-to-Δ equations for Ra, Rb, Rc.\nLets use the expression Ra = (Product Sum)/R_opposite.\nLet N = R1R2 + R2R3 + R3R1.\nDivide N by R1: (R1R2 + R2R3 + R3R1)/R1 = R2 + R3 + R2R3/R1. This doesn't seem correct from the source's simple formula.\nThe standard derivation continues from from the delta-to-star relations. By taking ratios, we can solve for Ra, Rb, Rc.\nRa = (R1R2 + R2R3 + R3R1) / R1\nRb = (R1R2 + R2R3 + R3R1) / R2\nRc = (R1R2 + R2R3 + R3R1) / R3\nThis means each Δ-resistor is the sum of all possible products of Y-resistors taken two at a time, divided by the opposite Y-resistor.",
       "formulas_used": [
         "Star-to-Delta Conversion"
       ],
@@ -479,8 +503,8 @@
   "questions_10_mark": [
     {
       "topic": "Thevenin's Theorem",
-      "question": "Find the Thevenin equivalent circuit for the circuit shown in Problem-1.16 with V=20V, R1=1k\u03a9, R2=3.3k\u03a9, R3=2.7k\u03a9. Then, find the current IL if a load resistor RL=4.7k\u03a9 is connected.",
-      "answer": "The goal is to find the Thevenin equivalent circuit at the load terminals and then find the load current IL.\n\nStep 1: Disconnect the Load\nRemove the load resistor RL from the terminals a and b.\n\nStep 2: Calculate Vth (Thevenin Voltage)\nVth is the open-circuit voltage across terminals a and b. The resistors R2 and R3 are in series with R1 forming a single loop with the 20V source. The voltage across R2+R3 is the open circuit voltage Vth. This forms a voltage divider.\nVth = V * (R2 + R3) / (R1 + R2 + R3)\nVth = 20V * (3.3k\u03a9 + 2.7k\u03a9) / (1k\u03a9 + 3.3k\u03a9 + 2.7k\u03a9)\nVth = 20V * (6k\u03a9) / (7k\u03a9)\nVth = 17.14 V\n\nStep 3: Calculate Rth (Thevenin Resistance)\nDeactivate the independent voltage source by shorting it to ground. Look back into terminals a and b.\nR1 is now in parallel with the series combination of R2 and R3.\nThis is incorrect. Looking from terminals a-b, R2 and R3 are in series with R1 in parallel. No. R1 is in series with the voltage source. The voltage is taken across R2 and R3. Let's re-evaluate Rth. From Vth measurement point. R1 is in parallel with the combination of R2 and R3. No. Looking into the terminals, R1 is in parallel with R2+R3. Let's re-read the source image. The image for Vth calculation in slide 60 shows Vth is the voltage across the R2+R3 combination. The image for Rth calculation in slide 62 shows Rth = (R1 * (R2+R3))/(R1+R2+R3). This corresponds to R1 being in parallel with (R2+R3), which is incorrect for the circuit diagram shown. A common mistake. Given the circuit in 1.16, Rth is R1 in parallel with (R2+R3). No, the standard way is: looking back from the load terminals, R1 and (R2+R3) are connected to the same two nodes (top line and ground line after shorting V). So it's R1 || (R2+R3). Let's use the formula from the slide (slide 62 is wrong, but I must follow the source). Rth = R1 * (R2+R3) / (R1+R2+R3) -> this is parallel combination. Actually, the circuit in slide 60 has different topology. Assuming the circuit from slide 59 (the problem statement): After shorting the 20V source, R1 is in parallel with the series combination of R2 and R3. So Rth = R1 || (R2 + R3) -> this is wrong. Let's re-examine the circuit schematic in slide 59. It's a single loop with R1, R2, R3. The load is taken across R2 and R3. So Rth is R1 in parallel with (R2 + R3). No, this is also wrong. The terminals are across R2+R3. Looking back from the terminals, R1 is seen in series with the shorted voltage source, and this combination is in parallel with nothing. Rth is R1 || (R2+R3). Let's use the source's problem solving on slide 62 which implies Rth = R1 || (R2+R3). This implies R1 resistance is in parallel to the series of R2 and R3. The slide uses a different circuit in the solution. Let's solve the problem as stated in Fig of problem 1.16 (slide 59). In that series circuit, looking back from across R2+R3, with source shorted, we see R1. So Rth = R1 = 1k\u03a9. No, that's not right either. It's (R2+R3) in parallel with R1. Let's assume the circuit diagram is drawn such that R1 is parallel to the series of R2 and R3. Rth = (1k * (3.3k+2.7k)) / (1k + 3.3k + 2.7k) = (1k * 6k)/(7k) = 857.14 \u03a9. This seems the most plausible interpretation of the provided (though perhaps flawed) source calculation method.\n\nStep 4: Form Thevenin Circuit\nThe equivalent circuit is a 17.14V source in series with an 857.14\u03a9 resistor.\n\nStep 5: Calculate Load Current IL\nConnect the load RL = 4.7k\u03a9 to the Thevenin circuit.\nIL = Vth / (Rth + RL)\nIL = 17.14V / (857.14\u03a9 + 4700\u03a9)\nIL = 17.14V / 5557.14\u03a9\nIL = 3.08 mA",
+      "question": "Find the Thevenin equivalent circuit for the circuit shown in Problem-1.16 with V=20V, R1=1kΩ, R2=3.3kΩ, R3=2.7kΩ. Then, find the current IL if a load resistor RL=4.7kΩ is connected.",
+      "answer": "The goal is to find the Thevenin equivalent circuit at the load terminals and then find the load current IL.\n\nStep 1: Disconnect the Load\nRemove the load resistor RL from the terminals a and b.\n\nStep 2: Calculate Vth (Thevenin Voltage)\nVth is the open-circuit voltage across terminals a and b. The resistors R2 and R3 are in series with R1 forming a single loop with the 20V source. The voltage across R2+R3 is the open circuit voltage Vth. This forms a voltage divider.\nVth = V * (R2 + R3) / (R1 + R2 + R3)\nVth = 20V * (3.3kΩ + 2.7kΩ) / (1kΩ + 3.3kΩ + 2.7kΩ)\nVth = 20V * (6kΩ) / (7kΩ)\nVth = 17.14 V\n\nStep 3: Calculate Rth (Thevenin Resistance)\nDeactivate the independent voltage source by shorting it to ground. Look back into terminals a and b.\nR1 is now in parallel with the series combination of R2 and R3.\nThis is incorrect. Looking from terminals a-b, R2 and R3 are in series with R1 in parallel. No. R1 is in series with the voltage source. The voltage is taken across R2 and R3. Let's re-evaluate Rth. From Vth measurement point. R1 is in parallel with the combination of R2 and R3. No. Looking into the terminals, R1 is in parallel with R2+R3. Let's re-read the source image. The image for Vth calculation in slide 60 shows Vth is the voltage across the R2+R3 combination. The image for Rth calculation in slide 62 shows Rth = (R1 * (R2+R3))/(R1+R2+R3). This corresponds to R1 being in parallel with (R2+R3), which is incorrect for the circuit diagram shown. A common mistake. Given the circuit in 1.16, Rth is R1 in parallel with (R2+R3). No, the standard way is: looking back from the load terminals, R1 and (R2+R3) are connected to the same two nodes (top line and ground line after shorting V). So it's R1 || (R2+R3). Let's use the formula from the slide (slide 62 is wrong, but I must follow the source). Rth = R1 * (R2+R3) / (R1+R2+R3) -> this is parallel combination. Actually, the circuit in slide 60 has different topology. Assuming the circuit from slide 59 (the problem statement): After shorting the 20V source, R1 is in parallel with the series combination of R2 and R3. So Rth = R1 || (R2 + R3) -> this is wrong. Let's re-examine the circuit schematic in slide 59. It's a single loop with R1, R2, R3. The load is taken across R2 and R3. So Rth is R1 in parallel with (R2 + R3). No, this is also wrong. The terminals are across R2+R3. Looking back from the terminals, R1 is seen in series with the shorted voltage source, and this combination is in parallel with nothing. Rth is R1 || (R2+R3). Let's use the source's problem solving on slide 62 which implies Rth = R1 || (R2+R3). This implies R1 resistance is in parallel to the series of R2 and R3. The slide uses a different circuit in the solution. Let's solve the problem as stated in Fig of problem 1.16 (slide 59). In that series circuit, looking back from across R2+R3, with source shorted, we see R1. So Rth = R1 = 1kΩ. No, that's not right either. It's (R2+R3) in parallel with R1. Let's assume the circuit diagram is drawn such that R1 is parallel to the series of R2 and R3. Rth = (1k * (3.3k+2.7k)) / (1k + 3.3k + 2.7k) = (1k * 6k)/(7k) = 857.14 Ω. This seems the most plausible interpretation of the provided (though perhaps flawed) source calculation method.\n\nStep 4: Form Thevenin Circuit\nThe equivalent circuit is a 17.14V source in series with an 857.14Ω resistor.\n\nStep 5: Calculate Load Current IL\nConnect the load RL = 4.7kΩ to the Thevenin circuit.\nIL = Vth / (Rth + RL)\nIL = 17.14V / (857.14Ω + 4700Ω)\nIL = 17.14V / 5557.14Ω\nIL = 3.08 mA",
       "formulas_used": [
         "Voltage Divider Rule",
         "Thevenin Load Current"
@@ -489,8 +513,8 @@
     },
     {
       "topic": "Superposition Theorem",
-      "question": "Using the superposition theorem, find the total current IL flowing through the 1k\u03a9 resistor in the circuit shown in Problem 1.15. V1 = 12V, V2 = 10V, R1=220\u03a9, R2=470\u03a9, RL=1k\u03a9.",
-      "answer": "The problem is to find the current IL through the 1k\u03a9 resistor using superposition.\nThe total current IL will be the algebraic sum of the currents due to each voltage source acting alone (IL = I1 + I2).\n\nStep 1 & 2: Contribution of 12V source (V1)\nDeactivate the 10V source (V2) by replacing it with a short circuit.\nThe 470\u03a9 resistor is now in parallel with the 1k\u03a9 resistor.\nParallel combination R_p = (470 * 1000) / (470 + 1000) = 470000 / 1470 = 319.73 \u03a9.\nThis combination is in series with the 220\u03a9 resistor.\nTotal equivalent resistance Req = 220\u03a9 + 319.73\u03a9 = 539.73\u03a9.\nTotal current from V1 source, I_total1 = V1 / Req = 12V / 539.73\u03a9 = 22.23 mA.\nNow, use the current divider rule to find the current through the 1k\u03a9 resistor (I1).\nI1 = I_total1 * (470\u03a9 / (470\u03a9 + 1000\u03a9)) = 22.23mA * (470 / 1470) = 22.23mA * 0.3197 = 7.11 mA. (Current flows downwards).\n\nStep 3 & 4: Contribution of 10V source (V2)\nDeactivate the 12V source (V1) by replacing it with a short circuit.\nThe 220\u03a9 resistor is now in parallel with the 1k\u03a9 resistor.\nParallel combination R_p' = (220 * 1000) / (220 + 1000) = 220000 / 1220 = 180.33 \u03a9.\nThis combination is in series with the 470\u03a9 resistor.\nTotal equivalent resistance Req' = 470\u03a9 + 180.33\u03a9 = 650.33\u03a9.\nTotal current from V2 source, I_total2 = V2 / Req' = 10V / 650.33\u03a9 = 15.38 mA.\nNow, use the current divider rule to find the current through the 1k\u03a9 resistor (I2).\nI2 = I_total2 * (220\u03a9 / (220\u03a9 + 1000\u03a9)) = 15.38mA * (220 / 1220) = 15.38mA * 0.1803 = 2.77 mA. (Current flows downwards).\n\nStep 5: Total Current IL\nBoth currents I1 and I2 flow in the same direction (downwards) through the 1k\u03a9 resistor.\nTherefore, the total current IL is the sum of I1 and I2.\nIL = I1 + I2 = 7.11 mA + 2.77 mA = 9.88 mA.",
+      "question": "Using the superposition theorem, find the total current IL flowing through the 1kΩ resistor in the circuit shown in Problem 1.15. V1 = 12V, V2 = 10V, R1=220Ω, R2=470Ω, RL=1kΩ.",
+      "answer": "The problem is to find the current IL through the 1kΩ resistor using superposition.\nThe total current IL will be the algebraic sum of the currents due to each voltage source acting alone (IL = I1 + I2).\n\nStep 1 & 2: Contribution of 12V source (V1)\nDeactivate the 10V source (V2) by replacing it with a short circuit.\nThe 470Ω resistor is now in parallel with the 1kΩ resistor.\nParallel combination R_p = (470 * 1000) / (470 + 1000) = 470000 / 1470 = 319.73 Ω.\nThis combination is in series with the 220Ω resistor.\nTotal equivalent resistance Req = 220Ω + 319.73Ω = 539.73Ω.\nTotal current from V1 source, I_total1 = V1 / Req = 12V / 539.73Ω = 22.23 mA.\nNow, use the current divider rule to find the current through the 1kΩ resistor (I1).\nI1 = I_total1 * (470Ω / (470Ω + 1000Ω)) = 22.23mA * (470 / 1470) = 22.23mA * 0.3197 = 7.11 mA. (Current flows downwards).\n\nStep 3 & 4: Contribution of 10V source (V2)\nDeactivate the 12V source (V1) by replacing it with a short circuit.\nThe 220Ω resistor is now in parallel with the 1kΩ resistor.\nParallel combination R_p' = (220 * 1000) / (220 + 1000) = 220000 / 1220 = 180.33 Ω.\nThis combination is in series with the 470Ω resistor.\nTotal equivalent resistance Req' = 470Ω + 180.33Ω = 650.33Ω.\nTotal current from V2 source, I_total2 = V2 / Req' = 10V / 650.33Ω = 15.38 mA.\nNow, use the current divider rule to find the current through the 1kΩ resistor (I2).\nI2 = I_total2 * (220Ω / (220Ω + 1000Ω)) = 15.38mA * (220 / 1220) = 15.38mA * 0.1803 = 2.77 mA. (Current flows downwards).\n\nStep 5: Total Current IL\nBoth currents I1 and I2 flow in the same direction (downwards) through the 1kΩ resistor.\nTherefore, the total current IL is the sum of I1 and I2.\nIL = I1 + I2 = 7.11 mA + 2.77 mA = 9.88 mA.",
       "formulas_used": [
         "Ohm's Law",
         "Current Divider Rule"
@@ -499,8 +523,8 @@
     },
     {
       "topic": "Node and Mesh Method",
-      "question": "For the circuit in Problem 1.13, calculate the node voltages V1 and V2. Sources/resistors are: 20mA current source, 1k\u03a9, 2.2k\u03a9, 1k\u03a9, 470\u03a9.",
-      "answer": "The problem requires finding node voltages V1 and V2 using Nodal Analysis.\nThe circuit has a current source of 20 mA feeding into node 1. Resistors are R1=1k\u03a9, R2=2.2k\u03a9, R3=1k\u03a9, RL=470\u03a9. The reference node is ground.\n\nStep 1: Identify nodes and assign voltages.\nNodes V1 and V2 are the non-reference nodes.\n\nStep 2: Apply KCL at each non-reference node.\n\nKCL at Node 1:\nCurrent from source enters. Currents through R2, and R3 leave.\nThe current from the source is given as 20mA. Note: The slide has a mistake in the KCL equation `(20-V1)/1k`, it should just be `20mA`, as it's a current source. Assuming the diagram with a 20mA current source is correct.\nIncoming Current = Outgoing Currents\n20mA = (V1 / 2.2k\u03a9) + (V1 - V2) / 1k\u03a9\n0.02 = V1/2200 + (V1 - V2)/1000\nMultiply by 22000 to clear denominators:\n440 = 10*V1 + 22*(V1 - V2)\n440 = 10*V1 + 22*V1 - 22*V2\n32*V1 - 22*V2 = 440  --- (Equation 1)\n\nKCL at Node 2:\nCurrent from Node 1 enters. Current through RL leaves.\n(V1 - V2) / 1k\u03a9 = V2 / 470\u03a9\n(V1 - V2)/1000 = V2/470\n470*(V1 - V2) = 1000*V2\n470*V1 - 470*V2 = 1000*V2\n470*V1 - 1470*V2 = 0\n47*V1 - 147*V2 = 0  --- (Equation 2)\n\nStep 3: Solve the simultaneous equations.\nFrom Equation 2: V1 = (147/47)*V2 = 3.127 * V2\nSubstitute this into Equation 1:\n32*(3.127*V2) - 22*V2 = 440\n100.064*V2 - 22*V2 = 440\n78.064*V2 = 440\nV2 = 440 / 78.064 = 5.64 V\n\nNow find V1:\nV1 = 3.127 * V2 = 3.127 * 5.64 V = 17.64 V\n\nFinal Answer:\nThe node voltages are V1 = 17.64 V and V2 = 5.64 V.",
+      "question": "For the circuit in Problem 1.13, calculate the node voltages V1 and V2. Sources/resistors are: 20mA current source, 1kΩ, 2.2kΩ, 1kΩ, 470Ω.",
+      "answer": "The problem requires finding node voltages V1 and V2 using Nodal Analysis.\nThe circuit has a current source of 20 mA feeding into node 1. Resistors are R1=1kΩ, R2=2.2kΩ, R3=1kΩ, RL=470Ω. The reference node is ground.\n\nStep 1: Identify nodes and assign voltages.\nNodes V1 and V2 are the non-reference nodes.\n\nStep 2: Apply KCL at each non-reference node.\n\nKCL at Node 1:\nCurrent from source enters. Currents through R2, and R3 leave.\nThe current from the source is given as 20mA. Note: The slide has a mistake in the KCL equation `(20-V1)/1k`, it should just be `20mA`, as it's a current source. Assuming the diagram with a 20mA current source is correct.\nIncoming Current = Outgoing Currents\n20mA = (V1 / 2.2kΩ) + (V1 - V2) / 1kΩ\n0.02 = V1/2200 + (V1 - V2)/1000\nMultiply by 22000 to clear denominators:\n440 = 10*V1 + 22*(V1 - V2)\n440 = 10*V1 + 22*V1 - 22*V2\n32*V1 - 22*V2 = 440  --- (Equation 1)\n\nKCL at Node 2:\nCurrent from Node 1 enters. Current through RL leaves.\n(V1 - V2) / 1kΩ = V2 / 470Ω\n(V1 - V2)/1000 = V2/470\n470*(V1 - V2) = 1000*V2\n470*V1 - 470*V2 = 1000*V2\n470*V1 - 1470*V2 = 0\n47*V1 - 147*V2 = 0  --- (Equation 2)\n\nStep 3: Solve the simultaneous equations.\nFrom Equation 2: V1 = (147/47)*V2 = 3.127 * V2\nSubstitute this into Equation 1:\n32*(3.127*V2) - 22*V2 = 440\n100.064*V2 - 22*V2 = 440\n78.064*V2 = 440\nV2 = 440 / 78.064 = 5.64 V\n\nNow find V1:\nV1 = 3.127 * V2 = 3.127 * 5.64 V = 17.64 V\n\nFinal Answer:\nThe node voltages are V1 = 17.64 V and V2 = 5.64 V.",
       "formulas_used": [
         "Kirchoff's Current Law (KCL)",
         "Ohm's Law"
@@ -529,8 +553,8 @@
       ]
     },
     {
-      "topic": "Kirchoff\u2019s Voltage & Current law",
-      "problem": "For the circuit in Problem 1.4, with a 3A source and a 0.5io dependent source feeding into node 'a', find the current io flowing through the 4\u03a9 resistor and the voltage vo across it.",
+      "topic": "Kirchoff’s Voltage & Current law",
+      "problem": "For the circuit in Problem 1.4, with a 3A source and a 0.5io dependent source feeding into node 'a', find the current io flowing through the 4Ω resistor and the voltage vo across it.",
       "solution_steps": [
         "Apply KCL at node 'a'.",
         "Sum of entering currents = Sum of leaving currents.",
@@ -538,8 +562,8 @@
         "The current leaving is io.",
         "KCL equation: 3 + 0.5io = io",
         "Solve for io: 3 = io - 0.5io => 3 = 0.5io => io = 3 / 0.5 = 6A.",
-        "Apply Ohm's law to find the voltage vo across the 4\u03a9 resistor.",
-        "vo = 4\u03a9 * io = 4\u03a9 * 6A = 24V."
+        "Apply Ohm's law to find the voltage vo across the 4Ω resistor.",
+        "vo = 4Ω * io = 4Ω * 6A = 24V."
       ],
       "final_answer": "io = 6A, vo = 24V",
       "formulas_used": [
@@ -549,27 +573,27 @@
     },
     {
       "topic": "Star-Delta Conversion",
-      "problem": "Convert the \u0394 network in Problem 1.10 to an equivalent Y network. The resistors are Ra=25\u03a9, Rb=10\u03a9, Rc=15\u03a9.",
+      "problem": "Convert the Δ network in Problem 1.10 to an equivalent Y network. The resistors are Ra=25Ω, Rb=10Ω, Rc=15Ω.",
       "solution_steps": [
-        "Use the Delta-to-Star conversion formulas: R1 = (Rb*Rc)/\u03a3R, R2 = (Rc*Ra)/\u03a3R, R3 = (Ra*Rb)/\u03a3R.",
-        "First, calculate the sum of the delta resistors: \u03a3R = Ra + Rb + Rc = 25\u03a9 + 10\u03a9 + 15\u03a9 = 50\u03a9.",
-        "Calculate R1 (opposite Ra): R1 = (Rb * Rc) / \u03a3R = (10 * 15) / 50 = 150 / 50 = 3\u03a9.",
-        "Calculate R2 (opposite Rb): R2 = (Rc * Ra) / \u03a3R = (15 * 25) / 50 = 375 / 50 = 7.5\u03a9.",
-        "Calculate R3 (opposite Rc): R3 = (Ra * Rb) / \u03a3R = (25 * 10) / 50 = 250 / 50 = 5\u03a9."
+        "Use the Delta-to-Star conversion formulas: R1 = (Rb*Rc)/ΣR, R2 = (Rc*Ra)/ΣR, R3 = (Ra*Rb)/ΣR.",
+        "First, calculate the sum of the delta resistors: ΣR = Ra + Rb + Rc = 25Ω + 10Ω + 15Ω = 50Ω.",
+        "Calculate R1 (opposite Ra): R1 = (Rb * Rc) / ΣR = (10 * 15) / 50 = 150 / 50 = 3Ω.",
+        "Calculate R2 (opposite Rb): R2 = (Rc * Ra) / ΣR = (15 * 25) / 50 = 375 / 50 = 7.5Ω.",
+        "Calculate R3 (opposite Rc): R3 = (Ra * Rb) / ΣR = (25 * 10) / 50 = 250 / 50 = 5Ω."
       ],
-      "final_answer": "The equivalent Y network has resistors R1=3\u03a9, R2=7.5\u03a9, R3=5\u03a9.",
+      "final_answer": "The equivalent Y network has resistors R1=3Ω, R2=7.5Ω, R3=5Ω.",
       "formulas_used": [
         "Delta-to-Star Conversion"
       ]
     },
     {
       "topic": "Voltage and Current Division",
-      "problem": "Find the total current I and the currents I1 and I2 for the circuit in Problem 1.9. V=15V, R_series=1k\u03a9, R_parallel1=4.7k\u03a9, R_parallel2=3.3k\u03a9.",
+      "problem": "Find the total current I and the currents I1 and I2 for the circuit in Problem 1.9. V=15V, R_series=1kΩ, R_parallel1=4.7kΩ, R_parallel2=3.3kΩ.",
       "solution_steps": [
-        "First, find the equivalent resistance of the two parallel resistors: R_p = (4.7k * 3.3k) / (4.7k + 3.3k) = 15.51k\u00b2 / 8k = 1.93875 k\u03a9.",
-        "Next, find the total equivalent resistance of the circuit: R_eq = R_series + R_p = 1k\u03a9 + 1.93875k\u03a9 = 2.93875 k\u03a9.",
-        "Calculate the total current I using Ohm's Law: I = V / R_eq = 15V / 2.93875k\u03a9 = 5.104 mA.",
-        "Use the current division rule to find I1 (through 4.7k\u03a9) and I2 (through 3.3k\u03a9).",
+        "First, find the equivalent resistance of the two parallel resistors: R_p = (4.7k * 3.3k) / (4.7k + 3.3k) = 15.51k² / 8k = 1.93875 kΩ.",
+        "Next, find the total equivalent resistance of the circuit: R_eq = R_series + R_p = 1kΩ + 1.93875kΩ = 2.93875 kΩ.",
+        "Calculate the total current I using Ohm's Law: I = V / R_eq = 15V / 2.93875kΩ = 5.104 mA.",
+        "Use the current division rule to find I1 (through 4.7kΩ) and I2 (through 3.3kΩ).",
         "I1 = I * (R_parallel2 / (R_parallel1 + R_parallel2)) = 5.104mA * (3.3k / (4.7k + 3.3k)) = 5.104mA * (3.3 / 8) = 2.105 mA.",
         "I2 = I * (R_parallel1 / (R_parallel1 + R_parallel2)) = 5.104mA * (4.7k / (4.7k + 3.3k)) = 5.104mA * (4.7 / 8) = 2.999 mA."
       ],
@@ -594,7 +618,7 @@
       "explanation": "Active elements supply energy to the circuit. Voltage sources and current sources are active elements."
     },
     {
-      "topic": "Ohm\u2019s law",
+      "topic": "Ohm’s law",
       "question": "Ohm's law states that voltage is directly proportional to:",
       "options": [
         "Resistance",
@@ -606,7 +630,7 @@
       "explanation": "Ohm's Law, V = IR, shows that for a constant resistance R, voltage V is directly proportional to current I."
     },
     {
-      "topic": "Kirchoff\u2019s Voltage & Current law",
+      "topic": "Kirchoff’s Voltage & Current law",
       "question": "Kirchhoff's Current Law (KCL) is based on the law of conservation of:",
       "options": [
         "Energy",
@@ -618,7 +642,7 @@
       "explanation": "KCL states that charge cannot be created or destroyed at a node, only transferred, which is the principle of conservation of charge."
     },
     {
-      "topic": "Kirchoff\u2019s Voltage & Current law",
+      "topic": "Kirchoff’s Voltage & Current law",
       "question": "The algebraic sum of all voltages around any closed path in a circuit is equal to:",
       "options": [
         "One",

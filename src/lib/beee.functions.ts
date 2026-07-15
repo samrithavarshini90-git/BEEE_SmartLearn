@@ -243,7 +243,7 @@ export const listFormulas = createServerFn({ method: "GET" })
       .parse(raw ?? {}),
   )
   .handler(async ({ data }) => {
-    let sql = "SELECT id, unit_number, topic, name, formula, latex, explanation, variables FROM formulas WHERE 1=1";
+    let sql = "SELECT id, unit_number, topic, name, formula, latex, explanation, variables, image_url FROM formulas WHERE 1=1";
     const params = [];
     if (data.unit_number) {
       sql += " AND unit_number = ?";
@@ -265,6 +265,7 @@ export const listFormulas = createServerFn({ method: "GET" })
       latex: r.latex,
       explanation: r.explanation,
       variables: parseJsonField<any[]>(r.variables),
+      image_url: r.image_url,
     }));
   });
 
@@ -691,7 +692,7 @@ Refuse politely if a question is outside these units.
 CRITICAL RULES FOR OUTPUT:
 1. DO NOT output any conversational text, introductions, or conclusions. NO PROSE.
 2. Produce ONE STRICT JSON object matching the type below.
-3. The 'steps' array must be highly detailed and comprehensive so a student avoids any confusion. DO NOT provide short or skipping steps. Provide all needed steps.
+3. The 'steps' array must be highly detailed and comprehensive so a student avoids any confusion. Provide all needed steps.
 4. If a diagram is needed, provide a "diagram" object containing Python schemdraw instructions.
 
 {
@@ -713,15 +714,26 @@ CRITICAL RULES FOR OUTPUT:
   "extracted_text"?: string
 }
 
-Rules:
-- If the problem is contained in an image, first perform OCR into "extracted_text", then solve.
-- For image uploads, circuit questions, resistor networks, Ohm's law examples, KCL/KVL, Thevenin/Norton, AC RLC, diode, transistor, and rectifier problems, emit a diagram object with schemdraw_instructions.
-- Every circuit diagram must be a cyclic closed circuit, not a single straight line. Use return wires on a separate path so the visual shape is a loop, usually rectangular.
-- Only emit null diagram for pure theory questions where no electrical circuit/block diagram is relevant.
-- If an exact uploaded circuit topology is not readable from OCR text, still create the simplest faithful educational schematic from the known components and values; do not pretend unknown connections are exact.
+DIAGRAM RULES — read carefully:
+
+### When the question asks to SOLVE a circuit (find currents, voltages, equivalent resistance, Thevenin, etc.):
+- Generate a SOLVED CIRCUIT diagram — show the circuit WITH the computed answer values annotated on each component.
+- Use the labels to display calculated values, e.g. label="R1=4Ω, I=1.5A" or label="V_th=8V" or label="I3=0.6A".
+- The diagram should visually represent the RESULT of the calculation, not just a bare input schematic.
+- description must say "Solved circuit showing [what was found]".
+
+### When the question is a general/theory question (explain a concept, derive a formula, state a theorem):
+- Generate a REPRESENTATIVE EDUCATIONAL circuit that clearly illustrates the concept being asked.
+- Use simple, clean component values that best demonstrate the concept.
+- description must say what concept the circuit illustrates.
+
+### Never emit null diagram for circuit/electrical questions. Only use null for pure theory with no circuit relevance.
+
+OTHER RULES:
+- Every circuit must form a closed loop — use return Line elements at corners.
 - Put derivations/formulas in "steps", not in "final_answer".
-- Format "final_answer" as a short display-ready answer. For multiple values, put each result on its own line inside the string, e.g. "V_R1 = 1.33 V\nV_R2 = 4.40 V\nV_R3 = 6.27 V".
-- Every "expression" must be plain ASCII math like V = I*R, Z = sqrt(R^2 + (Xl-Xc)^2), pf = cos(phi).`;
+- Format "final_answer" as a short display-ready answer. For multiple values, each on its own line e.g. "V_R1 = 1.33 V\nV_R2 = 4.40 V".
+- Every "expression" must be plain ASCII math like V = I*R, Z = sqrt(R^2 + (Xl-Xc)^2).`;
 
 function shouldRequestDiagram(data: z.infer<typeof solverInput>, questionText: string): boolean {
   if (data.imageDataUrl) return true;
@@ -744,7 +756,24 @@ function shouldRequestDiagram(data: z.infer<typeof solverInput>, questionText: s
     "diode",
     "transistor",
     "rectifier",
+    "superposition",
+    "mesh",
+    "node",
+    "power",
+    "impedance",
+    "filter",
   ].some((term) => text.includes(term));
+}
+
+/** Returns true when the question is asking to compute/find/solve (not just explain) */
+function isSolveQuestion(questionText: string): boolean {
+  const lower = questionText.toLowerCase();
+  return [
+    "find", "solve", "calculate", "determine", "compute",
+    "what is", "what are", "obtain", "derive the value", "evaluate",
+    "how much", "how many", "current through", "voltage across",
+    "equivalent", "thevenin", "norton", "maximum power",
+  ].some((kw) => lower.includes(kw));
 }
 
 function firstMatch(text: string, pattern: RegExp): string | undefined {
@@ -965,43 +994,75 @@ export const solveProblem = createServerFn({ method: "POST" })
     if (data.imageDataUrl) {
       try {
         console.log("[Vision API] Scanning image with Cerebras gemma-4-31b...");
-        const visionPrompt = `Analyze the uploaded image. It contains a Basic Electrical & Electronics Engineering (BEEE) question and/or a circuit diagram.
-You must extract the text of the question and, if a circuit diagram is present, read its components and topology to generate Python schemdraw instructions.
+        const visionPrompt = `You are a circuit-reading expert. Analyze this BEEE (Basic Electrical & Electronics Engineering) image carefully.
 
-Return a STRICT JSON object in this format:
+YOUR JOB:
+1. Extract ALL text/question from the image exactly.
+2. If a circuit diagram is visible, trace it component-by-component, following the actual wires in the image, and produce schemdraw drawing instructions that faithfully reproduce the circuit topology.
+
+Return ONLY a strict JSON object (no prose) in this exact format:
 {
-  "extracted_text": "The exact text/question read from the image. If there is only a circuit diagram, describe what to find.",
+  "extracted_text": "The complete question text or problem statement read from the image verbatim.",
   "diagram": null | {
-    "description": "A clear description of the circuit diagram",
+    "description": "Concise description of the circuit topology",
     "schemdraw_instructions": [
       {
         "type": "Resistor"|"Capacitor"|"Inductor"|"BatteryCell"|"SourceV"|"SourceI"|"Diode"|"BjtNpn"|"Line"|"Ground",
         "direction": "right"|"left"|"up"|"down",
-        "label": "component name/value (e.g. R1 = 10 Ohm or 12V)",
+        "label": "exact component label and value from image e.g. R1 = 4Ω",
         "length": 2
       }
     ]
   }
 }
 
-Rules for schemdraw_instructions:
-- Every circuit diagram must be a cyclic closed circuit. Use return wires/lines so it forms a loop.
-- Use typical schemdraw component names: "Resistor", "Capacitor", "Inductor", "BatteryCell", "SourceV", "SourceI", "Diode", "BjtNpn", "Line", "Ground".
-- If no circuit diagram is present in the image, return null for "diagram".`;
+CIRCUIT TRACING RULES — follow these carefully to produce a correct diagram:
+- Start at the positive terminal of the voltage/current source and trace the circuit clockwise.
+- Place each component in the exact order it appears along the wire path.
+- Use "Line" elements ONLY to connect components at corners or junction points.
+- Include ALL resistors, capacitors, inductors, sources with their EXACT values from the image labels.
+- For parallel branches: draw the main branch first, then add lines for junctions.
+- Every circuit MUST form a closed loop — add return Line elements if needed.
+- For "length": sources and resistors are typically 2–3, lines at corners are 1–2.
+- If the image has NO circuit diagram (only text/formulas), set "diagram" to null.
+- If text is unclear but circuit is present, still trace the circuit and set extracted_text to what you can read.`;
+
 
         const visionRaw = await callCerebrasVision(data.imageDataUrl, visionPrompt);
-        const parsedVision = safeParseJson<{
-          extracted_text?: string;
-          diagram?: any;
-        }>(visionRaw, {});
+        const parsedVision = safeParseJson<any>(visionRaw, {});
 
-        extractedText = parsedVision.extracted_text || "";
-        if (parsedVision.diagram && typeof parsedVision.diagram === "object") {
-          visionDiagram = parsedVision.diagram;
+        const rawExtracted = parsedVision.extracted_text || 
+                             parsedVision.question_text || 
+                             parsedVision.question || 
+                             parsedVision.text || 
+                             parsedVision.extractedText || 
+                             parsedVision.ocr_text || "";
+        extractedText = typeof rawExtracted === "string" ? rawExtracted : JSON.stringify(rawExtracted);
+
+        let parsedDiag = parsedVision.diagram || 
+                         parsedVision.circuit || 
+                         parsedVision.circuit_diagram || 
+                         parsedVision.schematic;
+        if (parsedDiag && typeof parsedDiag === "object") {
+          visionDiagram = parsedDiag;
+          if (!visionDiagram.schemdraw_instructions && visionDiagram.instructions) {
+            visionDiagram.schemdraw_instructions = visionDiagram.instructions;
+          }
+          if (!visionDiagram.schemdraw_instructions && visionDiagram.components) {
+            visionDiagram.schemdraw_instructions = visionDiagram.components;
+          }
         }
+
+        if (!extractedText && (!visionDiagram || !visionDiagram.description)) {
+          throw new Error("No readable text or circuit components were detected in the uploaded image. Please ensure the image is clear and contains a valid BEEE question/diagram.");
+        }
+
         console.log("[Vision API] Scanned text successfully:", extractedText.slice(0, 120));
       } catch (err: any) {
         console.error("[Vision API] Processing failed:", err);
+        throw new Error(
+          `Image scan failed: ${err.message || err}. The AI vision server is currently busy or rate-limited. Please try again in a few moments.`
+        );
       }
     }
 
@@ -1017,17 +1078,29 @@ Rules for schemdraw_instructions:
     let promptText = "";
     if (data.unit_number) promptText += `Target Unit: ${data.unit_number}\n`;
     if (data.topic) promptText += `Topic hint: ${data.topic}\n`;
+    // Determine diagram mode:
+    // - SOLVE mode: question asks to find/calculate values → generate SOLVED circuit annotated with results
+    // - GENERAL mode: conceptual/educational → generate a representative illustrative circuit
+    const solveMode = isSolveQuestion(questionText);
+    const visionDiagramIsUsable =
+      visionDiagram != null &&
+      Array.isArray(visionDiagram.schemdraw_instructions) &&
+      visionDiagram.schemdraw_instructions.length > 0;
+
     if (visionDiagram) {
-      promptText += `Image Circuit Diagram details:\nDescription: ${visionDiagram.description}\n`;
-      if (Array.isArray(visionDiagram.schemdraw_instructions) && visionDiagram.schemdraw_instructions.length > 0) {
-        promptText += `Topology Instructions: ${JSON.stringify(visionDiagram.schemdraw_instructions)}\n`;
-      }
-      promptText += `\n`;
+      // Always provide vision topology to the text solver as context
+      promptText += `Image Circuit Topology (extracted from uploaded image):\nDescription: ${visionDiagram.description}\nComponents: ${JSON.stringify(visionDiagram.schemdraw_instructions)}\n\n`;
     }
-    promptText += `${diagramRequired
-        ? "Diagram requirement: return a non-null diagram object with schemdraw_instructions. If the uploaded image is unclear, generate the simplest faithful schematic from the readable component values and state the limitation in diagram.description.\n"
-        : ""
-      }Problem statement:\n${questionText}`;
+
+    if (diagramRequired) {
+      if (solveMode) {
+        promptText += `DIAGRAM REQUIREMENT: Generate a SOLVED circuit diagram. Use the circuit topology above (if provided) as the base, but label every component with its COMPUTED value from your solution (e.g. label="R1=4Ω, I=1.5A"). The diagram must visually show the answer — not just the bare input schematic.\n`;
+      } else {
+        promptText += `DIAGRAM REQUIREMENT: Generate a clear EDUCATIONAL circuit diagram that best illustrates the concept in this question. Use clean, simple values.\n`;
+      }
+    }
+
+    promptText += `Problem statement:\n${questionText}`;
 
     const raw = await callLovableAI({
       messages: [
@@ -1062,18 +1135,29 @@ Rules for schemdraw_instructions:
       parsed.extracted_text = extractedText;
     }
 
-    const diagramInstructions = parsed.diagram?.schemdraw_instructions ?? [];
+    // Priority order for diagram:
+    // 1. TEXT SOLVER's diagram — highest priority because it can annotate solved values.
+    //    The text solver was given the vision topology as context, so its output
+    //    should reflect either the solved circuit (annotated) or an educational one.
+    // 2. VISION diagram raw — fallback when text solver returned no instructions.
+    //    E.g. if the text model skipped the diagram for some reason.
+    // 3. BASIC FALLBACK — keyword-based minimal circuit when all else fails.
     let usedBasicDiagramFallback = false;
-    if (
-      diagramRequired &&
-      diagramInstructions.length === 0
-    ) {
-      if (visionDiagram && Array.isArray(visionDiagram.schemdraw_instructions) && visionDiagram.schemdraw_instructions.length > 0) {
-        parsed.diagram = visionDiagram;
-      } else {
-        parsed.diagram = createBasicCircuitDiagram(questionText);
-        usedBasicDiagramFallback = true;
-      }
+    const textDiagramInstructions = parsed.diagram?.schemdraw_instructions ?? [];
+
+    if (textDiagramInstructions.length > 0) {
+      // Text solver produced a diagram — use it (it has solution-annotated labels)
+      // Nothing to do, parsed.diagram is already set
+    } else if (visionDiagramIsUsable) {
+      // Text solver skipped diagram but vision has the raw topology — use that
+      parsed.diagram = {
+        ...visionDiagram,
+        description: parsed.diagram?.description || visionDiagram.description,
+      };
+    } else if (diagramRequired) {
+      // Last resort: generate a simple circuit from the question keywords
+      parsed.diagram = createBasicCircuitDiagram(questionText);
+      usedBasicDiagramFallback = true;
     }
 
 

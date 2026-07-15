@@ -16,34 +16,6 @@
   ],
   "formulas": [
     {
-      "name": "Barrier Potential Silicon",
-      "topic": "PN Junction Diode",
-      "expression": "Vb = 0.7 V",
-      "latex": "V_b = 0.7 \\text{ V}",
-      "variables": [
-        {
-          "symbol": "Vb",
-          "meaning": "Barrier Potential for Silicon",
-          "unit": "V"
-        }
-      ],
-      "explanation": "The potential difference established across the depletion region of a silicon PN junction due to immobile ions."
-    },
-    {
-      "name": "Barrier Potential Germanium",
-      "topic": "PN Junction Diode",
-      "expression": "Vb = 0.3 V",
-      "latex": "V_b = 0.3 \\text{ V}",
-      "variables": [
-        {
-          "symbol": "Vb",
-          "meaning": "Barrier Potential for Germanium",
-          "unit": "V"
-        }
-      ],
-      "explanation": "The potential difference established across the depletion region of a germanium PN junction due to immobile ions."
-    },
-    {
       "name": "Depletion Capacitance Definition",
       "topic": "Depletion and Diffusion Capacitance",
       "expression": "CT = dQ / dV",
@@ -131,55 +103,8 @@
       "explanation": "The capacitance that arises in a forward-biased junction due to the storage of minority carriers on either side of the junction."
     },
     {
-      "name": "DC Voltage HWR",
-      "topic": "Half-wave Rectifier",
-      "expression": "Vdc = Vm / pi",
-      "latex": "V_{dc} = \\frac{V_m}{\\pi}",
-      "variables": [
-        {
-          "symbol": "Vdc",
-          "meaning": "Average or DC output voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "Vm",
-          "meaning": "Peak input voltage",
-          "unit": "V"
-        }
-      ],
-      "explanation": "The average value of the output voltage for a half-wave rectifier, obtained by averaging the sinusoidal voltage over one full cycle."
-    },
-    {
-      "name": "Ripple Factor HWR",
-      "topic": "Half-wave Rectifier",
-      "expression": "gamma = 1.21",
-      "latex": "\\gamma = 1.21",
-      "variables": [
-        {
-          "symbol": "gamma",
-          "meaning": "Ripple factor",
-          "unit": "dimensionless"
-        }
-      ],
-      "explanation": "A measure of the AC content (ripple) remaining in the DC output of a half-wave rectifier."
-    },
-    {
-      "name": "Efficiency HWR",
-      "topic": "Half-wave Rectifier",
-      "expression": "eta = 40.6%",
-      "latex": "\\eta = 40.6\\%",
-      "variables": [
-        {
-          "symbol": "eta",
-          "meaning": "Rectification Efficiency",
-          "unit": "%"
-        }
-      ],
-      "explanation": "The ratio of DC output power to the AC input power for a half-wave rectifier, indicating its effectiveness in converting AC to DC."
-    },
-    {
-      "name": "PIV HWR",
-      "topic": "Half-wave Rectifier",
+      "name": "Full-Wave Bridge Rectifier – PIV",
+      "topic": "Full-wave Bridge Rectifier",
       "expression": "PIV = Vm",
       "latex": "\\text{PIV} = V_m",
       "variables": [
@@ -190,14 +115,28 @@
         },
         {
           "symbol": "Vm",
-          "meaning": "Peak input voltage",
+          "meaning": "Peak AC secondary voltage",
           "unit": "V"
         }
       ],
-      "explanation": "The maximum reverse voltage that the diode must withstand without breaking down during the negative half-cycle."
+      "explanation": "The maximum reverse voltage that a non-conducting diode must withstand in a bridge rectifier circuit."
     },
     {
-      "name": "DC Voltage FWR",
+      "name": "Full-Wave Bridge Rectifier – Ripple Factor",
+      "topic": "Full-wave Bridge Rectifier",
+      "expression": "gamma = 0.48",
+      "latex": "\\gamma = 0.48",
+      "variables": [
+        {
+          "symbol": "gamma",
+          "meaning": "Ripple factor",
+          "unit": "dimensionless"
+        }
+      ],
+      "explanation": "A measure of the AC content remaining in the DC output of a bridge rectifier, which is significantly lower than a half-wave rectifier."
+    },
+    {
+      "name": "Full-Wave Center-Tapped Rectifier – DC Voltage",
       "topic": "Full-wave Center-Tapped Rectifier",
       "expression": "Vdc = 2 * Vm / pi",
       "latex": "V_{dc} = \\frac{2V_m}{\\pi}",
@@ -216,7 +155,21 @@
       "explanation": "The average value of the output voltage for a full-wave rectifier, which is double that of a half-wave rectifier."
     },
     {
-      "name": "PIV FWR Center-Tapped",
+      "name": "Full-Wave Center-Tapped Rectifier – Efficiency",
+      "topic": "Full-wave Center-Tapped Rectifier",
+      "expression": "eta = 81.2%",
+      "latex": "\\eta = 81.2\\%",
+      "variables": [
+        {
+          "symbol": "eta",
+          "meaning": "Rectification Efficiency",
+          "unit": "%"
+        }
+      ],
+      "explanation": "The ratio of DC output power to AC input power for a full-wave rectifier, showing much higher efficiency than a half-wave rectifier."
+    },
+    {
+      "name": "Full-Wave Center-Tapped Rectifier – PIV",
       "topic": "Full-wave Center-Tapped Rectifier",
       "expression": "PIV = 2 * Vm",
       "latex": "\\text{PIV} = 2V_m",
@@ -235,21 +188,7 @@
       "explanation": "The maximum reverse voltage a non-conducting diode must withstand, which is twice the peak input voltage."
     },
     {
-      "name": "Efficiency FWR",
-      "topic": "Full-wave Center-Tapped Rectifier",
-      "expression": "eta = 81.2%",
-      "latex": "\\eta = 81.2\\%",
-      "variables": [
-        {
-          "symbol": "eta",
-          "meaning": "Rectification Efficiency",
-          "unit": "%"
-        }
-      ],
-      "explanation": "The ratio of DC output power to AC input power for a full-wave rectifier, showing much higher efficiency than a half-wave rectifier."
-    },
-    {
-      "name": "Ripple Factor FWR Center-Tapped",
+      "name": "Full-Wave Center-Tapped Rectifier – Ripple Factor",
       "topic": "Full-wave Center-Tapped Rectifier",
       "expression": "gamma = 1.11",
       "latex": "\\gamma = 1.11",
@@ -263,22 +202,41 @@
       "explanation": "A measure of the AC content remaining in the DC output of a center-tapped full-wave rectifier as given in the source."
     },
     {
-      "name": "Ripple Factor FWR Bridge",
-      "topic": "Full-wave Bridge Rectifier",
-      "expression": "gamma = 0.48",
-      "latex": "\\gamma = 0.48",
+      "name": "Half-Wave Rectifier – DC Voltage",
+      "topic": "Half-wave Rectifier",
+      "expression": "Vdc = Vm / pi",
+      "latex": "V_{dc} = \\frac{V_m}{\\pi}",
       "variables": [
         {
-          "symbol": "gamma",
-          "meaning": "Ripple factor",
-          "unit": "dimensionless"
+          "symbol": "Vdc",
+          "meaning": "Average or DC output voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "Vm",
+          "meaning": "Peak input voltage",
+          "unit": "V"
         }
       ],
-      "explanation": "A measure of the AC content remaining in the DC output of a bridge rectifier, which is significantly lower than a half-wave rectifier."
+      "explanation": "The average value of the output voltage for a half-wave rectifier, obtained by averaging the sinusoidal voltage over one full cycle."
     },
     {
-      "name": "PIV FWR Bridge",
-      "topic": "Full-wave Bridge Rectifier",
+      "name": "Half-Wave Rectifier – Efficiency",
+      "topic": "Half-wave Rectifier",
+      "expression": "eta = 40.6%",
+      "latex": "\\eta = 40.6\\%",
+      "variables": [
+        {
+          "symbol": "eta",
+          "meaning": "Rectification Efficiency",
+          "unit": "%"
+        }
+      ],
+      "explanation": "The ratio of DC output power to the AC input power for a half-wave rectifier, indicating its effectiveness in converting AC to DC."
+    },
+    {
+      "name": "Half-Wave Rectifier – PIV",
+      "topic": "Half-wave Rectifier",
       "expression": "PIV = Vm",
       "latex": "\\text{PIV} = V_m",
       "variables": [
@@ -289,11 +247,53 @@
         },
         {
           "symbol": "Vm",
-          "meaning": "Peak AC secondary voltage",
+          "meaning": "Peak input voltage",
           "unit": "V"
         }
       ],
-      "explanation": "The maximum reverse voltage that a non-conducting diode must withstand in a bridge rectifier circuit."
+      "explanation": "The maximum reverse voltage that the diode must withstand without breaking down during the negative half-cycle."
+    },
+    {
+      "name": "Half-Wave Rectifier – Ripple Factor",
+      "topic": "Half-wave Rectifier",
+      "expression": "gamma = 1.21",
+      "latex": "\\gamma = 1.21",
+      "variables": [
+        {
+          "symbol": "gamma",
+          "meaning": "Ripple factor",
+          "unit": "dimensionless"
+        }
+      ],
+      "explanation": "A measure of the AC content (ripple) remaining in the DC output of a half-wave rectifier."
+    },
+    {
+      "name": "PN Junction Diode – Germanium Barrier Potential",
+      "topic": "PN Junction Diode",
+      "expression": "Vb = 0.3 V",
+      "latex": "V_b = 0.3 \\text{ V}",
+      "variables": [
+        {
+          "symbol": "Vb",
+          "meaning": "Barrier Potential for Germanium",
+          "unit": "V"
+        }
+      ],
+      "explanation": "The potential difference established across the depletion region of a germanium PN junction due to immobile ions."
+    },
+    {
+      "name": "PN Junction Diode – Silicon Barrier Potential",
+      "topic": "PN Junction Diode",
+      "expression": "Vb = 0.7 V",
+      "latex": "V_b = 0.7 \\text{ V}",
+      "variables": [
+        {
+          "symbol": "Vb",
+          "meaning": "Barrier Potential for Silicon",
+          "unit": "V"
+        }
+      ],
+      "explanation": "The potential difference established across the depletion region of a silicon PN junction due to immobile ions."
     }
   ],
   "questions_2_mark": [
@@ -399,7 +399,7 @@
     {
       "topic": "Depletion and Diffusion Capacitance",
       "question": "Explain and differentiate between depletion capacitance and diffusion capacitance.",
-      "answer": "In a PN junction, two types of capacitances exist:\n\nDepletion (or Transition) Capacitance (CT):\n- Occurrence: This capacitance occurs when the PN junction is reverse biased.\n- Formation: In reverse bias, the depletion region widens and acts as an insulator (dielectric), while the P and N regions act as the plates of a capacitor. The capacitance is formed by the stored charge of the immobile ions in the depletion region.\n- Voltage Dependence: CT is voltage-dependent. As the reverse bias voltage increases, the depletion width (W) increases, which causes the capacitance to decrease (CT \u221d 1/W).\n- Formula: CT = (A * epsilon) / W.\n\nDiffusion (or Storage) Capacitance (CD):\n- Occurrence: This capacitance occurs when the PN junction is forward biased.\n- Formation: In forward bias, minority carriers are injected and stored near the junction before they recombine. The rate of change of this stored charge with respect to the applied forward voltage gives rise to diffusion capacitance.\n- Current Dependence: CD is directly proportional to the forward current (ID). A larger current means more charge in transit, resulting in a larger capacitance.\n- Formula: CD = (tau * ID) / (eta * VT).\n\nKey Differences:\n1. Bias Condition: CT exists under reverse bias, while CD exists under forward bias.\n2. Magnitude: CD is generally much larger than CT.\n3. Cause: CT is due to immobile ions in the depletion layer, while CD is due to storage of mobile minority carriers.",
+      "answer": "In a PN junction, two types of capacitances exist:\n\nDepletion (or Transition) Capacitance (CT):\n- Occurrence: This capacitance occurs when the PN junction is reverse biased.\n- Formation: In reverse bias, the depletion region widens and acts as an insulator (dielectric), while the P and N regions act as the plates of a capacitor. The capacitance is formed by the stored charge of the immobile ions in the depletion region.\n- Voltage Dependence: CT is voltage-dependent. As the reverse bias voltage increases, the depletion width (W) increases, which causes the capacitance to decrease (CT ∝ 1/W).\n- Formula: CT = (A * epsilon) / W.\n\nDiffusion (or Storage) Capacitance (CD):\n- Occurrence: This capacitance occurs when the PN junction is forward biased.\n- Formation: In forward bias, minority carriers are injected and stored near the junction before they recombine. The rate of change of this stored charge with respect to the applied forward voltage gives rise to diffusion capacitance.\n- Current Dependence: CD is directly proportional to the forward current (ID). A larger current means more charge in transit, resulting in a larger capacitance.\n- Formula: CD = (tau * ID) / (eta * VT).\n\nKey Differences:\n1. Bias Condition: CT exists under reverse bias, while CD exists under forward bias.\n2. Magnitude: CD is generally much larger than CT.\n3. Cause: CT is due to immobile ions in the depletion layer, while CD is due to storage of mobile minority carriers.",
       "formulas_used": [
         "Depletion Capacitance Formula",
         "Diffusion Capacitance"
@@ -470,7 +470,7 @@
     {
       "topic": "Full-wave Bridge Rectifier",
       "question": "Explain the construction and working of a full-wave bridge rectifier using a neat circuit diagram and waveforms. Mention its characteristics and advantages over a center-tapped rectifier.",
-      "answer": "A full-wave bridge rectifier uses four diodes arranged in a bridge configuration to convert the full AC cycle into pulsating DC.\n\nConstruction:\nIt consists of a transformer and four diodes (D1, D2, D3, D4) connected in a bridge circuit. The AC input is applied to two opposite corners of the bridge, and the DC output is taken from the other two corners across the load resistor (RL). It does not require a center-tapped transformer.\n\nWorking:\n1. Positive Half-Cycle:\n- During the positive half-cycle of the AC input, point A of the transformer secondary is positive and point B is negative.\n- Diodes D1 and D2 become forward biased and conduct current.\n- Diodes D3 and D4 are reverse biased and do not conduct.\n- Current flows from A, through D1, through the load resistor RL, through D2, and back to B. A positive voltage appears across RL.\n\n2. Negative Half-Cycle:\n- During the negative half-cycle, point B becomes positive and point A becomes negative.\n- Diodes D3 and D4 become forward biased and conduct current.\n- Diodes D1 and D2 are reverse biased and do not conduct.\n- Current flows from B, through D3, through the load resistor RL (in the same direction as before), through D4, and back to A. A positive voltage again appears across RL.\n\nResult:\nSince current flows through the load in the same direction during both half-cycles, a full-wave rectified output is produced.\n\nCharacteristics:\n- DC Output Voltage: Vdc = 2Vm/\u03c0\n- Efficiency (\u03b7): 81.2%\n- Ripple Factor (\u03b3): 0.48\n- Peak Inverse Voltage (PIV): Vm\n- Transformer Utilization Factor (TUF): 0.81\n\nAdvantages over Center-Tapped Rectifier:\n1. No Center-Tapped Transformer: The main advantage is that it eliminates the need for a costly and bulky center-tapped transformer.\n2. Higher Output Voltage: For the same secondary voltage, the output voltage of a bridge rectifier is twice that of a center-tapped rectifier.\n3. Lower PIV Rating: The PIV rating required for the diodes is only Vm, whereas it is 2Vm for a center-tapped configuration. This makes the diodes cheaper and more reliable.",
+      "answer": "A full-wave bridge rectifier uses four diodes arranged in a bridge configuration to convert the full AC cycle into pulsating DC.\n\nConstruction:\nIt consists of a transformer and four diodes (D1, D2, D3, D4) connected in a bridge circuit. The AC input is applied to two opposite corners of the bridge, and the DC output is taken from the other two corners across the load resistor (RL). It does not require a center-tapped transformer.\n\nWorking:\n1. Positive Half-Cycle:\n- During the positive half-cycle of the AC input, point A of the transformer secondary is positive and point B is negative.\n- Diodes D1 and D2 become forward biased and conduct current.\n- Diodes D3 and D4 are reverse biased and do not conduct.\n- Current flows from A, through D1, through the load resistor RL, through D2, and back to B. A positive voltage appears across RL.\n\n2. Negative Half-Cycle:\n- During the negative half-cycle, point B becomes positive and point A becomes negative.\n- Diodes D3 and D4 become forward biased and conduct current.\n- Diodes D1 and D2 are reverse biased and do not conduct.\n- Current flows from B, through D3, through the load resistor RL (in the same direction as before), through D4, and back to A. A positive voltage again appears across RL.\n\nResult:\nSince current flows through the load in the same direction during both half-cycles, a full-wave rectified output is produced.\n\nCharacteristics:\n- DC Output Voltage: Vdc = 2Vm/π\n- Efficiency (η): 81.2%\n- Ripple Factor (γ): 0.48\n- Peak Inverse Voltage (PIV): Vm\n- Transformer Utilization Factor (TUF): 0.81\n\nAdvantages over Center-Tapped Rectifier:\n1. No Center-Tapped Transformer: The main advantage is that it eliminates the need for a costly and bulky center-tapped transformer.\n2. Higher Output Voltage: For the same secondary voltage, the output voltage of a bridge rectifier is twice that of a center-tapped rectifier.\n3. Lower PIV Rating: The PIV rating required for the diodes is only Vm, whereas it is 2Vm for a center-tapped configuration. This makes the diodes cheaper and more reliable.",
       "formulas_used": [
         "DC Voltage FWR",
         "Efficiency FWR",
@@ -482,7 +482,7 @@
     {
       "topic": "Diode Biasing and V-I Characteristics",
       "question": "With neat diagrams, explain the V-I characteristics of a PN Junction diode. Clearly mark the cut-in voltage, breakdown voltage, and different operating regions.",
-      "answer": "The V-I (Voltage-Current) characteristic of a PN junction diode is a graph showing the relationship between the voltage applied across the diode and the current flowing through it. It is studied in two parts: forward bias and reverse bias.\n\n1. Forward Bias Characteristics:\n- In forward bias, the P-type region is connected to the positive terminal and the N-type to the negative terminal of a DC source.\n- Initially, for small forward voltages (less than the barrier potential), the current is almost zero. This is because the external voltage is insufficient to overcome the barrier potential.\n- As the applied voltage approaches the barrier potential, the barrier width decreases, and some current begins to flow.\n- Cut-in Voltage (Knee Voltage): This is the forward voltage at which the diode starts conducting significantly. For Silicon, it is ~0.7V and for Germanium, it is ~0.3V. The curve bends sharply upwards at this point, hence the name 'knee'.\n- Beyond the knee voltage, the current increases exponentially with a small increase in voltage. The diode behaves like a closed switch with low forward resistance.\n\n2. Reverse Bias Characteristics:\n- In reverse bias, the P-type region is connected to the negative terminal and the N-type to the positive terminal.\n- The applied voltage increases the width and height of the potential barrier, blocking the flow of majority carriers. \n- Leakage Current: A very small current, in the order of microamperes (\u03bcA), flows through the diode. This is called reverse saturation current and is due to the flow of minority charge carriers.\n- Breakdown Voltage: If the reverse voltage is increased to a sufficiently high value, the diode breaks down. At this 'breakdown voltage', the reverse current increases suddenly and sharply. Operating the diode in this region can permanently damage a normal PN diode.\n\nDiagram Explanation:\nThe characteristic curve shows three regions:\n- Forward Bias Region: To the right of the origin, showing exponential current rise after the knee voltage (Vf).\n- Reverse Bias Region: To the left of the origin, showing a very small constant reverse saturation current (Is).\n- Breakdown Region: At a high reverse voltage (Vbr), where the reverse current increases dramatically.",
+      "answer": "The V-I (Voltage-Current) characteristic of a PN junction diode is a graph showing the relationship between the voltage applied across the diode and the current flowing through it. It is studied in two parts: forward bias and reverse bias.\n\n1. Forward Bias Characteristics:\n- In forward bias, the P-type region is connected to the positive terminal and the N-type to the negative terminal of a DC source.\n- Initially, for small forward voltages (less than the barrier potential), the current is almost zero. This is because the external voltage is insufficient to overcome the barrier potential.\n- As the applied voltage approaches the barrier potential, the barrier width decreases, and some current begins to flow.\n- Cut-in Voltage (Knee Voltage): This is the forward voltage at which the diode starts conducting significantly. For Silicon, it is ~0.7V and for Germanium, it is ~0.3V. The curve bends sharply upwards at this point, hence the name 'knee'.\n- Beyond the knee voltage, the current increases exponentially with a small increase in voltage. The diode behaves like a closed switch with low forward resistance.\n\n2. Reverse Bias Characteristics:\n- In reverse bias, the P-type region is connected to the negative terminal and the N-type to the positive terminal.\n- The applied voltage increases the width and height of the potential barrier, blocking the flow of majority carriers. \n- Leakage Current: A very small current, in the order of microamperes (μA), flows through the diode. This is called reverse saturation current and is due to the flow of minority charge carriers.\n- Breakdown Voltage: If the reverse voltage is increased to a sufficiently high value, the diode breaks down. At this 'breakdown voltage', the reverse current increases suddenly and sharply. Operating the diode in this region can permanently damage a normal PN diode.\n\nDiagram Explanation:\nThe characteristic curve shows three regions:\n- Forward Bias Region: To the right of the origin, showing exponential current rise after the knee voltage (Vf).\n- Reverse Bias Region: To the left of the origin, showing a very small constant reverse saturation current (Is).\n- Breakdown Region: At a high reverse voltage (Vbr), where the reverse current increases dramatically.",
       "formulas_used": [
         "Barrier Potential Silicon",
         "Barrier Potential Germanium"
@@ -492,7 +492,7 @@
     {
       "topic": "Half-wave Rectifier",
       "question": "Explain the working of a half-wave rectifier, derive the expression for its average DC output voltage, and find its value for a peak input of 50V. Also, state its efficiency and ripple factor.",
-      "answer": "A half-wave rectifier is a circuit that converts AC to DC by passing only one half of the input AC waveform and blocking the other half.\n\nWorking:\nThe circuit uses a single diode in series with a load resistor. During the positive half-cycle of the AC input, the diode is forward-biased and conducts, allowing current to flow to the load. During the negative half-cycle, the diode is reverse-biased and blocks current flow. The output is a series of positive pulses.\n\nDerivation of Average DC Output Voltage (Vdc):\nThe output voltage across the load RL can be represented as:\nv(t) = Vm * sin(\u03c9t) for 0 \u2264 \u03c9t \u2264 \u03c0\nv(t) = 0 for \u03c0 \u2264 \u03c9t \u2264 2\u03c0\n\nThe average or DC value of this voltage is found by integrating over one full cycle (T = 2\u03c0) and dividing by the period.\n\nVdc = (1 / 2\u03c0) * \u222b[from 0 to 2\u03c0] v(t) d(\u03c9t)\nVdc = (1 / 2\u03c0) * [\u222b[from 0 to \u03c0] Vm*sin(\u03c9t) d(\u03c9t) + \u222b[from \u03c0 to 2\u03c0] 0 d(\u03c9t)]\nVdc = (Vm / 2\u03c0) * \u222b[from 0 to \u03c0] sin(\u03c9t) d(\u03c9t)\nVdc = (Vm / 2\u03c0) * [-cos(\u03c9t)][from 0 to \u03c0]\nVdc = (Vm / 2\u03c0) * [-cos(\u03c0) - (-cos(0))]\nVdc = (Vm / 2\u03c0) * [-(-1) - (-1)]\nVdc = (Vm / 2\u03c0) * [1 + 1]\nVdc = (Vm / 2\u03c0) * 2\nVdc = Vm / \u03c0\n\nNumerical Calculation:\nGiven: Peak input voltage, Vm = 50 V.\nUsing the derived formula:\nVdc = Vm / \u03c0\nVdc = 50 / 3.14159\nVdc \u2248 15.92 V\n\nThe DC output voltage is approximately 15.92 V.\n\nCharacteristics:\n- Efficiency (\u03b7): The theoretical maximum efficiency is 40.6%. This means less than half of the input AC power is converted to useful DC power.\n- Ripple Factor (\u03b3): The ripple factor is 1.21. This high value indicates a large amount of AC ripple content in the output, making it a poor quality DC source.",
+      "answer": "A half-wave rectifier is a circuit that converts AC to DC by passing only one half of the input AC waveform and blocking the other half.\n\nWorking:\nThe circuit uses a single diode in series with a load resistor. During the positive half-cycle of the AC input, the diode is forward-biased and conducts, allowing current to flow to the load. During the negative half-cycle, the diode is reverse-biased and blocks current flow. The output is a series of positive pulses.\n\nDerivation of Average DC Output Voltage (Vdc):\nThe output voltage across the load RL can be represented as:\nv(t) = Vm * sin(ωt) for 0 ≤ ωt ≤ π\nv(t) = 0 for π ≤ ωt ≤ 2π\n\nThe average or DC value of this voltage is found by integrating over one full cycle (T = 2π) and dividing by the period.\n\nVdc = (1 / 2π) * ∫[from 0 to 2π] v(t) d(ωt)\nVdc = (1 / 2π) * [∫[from 0 to π] Vm*sin(ωt) d(ωt) + ∫[from π to 2π] 0 d(ωt)]\nVdc = (Vm / 2π) * ∫[from 0 to π] sin(ωt) d(ωt)\nVdc = (Vm / 2π) * [-cos(ωt)][from 0 to π]\nVdc = (Vm / 2π) * [-cos(π) - (-cos(0))]\nVdc = (Vm / 2π) * [-(-1) - (-1)]\nVdc = (Vm / 2π) * [1 + 1]\nVdc = (Vm / 2π) * 2\nVdc = Vm / π\n\nNumerical Calculation:\nGiven: Peak input voltage, Vm = 50 V.\nUsing the derived formula:\nVdc = Vm / π\nVdc = 50 / 3.14159\nVdc ≈ 15.92 V\n\nThe DC output voltage is approximately 15.92 V.\n\nCharacteristics:\n- Efficiency (η): The theoretical maximum efficiency is 40.6%. This means less than half of the input AC power is converted to useful DC power.\n- Ripple Factor (γ): The ripple factor is 1.21. This high value indicates a large amount of AC ripple content in the output, making it a poor quality DC source.",
       "formulas_used": [
         "DC Voltage HWR",
         "Efficiency HWR",
@@ -513,10 +513,10 @@
       "topic": "Half-wave Rectifier",
       "problem": "A half-wave rectifier is supplied from a transformer with a secondary peak voltage of 25V. Calculate the average DC output voltage.",
       "solution_steps": [
-        "The formula for the average DC output voltage of a half-wave rectifier is Vdc = Vm / \u03c0.",
+        "The formula for the average DC output voltage of a half-wave rectifier is Vdc = Vm / π.",
         "Given the peak voltage Vm = 25 V.",
         "Substitute the value into the formula: Vdc = 25 / 3.14159.",
-        "Calculate the result: Vdc \u2248 7.96 V."
+        "Calculate the result: Vdc ≈ 7.96 V."
       ],
       "final_answer": "7.96 V",
       "formulas_used": [
@@ -527,10 +527,10 @@
       "topic": "Full-wave Bridge Rectifier",
       "problem": "A full-wave bridge rectifier has a peak input voltage (Vm) of 100V. What is the average DC load voltage?",
       "solution_steps": [
-        "The formula for the average DC output voltage of a full-wave rectifier is Vdc = 2 * Vm / \u03c0.",
+        "The formula for the average DC output voltage of a full-wave rectifier is Vdc = 2 * Vm / π.",
         "Given the peak voltage Vm = 100 V.",
         "Substitute the value into the formula: Vdc = (2 * 100) / 3.14159.",
-        "Calculate the result: Vdc \u2248 63.66 V."
+        "Calculate the result: Vdc ≈ 63.66 V."
       ],
       "final_answer": "63.66 V",
       "formulas_used": [
@@ -570,9 +570,9 @@
       "problem": "Calculate the average output voltage of a half-wave rectifier if the input is a standard household supply of 230V RMS, fed through a 10:1 step-down transformer.",
       "solution_steps": [
         "First, calculate the RMS voltage on the secondary side: V_sec_rms = V_pri_rms / 10 = 230V / 10 = 23V.",
-        "Next, calculate the peak secondary voltage (Vm): Vm = V_sec_rms * sqrt(2) = 23V * 1.414 \u2248 32.52V.",
-        "Use the formula for half-wave rectifier DC voltage: Vdc = Vm / \u03c0.",
-        "Substitute Vm: Vdc = 32.52 / 3.14159 \u2248 10.35V."
+        "Next, calculate the peak secondary voltage (Vm): Vm = V_sec_rms * sqrt(2) = 23V * 1.414 ≈ 32.52V.",
+        "Use the formula for half-wave rectifier DC voltage: Vdc = Vm / π.",
+        "Substitute Vm: Vdc = 32.52 / 3.14159 ≈ 10.35V."
       ],
       "final_answer": "10.35 V",
       "formulas_used": [
@@ -684,7 +684,7 @@
         "Vm",
         "Vm/2",
         "2*Vm",
-        "Vm/\u03c0"
+        "Vm/π"
       ],
       "correct_index": 2,
       "explanation": "In a center-tapped FWR, the non-conducting diode is subjected to the full secondary voltage, which is twice the peak voltage of one half, so PIV = 2*Vm."

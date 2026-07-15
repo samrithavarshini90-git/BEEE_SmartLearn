@@ -16,7 +16,65 @@
   ],
   "formulas": [
     {
-      "name": "Faraday's Law of Induction",
+      "name": "Generator Principle (EMF)",
+      "topic": "Elementary Concept of Rotating Machines",
+      "expression": "e = B * L * v",
+      "latex": "e = BLv",
+      "variables": [
+        {
+          "symbol": "e",
+          "meaning": "Induced EMF",
+          "unit": "V"
+        },
+        {
+          "symbol": "B",
+          "meaning": "Magnetic field strength",
+          "unit": "T"
+        },
+        {
+          "symbol": "L",
+          "meaning": "Length of the conductor",
+          "unit": "m"
+        },
+        {
+          "symbol": "v",
+          "meaning": "Velocity of the conductor",
+          "unit": "m/s"
+        }
+      ],
+      "explanation": "When a conductor moves through a magnetic field, an electromotive force (voltage) is induced across it, which is the basic principle of electric generators."
+    },
+    {
+      "name": "Motor Principle (Force)",
+      "topic": "Elementary Concept of Rotating Machines",
+      "expression": "F = B * I * L",
+      "latex": "F = BIL",
+      "variables": [
+        {
+          "symbol": "F",
+          "meaning": "Force on the conductor",
+          "unit": "N"
+        },
+        {
+          "symbol": "B",
+          "meaning": "Magnetic field strength",
+          "unit": "T"
+        },
+        {
+          "symbol": "I",
+          "meaning": "Current in the conductor",
+          "unit": "A"
+        },
+        {
+          "symbol": "L",
+          "meaning": "Length of the conductor",
+          "unit": "m"
+        }
+      ],
+      "explanation": "A current-carrying conductor placed in a magnetic field experiences a force, which is the fundamental principle behind electric motors. This assumes the field and current are perpendicular."
+    },
+    {
+      "name": "Faraday's Law of Electromagnetic Induction",
       "topic": "Laws of Electromagnetic Induction",
       "expression": "e = -N * (dΦ/dt)",
       "latex": "e = -N \\frac{d\\Phi}{dt}",
@@ -38,35 +96,6 @@
         }
       ],
       "explanation": "This law states that the induced EMF in any closed circuit is equal to the negative of the time rate of change of the magnetic flux through the circuit."
-    },
-    {
-      "name": "Transformer Voltage Ratio",
-      "topic": "Transformer",
-      "expression": "Vp / Vs = Np / Ns",
-      "latex": "\\frac{V_p}{V_s} = \\frac{N_p}{N_s}",
-      "variables": [
-        {
-          "symbol": "Vp",
-          "meaning": "Primary Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "Vs",
-          "meaning": "Secondary Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "Np",
-          "meaning": "Number of turns in Primary coil",
-          "unit": ""
-        },
-        {
-          "symbol": "Ns",
-          "meaning": "Number of turns in Secondary coil",
-          "unit": ""
-        }
-      ],
-      "explanation": "For an ideal transformer, the ratio of primary to secondary voltage is equal to the ratio of the number of turns in their respective coils."
     },
     {
       "name": "Transformer Current Ratio",
@@ -98,62 +127,33 @@
       "explanation": "For an ideal transformer, the ratio of primary to secondary current is the inverse of the ratio of the number of turns in their coils."
     },
     {
-      "name": "Motor Principle Force",
-      "topic": "Elementary Concept of Rotating Machines",
-      "expression": "F = B * I * L",
-      "latex": "F = BIL",
+      "name": "Transformer Voltage Ratio",
+      "topic": "Transformer",
+      "expression": "Vp / Vs = Np / Ns",
+      "latex": "\\frac{V_p}{V_s} = \\frac{N_p}{N_s}",
       "variables": [
         {
-          "symbol": "F",
-          "meaning": "Force on the conductor",
-          "unit": "N"
-        },
-        {
-          "symbol": "B",
-          "meaning": "Magnetic field strength",
-          "unit": "T"
-        },
-        {
-          "symbol": "I",
-          "meaning": "Current in the conductor",
-          "unit": "A"
-        },
-        {
-          "symbol": "L",
-          "meaning": "Length of the conductor",
-          "unit": "m"
-        }
-      ],
-      "explanation": "A current-carrying conductor placed in a magnetic field experiences a force, which is the fundamental principle behind electric motors. This assumes the field and current are perpendicular."
-    },
-    {
-      "name": "Generator Principle EMF",
-      "topic": "Elementary Concept of Rotating Machines",
-      "expression": "e = B * L * v",
-      "latex": "e = BLv",
-      "variables": [
-        {
-          "symbol": "e",
-          "meaning": "Induced EMF",
+          "symbol": "Vp",
+          "meaning": "Primary Voltage",
           "unit": "V"
         },
         {
-          "symbol": "B",
-          "meaning": "Magnetic field strength",
-          "unit": "T"
+          "symbol": "Vs",
+          "meaning": "Secondary Voltage",
+          "unit": "V"
         },
         {
-          "symbol": "L",
-          "meaning": "Length of the conductor",
-          "unit": "m"
+          "symbol": "Np",
+          "meaning": "Number of turns in Primary coil",
+          "unit": ""
         },
         {
-          "symbol": "v",
-          "meaning": "Velocity of the conductor",
-          "unit": "m/s"
+          "symbol": "Ns",
+          "meaning": "Number of turns in Secondary coil",
+          "unit": ""
         }
       ],
-      "explanation": "When a conductor moves through a magnetic field, an electromotive force (voltage) is induced across it, which is the basic principle of electric generators."
+      "explanation": "For an ideal transformer, the ratio of primary to secondary voltage is equal to the ratio of the number of turns in their respective coils."
     }
   ],
   "questions_2_mark": [

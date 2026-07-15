@@ -16,10 +16,102 @@
   ],
   "formulas": [
     {
-      "name": "Emitter Current Relation",
-      "topic": "BJT Construction and Operation",
-      "expression": "I_E = I_B + I_C",
-      "latex": "I_E = I_B + I_C",
+      "name": "BJT Fixed Bias – Base Current",
+      "topic": "BJT Biasing Circuits",
+      "expression": "I_B = (V_CC - V_BE) / R_B",
+      "latex": "I_B = \\frac{V_{CC} - V_{BE}}{R_B}",
+      "variables": [
+        {
+          "symbol": "I_B",
+          "meaning": "Base Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "V_CC",
+          "meaning": "Collector Supply Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_BE",
+          "meaning": "Base-Emitter Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "R_B",
+          "meaning": "Base Resistor",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "The base current is set by the supply voltage and the base resistor, derived from KVL around the input loop."
+    },
+    {
+      "name": "BJT Fixed Bias – Collector-Emitter Voltage",
+      "topic": "BJT Biasing Circuits",
+      "expression": "V_CE = V_CC - I_C * R_C",
+      "latex": "V_{CE} = V_{CC} - I_C R_C",
+      "variables": [
+        {
+          "symbol": "V_CE",
+          "meaning": "Collector-Emitter Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_CC",
+          "meaning": "Collector Supply Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I_C",
+          "meaning": "Collector Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "R_C",
+          "meaning": "Collector Resistor",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "The output voltage V_CE is determined by the supply voltage minus the voltage drop across the collector resistor, from KVL on the output loop."
+    },
+    {
+      "name": "BJT Voltage Divider Bias – Collector-Emitter Voltage",
+      "topic": "BJT Biasing Circuits",
+      "expression": "V_CE = V_CC - I_C * (R_C + R_E)",
+      "latex": "V_{CE} = V_{CC} - I_C (R_C + R_E)",
+      "variables": [
+        {
+          "symbol": "V_CE",
+          "meaning": "Collector-Emitter Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_CC",
+          "meaning": "Collector Supply Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I_C",
+          "meaning": "Collector Current",
+          "unit": "A"
+        },
+        {
+          "symbol": "R_C",
+          "meaning": "Collector Resistor",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "R_E",
+          "meaning": "Emitter Resistor",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "The output voltage is the supply voltage minus the drops across both the collector and emitter resistors, assuming Collector and Emitter currents are approximately equal."
+    },
+    {
+      "name": "BJT Voltage Divider Bias – Emitter Current",
+      "topic": "BJT Biasing Circuits",
+      "expression": "I_E = (V_TH - V_BE) / R_E",
+      "latex": "I_E \\approx \\frac{V_{TH} - V_{BE}}{R_E}",
       "variables": [
         {
           "symbol": "I_E",
@@ -27,20 +119,54 @@
           "unit": "A"
         },
         {
-          "symbol": "I_B",
-          "meaning": "Base Current",
-          "unit": "A"
+          "symbol": "V_TH",
+          "meaning": "Thevenin Voltage at Base",
+          "unit": "V"
         },
         {
-          "symbol": "I_C",
-          "meaning": "Collector Current",
-          "unit": "A"
+          "symbol": "V_BE",
+          "meaning": "Base-Emitter Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "R_E",
+          "meaning": "Emitter Resistor",
+          "unit": "Ω"
         }
       ],
-      "explanation": "The total current leaving the emitter is the sum of the small base current and the large collector current, based on Kirchhoff's Current Law."
+      "explanation": "The emitter current is determined by applying KVL to the base-emitter loop of the Thevenin equivalent circuit (Approximation when Rth is small)."
     },
     {
-      "name": "DC Current Gain (Beta)",
+      "name": "BJT Voltage Divider Bias – Thevenin Voltage",
+      "topic": "BJT Biasing Circuits",
+      "expression": "V_TH = V_CC * R2 / (R1 + R2)",
+      "latex": "V_{TH} = V_{CC} \\frac{R_2}{R_1 + R_2}",
+      "variables": [
+        {
+          "symbol": "V_TH",
+          "meaning": "Thevenin Voltage at Base",
+          "unit": "V"
+        },
+        {
+          "symbol": "V_CC",
+          "meaning": "Collector Supply Voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "R1",
+          "meaning": "Upper Divider Resistor",
+          "unit": "Ω"
+        },
+        {
+          "symbol": "R2",
+          "meaning": "Lower Divider Resistor",
+          "unit": "Ω"
+        }
+      ],
+      "explanation": "The base terminal 'sees' a Thevenin equivalent voltage from the R1-R2 voltage divider network."
+    },
+    {
+      "name": "BJT DC Current Gain (β)",
       "topic": "BJT Construction and Operation",
       "expression": "I_C = beta * I_B",
       "latex": "I_C = \\beta I_B",
@@ -64,97 +190,10 @@
       "explanation": "This formula relates the collector current to the base current, showing that the BJT acts as a current amplifier."
     },
     {
-      "name": "Fixed Bias - Base Current",
-      "topic": "BJT Biasing Circuits",
-      "expression": "I_B = (V_CC - V_BE) / R_B",
-      "latex": "I_B = \\frac{V_{CC} - V_{BE}}{R_B}",
-      "variables": [
-        {
-          "symbol": "I_B",
-          "meaning": "Base Current",
-          "unit": "A"
-        },
-        {
-          "symbol": "V_CC",
-          "meaning": "Collector Supply Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "V_BE",
-          "meaning": "Base-Emitter Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "R_B",
-          "meaning": "Base Resistor",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "The base current is set by the supply voltage and the base resistor, derived from KVL around the input loop."
-    },
-    {
-      "name": "Fixed Bias - Collector-Emitter Voltage",
-      "topic": "BJT Biasing Circuits",
-      "expression": "V_CE = V_CC - I_C * R_C",
-      "latex": "V_{CE} = V_{CC} - I_C R_C",
-      "variables": [
-        {
-          "symbol": "V_CE",
-          "meaning": "Collector-Emitter Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "V_CC",
-          "meaning": "Collector Supply Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "I_C",
-          "meaning": "Collector Current",
-          "unit": "A"
-        },
-        {
-          "symbol": "R_C",
-          "meaning": "Collector Resistor",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "The output voltage V_CE is determined by the supply voltage minus the voltage drop across the collector resistor, from KVL on the output loop."
-    },
-    {
-      "name": "Voltage Divider - Thevenin Voltage",
-      "topic": "BJT Biasing Circuits",
-      "expression": "V_TH = V_CC * R2 / (R1 + R2)",
-      "latex": "V_{TH} = V_{CC} \\frac{R_2}{R_1 + R_2}",
-      "variables": [
-        {
-          "symbol": "V_TH",
-          "meaning": "Thevenin Voltage at Base",
-          "unit": "V"
-        },
-        {
-          "symbol": "V_CC",
-          "meaning": "Collector Supply Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "R1",
-          "meaning": "Upper Divider Resistor",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "R2",
-          "meaning": "Lower Divider Resistor",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "The base terminal 'sees' a Thevenin equivalent voltage from the R1-R2 voltage divider network."
-    },
-    {
-      "name": "Voltage Divider - Emitter Current",
-      "topic": "BJT Biasing Circuits",
-      "expression": "I_E = (V_TH - V_BE) / R_E",
-      "latex": "I_E \\approx \\frac{V_{TH} - V_{BE}}{R_E}",
+      "name": "BJT Emitter Current Relation",
+      "topic": "BJT Construction and Operation",
+      "expression": "I_E = I_B + I_C",
+      "latex": "I_E = I_B + I_C",
       "variables": [
         {
           "symbol": "I_E",
@@ -162,56 +201,17 @@
           "unit": "A"
         },
         {
-          "symbol": "V_TH",
-          "meaning": "Thevenin Voltage at Base",
-          "unit": "V"
-        },
-        {
-          "symbol": "V_BE",
-          "meaning": "Base-Emitter Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "R_E",
-          "meaning": "Emitter Resistor",
-          "unit": "\u03a9"
-        }
-      ],
-      "explanation": "The emitter current is determined by applying KVL to the base-emitter loop of the Thevenin equivalent circuit (Approximation when Rth is small)."
-    },
-    {
-      "name": "Voltage Divider - Collector-Emitter Voltage",
-      "topic": "BJT Biasing Circuits",
-      "expression": "V_CE = V_CC - I_C * (R_C + R_E)",
-      "latex": "V_{CE} = V_{CC} - I_C (R_C + R_E)",
-      "variables": [
-        {
-          "symbol": "V_CE",
-          "meaning": "Collector-Emitter Voltage",
-          "unit": "V"
-        },
-        {
-          "symbol": "V_CC",
-          "meaning": "Collector Supply Voltage",
-          "unit": "V"
+          "symbol": "I_B",
+          "meaning": "Base Current",
+          "unit": "A"
         },
         {
           "symbol": "I_C",
           "meaning": "Collector Current",
           "unit": "A"
-        },
-        {
-          "symbol": "R_C",
-          "meaning": "Collector Resistor",
-          "unit": "\u03a9"
-        },
-        {
-          "symbol": "R_E",
-          "meaning": "Emitter Resistor",
-          "unit": "\u03a9"
         }
       ],
-      "explanation": "The output voltage is the supply voltage minus the drops across both the collector and emitter resistors, assuming Collector and Emitter currents are approximately equal."
+      "explanation": "The total current leaving the emitter is the sum of the small base current and the large collector current, based on Kirchhoff's Current Law."
     },
     {
       "name": "JFET Shockley Equation",
@@ -378,7 +378,7 @@
     {
       "topic": "BJT Configurations and Characteristics",
       "question": "Draw and explain the input and output characteristics of a BJT in Common Emitter (CE) configuration.",
-      "answer": "**Input Characteristics (I_B vs V_BE):**\\nThis is a plot of base current (I_B) versus base-emitter voltage (V_BE) for a constant collector-emitter voltage (V_CE). The curve resembles a forward-biased diode characteristic. As V_BE increases beyond the cut-in voltage (~0.7V for silicon), the base current I_B increases rapidly. For higher values of V_CE, the curve shifts slightly to the right due to the Early effect decreasing the effective base width.\\n\\n**Output Characteristics (I_C vs V_CE):**\\nThis is a plot of collector current (I_C) versus collector-emitter voltage (V_CE) for a constant base current (I_B). The characteristics are divided into three regions:\\n1. **Active Region:** Here, the collector junction is reverse-biased. I_C is almost independent of V_CE and is primarily controlled by I_B (I_C = \u03b2 * I_B). The curves are nearly flat. This region is used for amplification.\\n2. **Saturation Region:** This is the region where V_CE is very small (near 0V) and both EB and CB junctions are forward biased. In this region, I_C increases rapidly with V_CE before becoming constant. It acts as a closed switch.\\n3. **Cutoff Region:** This is the region below the I_B = 0 curve. Both junctions are reverse-biased, and only a very small leakage current flows. It acts as an open switch.",
+      "answer": "**Input Characteristics (I_B vs V_BE):**\\nThis is a plot of base current (I_B) versus base-emitter voltage (V_BE) for a constant collector-emitter voltage (V_CE). The curve resembles a forward-biased diode characteristic. As V_BE increases beyond the cut-in voltage (~0.7V for silicon), the base current I_B increases rapidly. For higher values of V_CE, the curve shifts slightly to the right due to the Early effect decreasing the effective base width.\\n\\n**Output Characteristics (I_C vs V_CE):**\\nThis is a plot of collector current (I_C) versus collector-emitter voltage (V_CE) for a constant base current (I_B). The characteristics are divided into three regions:\\n1. **Active Region:** Here, the collector junction is reverse-biased. I_C is almost independent of V_CE and is primarily controlled by I_B (I_C = β * I_B). The curves are nearly flat. This region is used for amplification.\\n2. **Saturation Region:** This is the region where V_CE is very small (near 0V) and both EB and CB junctions are forward biased. In this region, I_C increases rapidly with V_CE before becoming constant. It acts as a closed switch.\\n3. **Cutoff Region:** This is the region below the I_B = 0 curve. Both junctions are reverse-biased, and only a very small leakage current flows. It acts as an open switch.",
       "formulas_used": [
         "DC Current Gain (Beta)"
       ],
@@ -387,7 +387,7 @@
     {
       "topic": "BJT Configurations and Characteristics",
       "question": "Compare the performance of CB, CE, and CC configurations of a BJT.",
-      "answer": "The three BJT configurations are compared based on key parameters:\\n\\n*   **Input Resistance:** CB has low input resistance (~100\u03a9). CE has moderate input resistance (~750\u03a9). CC has very high input resistance (~750k\u03a9).\\n*   **Output Resistance:** CB has very high output resistance (~450k\u03a9). CE has moderate output resistance (~45k\u03a9). CC has low output resistance (~25\u03a9).\\n*   **Current Gain:** CB has a current gain of approximately 1. CE has high current gain (\u03b2 > 50). CC also has high current gain (\u2248 \u03b2).\\n*   **Voltage Gain:** CB has high voltage gain (~150). CE has the highest voltage gain (~500). CC has a voltage gain of less than 1.\\n*   **Phase Shift:** CB and CC configurations have 0\u00b0 phase shift between input and output voltage. CE configuration has a 180\u00b0 phase shift.\\n*   **Applications:** CB is used in high-frequency circuits. CE is used for audio frequency amplification. CC is used for impedance matching.",
+      "answer": "The three BJT configurations are compared based on key parameters:\\n\\n*   **Input Resistance:** CB has low input resistance (~100Ω). CE has moderate input resistance (~750Ω). CC has very high input resistance (~750kΩ).\\n*   **Output Resistance:** CB has very high output resistance (~450kΩ). CE has moderate output resistance (~45kΩ). CC has low output resistance (~25Ω).\\n*   **Current Gain:** CB has a current gain of approximately 1. CE has high current gain (β > 50). CC also has high current gain (≈ β).\\n*   **Voltage Gain:** CB has high voltage gain (~150). CE has the highest voltage gain (~500). CC has a voltage gain of less than 1.\\n*   **Phase Shift:** CB and CC configurations have 0° phase shift between input and output voltage. CE configuration has a 180° phase shift.\\n*   **Applications:** CB is used in high-frequency circuits. CE is used for audio frequency amplification. CC is used for impedance matching.",
       "formulas_used": [],
       "diagram_hint": "none"
     },
@@ -403,14 +403,14 @@
     {
       "topic": "BJT vs FET Comparison",
       "question": "Tabulate the key differences between a Bipolar Junction Transistor (BJT) and a Field Effect Transistor (FET).",
-      "answer": "| Feature | BJT (Bipolar Junction Transistor) | FET (Field Effect Transistor) |\n|---|---|---|\n| **Carrier Type** | Bipolar device (conduction by both electrons and holes) | Unipolar device (conduction by majority carriers only) |\n| **Control Type** | Current controlled device (Base current controls collector current) | Voltage controlled device (Gate voltage controls drain current) |\n| **Input Impedance** | Low input impedance (forward biased BE junction) | High input impedance (reverse biased or insulated gate) |\n| **Noise Level** | Higher noise level | Lower noise level |\n| **Thermal Stability** | Lower thermal stability | Better thermal stability |\n| **Gain Parameter** | Gain is characterized by current gain (\u03b2) | Gain is characterized by transconductance (g_m) |",
+      "answer": "| Feature | BJT (Bipolar Junction Transistor) | FET (Field Effect Transistor) |\n|---|---|---|\n| **Carrier Type** | Bipolar device (conduction by both electrons and holes) | Unipolar device (conduction by majority carriers only) |\n| **Control Type** | Current controlled device (Base current controls collector current) | Voltage controlled device (Gate voltage controls drain current) |\n| **Input Impedance** | Low input impedance (forward biased BE junction) | High input impedance (reverse biased or insulated gate) |\n| **Noise Level** | Higher noise level | Lower noise level |\n| **Thermal Stability** | Lower thermal stability | Better thermal stability |\n| **Gain Parameter** | Gain is characterized by current gain (β) | Gain is characterized by transconductance (g_m) |",
       "formulas_used": [],
       "diagram_hint": "none"
     },
     {
       "topic": "MOSFET Construction and Operation",
       "question": "Describe the construction and working of an N-channel Enhancement-Mode MOSFET (E-MOSFET).",
-      "answer": "**Construction:**\\nAn N-channel E-MOSFET is built on a P-type substrate. Two highly doped N+ regions are diffused into it, acting as the Source and Drain. Unlike a JFET or D-MOSFET, there is no pre-existing channel between the source and drain. A thin layer of silicon dioxide (SiO\u2082) insulates a metal gate from the P-type substrate between the source and drain.\\n\\n**Working:**\\n1. **V_GS = 0:** With zero gate voltage, there is no conductive path between the source and drain. Applying a V_DS results in practically zero drain current. The device is 'OFF'.\\n2. **V_GS > V_T (Threshold Voltage):** When a positive voltage is applied to the gate, it creates an electric field that attracts minority carriers (electrons) from the P-substrate to the region under the gate. If V_GS is greater than a specific 'threshold voltage' (V_T), enough electrons accumulate to form an N-type 'inversion layer'. This layer acts as a conducting channel between the source and drain.\\n3. **Current Flow:** Once the channel is formed, applying a positive V_DS will cause electrons to flow from source to drain, resulting in a drain current I_D. A more positive V_GS will attract more electrons, 'enhancing' the channel's conductivity and increasing the drain current.",
+      "answer": "**Construction:**\\nAn N-channel E-MOSFET is built on a P-type substrate. Two highly doped N+ regions are diffused into it, acting as the Source and Drain. Unlike a JFET or D-MOSFET, there is no pre-existing channel between the source and drain. A thin layer of silicon dioxide (SiO₂) insulates a metal gate from the P-type substrate between the source and drain.\\n\\n**Working:**\\n1. **V_GS = 0:** With zero gate voltage, there is no conductive path between the source and drain. Applying a V_DS results in practically zero drain current. The device is 'OFF'.\\n2. **V_GS > V_T (Threshold Voltage):** When a positive voltage is applied to the gate, it creates an electric field that attracts minority carriers (electrons) from the P-substrate to the region under the gate. If V_GS is greater than a specific 'threshold voltage' (V_T), enough electrons accumulate to form an N-type 'inversion layer'. This layer acts as a conducting channel between the source and drain.\\n3. **Current Flow:** Once the channel is formed, applying a positive V_DS will cause electrons to flow from source to drain, resulting in a drain current I_D. A more positive V_GS will attract more electrons, 'enhancing' the channel's conductivity and increasing the drain current.",
       "formulas_used": [],
       "diagram_hint": "characteristic"
     }
@@ -419,7 +419,7 @@
     {
       "topic": "BJT Biasing Circuits",
       "question": "With neat circuit diagrams, explain the operation of Fixed Bias and Voltage Divider Bias circuits for a BJT. Derive the expressions for the quiescent point (ICQ, VCEQ) for the voltage divider bias circuit.",
-      "answer": "**1. Fixed Bias Circuit:**\\nThis is the simplest biasing circuit. A single resistor, RB, is connected between the VCC supply and the base terminal. Another resistor, RC, is connected between VCC and the collector terminal.\\n**Operation:** The base current IB is determined by the value of RB. It is calculated by applying KVL to the base-emitter loop: VCC = IB*RB + VBE. So, IB = (VCC - VBE) / RB. The collector current is then IC = \u03b2 * IB. The output voltage VCE is found from the collector-emitter loop: VCC = IC*RC + VCE. So, VCE = VCC - IC*RC. This circuit has poor stability against changes in \u03b2.\\n\\n**2. Voltage Divider Bias (Self Bias) Circuit:**\\nThis is the most widely used biasing circuit due to its excellent stability. The base voltage is set by a voltage divider network consisting of two resistors, R1 and R2, connected to VCC. An emitter resistor, RE, is also included for stability.\\n**Operation:** The voltage at the base (VB) is determined by the R1-R2 divider. This voltage remains almost constant regardless of transistor parameters. The emitter voltage VE is VB - VBE. The emitter current is then IE = VE / RE. Since IC is approximately equal to IE, the collector current is stable and independent of \u03b2.\\n\\n**Derivation for Voltage Divider Bias Q-point:**\\nTo simplify the analysis, we find the Thevenin equivalent circuit for the base network.\\n*   **Step 1: Thevenin Voltage (VTH):** Looking from the base terminal, VTH is the open-circuit voltage across R2.\\nVTH = VCC * (R2 / (R1 + R2))\\n*   **Step 2: Thevenin Resistance (RTH):** RTH is the equivalent resistance looking back into the base, with VCC grounded. R1 and R2 are in parallel.\\nRTH = (R1 * R2) / (R1 + R2)\\n*   **Step 3: Finding Base Current (IBQ):** Apply KVL to the Thevenin equivalent base-emitter loop.\\nVTH = IB * RTH + VBE + IE * RE\\nSince IE = (\u03b2 + 1) * IB, we get:\\nVTH = IB * RTH + VBE + (\u03b2 + 1) * IB * RE\\nSolving for IB:\\nIBQ = (VTH - VBE) / (RTH + (\u03b2 + 1) * RE)\\n*   **Step 4: Finding Collector Current (ICQ):**\\nICQ = \u03b2 * IBQ\\n*   **Step 5: Finding Collector-Emitter Voltage (VCEQ):** Apply KVL to the main collector-emitter loop.\\nVCC = IC * RC + VCE + IE * RE\\nAssuming IC \u2248 IE:\\nVCC = IC * (RC + RE) + VCE\\nSolving for VCE:\\nVCEQ = VCC - ICQ * (RC + RE)",
+      "answer": "**1. Fixed Bias Circuit:**\\nThis is the simplest biasing circuit. A single resistor, RB, is connected between the VCC supply and the base terminal. Another resistor, RC, is connected between VCC and the collector terminal.\\n**Operation:** The base current IB is determined by the value of RB. It is calculated by applying KVL to the base-emitter loop: VCC = IB*RB + VBE. So, IB = (VCC - VBE) / RB. The collector current is then IC = β * IB. The output voltage VCE is found from the collector-emitter loop: VCC = IC*RC + VCE. So, VCE = VCC - IC*RC. This circuit has poor stability against changes in β.\\n\\n**2. Voltage Divider Bias (Self Bias) Circuit:**\\nThis is the most widely used biasing circuit due to its excellent stability. The base voltage is set by a voltage divider network consisting of two resistors, R1 and R2, connected to VCC. An emitter resistor, RE, is also included for stability.\\n**Operation:** The voltage at the base (VB) is determined by the R1-R2 divider. This voltage remains almost constant regardless of transistor parameters. The emitter voltage VE is VB - VBE. The emitter current is then IE = VE / RE. Since IC is approximately equal to IE, the collector current is stable and independent of β.\\n\\n**Derivation for Voltage Divider Bias Q-point:**\\nTo simplify the analysis, we find the Thevenin equivalent circuit for the base network.\\n*   **Step 1: Thevenin Voltage (VTH):** Looking from the base terminal, VTH is the open-circuit voltage across R2.\\nVTH = VCC * (R2 / (R1 + R2))\\n*   **Step 2: Thevenin Resistance (RTH):** RTH is the equivalent resistance looking back into the base, with VCC grounded. R1 and R2 are in parallel.\\nRTH = (R1 * R2) / (R1 + R2)\\n*   **Step 3: Finding Base Current (IBQ):** Apply KVL to the Thevenin equivalent base-emitter loop.\\nVTH = IB * RTH + VBE + IE * RE\\nSince IE = (β + 1) * IB, we get:\\nVTH = IB * RTH + VBE + (β + 1) * IB * RE\\nSolving for IB:\\nIBQ = (VTH - VBE) / (RTH + (β + 1) * RE)\\n*   **Step 4: Finding Collector Current (ICQ):**\\nICQ = β * IBQ\\n*   **Step 5: Finding Collector-Emitter Voltage (VCEQ):** Apply KVL to the main collector-emitter loop.\\nVCC = IC * RC + VCE + IE * RE\\nAssuming IC ≈ IE:\\nVCC = IC * (RC + RE) + VCE\\nSolving for VCE:\\nVCEQ = VCC - ICQ * (RC + RE)",
       "formulas_used": [
         "Voltage Divider - Thevenin Voltage",
         "Voltage Divider - Collector-Emitter Voltage",
@@ -445,8 +445,8 @@
     },
     {
       "topic": "Numerical Applications of Transistors",
-      "question": "For a silicon transistor in a voltage divider bias circuit, VCC = 12V, R1 = 39k\u03a9, R2 = 10k\u03a9, RC = 3.3k\u03a9, RE = 1k\u03a9, and \u03b2 = 90. Determine the Q-point (ICQ and VCEQ).",
-      "answer": "The Q-point of a transistor consists of the DC collector current (ICQ) and the DC collector-emitter voltage (VCEQ).\\n\\n**Step 1: Calculate the Thevenin Voltage (VTH) at the base.**\\nThis is the voltage across resistor R2.\\nVTH = VCC * (R2 / (R1 + R2))\\nVTH = 12V * (10k\u03a9 / (39k\u03a9 + 10k\u03a9))\\nVTH = 12V * (10 / 49) = 2.45 V\\n\\n**Step 2: Calculate the Thevenin Resistance (RTH) at the base.**\\nThis is the parallel combination of R1 and R2.\\nRTH = (R1 * R2) / (R1 + R2)\\nRTH = (39k\u03a9 * 10k\u03a9) / (39k\u03a9 + 10k\u03a9)\\nRTH = 390 / 49 k\u03a9 = 7.96 k\u03a9\\n\\n**Step 3: Calculate the Base Current (IBQ).**\\nApply KVL to the base-emitter loop using the Thevenin equivalent. For a silicon transistor, VBE is approximately 0.7V.\\nVTH = IBQ * RTH + VBE + IEQ * RE\\nSince IEQ = (\u03b2 + 1) * IBQ:\\nVTH = IBQ * RTH + VBE + (\u03b2 + 1) * IBQ * RE\\n2.45V = IBQ * 7.96k\u03a9 + 0.7V + (90 + 1) * IBQ * 1k\u03a9\\n2.45V - 0.7V = IBQ * (7.96k\u03a9 + 91k\u03a9)\\n1.75V = IBQ * (98.96k\u03a9)\\nIBQ = 1.75V / 98.96k\u03a9 = 0.01768 mA or 17.68 \u00b5A\\n\\n**Step 4: Calculate the Collector Current (ICQ).**\\nICQ = \u03b2 * IBQ\\nICQ = 90 * 17.68 \u00b5A = 1591.2 \u00b5A \u2248 1.59 mA\\n\\n**Step 5: Calculate the Collector-Emitter Voltage (VCEQ).**\\nApply KVL to the collector-emitter loop. Assume ICQ \u2248 IEQ.\\nVCEQ = VCC - ICQ * (RC + RE)\\nVCEQ = 12V - 1.59mA * (3.3k\u03a9 + 1k\u03a9)\\nVCEQ = 12V - 1.59mA * 4.3k\u03a9\\nVCEQ = 12V - 6.837V = 5.163 V\\n\\n**Result:** The quiescent operating point (Q-point) for the transistor is (ICQ, VCEQ) = (1.59 mA, 5.16 V).",
+      "question": "For a silicon transistor in a voltage divider bias circuit, VCC = 12V, R1 = 39kΩ, R2 = 10kΩ, RC = 3.3kΩ, RE = 1kΩ, and β = 90. Determine the Q-point (ICQ and VCEQ).",
+      "answer": "The Q-point of a transistor consists of the DC collector current (ICQ) and the DC collector-emitter voltage (VCEQ).\\n\\n**Step 1: Calculate the Thevenin Voltage (VTH) at the base.**\\nThis is the voltage across resistor R2.\\nVTH = VCC * (R2 / (R1 + R2))\\nVTH = 12V * (10kΩ / (39kΩ + 10kΩ))\\nVTH = 12V * (10 / 49) = 2.45 V\\n\\n**Step 2: Calculate the Thevenin Resistance (RTH) at the base.**\\nThis is the parallel combination of R1 and R2.\\nRTH = (R1 * R2) / (R1 + R2)\\nRTH = (39kΩ * 10kΩ) / (39kΩ + 10kΩ)\\nRTH = 390 / 49 kΩ = 7.96 kΩ\\n\\n**Step 3: Calculate the Base Current (IBQ).**\\nApply KVL to the base-emitter loop using the Thevenin equivalent. For a silicon transistor, VBE is approximately 0.7V.\\nVTH = IBQ * RTH + VBE + IEQ * RE\\nSince IEQ = (β + 1) * IBQ:\\nVTH = IBQ * RTH + VBE + (β + 1) * IBQ * RE\\n2.45V = IBQ * 7.96kΩ + 0.7V + (90 + 1) * IBQ * 1kΩ\\n2.45V - 0.7V = IBQ * (7.96kΩ + 91kΩ)\\n1.75V = IBQ * (98.96kΩ)\\nIBQ = 1.75V / 98.96kΩ = 0.01768 mA or 17.68 µA\\n\\n**Step 4: Calculate the Collector Current (ICQ).**\\nICQ = β * IBQ\\nICQ = 90 * 17.68 µA = 1591.2 µA ≈ 1.59 mA\\n\\n**Step 5: Calculate the Collector-Emitter Voltage (VCEQ).**\\nApply KVL to the collector-emitter loop. Assume ICQ ≈ IEQ.\\nVCEQ = VCC - ICQ * (RC + RE)\\nVCEQ = 12V - 1.59mA * (3.3kΩ + 1kΩ)\\nVCEQ = 12V - 1.59mA * 4.3kΩ\\nVCEQ = 12V - 6.837V = 5.163 V\\n\\n**Result:** The quiescent operating point (Q-point) for the transistor is (ICQ, VCEQ) = (1.59 mA, 5.16 V).",
       "formulas_used": [
         "Voltage Divider - Thevenin Voltage",
         "DC Current Gain (Beta)",
@@ -458,16 +458,16 @@
   "numerical_problems": [
     {
       "topic": "BJT Biasing Circuits",
-      "problem": "A fixed bias circuit has VCC = 15V, RB = 500k\u03a9, RC = 3k\u03a9. The transistor has a \u03b2 = 80 and VBE = 0.7V. Calculate the base current (IB), collector current (IC), and collector-emitter voltage (VCE).",
+      "problem": "A fixed bias circuit has VCC = 15V, RB = 500kΩ, RC = 3kΩ. The transistor has a β = 80 and VBE = 0.7V. Calculate the base current (IB), collector current (IC), and collector-emitter voltage (VCE).",
       "solution_steps": [
         "Calculate the base current using the formula: IB = (VCC - VBE) / RB.",
-        "IB = (15V - 0.7V) / 500k\u03a9 = 14.3V / 500e3\u03a9 = 28.6 \u00b5A.",
-        "Calculate the collector current using: IC = \u03b2 * IB.",
-        "IC = 80 * 28.6 \u00b5A = 2.288 mA.",
+        "IB = (15V - 0.7V) / 500kΩ = 14.3V / 500e3Ω = 28.6 µA.",
+        "Calculate the collector current using: IC = β * IB.",
+        "IC = 80 * 28.6 µA = 2.288 mA.",
         "Calculate the collector-emitter voltage using: VCE = VCC - IC * RC.",
-        "VCE = 15V - (2.288 mA * 3k\u03a9) = 15V - 6.864V = 8.136 V."
+        "VCE = 15V - (2.288 mA * 3kΩ) = 15V - 6.864V = 8.136 V."
       ],
-      "final_answer": "IB = 28.6 \u00b5A, IC = 2.29 mA, VCE = 8.14 V",
+      "final_answer": "IB = 28.6 µA, IC = 2.29 mA, VCE = 8.14 V",
       "formulas_used": [
         "Fixed Bias - Base Current",
         "DC Current Gain (Beta)",
@@ -557,7 +557,7 @@
     },
     {
       "topic": "BJT Configurations and Characteristics",
-      "question": "Which BJT configuration provides a 180\u00b0 phase shift between the input and output voltage?",
+      "question": "Which BJT configuration provides a 180° phase shift between the input and output voltage?",
       "options": [
         "Common Base (CB)",
         "Common Collector (CC)",
@@ -565,7 +565,7 @@
         "Both CB and CC"
       ],
       "correct_index": 2,
-      "explanation": "The Common Emitter (CE) configuration inverts the signal, resulting in a 180\u00b0 phase shift between input and output voltages."
+      "explanation": "The Common Emitter (CE) configuration inverts the signal, resulting in a 180° phase shift between input and output voltages."
     },
     {
       "topic": "BJT Configurations and Characteristics",
@@ -641,7 +641,7 @@
     },
     {
       "topic": "BJT Biasing Circuits",
-      "question": "Which biasing circuit provides the best stability against variations in \u03b2?",
+      "question": "Which biasing circuit provides the best stability against variations in β?",
       "options": [
         "Fixed Bias",
         "Collector-to-Base Bias",
@@ -649,7 +649,7 @@
         "Emitter Bias"
       ],
       "correct_index": 2,
-      "explanation": "Voltage Divider Bias, due to its emitter resistor and stable base voltage, makes the Q-point largely independent of transistor beta (\u03b2), providing excellent stability."
+      "explanation": "Voltage Divider Bias, due to its emitter resistor and stable base voltage, makes the Q-point largely independent of transistor beta (β), providing excellent stability."
     },
     {
       "topic": "BJT Construction and Operation",

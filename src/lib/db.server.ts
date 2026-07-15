@@ -97,9 +97,19 @@ async function initDb() {
         latex TEXT,
         explanation TEXT,
         variables JSON,
+        image_url VARCHAR(255) DEFAULT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
+
+    try {
+      await query("ALTER TABLE formulas ADD COLUMN image_url VARCHAR(255) DEFAULT NULL");
+      console.log("[TiDB] Added image_url column to formulas table.");
+    } catch (err: any) {
+      if (!err.message?.includes("Duplicate column name") && !err.message?.includes("already exists")) {
+        console.warn("[TiDB] Alter table formulas error:", err.message);
+      }
+    }
 
     await query(`
       CREATE TABLE IF NOT EXISTS important_questions (
@@ -267,7 +277,7 @@ async function initDb() {
             if (unit.formulas && Array.isArray(unit.formulas)) {
               for (const f of unit.formulas) {
                 await query(
-                  "INSERT INTO formulas (id, unit_number, topic, name, formula, latex, explanation, variables) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                  "INSERT INTO formulas (id, unit_number, topic, name, formula, latex, explanation, variables, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL)",
                   [crypto.randomUUID(), unit.unit_number, f.topic, f.name, f.expression, f.latex, f.explanation, JSON.stringify(f.variables || [])]
                 );
               }

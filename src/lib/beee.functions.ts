@@ -44,6 +44,7 @@ export interface SchemdrawInstruction {
   type: string;
   direction: string;
   label: string;
+  label2?: string;
   length: number;
 }
 export interface DiagramData {
@@ -708,6 +709,7 @@ CRITICAL RULES FOR OUTPUT:
        "type": "Resistor"|"Capacitor"|"Inductor"|"BatteryCell"|"SourceV"|"SourceI"|"Diode"|"BjtNpn"|"Line"|"Ground",
        "direction": "right"|"left"|"up"|"down",
        "label": string,
+       "label2"?: string,
        "length": number
     }[]
   },
@@ -718,19 +720,19 @@ DIAGRAM RULES — read carefully:
 
 IMPORTANT: The backend will automatically arrange all schemdraw components into a clean RECTANGULAR LOOP. You do NOT need to specify directions or worry about topology. Just provide:
   1. One source element (SourceV/SourceI/BatteryCell) with its voltage/current label
-  2. The key components (Resistor, Capacitor, Inductor, Diode, etc.) with short labels
+  2. The key components (Resistor, Capacitor, Inductor, Diode, etc.)
 
 ### When the question asks to SOLVE a circuit (find currents, voltages, equivalent resistance, Thevenin, etc.):
 - List the source and the KEY components that illustrate the solution.
-- Label each component with the COMPUTED answer value only. ONE value per label.
-  Good: label="R=6.42Ω"  label="I=1.56A"  label="10V"
-  Bad: label="R3=3Ω I=0.984A"  (never combine two values)
-- Include a "Resistor" element with the solved current or voltage annotated if relevant.
+- For each component, use "label" (which renders at the TOP of the component) for its designation/value (e.g. "R1=4Ω" or "R_eq=6.42Ω"), and optionally "label2" (which renders at the BOTTOM of the component) for its solved current or voltage (e.g. "I=1.56A" or "V=6.89V" or "➔ I=0.98A").
+- Do not combine these into a single "label" field. Keep them separate.
+  Good: label="R1=3Ω", label2="I=0.98A"
+  Bad: label="R3=3Ω, I=0.98A" (never put two values in one label)
 - description must say "Solved circuit: [what was found and the numeric answer]".
 
 ### When the question is a general/theory question:
 - List the source and components that best illustrate the concept.
-- Use simple clean values. Each label: ONE name + ONE value.
+- Use simple clean values. Use "label" for component value and "label2" if there is any other value.
 - description must say what concept the circuit illustrates.
 
 ### Never emit null diagram for circuit/electrical questions. Only use null for pure theory with no circuit.

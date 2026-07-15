@@ -48,16 +48,23 @@ def apply_direction_and_length(element, direction, length):
     return element
 
 
-def apply_label(element, label):
+def apply_label(element, label, loc="top"):
+    """Apply a label to a schemdraw element at the given location.
+    loc can be 'top', 'bot', 'left', 'right', 'center'.
+    """
     if not label:
         return element
 
     label_method = getattr(element, "label", None)
     if callable(label_method):
         try:
-            return label_method(str(label))
-        except Exception:
-            return element
+            # Try with loc parameter first (schemdraw >= 0.15)
+            return label_method(str(label), loc=loc)
+        except TypeError:
+            try:
+                return label_method(str(label))
+            except Exception:
+                return element
 
     return element
 
@@ -99,7 +106,16 @@ def generate_svg(instructions):
             inst.get("direction", "right"),
             inst.get("length", 3),
         )
-        element = apply_label(element, inst.get("label", ""))
+
+        # Primary label — shown on top of the element
+        label = inst.get("label", "")
+        if label:
+            element = apply_label(element, str(label), loc="top")
+
+        # Secondary label (label2) — shown below the element for current/extra info
+        label2 = inst.get("label2", "")
+        if label2:
+            element = apply_label(element, str(label2), loc="bot")
 
         try:
             d.add(element)

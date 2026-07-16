@@ -96,6 +96,19 @@ def generate_svg(instructions):
             raise ValueError(f"Instruction {index} must be an object.")
 
         el_type = inst.get("type")
+        
+        if el_type == "Push":
+            d.push()
+            continue
+        elif el_type == "Pop":
+            d.pop()
+            continue
+        elif el_type == "Move":
+            dx = safe_float(inst.get("dx"), 0.0)
+            dy = safe_float(inst.get("dy"), 0.0)
+            d.move(dx, dy)
+            continue
+
         ElementClass = element_map.get(el_type)
         if ElementClass is None:
             raise ValueError(f"Unsupported schemdraw element type: {el_type}")

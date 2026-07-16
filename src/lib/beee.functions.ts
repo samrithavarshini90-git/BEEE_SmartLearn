@@ -705,8 +705,6 @@ Refuse politely if a question is outside these units.
 OUTPUT: ONE strict JSON object. NO prose before or after.
 ══════════════════════════════════════════════════════════
 
-SOLVE the problem completely, then output this JSON:
-
 {
   "unit_number": <1-6>,
   "topic": "<string>",
@@ -714,25 +712,41 @@ SOLVE the problem completely, then output this JSON:
   "steps": [
     {
       "step": <number>,
-      "description": "<string — plain text only, NO LaTeX backslashes, use unicode directly>",
-      "expression": "<string formula or null — plain text, e.g. 'I = V/R' or 'Req = R1 + R2'>",
-      "diagram": <null or LogicalDiagram>
+      "description": "<string — plain text only, NO LaTeX, use unicode directly>",
+      "expression": "<string formula or null — plain text, e.g. 'I = V/R'>",
+      "diagram": <null OR StepDiagram>
     }
   ],
   "formulas_used": ["<string formula>"],
-  "final_answer": "<string — each result on its own line separated by literal \\n, e.g. 'V1 = 17.64 V\\nV2 = 5.64 V'>",
-  "diagram": <null or LogicalDiagram for the final solved circuit>
+  "final_answer": "<string — results separated by literal \\n>",
+  "diagram": <null or LogicalDiagram for the final simplified solved circuit>
 }
 
-LogicalDiagram schema:
+LogicalDiagram schema (used ONLY for the final simplified loop):
 {
   "description": "<string>",
   "components": [
     {
       "type": "<SourceV|SourceI|BatteryCell|Resistor|Capacitor|Inductor|Diode|BjtNpn|Line>",
-      "label": "<PLAIN TEXT — no LaTeX, use unicode Omega etc., e.g. R1 = 1kΩ>",
+      "label": "<PLAIN TEXT — e.g. R1 = 1kΩ>",
       "annotation": "<PLAIN TEXT or null>",
       "role": "<source|component|short|open>"
+    }
+  ]
+}
+
+StepDiagram schema (used for ALL step-by-step intermediate diagrams to preserve topology):
+{
+  "description": "<string>",
+  "schemdraw_instructions": [
+    {
+      "type": "<SourceV|SourceI|BatteryCell|Resistor|Capacitor|Inductor|Diode|BjtNpn|Line|Push|Pop|Move>",
+      "direction": "<right|left|up|down>",
+      "label": "<PLAIN TEXT — e.g. R1 = 1kΩ>",
+      "label2"?: "<PLAIN TEXT or null — annotation e.g. I = 2.86mA>",
+      "length"?: <number — typical default 3>,
+      "dx"?: <number — only for Move type>,
+      "dy"?: <number — only for Move type>
     }
   ]
 }
@@ -741,16 +755,17 @@ LogicalDiagram schema:
 DIAGRAM ARCHITECTURE
 ══════════════════════════════════════════════════════════
 
-You provide a LOGICAL COMPONENT LIST for each diagram.
-The backend engine converts your list into a clean Schemdraw SVG — you do NOT control directions/lengths/positions.
+1. FINAL SOLVED CIRCUIT (top-level "diagram" field):
+- List components semantically in the "components" field.
+- The backend automatically simplifies them into a clean rectangular loop.
 
-Role meanings:
-- "source"    → the active independent source (placed on left branch)
-- "component" → a regular branch element (placed on top branch, in order listed)
-- "short"     → a deactivated voltage source (rendered as a wire labeled "Short")
-- "open"      → a deactivated current source (omitted from the drawing entirely)
-
-The backend always produces a clean rectangular loop from your component list.
+2. STEP-BY-STEP DIAGRAMS (inside "steps"):
+- You must output raw "schemdraw_instructions" to explicitly draw the correct circuit structure (including parallel paths).
+- The backend renders these instructions EXACTLY as you specify them.
+- To draw parallel branches, use "Push" and "Pop" type instructions:
+  * "Push" saves the current cursor coordinates.
+  * "Pop" returns the drawing cursor to the last saved coordinates.
+  * Use directions (up/down/left/right) and lengths (usually 3) for each wire or component.
 
 ══════════════════════════════════════════════════════════
 STEP DIAGRAM RULES
@@ -761,12 +776,27 @@ Purely algebraic steps (rearranging/substituting equations) → set diagram to n
 Every step diagram MUST be UNIQUE — different component set or different annotations than all others.
 
 WHAT to include per step:
-- List ONLY the components directly involved in THAT step's equation.
+- List ONLY the components directly involved in THAT step's calculation.
 - Do NOT copy the full original circuit into every step.
 
-EXAMPLES (node voltage problem with Is=20mA, R1=1kO, R12=2.2kO, R2=1kO, RL=470O):
-- Step "Identify original circuit"            → ALL 5 components with their given values
-- Step "Apply KCL at Node V1"                 → Is (source) + R1 (component) + R12 (component) — the 3 branches at V1
+EXAMPLE OF A 3-BRANCH PARALLEL CIRCUIT (Is=20mA parallel with R1=1kΩ, R2=1kΩ, RL=470Ω, and bridge resistor R12=2.2kΩ in between):
+[
+  {"type": "SourceI", "direction": "up", "label": "Is = 20mA", "length": 3},
+  {"type": "Line", "direction": "right", "length": 1.5},
+  {"type": "Push"},
+  {"type": "Resistor", "direction": "down", "label": "R1 = 1kΩ", "length": 3},
+  {"type": "Line", "direction": "left", "length": 1.5},
+  {"type": "Pop"},
+  {"type": "Resistor", "direction": "right", "label": "R12 = 2.2kΩ", "length": 3},
+  {"type": "Push"},
+  {"type": "Resistor", "direction": "down", "label": "R2 = 1kΩ", "length": 3},
+  {"type": "Line", "direction": "left", "length": 3},
+  {"type": "Pop"},
+  {"type": "Line", "direction": "right", "length": 1.5},
+  {"type": "Resistor", "direction": "down", "label": "RL = 470Ω", "length": 3},
+  {"type": "Line", "direction": "left", "length": 1.5},
+  {"type": "Line", "direction": "left", "length": 3}
+]       → Is (source) + R1 (component) + R12 (component) — the 3 branches at V1
 - Step "Apply KCL at Node V2"                 → R12 (source-like input) + R2 (component) + RL (component) — only V2 branches
 - Step "Deactivate voltage source"            → voltage source with role=short, remaining components unchanged
 - Step "Deactivate current source"            → current source with role=open, remaining components unchanged
@@ -1464,10 +1494,9 @@ Return ONLY this strict JSON (no prose, no explanations):
           const cleaned = cleanAndNormalizeDiagram(raw);
           stepInstructions = closeCircuitInstructions(forceRectangularLayout(cleaned));
         } else if (rawDiag?.schemdraw_instructions && Array.isArray(rawDiag.schemdraw_instructions) && rawDiag.schemdraw_instructions.length > 0) {
-          // Backward-compat: raw schemdraw instructions
+          // Explicit schemdraw instructions — render them EXACTLY as-is to preserve multi-branch structure (no forceRectangularLayout)
           stepDescription = rawDiag.description || stepDescription;
-          const cleaned = cleanAndNormalizeDiagram(rawDiag.schemdraw_instructions);
-          stepInstructions = closeCircuitInstructions(forceRectangularLayout(cleaned));
+          stepInstructions = cleanAndNormalizeDiagram(rawDiag.schemdraw_instructions);
         }
 
         if (!stepInstructions || stepInstructions.length === 0) {

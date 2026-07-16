@@ -738,14 +738,14 @@ IMPORTANT: The backend will automatically arrange all schemdraw components into 
   2. The key components (Resistor, Capacitor, Inductor, Diode, etc.)
 
 ### Step-by-Step Diagrams (CRITICAL):
-- You MUST provide a step-specific "diagram" object inside any step in the "steps" array where the circuit configuration changes or simplifies.
-- Every step diagram MUST be strictly unique and illustrate the PROGRESS of the solution.
-- DO NOT duplicate the same diagram across multiple steps. If a step does not modify the circuit configuration, DO NOT include a diagram for that step (set it to null).
+- You MUST provide a step-specific "diagram" object inside any step in the "steps" array where the circuit configuration changes, simplifies, or represents a local node/loop calculation.
+- Every step diagram MUST be strictly unique and illustrate the PROGRESS and local topology of that specific stage of the solution.
+- DO NOT duplicate the same diagram across multiple steps. If a step does not modify the circuit topology or focus on a new sub-circuit, set "diagram" to null.
 - Examples of required step-by-step diagrams:
   * Superposition steps: Show the circuit state with inactive sources deactivated (voltage sources replaced by short/line, current sources replaced by open/empty space).
   * Simplification/Reduction steps: Show the simplified circuit state after combining a group of parallel or series resistors (e.g., replacing $R_1 \parallel R_2$ with $R_{12} = 1.33\,\Omega$).
   * Thevenin/Norton steps: Show the final reduced single-loop equivalent circuit containing $V_{th}$ or $I_n$ connected to the load resistor.
-  * Node/Mesh analysis: Show node labels and current directions annotated.
+  * Node/Mesh analysis local steps: For KCL at Node 1 ($V_1$), show ONLY the local sub-circuit connected to Node 1 (e.g., the source and the two adjacent resistors). For KCL at Node 2 ($V_2$), show ONLY the components connected to Node 2 (e.g., the coupling resistor and the branch resistors).
 - For each step diagram, ensure all labels, values, and calculations are perfectly synchronized with the prose description and expression of that specific step.
 - Keep each step diagram simple, using 1 source and 1-3 key components to reflect the current state of the reduction. Ensure a clean rectangular shape.
 

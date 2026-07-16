@@ -739,6 +739,8 @@ IMPORTANT: The backend will automatically arrange all schemdraw components into 
 
 ### Step-by-Step Diagrams (CRITICAL):
 - You MUST provide a step-specific "diagram" object inside any step in the "steps" array where the circuit configuration changes or simplifies.
+- Every step diagram MUST be strictly unique and illustrate the PROGRESS of the solution.
+- DO NOT duplicate the same diagram across multiple steps. If a step does not modify the circuit configuration, DO NOT include a diagram for that step (set it to null).
 - Examples of required step-by-step diagrams:
   * Superposition steps: Show the circuit state with inactive sources deactivated (voltage sources replaced by short/line, current sources replaced by open/empty space).
   * Simplification/Reduction steps: Show the simplified circuit state after combining a group of parallel or series resistors (e.g., replacing $R_1 \parallel R_2$ with $R_{12} = 1.33\,\Omega$).
@@ -747,9 +749,18 @@ IMPORTANT: The backend will automatically arrange all schemdraw components into 
 - For each step diagram, ensure all labels, values, and calculations are perfectly synchronized with the prose description and expression of that specific step.
 - Keep each step diagram simple, using 1 source and 1-3 key components to reflect the current state of the reduction. Ensure a clean rectangular shape.
 
+### Diagram Labeling Rules (CRITICAL for SVG alignment):
+- Component labels (both "label" and "label2") MUST be plain text/clean unicode only.
+- NEVER use LaTeX syntax (e.g. backslashes like \\Omega, \\text, or curly braces, subscripts like R_{th}) inside diagram "label" or "label2" properties!
+- Use standard unicode characters and clean spacing directly:
+  * Use "Ω" or "ohm" instead of "\\Omega" or "\\mathrm{\\Omega}".
+  * Use simple subscripts directly: "Rth", "RL", "Vth", "In", "Req", "R12" instead of "R_{th}", "R_L", "V_{th}", "I_n", "R_{eq}", "R_{12}".
+  * Examples: label="Rth = 2.48kΩ", label="RL = 4.7kΩ", label="Vth = 17.14V", label2="I = 2.86mA".
+- Keep every label short and properly positioned.
+
 ### When the question asks to SOLVE a circuit:
 - List the source and the KEY components that illustrate the solution.
-- For each component, use "label" (which renders at the TOP of the component) for its designation/value (e.g. "R1=4Ω" or "R_eq=6.42Ω"), and optionally "label2" (which renders at the BOTTOM of the component) for its solved current or voltage (e.g. "I=1.56A" or "V=6.89V" or "➔ I=0.98A").
+- For each component, use "label" (which renders at the TOP of the component) for its designation/value (e.g. "R1=4Ω" or "Req=6.42Ω"), and optionally "label2" (which renders at the BOTTOM of the component) for its solved current or voltage (e.g. "I=1.56A" or "V=6.89V" or "➔ I=0.98A").
 - Do not combine these into a single "label" field. Keep them separate.
   Good: label="R1=3Ω", label2="I=0.98A"
   Bad: label="R3=3Ω, I=0.98A" (never put two values in one label)
@@ -1338,13 +1349,31 @@ Return ONLY a strict JSON object in this format:
 
     // Process step-by-step diagrams if returned by the AI
     if (Array.isArray(parsed.steps)) {
+      // Keep track of diagram signatures to avoid duplication
+      const mainInstructionsJson = parsed.diagram?.schemdraw_instructions
+        ? JSON.stringify(parsed.diagram.schemdraw_instructions)
+        : "";
+      const seenDiagrams = new Set<string>();
+      if (mainInstructionsJson) {
+        seenDiagrams.add(mainInstructionsJson);
+      }
+
       for (const step of parsed.steps) {
         if (step.diagram && Array.isArray(step.diagram.schemdraw_instructions) && step.diagram.schemdraw_instructions.length > 0) {
-          try {
-            // Apply clean layout normalization to the step diagram
-            step.diagram.schemdraw_instructions = forceRectangularLayout(step.diagram.schemdraw_instructions);
-            step.diagram.schemdraw_instructions = closeCircuitInstructions(step.diagram.schemdraw_instructions);
+          // Normalize instructions layout first so signatures match correctly
+          const normalized = closeCircuitInstructions(forceRectangularLayout(step.diagram.schemdraw_instructions));
+          const signature = JSON.stringify(normalized);
 
+          if (seenDiagrams.has(signature)) {
+            console.log(`[Schemdraw] Discarding duplicate diagram for step ${step.step}`);
+            step.diagram = null;
+            continue;
+          }
+
+          seenDiagrams.add(signature);
+          step.diagram.schemdraw_instructions = normalized;
+
+          try {
             console.log(`[Schemdraw] Generating SVG for step ${step.step}...`);
             const stepDiagResult = await renderSchemdrawSvg(step.diagram.schemdraw_instructions);
             if (stepDiagResult.svg) {

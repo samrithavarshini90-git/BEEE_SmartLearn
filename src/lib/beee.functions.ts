@@ -1080,6 +1080,61 @@ function forceRectangularLayout(instructions: SchemdrawInstruction[]): Schemdraw
   return result;
 }
 
+function cleanAndNormalizeDiagram(instructions: SchemdrawInstruction[]): SchemdrawInstruction[] {
+  if (!Array.isArray(instructions)) return [];
+
+  return instructions.map(inst => {
+    let label = inst.label || "";
+    let label2 = inst.label2 || "";
+
+    // Clean up LaTeX formatting and replace with standard unicode math symbols
+    const clean = (text: string): string => {
+      if (typeof text !== "string") return String(text);
+      return text
+        .replace(/\\(?:k\s*)?\\Omega/gi, "kΩ")
+        .replace(/\\Omega/gi, "Ω")
+        .replace(/\\k/gi, "k")
+        .replace(/\\parallel/gi, " || ")
+        .replace(/\\cdot/gi, "·")
+        .replace(/\\times/gi, "×")
+        .replace(/\\,/gi, " ")
+        .replace(/\\text\s*\{([^}]+)\}/gi, "$1")
+        .replace(/_\{?([A-Za-z0-9]+)\}?/gi, "$1") // subscript R_{th} -> Rth
+        .replace(/[\{\}\$]/g, "") // strip braces and dollars
+        .replace(/\s+/g, " ")
+        .trim();
+    };
+
+    let cleanedLabel = clean(label);
+    let cleanedLabel2 = clean(label2);
+    let type = inst.type;
+
+    // Programmatic conversion of deactivated/shorted sources
+    const isSource = type === "SourceV" || type === "SourceI" || type === "BatteryCell";
+    if (isSource) {
+      const lowerL = cleanedLabel.toLowerCase();
+      const lowerL2 = cleanedLabel2.toLowerCase();
+      
+      if (lowerL.includes("short") || lowerL2.includes("short") || lowerL === "0v" || lowerL === "0a") {
+        type = "Line";
+        cleanedLabel = "Short";
+        cleanedLabel2 = "";
+      } else if (lowerL.includes("open") || lowerL2.includes("open")) {
+        type = "Line";
+        cleanedLabel = "Open";
+        cleanedLabel2 = "";
+      }
+    }
+
+    return {
+      ...inst,
+      type,
+      label: cleanedLabel,
+      label2: cleanedLabel2,
+    };
+  });
+}
+
 async function renderSchemdrawSvg(
   instructions: SchemdrawInstruction[],
 ): Promise<{ svg: string; error?: string }> {
@@ -1314,6 +1369,8 @@ Return ONLY a strict JSON object in this format:
 
 
     if (parsed.diagram?.schemdraw_instructions && parsed.diagram.schemdraw_instructions.length > 0) {
+      // Clean diagram labels and convert deactivated/shorted sources
+      parsed.diagram.schemdraw_instructions = cleanAndNormalizeDiagram(parsed.diagram.schemdraw_instructions);
       // Normalize every diagram to a clean rectangular layout before rendering
       parsed.diagram.schemdraw_instructions = forceRectangularLayout(parsed.diagram.schemdraw_instructions);
       parsed.diagram.schemdraw_instructions = closeCircuitInstructions(parsed.diagram.schemdraw_instructions);
@@ -1328,7 +1385,9 @@ Return ONLY a strict JSON object in this format:
           const aiDiagramError = diagramResult.error;
           const fallbackDiagram = createBasicCircuitDiagram(questionText);
           console.warn("[Schemdraw] Retrying with simplified generated instructions.");
-          diagramResult = await renderSchemdrawSvg(fallbackDiagram.schemdraw_instructions ?? []);
+          // Clean fallback as well
+          const fallbackCleaned = cleanAndNormalizeDiagram(fallbackDiagram.schemdraw_instructions ?? []);
+          diagramResult = await renderSchemdrawSvg(fallbackCleaned);
           parsed.diagram = fallbackDiagram;
           if (!diagramResult.svg && aiDiagramError) {
             diagramResult.error = `${aiDiagramError}\n${diagramResult.error ?? ""}`.trim();
@@ -1360,8 +1419,10 @@ Return ONLY a strict JSON object in this format:
 
       for (const step of parsed.steps) {
         if (step.diagram && Array.isArray(step.diagram.schemdraw_instructions) && step.diagram.schemdraw_instructions.length > 0) {
+          // Clean labels and convert deactivated/shorted sources
+          const cleaned = cleanAndNormalizeDiagram(step.diagram.schemdraw_instructions);
           // Normalize instructions layout first so signatures match correctly
-          const normalized = closeCircuitInstructions(forceRectangularLayout(step.diagram.schemdraw_instructions));
+          const normalized = closeCircuitInstructions(forceRectangularLayout(cleaned));
           const signature = JSON.stringify(normalized);
 
           if (seenDiagrams.has(signature)) {

@@ -738,9 +738,14 @@ IMPORTANT: The backend will automatically arrange all schemdraw components into 
   2. The key components (Resistor, Capacitor, Inductor, Diode, etc.)
 
 ### Step-by-Step Diagrams (CRITICAL):
-- When explaining circuit reductions (e.g. combining series/parallel resistors, finding Thevenin/Norton equivalent networks, star-delta conversion, or superposition steps), you MUST include a "diagram" object inside the corresponding step of the "steps" array.
-- The step diagram must represent the simplified intermediate state of the circuit for that step.
-- Keep step-by-step diagrams extremely simple (typically 1 source and 1-3 resistors in a clean rectangular loop).
+- You MUST provide a step-specific "diagram" object inside any step in the "steps" array where the circuit configuration changes or simplifies.
+- Examples of required step-by-step diagrams:
+  * Superposition steps: Show the circuit state with inactive sources deactivated (voltage sources replaced by short/line, current sources replaced by open/empty space).
+  * Simplification/Reduction steps: Show the simplified circuit state after combining a group of parallel or series resistors (e.g., replacing $R_1 \parallel R_2$ with $R_{12} = 1.33\,\Omega$).
+  * Thevenin/Norton steps: Show the final reduced single-loop equivalent circuit containing $V_{th}$ or $I_n$ connected to the load resistor.
+  * Node/Mesh analysis: Show node labels and current directions annotated.
+- For each step diagram, ensure all labels, values, and calculations are perfectly synchronized with the prose description and expression of that specific step.
+- Keep each step diagram simple, using 1 source and 1-3 key components to reflect the current state of the reduction. Ensure a clean rectangular shape.
 
 ### When the question asks to SOLVE a circuit:
 - List the source and the KEY components that illustrate the solution.

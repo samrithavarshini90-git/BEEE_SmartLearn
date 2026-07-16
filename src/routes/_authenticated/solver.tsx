@@ -386,6 +386,12 @@ function SolutionCard({ result }: { result: SolverResponse }) {
               <div className="min-w-0 flex-1">
                 <p className="text-sm text-foreground leading-relaxed"><MathText text={s.description} /></p>
                 {s.expression && <ExpressionBlock expr={s.expression} />}
+                {s.diagram && (
+                  <div className="mt-3 overflow-hidden rounded-xl border border-border bg-surface p-4">
+                    <p className="mb-2 text-xs text-muted-foreground italic">{s.diagram.description}</p>
+                    <CircuitDiagram diagram={s.diagram} />
+                  </div>
+                )}
               </div>
             </li>
           ))}
@@ -432,7 +438,7 @@ function SolutionCard({ result }: { result: SolverResponse }) {
           Final Answer
         </div>
         <div className="space-y-1.5">
-          {result.final_answer.split("\n").map((line, i) => {
+          {result.final_answer.replace(/\\n/g, "\n").split("\n").map((line, i) => {
             const trimmed = line.trim();
             if (!trimmed) return null;
             const hasDollar = trimmed.includes("$");

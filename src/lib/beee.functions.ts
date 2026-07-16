@@ -15,6 +15,7 @@ export interface SolutionStep {
   step: number;
   description: string;
   expression?: string;
+  diagram?: DiagramData | null;
 }
 export interface DiagramNode {
   id: string;
@@ -700,7 +701,21 @@ CRITICAL RULES FOR OUTPUT:
   "unit_number": 1|2|3|4|5|6,
   "topic": string,
   "question": string,
-  "steps": { "step": number, "description": string, "expression"?: string }[],
+  "steps": { 
+    "step": number, 
+    "description": string, 
+    "expression"?: string,
+    "diagram"?: null | {
+      "description": string,
+      "schemdraw_instructions": {
+         "type": "Resistor"|"Capacitor"|"Inductor"|"BatteryCell"|"SourceV"|"SourceI"|"Diode"|"BjtNpn"|"Line"|"Ground",
+         "direction": "right"|"left"|"up"|"down",
+         "label": string,
+         "label2"?: string,
+         "length": number
+      }[]
+    }
+  }[],
   "formulas_used": string[],
   "final_answer": string,
   "diagram": null | {
@@ -722,7 +737,12 @@ IMPORTANT: The backend will automatically arrange all schemdraw components into 
   1. One source element (SourceV/SourceI/BatteryCell) with its voltage/current label
   2. The key components (Resistor, Capacitor, Inductor, Diode, etc.)
 
-### When the question asks to SOLVE a circuit (find currents, voltages, equivalent resistance, Thevenin, etc.):
+### Step-by-Step Diagrams (CRITICAL):
+- When explaining circuit reductions (e.g. combining series/parallel resistors, finding Thevenin/Norton equivalent networks, star-delta conversion, or superposition steps), you MUST include a "diagram" object inside the corresponding step of the "steps" array.
+- The step diagram must represent the simplified intermediate state of the circuit for that step.
+- Keep step-by-step diagrams extremely simple (typically 1 source and 1-3 resistors in a clean rectangular loop).
+
+### When the question asks to SOLVE a circuit:
 - List the source and the KEY components that illustrate the solution.
 - For each component, use "label" (which renders at the TOP of the component) for its designation/value (e.g. "R1=4Ω" or "R_eq=6.42Ω"), and optionally "label2" (which renders at the BOTTOM of the component) for its solved current or voltage (e.g. "I=1.56A" or "V=6.89V" or "➔ I=0.98A").
 - Do not combine these into a single "label" field. Keep them separate.
@@ -1308,6 +1328,33 @@ Return ONLY a strict JSON object in this format:
       } catch (err) {
         console.error("[Schemdraw] Failed to execute python:", err);
         parsed.diagram.error = err instanceof Error ? err.message : "Failed to execute Python diagram generator.";
+      }
+    }
+
+    // Process step-by-step diagrams if returned by the AI
+    if (Array.isArray(parsed.steps)) {
+      for (const step of parsed.steps) {
+        if (step.diagram && Array.isArray(step.diagram.schemdraw_instructions) && step.diagram.schemdraw_instructions.length > 0) {
+          try {
+            // Apply clean layout normalization to the step diagram
+            step.diagram.schemdraw_instructions = forceRectangularLayout(step.diagram.schemdraw_instructions);
+            step.diagram.schemdraw_instructions = closeCircuitInstructions(step.diagram.schemdraw_instructions);
+
+            console.log(`[Schemdraw] Generating SVG for step ${step.step}...`);
+            const stepDiagResult = await renderSchemdrawSvg(step.diagram.schemdraw_instructions);
+            if (stepDiagResult.svg) {
+              step.diagram.svg = stepDiagResult.svg;
+              delete step.diagram.error;
+            } else if (stepDiagResult.error) {
+              step.diagram.error = stepDiagResult.error;
+            }
+          } catch (err) {
+            console.error(`[Schemdraw] Failed to render step ${step.step} diagram:`, err);
+            step.diagram.error = err instanceof Error ? err.message : "Failed to render step diagram.";
+          }
+        } else {
+          step.diagram = null;
+        }
       }
     }
 

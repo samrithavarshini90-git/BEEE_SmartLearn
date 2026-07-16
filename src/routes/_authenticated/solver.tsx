@@ -9,8 +9,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CircuitDiagram } from "@/components/app/circuit-diagram";
 import { toast } from "sonner";
-import katex from "katex";
-import "katex/dist/katex.min.css";
 
 export const Route = createFileRoute("/_authenticated/solver")({
   component: SolverPage,
@@ -18,161 +16,55 @@ export const Route = createFileRoute("/_authenticated/solver")({
 
 const UNITS = [1, 2, 3, 4, 5, 6] as const;
 
-// ── KaTeX renderer ────────────────────────────────────────────────────────────
-// Renders a string that may contain inline LaTeX ($...$) or display LaTeX ($$...$$)
-// mixed with plain text. Falls back to plain text if KaTeX throws.
-function unescapeMarkdown(text: string): string {
-  return text
+// ── Lightweight formatted text renderer ──────────────────────────────────────
+// Renders standard text, formatting subscripts (e.g. V_1, R_th, R_12) as <sub>
+// and removing dollar math symbols to avoid LaTeX bugs.
+function FormattedText({ text }: { text: string }) {
+  if (!text) return null;
+
+  // Normalize backslash characters and remove LaTeX formatting/dollars
+  const cleaned = text
     .replace(/\\_/g, "_")
     .replace(/\\\{/g, "{")
     .replace(/\\\}/g, "}")
     .replace(/\\\[/g, "[")
     .replace(/\\\]/g, "]")
-    .replace(/\\\$/g, "$");
-}
+    .replace(/\\\$/g, "$")
+    .replace(/\$/g, ""); // strip raw math dollars
 
-function preprocessLatex(text: string): string {
-  const unescaped = unescapeMarkdown(text);
-  if (unescaped.includes("$")) return unescaped;
+  // Match letters/numbers followed by _ and optional braces containing subscript content
+  // e.g. R_1, V_{th}, R_{12}, V1 (handled as plain text if no underscore)
+  const subscriptRegex = /([A-Za-z0-9]+)_\{?([A-Za-z0-9\-\|\/\+\(\)\s\.,]+)\}?/g;
+  const parts: React.ReactNode[] = [];
+  let index = 0;
+  let match;
 
-  let processed = unescaped;
-  // Wrap subscript patterns like R_1, V_in, V_A, I_branch, R_{eq}, R_{45}
-  processed = processed.replace(/\b([A-Za-z]_\{?[A-Za-z0-9]+\}?)\b/g, "$$$1$");
-
-  // Wrap backslash units like 1\,\k\Omega, 470\,\Omega, 20\,\V
-  processed = processed.replace(/(\d+(?:\.\d+)?\s*\\,\s*\\[A-Za-z]+)/g, "$$$1$");
-  processed = processed.replace(/(\d+(?:\.\d+)?\s*\\[A-Za-z]+)/g, "$$$1$");
-
-  // Wrap stand-alone backslash commands (like \Omega, \approx, etc.)
-  processed = processed.replace(/(\\[A-Za-z]+)/g, "$$$1$");
-
-  return processed;
-}
-
-function MathText({ text }: { text: string }) {
-  const processed = preprocessLatex(text);
-  const parts = splitMath(processed);
-  return (
-    <>
-      {parts.map((part, i) => {
-        if (part.type === "text") return <span key={i}>{part.value}</span>;
-        try {
-          const html = katex.renderToString(part.value, {
-            displayMode: part.type === "display",
-            throwOnError: false,
-            output: "html",
-          });
-          return (
-            <span
-              key={i}
-              className={part.type === "display" ? "block my-1" : "inline"}
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
-          );
-        } catch {
-          return <span key={i}>{part.value}</span>;
-        }
-      })}
-    </>
-  );
-}
-
-// Render a pure LaTeX string (no delimiters) in display mode
-function MathDisplay({ latex }: { latex: string }) {
-  const cleaned = unescapeMarkdown(latex).trim();
-  try {
-    const html = katex.renderToString(cleaned, {
-      displayMode: true,
-      throwOnError: false,
-      output: "html",
-    });
-    return (
-      <span
-        className="block overflow-x-auto"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-    );
-  } catch {
-    return <code className="text-xs">{cleaned}</code>;
-  }
-}
-
-// Render a pure LaTeX string inline
-function MathInline({ latex }: { latex: string }) {
-  const cleaned = unescapeMarkdown(latex).trim();
-  try {
-    const html = katex.renderToString(cleaned, {
-      displayMode: false,
-      throwOnError: false,
-      output: "html",
-    });
-    return (
-      <span dangerouslySetInnerHTML={{ __html: html }} />
-    );
-  } catch {
-    return <code className="text-xs">{cleaned}</code>;
-  }
-}
-
-type MathPart =
-  | { type: "text"; value: string }
-  | { type: "inline"; value: string }
-  | { type: "display"; value: string };
-
-function splitMath(raw: string): MathPart[] {
-  const parts: MathPart[] = [];
-  // Match $$...$$ first, then $...$
-  const regex = /(\$\$[\s\S]+?\$\$|\$[^$\n]+?\$)/g;
-  let last = 0;
-  let match: RegExpExecArray | null;
-  while ((match = regex.exec(raw)) !== null) {
-    if (match.index > last) {
-      parts.push({ type: "text", value: raw.slice(last, match.index) });
+  while ((match = subscriptRegex.exec(cleaned)) !== null) {
+    if (match.index > index) {
+      parts.push(cleaned.slice(index, match.index));
     }
-    const token = match[0];
-    if (token.startsWith("$$")) {
-      parts.push({ type: "display", value: token.slice(2, -2).trim() });
-    } else {
-      parts.push({ type: "inline", value: token.slice(1, -1).trim() });
-    }
-    last = match.index + token.length;
+    parts.push(
+      <span key={match.index} className="inline-flex items-baseline">
+        <span>{match[1]}</span>
+        <sub className="text-[10px] leading-none ml-0.5 relative top-[2px]">{match[2]}</sub>
+      </span>
+    );
+    index = subscriptRegex.lastIndex;
   }
-  if (last < raw.length) parts.push({ type: "text", value: raw.slice(last) });
-  return parts;
+
+  if (index < cleaned.length) {
+    parts.push(cleaned.slice(index));
+  }
+
+  return <>{parts.length > 0 ? parts : cleaned}</>;
 }
 
-// Detect if a string looks like raw LaTeX (no $ delimiters) so we can render it
-function looksLikeLatex(s: string): boolean {
-  const unescaped = unescapeMarkdown(s);
-  // Match common LaTeX commands or subscript/superscript patterns
-  return /\\(?:frac|sqrt|sum|int|cdot|times|Omega|omega|alpha|beta|theta|phi|infty|left|right|text|mathrm|mathbf|begin|end|dfrac|tfrac|approx|leq|geq|pm|mp|Delta|partial|nabla|hat|bar|vec|,|;|quad|qquad)/.test(unescaped)
-    || /[_^]\{/.test(unescaped)   // e.g. R_{eq} or x^{2}
-    || /\\[A-Za-z]+/.test(unescaped); // any backslash command
-}
-
-// Smart expression renderer: handles $...$, raw LaTeX, and plain text
+// Plain text monospace expression block
 function ExpressionBlock({ expr }: { expr: string }) {
-  const unescaped = unescapeMarkdown(expr);
-  const hasDollar = /\$/.test(unescaped);
-  if (hasDollar) {
-    return (
-      <div className="mt-1.5 overflow-x-auto rounded-lg border border-border bg-surface-muted px-3 py-2 text-sm">
-        <MathText text={unescaped} />
-      </div>
-    );
-  }
-  if (looksLikeLatex(unescaped)) {
-    return (
-      <div className="mt-1.5 overflow-x-auto rounded-lg border border-border bg-surface-muted px-3 py-2 text-sm">
-        <MathDisplay latex={unescaped} />
-      </div>
-    );
-  }
-  // Plain text / ASCII math
   return (
-    <pre className="mt-1.5 overflow-x-auto rounded-lg border border-border bg-surface-muted p-2 font-mono text-xs text-foreground">
-      {expr}
-    </pre>
+    <div className="mt-1.5 overflow-x-auto rounded-lg border border-border bg-surface-muted px-3 py-2.5 font-mono text-sm text-foreground leading-relaxed">
+      <FormattedText text={expr} />
+    </div>
   );
 }
 
@@ -368,7 +260,9 @@ function SolutionCard({ result }: { result: SolverResponse }) {
           <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Question
           </div>
-          <p className="mt-1 text-sm text-foreground leading-relaxed"><MathText text={result.question} /></p>
+          <p className="mt-1 text-sm text-foreground leading-relaxed">
+            <FormattedText text={result.question} />
+          </p>
         </div>
       )}
 
@@ -384,7 +278,9 @@ function SolutionCard({ result }: { result: SolverResponse }) {
                 {s.step}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-sm text-foreground leading-relaxed"><MathText text={s.description} /></p>
+                <p className="text-sm text-foreground leading-relaxed">
+                  <FormattedText text={s.description} />
+                </p>
                 {s.expression && <ExpressionBlock expr={s.expression} />}
                 {s.diagram && (
                   <div className="mt-3 overflow-hidden rounded-xl border border-border bg-surface p-4">
@@ -410,11 +306,9 @@ function SolutionCard({ result }: { result: SolverResponse }) {
                 key={i}
                 className="inline-flex items-center rounded-lg border border-border bg-surface-muted px-3 py-1.5 text-sm"
               >
-                {looksLikeLatex(f) || f.includes("$") ? (
-                  <MathInline latex={f.replace(/^\$|\$$/g, "")} />
-                ) : (
-                  <code className="font-mono text-xs">{f}</code>
-                )}
+                <code className="font-mono text-xs">
+                  <FormattedText text={f} />
+                </code>
               </span>
             ))}
           </div>
@@ -441,19 +335,9 @@ function SolutionCard({ result }: { result: SolverResponse }) {
           {result.final_answer.replace(/\\n/g, "\n").split("\n").map((line, i) => {
             const trimmed = line.trim();
             if (!trimmed) return null;
-            const hasDollar = trimmed.includes("$");
-            const isLatex = looksLikeLatex(trimmed);
             return (
               <p key={i} className="text-base font-semibold text-foreground leading-relaxed">
-                {hasDollar ? (
-                  // Mixed text + $...$ tokens
-                  <MathText text={trimmed} />
-                ) : isLatex ? (
-                  // Raw LaTeX without $ delimiters — render inline directly
-                  <MathInline latex={trimmed} />
-                ) : (
-                  trimmed
-                )}
+                <FormattedText text={trimmed} />
               </p>
             );
           })}

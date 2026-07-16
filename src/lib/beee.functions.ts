@@ -11,11 +11,21 @@ import { execFile } from "child_process";
 
 // ---------- Shared types ----------
 
+export interface LogicalComponent {
+  type: "SourceV" | "SourceI" | "BatteryCell" | "Resistor" | "Capacitor" | "Inductor" | "Diode" | "BjtNpn" | "Line";
+  label: string;
+  annotation?: string;
+  role: "source" | "component" | "short" | "open";
+}
+export interface LogicalDiagramStep {
+  description: string;
+  components: LogicalComponent[];
+}
 export interface SolutionStep {
   step: number;
   description: string;
   expression?: string;
-  diagram?: DiagramData | null;
+  diagram?: LogicalDiagramStep | DiagramData | null;
 }
 export interface DiagramNode {
   id: string;
@@ -51,7 +61,7 @@ export interface SchemdrawInstruction {
 export interface DiagramData {
   description: string;
   schemdraw_instructions?: SchemdrawInstruction[];
-  svg?: string; // We'll inject the python-generated SVG here
+  svg?: string;
   error?: string;
   ascii?: string;
   image_url?: string;
@@ -691,95 +701,112 @@ STRICT scope: only use content aligned with these six syllabus units:
  Unit 6: Communication Systems (modulation AM/FM/PM, radio TX/RX, antenna basics, sampling, digital modulation).
 Refuse politely if a question is outside these units.
 
-CRITICAL RULES FOR OUTPUT:
-1. DO NOT output any conversational text, introductions, or conclusions. NO PROSE.
-2. Produce ONE STRICT JSON object matching the type below.
-3. The 'steps' array must be highly detailed and comprehensive so a student avoids any confusion. Provide all needed steps.
-4. If a diagram is needed, provide a "diagram" object containing Python schemdraw instructions.
+══════════════════════════════════════════════════════════
+OUTPUT: ONE strict JSON object. NO prose before or after.
+══════════════════════════════════════════════════════════
+
+SOLVE the problem completely, then output this JSON:
 
 {
-  "unit_number": 1|2|3|4|5|6,
-  "topic": string,
-  "question": string,
-  "steps": { 
-    "step": number, 
-    "description": string, 
-    "expression"?: string,
-    "diagram"?: null | {
-      "description": string,
-      "schemdraw_instructions": {
-         "type": "Resistor"|"Capacitor"|"Inductor"|"BatteryCell"|"SourceV"|"SourceI"|"Diode"|"BjtNpn"|"Line"|"Ground",
-         "direction": "right"|"left"|"up"|"down",
-         "label": string,
-         "label2"?: string,
-         "length": number
-      }[]
+  "unit_number": <1-6>,
+  "topic": "<string>",
+  "question": "<string>",
+  "steps": [
+    {
+      "step": <number>,
+      "description": "<string — plain text only, NO LaTeX backslashes, use unicode directly>",
+      "expression": "<string formula or null — plain text, e.g. 'I = V/R' or 'Req = R1 + R2'>",
+      "diagram": <null or LogicalDiagram>
     }
-  }[],
-  "formulas_used": string[],
-  "final_answer": string,
-  "diagram": null | {
-    "description": string,
-    "schemdraw_instructions": {
-       "type": "Resistor"|"Capacitor"|"Inductor"|"BatteryCell"|"SourceV"|"SourceI"|"Diode"|"BjtNpn"|"Line"|"Ground",
-       "direction": "right"|"left"|"up"|"down",
-       "label": string,
-       "label2"?: string,
-       "length": number
-    }[]
-  },
-  "extracted_text"?: string
+  ],
+  "formulas_used": ["<string formula>"],
+  "final_answer": "<string — each result on its own line separated by literal \\n, e.g. 'V1 = 17.64 V\\nV2 = 5.64 V'>",
+  "diagram": <null or LogicalDiagram for the final solved circuit>
 }
 
-DIAGRAM RULES — read carefully:
+LogicalDiagram schema:
+{
+  "description": "<string>",
+  "components": [
+    {
+      "type": "<SourceV|SourceI|BatteryCell|Resistor|Capacitor|Inductor|Diode|BjtNpn|Line>",
+      "label": "<PLAIN TEXT — no LaTeX, use unicode Omega etc., e.g. R1 = 1kΩ>",
+      "annotation": "<PLAIN TEXT or null>",
+      "role": "<source|component|short|open>"
+    }
+  ]
+}
 
-IMPORTANT: The backend will automatically arrange all schemdraw components into a clean RECTANGULAR LOOP. You do NOT need to specify directions or worry about topology. Just provide:
-  1. One source element (SourceV/SourceI/BatteryCell) with its voltage/current label
-  2. The key components (Resistor, Capacitor, Inductor, Diode, etc.)
+══════════════════════════════════════════════════════════
+DIAGRAM ARCHITECTURE
+══════════════════════════════════════════════════════════
 
-### Step-by-Step Diagrams (CRITICAL):
-- You MUST provide a step-specific "diagram" object inside any step in the "steps" array where the circuit configuration changes, simplifies, or represents a local node/loop calculation.
-- Every step diagram MUST be strictly unique and illustrate the PROGRESS and local topology of that specific stage of the solution.
-- DO NOT duplicate the same diagram across multiple steps. If a step does not modify the circuit topology or focus on a new sub-circuit, set "diagram" to null.
-- Examples of required step-by-step diagrams:
-  * Superposition steps: Show the circuit state with inactive sources deactivated (voltage sources replaced by short/line, current sources replaced by open/empty space).
-  * Simplification/Reduction steps: Show the simplified circuit state after combining a group of parallel or series resistors (e.g., replacing $R_1 \parallel R_2$ with $R_{12} = 1.33\,\Omega$).
-  * Thevenin/Norton steps: Show the final reduced single-loop equivalent circuit containing $V_{th}$ or $I_n$ connected to the load resistor.
-  * Node/Mesh analysis local steps: For KCL at Node 1 ($V_1$), show ONLY the local sub-circuit connected to Node 1 (e.g., the source and the two adjacent resistors). For KCL at Node 2 ($V_2$), show ONLY the components connected to Node 2 (e.g., the coupling resistor and the branch resistors).
-- For each step diagram, ensure all labels, values, and calculations are perfectly synchronized with the prose description and expression of that specific step.
-- Keep each step diagram simple, using 1 source and 1-3 key components to reflect the current state of the reduction. Ensure a clean rectangular shape.
+You provide a LOGICAL COMPONENT LIST for each diagram.
+The backend engine converts your list into a clean Schemdraw SVG — you do NOT control directions/lengths/positions.
 
-### Diagram Labeling Rules (CRITICAL for SVG alignment):
-- Component labels (both "label" and "label2") MUST be plain text/clean unicode only.
-- NEVER use LaTeX syntax (e.g. backslashes like \\Omega, \\text, or curly braces, subscripts like R_{th}) inside diagram "label" or "label2" properties!
-- Use standard unicode characters and clean spacing directly:
-  * Use "Ω" or "ohm" instead of "\\Omega" or "\\mathrm{\\Omega}".
-  * Use simple subscripts directly: "Rth", "RL", "Vth", "In", "Req", "R12" instead of "R_{th}", "R_L", "V_{th}", "I_n", "R_{eq}", "R_{12}".
-  * Examples: label="Rth = 2.48kΩ", label="RL = 4.7kΩ", label="Vth = 17.14V", label2="I = 2.86mA".
-- Keep every label short and properly positioned.
+Role meanings:
+- "source"    → the active independent source (placed on left branch)
+- "component" → a regular branch element (placed on top branch, in order listed)
+- "short"     → a deactivated voltage source (rendered as a wire labeled "Short")
+- "open"      → a deactivated current source (omitted from the drawing entirely)
 
-### When the question asks to SOLVE a circuit:
-- List the source and the KEY components that illustrate the solution.
-- For each component, use "label" (which renders at the TOP of the component) for its designation/value (e.g. "R1=4Ω" or "Req=6.42Ω"), and optionally "label2" (which renders at the BOTTOM of the component) for its solved current or voltage (e.g. "I=1.56A" or "V=6.89V" or "➔ I=0.98A").
-- Do not combine these into a single "label" field. Keep them separate.
-  Good: label="R1=3Ω", label2="I=0.98A"
-  Bad: label="R3=3Ω, I=0.98A" (never put two values in one label)
-- description must say "Solved circuit: [what was found and the numeric answer]".
+The backend always produces a clean rectangular loop from your component list.
 
-### When the question is a general/theory question:
-- List the source and components that best illustrate the concept.
-- Use simple clean values. Use "label" for component value and "label2" if there is any other value.
-- description must say what concept the circuit illustrates.
+══════════════════════════════════════════════════════════
+STEP DIAGRAM RULES
+══════════════════════════════════════════════════════════
 
-### Never emit null diagram for circuit/electrical questions. Only use null for pure theory with no circuit.
+Include a diagram in a step ONLY when the circuit configuration or active component set CHANGES.
+Purely algebraic steps (rearranging/substituting equations) → set diagram to null.
+Every step diagram MUST be UNIQUE — different component set or different annotations than all others.
 
-OTHER RULES:
-- Set direction="right" and length=3 for all components. Set direction="up" for sources. The backend will override layout anyway.
-- Put derivations/formulas in "steps", not in "final_answer".
-- Every step "description" MUST wrap all inline math symbols, variables (e.g. $R_1$, $V_A$, $I_{3\Omega}$), values with units (e.g. $1\,\mathrm{k}\Omega$, $470\,\Omega$, $20\,\mathrm{V}$), or equations inside single dollar signs ($) for proper rendering. Do not write raw LaTeX commands directly in plain text without $ signs.
-- "final_answer" MUST use LaTeX for all math. Each result on its own line. Examples: "I_{3\\Omega} = 0.984\\,\\text{A}", "V_{R1} = 1.33\\,\\text{V}", "R_{eq} = 6.42\\,\\Omega".
-- Every "expression" MUST use LaTeX syntax. Examples: "R_{eq} = \\frac{R_1 R_2}{R_1+R_2}", "I = \\frac{V}{R} = \\frac{10}{6.42} = 1.557\\,A".
-- Every "formulas_used" entry MUST also be LaTeX, e.g. "I = \\frac{V}{R}", "R_{eq} = R_1 + R_2".`;
+WHAT to include per step:
+- List ONLY the components directly involved in THAT step's equation.
+- Do NOT copy the full original circuit into every step.
+
+EXAMPLES (node voltage problem with Is=20mA, R1=1kO, R12=2.2kO, R2=1kO, RL=470O):
+- Step "Identify original circuit"            → ALL 5 components with their given values
+- Step "Apply KCL at Node V1"                 → Is (source) + R1 (component) + R12 (component) — the 3 branches at V1
+- Step "Apply KCL at Node V2"                 → R12 (source-like input) + R2 (component) + RL (component) — only V2 branches
+- Step "Deactivate voltage source"            → voltage source with role=short, remaining components unchanged
+- Step "Deactivate current source"            → current source with role=open, remaining components unchanged
+- Step "Combine R2||RL into Req=0.32kO"       → 1 Resistor labeled "Req = 0.32kO" — the simplified equivalent
+- Step "Thevenin equivalent circuit"          → Vth source + Rth component + RL component
+- Step "Final solved circuit with answers"    → ALL components, annotations show solved I/V values
+
+══════════════════════════════════════════════════════════
+LABEL RULES (CRITICAL — violated labels break SVG rendering)
+══════════════════════════════════════════════════════════
+
+- ALL labels and annotations MUST be PLAIN TEXT — NEVER use LaTeX backslash syntax.
+- Use Unicode directly: write "Ω" not "\\Omega", write "·" not "\\cdot"
+- Use plain readable subscripts: "Rth" "RL" "Vth" "V1" "V2" "Req" — NOT "R_{th}" "R_L"
+- Format: "Designation = Value" e.g. "R1 = 1kΩ", "Is = 20mA", "Vth = 17.14V"
+- Annotation: computed result for this step e.g. "I = V1/1kΩ", "V1 = 17.64V", "I = 17.64mA"
+
+══════════════════════════════════════════════════════════
+MAIN DIAGRAM (top-level "diagram" field)
+══════════════════════════════════════════════════════════
+
+Show the COMPLETE FINAL SOLVED CIRCUIT with ALL components.
+Use "annotation" on each component to show the FINAL computed current or voltage.
+The backend simplifies this into a clean rectangular loop automatically.
+If the question is pure theory with no circuit, set "diagram" to null.
+
+══════════════════════════════════════════════════════════
+TEXT FORMATTING (PLAIN TEXT ONLY — NO LATEX)
+══════════════════════════════════════════════════════════
+- DO NOT write any LaTeX commands (like \frac, \Omega, \text, \mathrm, \,) anywhere in the JSON.
+- DO NOT wrap equations or variables in dollar signs ($ or $$).
+- Use standard readable plain text:
+  * Write formula operators inline: *, /, +, -, =, ^.
+  * Use plain subscripts: write V1, V2, Rth, RL, Req, or V_1, V_2, R_th, R_L.
+  * Use standard unicode symbols directly: Ω, ohms, V, A, mA, kΩ.
+- "description": Simple plain text describing the step.
+- "expression": Simple plain text mathematical expression.
+- "formulas_used": Array of simple plain text formulas.
+- "final_answer": Plain text results separated by \\n in the JSON string.
+  Example: "V1 = 17.64 V\\nV2 = 5.64 V"`;
 
 function shouldRequestDiagram(data: z.infer<typeof solverInput>, questionText: string): boolean {
   if (data.imageDataUrl) return true;
@@ -1135,6 +1162,77 @@ function cleanAndNormalizeDiagram(instructions: SchemdrawInstruction[]): Schemdr
   });
 }
 
+
+/**
+ * buildSchemdrawFromLogical — converts a LogicalComponent[] list from the AI
+ * into a SchemdrawInstruction[] list that the backend can render.
+ * Role-based mapping:
+ *   "source"    → place as source element (SourceV/SourceI/BatteryCell)
+ *   "component" → regular branch element (Resistor/Capacitor/etc.)
+ *   "short"     → replace with a Line element labeled "Short"
+ *   "open"      → omit entirely (open circuit)
+ * The resulting instruction list is then passed to forceRectangularLayout
+ * and closeCircuitInstructions to produce a clean rectangular SVG.
+ */
+function buildSchemdrawFromLogical(components: LogicalComponent[]): SchemdrawInstruction[] {
+  const VALID_TYPES = new Set([
+    "SourceV", "SourceI", "BatteryCell",
+    "Resistor", "Capacitor", "Inductor", "Diode", "BjtNpn", "Line"
+  ]);
+  const result: SchemdrawInstruction[] = [];
+
+  for (const comp of components) {
+    if (!comp || !comp.type) continue;
+
+    // Skip "open" role (current source deactivated = open circuit — no element drawn)
+    if (comp.role === "open") continue;
+
+    let type = VALID_TYPES.has(comp.type) ? comp.type : "Resistor";
+
+    // "short" role = deactivated voltage source — draw as wire with "Short" label
+    if (comp.role === "short") {
+      type = "Line";
+    }
+
+    const label = cleanLabelText(comp.label || "");
+    const label2 = cleanLabelText(comp.annotation || "");
+
+    result.push({
+      type,
+      direction: "right", // forceRectangularLayout will override this
+      label,
+      ...(label2 ? { label2 } : {}),
+      length: 3,
+    });
+  }
+
+  return result;
+}
+
+/**
+ * cleanLabelText — strips LaTeX syntax from plain-text labels.
+ * Called on every LogicalComponent label/annotation before rendering.
+ */
+function cleanLabelText(text: string): string {
+  if (!text || typeof text !== "string") return "";
+  return text
+    .replace(/\\(?:k\s*)?Omega/gi, "kΩ")
+    .replace(/\\Omega/gi, "Ω")
+    .replace(/\\mathrm\{([^}]+)\}/gi, "$1")
+    .replace(/\\text\{([^}]+)\}/gi, "$1")
+    .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/gi, "($1)/($2)")
+    .replace(/\\parallel/gi, " || ")
+    .replace(/\\cdot/gi, "·")
+    .replace(/\\times/gi, "×")
+    .replace(/\\,/g, " ")
+    .replace(/_\{([^}]+)\}/g, "$1")   // R_{th} → Rth
+    .replace(/_([A-Za-z0-9])/g, "$1") // R_1 → R1
+    .replace(/[\{\}\$\]/g, "")        // strip remaining braces/dollars/backslashes
+    .replace(/\\/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 async function renderSchemdrawSvg(
   instructions: SchemdrawInstruction[],
 ): Promise<{ svg: string; error?: string }> {
@@ -1173,102 +1271,54 @@ export const solveProblem = createServerFn({ method: "POST" })
     let visionDiagram: any = null;
 
     if (data.imageDataUrl) {
+      // PHASE 1: Vision AI — OCR ONLY
+      // The vision model extracts question text and component values/labels.
+      // It does NOT generate circuit topology or schemdraw instructions.
       try {
-        console.log("[Vision API] Scanning image with Cerebras gemma-4-31b...");
-        const visionPrompt = `You are a circuit-reading expert. Analyze this BEEE (Basic Electrical & Electronics Engineering) image carefully.
+        console.log("[Vision API] OCR scan (OCR-only mode)...");
+        const visionPrompt = `You are an expert at reading BEEE (Basic Electrical & Electronics Engineering) textbook images.
 
-YOUR JOB:
-1. Extract ALL text/question from the image exactly.
-2. If a circuit diagram is visible, trace it component-by-component, following the actual wires in the image, and produce schemdraw drawing instructions that faithfully reproduce the circuit topology.
+YOUR ONLY JOB IS OCR — DO NOT generate circuit topology or diagram instructions.
 
-Return ONLY a strict JSON object (no prose) in this format:
+1. Read and extract ALL visible text: the full problem statement, all component labels and values (e.g. "1 kΩ", "20 mA", "V1", "V2"), node labels, and numerical data.
+2. If there is a circuit diagram, read all the text/labels ON it (values, node names, current arrows, etc.) and include them in extracted_text.
+3. Do NOT attempt to trace wires or generate schemdraw instructions.
+
+Return ONLY this strict JSON (no prose, no explanations):
 {
-  "extracted_text": "The complete question text or problem statement read from the image verbatim.",
-  "diagram": {
-    "description": "Concise description of the circuit topology",
-    "schemdraw_instructions": [
-      {
-        "type": "Resistor",
-        "direction": "right",
-        "label": "exact component label and value from image e.g. R1 = 4Ω",
-        "length": 2
-      }
-    ]
-  }
-}
-
-Rules:
-- Valid types: "Resistor", "Capacitor", "Inductor", "BatteryCell", "SourceV", "SourceI", "Diode", "BjtNpn", "Line", "Ground".
-- Valid directions: "right", "left", "up", "down".
-- If the image has NO circuit diagram (only text/formulas), set "diagram" to null.
-- Every circuit MUST form a closed loop.`;
-
+  "extracted_text": "<complete verbatim question plus all component values and labels read from the image>"
+}`;
 
         let visionRaw = await callCerebrasVision(data.imageDataUrl, visionPrompt);
-        console.log("[Vision API] raw response:", visionRaw);
+        console.log("[Vision API] raw:", visionRaw?.slice(0, 200));
         let parsedVision = safeParseJson<any>(visionRaw, {});
-        console.log("[Vision API] parsed response:", JSON.stringify(parsedVision));
 
-        // OCR-only retry fallback if first attempt returned empty or failed to parse
-        let rawExtracted = parsedVision.extracted_text || 
-                             parsedVision.question_text || 
-                             parsedVision.question || 
-                             parsedVision.text || 
-                             parsedVision.extractedText || 
-                             parsedVision.ocr_text || "";
+        let rawExtracted = parsedVision.extracted_text ||
+                           parsedVision.question_text ||
+                           parsedVision.question ||
+                           parsedVision.text ||
+                           parsedVision.extractedText ||
+                           parsedVision.ocr_text || "";
 
-        let parsedDiag = parsedVision.diagram || 
-                         parsedVision.circuit || 
-                         parsedVision.circuit_diagram || 
-                         parsedVision.schematic;
-
-        if (!rawExtracted && (!parsedDiag || typeof parsedDiag !== "object")) {
-          console.warn("[Vision API] First attempt returned empty or invalid JSON. Retrying with simplified OCR prompt...");
-          const retryPrompt = `Analyze the uploaded image. Extract all readable text and describe any circuit diagrams present.
-Return ONLY a strict JSON object in this format:
-{
-  "extracted_text": "The text read from the image",
-  "diagram": null
-}`;
-          const retryRaw = await callCerebrasVision(data.imageDataUrl, retryPrompt);
-          console.log("[Vision API] retry raw response:", retryRaw);
+        if (!rawExtracted) {
+          console.warn("[Vision API] Empty OCR result — retrying with simpler prompt...");
+          const retryRaw = await callCerebrasVision(data.imageDataUrl,
+            `Read all text from this image. Return: {"extracted_text": "all text here"}`);
           parsedVision = safeParseJson<any>(retryRaw, {});
-          console.log("[Vision API] retry parsed response:", JSON.stringify(parsedVision));
-
-          rawExtracted = parsedVision.extracted_text || 
-                        parsedVision.question_text || 
-                        parsedVision.question || 
-                        parsedVision.text || 
-                        parsedVision.extractedText || 
-                        parsedVision.ocr_text || "";
-
-          parsedDiag = parsedVision.diagram || 
-                       parsedVision.circuit || 
-                       parsedVision.circuit_diagram || 
-                       parsedVision.schematic;
+          rawExtracted = parsedVision.extracted_text || parsedVision.text || "";
         }
 
         extractedText = typeof rawExtracted === "string" ? rawExtracted : JSON.stringify(rawExtracted);
 
-        if (parsedDiag && typeof parsedDiag === "object") {
-          visionDiagram = parsedDiag;
-          if (!visionDiagram.schemdraw_instructions && visionDiagram.instructions) {
-            visionDiagram.schemdraw_instructions = visionDiagram.instructions;
-          }
-          if (!visionDiagram.schemdraw_instructions && visionDiagram.components) {
-            visionDiagram.schemdraw_instructions = visionDiagram.components;
-          }
+        if (!extractedText) {
+          throw new Error("No readable text was detected in the uploaded image. Please ensure the image is clear and contains a valid BEEE question.");
         }
 
-        if (!extractedText && (!visionDiagram || !visionDiagram.description)) {
-          throw new Error("No readable text or circuit components were detected in the uploaded image. Please ensure the image is clear and contains a valid BEEE question/diagram.");
-        }
-
-        console.log("[Vision API] Scanned text successfully:", extractedText.slice(0, 120));
+        console.log("[Vision API] OCR complete:", extractedText.slice(0, 200));
       } catch (err: any) {
-        console.error("[Vision API] Processing failed:", err);
+        console.error("[Vision API] OCR failed:", err);
         throw new Error(
-          `Image scan failed: ${err.message || err}. The AI vision server is currently busy or rate-limited. Please try again in a few moments.`
+          `Image scan failed: ${err.message || err}. The AI vision server is busy or rate-limited. Please try again in a few moments.`
         );
       }
     }
@@ -1280,33 +1330,24 @@ Return ONLY a strict JSON object in this format:
         : "Analyze and explain the circuit details provided in the image.";
 
     const diagramRequired = shouldRequestDiagram(data, questionText);
-    
-    // Inject the vision diagram context into the prompt for the text model solver
+    const solveMode = isSolveQuestion(questionText);
+
+    // PHASE 2: Text Solver AI
+    // The vision model provided OCR text only. All circuit diagram generation
+    // is handled exclusively by this text solver via logical component descriptions.
     let promptText = "";
     if (data.unit_number) promptText += `Target Unit: ${data.unit_number}\n`;
     if (data.topic) promptText += `Topic hint: ${data.topic}\n`;
-    // Determine diagram mode:
-    // - SOLVE mode: question asks to find/calculate values → generate SOLVED circuit annotated with results
-    // - GENERAL mode: conceptual/educational → generate a representative illustrative circuit
-    const solveMode = isSolveQuestion(questionText);
-    const visionDiagramIsUsable =
-      visionDiagram != null &&
-      Array.isArray(visionDiagram.schemdraw_instructions) &&
-      visionDiagram.schemdraw_instructions.length > 0;
-
-    if (visionDiagram) {
-      // Always provide vision topology to the text solver as context
-      promptText += `Image Circuit Topology (extracted from uploaded image):\nDescription: ${visionDiagram.description}\nComponents: ${JSON.stringify(visionDiagram.schemdraw_instructions)}\n\n`;
+    if (extractedText) {
+      promptText += `=== TEXT EXTRACTED FROM IMAGE ===\n${extractedText}\n=== END ===\n\n`;
     }
-
     if (diagramRequired) {
       if (solveMode) {
-        promptText += `DIAGRAM REQUIREMENT: Generate a SOLVED circuit diagram. Use the circuit topology above (if provided) as the base, but label every component with its COMPUTED value from your solution (e.g. label="R1=4Ω, I=1.5A"). The diagram must visually show the answer — not just the bare input schematic.\n`;
+        promptText += `DIAGRAM REQUIREMENT: Generate logical component lists for step diagrams AND the final solved circuit per the system prompt schema.\n`;
       } else {
-        promptText += `DIAGRAM REQUIREMENT: Generate a clear EDUCATIONAL circuit diagram that best illustrates the concept in this question. Use clean, simple values.\n`;
+        promptText += `DIAGRAM REQUIREMENT: Generate a logical component list illustrating the concept.\n`;
       }
     }
-
     promptText += `Problem statement:\n${questionText}`;
 
     const raw = await callLovableAI({
@@ -1342,114 +1383,124 @@ Return ONLY a strict JSON object in this format:
       parsed.extracted_text = extractedText;
     }
 
-    // Priority order for diagram:
-    // 1. TEXT SOLVER's diagram — highest priority because it can annotate solved values.
-    //    The text solver was given the vision topology as context, so its output
-    //    should reflect either the solved circuit (annotated) or an educational one.
-    // 2. VISION diagram raw — fallback when text solver returned no instructions.
-    //    E.g. if the text model skipped the diagram for some reason.
-    // 3. BASIC FALLBACK — keyword-based minimal circuit when all else fails.
+    // PHASE 3: Backend Rendering
+    // Convert logical component descriptions from AI into Schemdraw SVG.
+    // Main diagram: use forceRectangularLayout (simplified final circuit).
+    // Step diagrams: also use forceRectangularLayout but with step-specific component subsets.
+
     let usedBasicDiagramFallback = false;
-    const textDiagramInstructions = parsed.diagram?.schemdraw_instructions ?? [];
 
-    if (textDiagramInstructions.length > 0) {
-      // Text solver produced a diagram — use it (it has solution-annotated labels)
-      // Nothing to do, parsed.diagram is already set
-    } else if (visionDiagramIsUsable) {
-      // Text solver skipped diagram but vision has the raw topology — use that
-      parsed.diagram = {
-        ...visionDiagram,
-        description: parsed.diagram?.description || visionDiagram.description,
-      };
+    // Helper: build + clean + layout + close an instruction list from logical components
+    const buildAndLayout = (components: LogicalComponent[]): SchemdrawInstruction[] => {
+      const raw = buildSchemdrawFromLogical(components);
+      const cleaned = cleanAndNormalizeDiagram(raw);
+      return closeCircuitInstructions(forceRectangularLayout(cleaned));
+    };
+
+    // Determine main diagram instructions
+    const mainDiagAny = parsed.diagram as any;
+    let mainInstructions: SchemdrawInstruction[] = [];
+
+    if (mainDiagAny?.components && Array.isArray(mainDiagAny.components) && mainDiagAny.components.length > 0) {
+      // New logical format from AI
+      mainInstructions = buildAndLayout(mainDiagAny.components as LogicalComponent[]);
+      parsed.diagram = { description: mainDiagAny.description || "Final solved circuit", schemdraw_instructions: mainInstructions };
+    } else if (parsed.diagram?.schemdraw_instructions && parsed.diagram.schemdraw_instructions.length > 0) {
+      // Backward-compat: AI returned raw schemdraw instructions
+      mainInstructions = closeCircuitInstructions(forceRectangularLayout(cleanAndNormalizeDiagram(parsed.diagram.schemdraw_instructions)));
+      parsed.diagram.schemdraw_instructions = mainInstructions;
     } else if (diagramRequired) {
-      // Last resort: generate a simple circuit from the question keywords
-      parsed.diagram = createBasicCircuitDiagram(questionText);
+      // Keyword-based fallback
+      const fallback = createBasicCircuitDiagram(questionText);
+      mainInstructions = closeCircuitInstructions(forceRectangularLayout(cleanAndNormalizeDiagram(fallback.schemdraw_instructions ?? [])));
+      parsed.diagram = { ...fallback, schemdraw_instructions: mainInstructions };
       usedBasicDiagramFallback = true;
+    } else {
+      parsed.diagram = null;
     }
 
-
-    if (parsed.diagram?.schemdraw_instructions && parsed.diagram.schemdraw_instructions.length > 0) {
-      // Clean diagram labels and convert deactivated/shorted sources
-      parsed.diagram.schemdraw_instructions = cleanAndNormalizeDiagram(parsed.diagram.schemdraw_instructions);
-      // Normalize every diagram to a clean rectangular layout before rendering
-      parsed.diagram.schemdraw_instructions = forceRectangularLayout(parsed.diagram.schemdraw_instructions);
-      parsed.diagram.schemdraw_instructions = closeCircuitInstructions(parsed.diagram.schemdraw_instructions);
-    }
-
-    if (parsed.diagram?.schemdraw_instructions && parsed.diagram.schemdraw_instructions.length > 0) {
+    if (mainInstructions.length > 0 && parsed.diagram) {
       try {
-        console.log("[Schemdraw] Generating SVG via Python backend...");
-        let diagramResult = await renderSchemdrawSvg(parsed.diagram.schemdraw_instructions);
-
-        if (!diagramResult.svg && diagramRequired && !usedBasicDiagramFallback) {
-          const aiDiagramError = diagramResult.error;
-          const fallbackDiagram = createBasicCircuitDiagram(questionText);
-          console.warn("[Schemdraw] Retrying with simplified generated instructions.");
-          // Clean fallback as well
-          const fallbackCleaned = cleanAndNormalizeDiagram(fallbackDiagram.schemdraw_instructions ?? []);
-          diagramResult = await renderSchemdrawSvg(fallbackCleaned);
-          parsed.diagram = fallbackDiagram;
-          if (!diagramResult.svg && aiDiagramError) {
-            diagramResult.error = `${aiDiagramError}\n${diagramResult.error ?? ""}`.trim();
+        console.log("[Schemdraw] Rendering final diagram SVG...");
+        const result = await renderSchemdrawSvg(mainInstructions);
+        if (result.svg) {
+          parsed.diagram.svg = result.svg;
+          delete parsed.diagram.error;
+        } else if (result.error) {
+          parsed.diagram.error = result.error;
+          // Retry with keyword fallback
+          if (!usedBasicDiagramFallback) {
+            const fallback = createBasicCircuitDiagram(questionText);
+            const fbInstr = closeCircuitInstructions(forceRectangularLayout(cleanAndNormalizeDiagram(fallback.schemdraw_instructions ?? [])));
+            const fbResult = await renderSchemdrawSvg(fbInstr);
+            if (fbResult.svg) {
+              parsed.diagram = { ...fallback, schemdraw_instructions: fbInstr, svg: fbResult.svg };
+            }
           }
         }
-
-        if (diagramResult.svg) {
-          parsed.diagram.svg = diagramResult.svg;
-          delete parsed.diagram.error;
-        } else if (diagramResult.error) {
-          parsed.diagram.error = diagramResult.error;
-        }
       } catch (err) {
-        console.error("[Schemdraw] Failed to execute python:", err);
-        parsed.diagram.error = err instanceof Error ? err.message : "Failed to execute Python diagram generator.";
+        console.error("[Schemdraw] Failed to render main diagram:", err);
+        if (parsed.diagram) parsed.diagram.error = err instanceof Error ? err.message : "Failed to render circuit diagram.";
       }
     }
 
-    // Process step-by-step diagrams if returned by the AI
+    // STEP DIAGRAMS: convert logical component lists → unique SVGs per step
     if (Array.isArray(parsed.steps)) {
-      // Keep track of diagram signatures to avoid duplication
-      const mainInstructionsJson = parsed.diagram?.schemdraw_instructions
-        ? JSON.stringify(parsed.diagram.schemdraw_instructions)
-        : "";
-      const seenDiagrams = new Set<string>();
-      if (mainInstructionsJson) {
-        seenDiagrams.add(mainInstructionsJson);
+      const seenSignatures = new Set<string>();
+      // Seed with main diagram signature so steps don't duplicate it
+      if (parsed.diagram?.schemdraw_instructions) {
+        seenSignatures.add(JSON.stringify(parsed.diagram.schemdraw_instructions));
       }
 
       for (const step of parsed.steps) {
-        if (step.diagram && Array.isArray(step.diagram.schemdraw_instructions) && step.diagram.schemdraw_instructions.length > 0) {
-          // Clean labels and convert deactivated/shorted sources
-          const cleaned = cleanAndNormalizeDiagram(step.diagram.schemdraw_instructions);
-          // Normalize instructions layout first so signatures match correctly
-          const normalized = closeCircuitInstructions(forceRectangularLayout(cleaned));
-          const signature = JSON.stringify(normalized);
+        const rawDiag = step.diagram as any;
+        let stepInstructions: SchemdrawInstruction[] | null = null;
+        let stepDescription = `Step ${step.step} circuit`;
 
-          if (seenDiagrams.has(signature)) {
-            console.log(`[Schemdraw] Discarding duplicate diagram for step ${step.step}`);
-            step.diagram = null;
-            continue;
-          }
-
-          seenDiagrams.add(signature);
-          step.diagram.schemdraw_instructions = normalized;
-
-          try {
-            console.log(`[Schemdraw] Generating SVG for step ${step.step}...`);
-            const stepDiagResult = await renderSchemdrawSvg(step.diagram.schemdraw_instructions);
-            if (stepDiagResult.svg) {
-              step.diagram.svg = stepDiagResult.svg;
-              delete step.diagram.error;
-            } else if (stepDiagResult.error) {
-              step.diagram.error = stepDiagResult.error;
-            }
-          } catch (err) {
-            console.error(`[Schemdraw] Failed to render step ${step.step} diagram:`, err);
-            step.diagram.error = err instanceof Error ? err.message : "Failed to render step diagram.";
-          }
-        } else {
-          step.diagram = null;
+        if (rawDiag?.components && Array.isArray(rawDiag.components) && rawDiag.components.length > 0) {
+          // New logical component format
+          stepDescription = rawDiag.description || stepDescription;
+          const raw = buildSchemdrawFromLogical(rawDiag.components as LogicalComponent[]);
+          const cleaned = cleanAndNormalizeDiagram(raw);
+          stepInstructions = closeCircuitInstructions(forceRectangularLayout(cleaned));
+        } else if (rawDiag?.schemdraw_instructions && Array.isArray(rawDiag.schemdraw_instructions) && rawDiag.schemdraw_instructions.length > 0) {
+          // Backward-compat: raw schemdraw instructions
+          stepDescription = rawDiag.description || stepDescription;
+          const cleaned = cleanAndNormalizeDiagram(rawDiag.schemdraw_instructions);
+          stepInstructions = closeCircuitInstructions(forceRectangularLayout(cleaned));
         }
+
+        if (!stepInstructions || stepInstructions.length === 0) {
+          step.diagram = null;
+          continue;
+        }
+
+        const signature = JSON.stringify(stepInstructions);
+        if (seenSignatures.has(signature)) {
+          console.log(`[Schemdraw] Step ${step.step}: duplicate diagram discarded.`);
+          step.diagram = null;
+          continue;
+        }
+        seenSignatures.add(signature);
+
+        const stepDiagData: DiagramData = {
+          description: stepDescription,
+          schemdraw_instructions: stepInstructions,
+        };
+
+        try {
+          console.log(`[Schemdraw] Rendering SVG for step ${step.step}...`);
+          const result = await renderSchemdrawSvg(stepInstructions);
+          if (result.svg) {
+            stepDiagData.svg = result.svg;
+          } else if (result.error) {
+            stepDiagData.error = result.error;
+          }
+        } catch (err) {
+          stepDiagData.error = err instanceof Error ? err.message : "Failed to render step diagram.";
+        }
+
+        (step as any).diagram = stepDiagData;
       }
     }
 

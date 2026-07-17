@@ -1257,7 +1257,7 @@ function cleanLabelText(text: string): string {
     .replace(/\\,/g, " ")
     .replace(/_\{([^}]+)\}/g, "$1")   // R_{th} → Rth
     .replace(/_([A-Za-z0-9])/g, "$1") // R_1 → R1
-    .replace(/[\{\}\$\]/g, "")        // strip remaining braces/dollars/backslashes
+    .replace(/[{}$]/g, "")        // strip remaining braces/dollars
     .replace(/\\/g, "")
     .replace(/\s+/g, " ")
     .trim();

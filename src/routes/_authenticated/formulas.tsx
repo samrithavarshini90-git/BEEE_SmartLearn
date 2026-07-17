@@ -100,7 +100,7 @@ function MathFormula({ text }: { text: string }) {
     if (!match) break;
     const idx = store.length;
     store.push({ type: "sqrt", content1: match[1] });
-    raw = raw.replace(match[0], `__MATH_STORE_${idx}__`);
+    raw = raw.replace(match[0], `XZMATHSTORE${idx}XZ`);
   }
 
   // Match nested fractions: \frac{num}{den}
@@ -109,7 +109,7 @@ function MathFormula({ text }: { text: string }) {
     if (!match) break;
     const idx = store.length;
     store.push({ type: "fraction", content1: match[1], content2: match[2] });
-    raw = raw.replace(match[0], `__MATH_STORE_${idx}__`);
+    raw = raw.replace(match[0], `XZMATHSTORE${idx}XZ`);
   }
 
   // Match subscripts: _{sub} or _s
@@ -121,7 +121,7 @@ function MathFormula({ text }: { text: string }) {
     if (!match) break;
     const idx = store.length;
     store.push({ type: "sub", content1: match[1] });
-    raw = raw.replace(match[0], `__MATH_STORE_${idx}__`);
+    raw = raw.replace(match[0], `XZMATHSTORE${idx}XZ`);
   }
 
   // Match superscripts: ^{sup} or ^s
@@ -133,16 +133,16 @@ function MathFormula({ text }: { text: string }) {
     if (!match) break;
     const idx = store.length;
     store.push({ type: "sup", content1: match[1] });
-    raw = raw.replace(match[0], `__MATH_STORE_${idx}__`);
+    raw = raw.replace(match[0], `XZMATHSTORE${idx}XZ`);
   }
 
   // Recursively reconstruct the stored elements into proper React components
   function expand(str: string): React.ReactNode {
-    const parts = str.split(/(__MATH_STORE_\d+__)/g);
+    const parts = str.split(/(XZMATHSTORE\d+XZ)/g);
     return (
       <>
         {parts.map((part, i) => {
-          const match = part.match(/__MATH_STORE_(\d+)__/);
+          const match = part.match(/XZMATHSTORE(\d+)XZ/);
           if (!match) {
             let cleaned = part
               .replace(/\\text\{([^}]+)\}/g, "$1")

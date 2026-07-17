@@ -94,25 +94,7 @@ function MathFormula({ text }: { text: string }) {
   // Intermediate storage for nested components (fractions, square roots, scripts)
   const store: { type: "fraction" | "sqrt" | "sub" | "sup"; content1: string; content2?: string }[] = [];
 
-  // Match nested square roots first: \sqrt{inner}
-  while (true) {
-    const match = raw.match(/\\sqrt\{([^{}]+)\}/);
-    if (!match) break;
-    const idx = store.length;
-    store.push({ type: "sqrt", content1: match[1] });
-    raw = raw.replace(match[0], `XZMATHSTORE${idx}XZ`);
-  }
-
-  // Match nested fractions: \frac{num}{den}
-  while (true) {
-    const match = raw.match(/\\frac\{([^{}]+)\}\{([^{}]+)\}/);
-    if (!match) break;
-    const idx = store.length;
-    store.push({ type: "fraction", content1: match[1], content2: match[2] });
-    raw = raw.replace(match[0], `XZMATHSTORE${idx}XZ`);
-  }
-
-  // Match subscripts: _{sub} or _s
+  // Match subscripts: _{sub} or _s (do this first so subscripts inside frac/sqrt get tokenized)
   while (true) {
     let match = raw.match(/_\{([^{}]+)\}/);
     if (!match) {
@@ -133,6 +115,24 @@ function MathFormula({ text }: { text: string }) {
     if (!match) break;
     const idx = store.length;
     store.push({ type: "sup", content1: match[1] });
+    raw = raw.replace(match[0], `XZMATHSTORE${idx}XZ`);
+  }
+
+  // Match nested square roots: \sqrt{inner}
+  while (true) {
+    const match = raw.match(/\\sqrt\{([^{}]+)\}/);
+    if (!match) break;
+    const idx = store.length;
+    store.push({ type: "sqrt", content1: match[1] });
+    raw = raw.replace(match[0], `XZMATHSTORE${idx}XZ`);
+  }
+
+  // Match nested fractions: \frac{num}{den}
+  while (true) {
+    const match = raw.match(/\\frac\{([^{}]+)\}\{([^{}]+)\}/);
+    if (!match) break;
+    const idx = store.length;
+    store.push({ type: "fraction", content1: match[1], content2: match[2] });
     raw = raw.replace(match[0], `XZMATHSTORE${idx}XZ`);
   }
 

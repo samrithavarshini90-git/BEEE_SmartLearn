@@ -104,6 +104,7 @@ function MathFormula({ text }: { text: string }) {
 
   // Clean math formatting and normalize operators
   let raw = text
+    .replace(/\b(omega|phi|theta|pi|tau|eta|gamma|alpha|beta|delta|epsilon|w)(\d+)\b/gi, "$1_$2")
     .replace(/\\,/g, " ")
     .replace(/\\ /g, " ")
     .replace(/\\cdot/g, " · ")
@@ -117,21 +118,21 @@ function MathFormula({ text }: { text: string }) {
     .replace(/\\left\(/g, "(")
     .replace(/\\right\)/g, ")");
 
-  // Standard Greek character substitutions (supports \omega, omega, and omega followed by XZMATHSTORE token)
+  // Standard Greek character substitutions (matches \omega, omega, omega_0, omega0 without requiring word boundary after digits)
   const greekLetters: [RegExp, string][] = [
-    [/(?:\\|\b)pi(?:\b|XZMATHSTORE)/g, "π"],
-    [/(?:\\|\b)phi(?:\b|XZMATHSTORE)/g, "φ"],
-    [/(?:\\|\b)omega(?:\b|XZMATHSTORE)/g, "ω"],
-    [/(?:\\|\b)theta(?:\b|XZMATHSTORE)/g, "θ"],
-    [/(?:\\|\b)Delta(?:\b|XZMATHSTORE)/g, "Δ"],
-    [/(?:\\|\b)delta(?:\b|XZMATHSTORE)/g, "δ"],
-    [/(?:\\|\b)alpha(?:\b|XZMATHSTORE)/g, "α"],
-    [/(?:\\|\b)beta(?:\b|XZMATHSTORE)/g, "β"],
-    [/(?:\\|\b)epsilon(?:\b|XZMATHSTORE)/g, "ε"],
-    [/(?:\\|\b)tau(?:\b|XZMATHSTORE)/g, "τ"],
-    [/(?:\\|\b)eta(?:\b|XZMATHSTORE)/g, "η"],
-    [/(?:\\|\b)gamma(?:\b|XZMATHSTORE)/g, "γ"],
-    [/(?:\\|\b)Phi(?:\b|XZMATHSTORE)/g, "Φ"]
+    [/(?:\\|\b)pi(?![a-z])/gi, "π"],
+    [/(?:\\|\b)phi(?![a-z])/gi, "φ"],
+    [/(?:\\|\b)omega(?![a-z])/gi, "ω"],
+    [/(?:\\|\b)theta(?![a-z])/gi, "θ"],
+    [/(?:\\|\b)Delta(?![a-z])/g, "Δ"],
+    [/(?:\\|\b)delta(?![a-z])/gi, "δ"],
+    [/(?:\\|\b)alpha(?![a-z])/gi, "α"],
+    [/(?:\\|\b)beta(?![a-z])/gi, "β"],
+    [/(?:\\|\b)epsilon(?![a-z])/gi, "ε"],
+    [/(?:\\|\b)tau(?![a-z])/gi, "τ"],
+    [/(?:\\|\b)eta(?![a-z])/gi, "η"],
+    [/(?:\\|\b)gamma(?![a-z])/gi, "γ"],
+    [/(?:\\|\b)Phi(?![a-z])/g, "Φ"]
   ];
   for (const [pattern, val] of greekLetters) {
     raw = raw.replace(pattern, val);

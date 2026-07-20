@@ -20,6 +20,13 @@ import {
 
 function formatVariableSymbol(symbol: string): string {
   if (!symbol) return "";
+
+  // Handle delta(X) or \delta(X) or \Delta(X) -> \Delta X (e.g., delta(I_D) -> \Delta I_D)
+  const deltaMatch = symbol.match(/^(?:\\)?delta\((.+)\)$/i);
+  if (deltaMatch) {
+    return `\\Delta ${deltaMatch[1]}`;
+  }
+
   if (symbol.includes("_") || symbol.includes("\\")) return symbol;
 
   const exactMap: Record<string, string> = {
@@ -54,7 +61,27 @@ function formatVariableSymbol(symbol: string): string {
     "R": "R",
     "X": "X",
     "XL": "X_L",
-    "XC": "X_C"
+    "XC": "X_C",
+    "VGS": "V_{GS}",
+    "VDS": "V_{DS}",
+    "VCE": "V_{CE}",
+    "VBE": "V_{BE}",
+    "VCB": "V_{CB}",
+    "VCC": "V_{CC}",
+    "VEE": "V_{EE}",
+    "VDD": "V_{DD}",
+    "VSS": "V_{SS}",
+    "IC": "I_C",
+    "IB": "I_B",
+    "IE": "I_E",
+    "ID": "I_D",
+    "IS": "I_S",
+    "IG": "I_G",
+    "IDSS": "I_{DSS}",
+    "VP": "V_P",
+    "gm": "g_m",
+    "rd": "r_d",
+    "rf": "r_f"
   };
 
   if (exactMap[symbol]) return exactMap[symbol];
@@ -65,8 +92,8 @@ function formatVariableSymbol(symbol: string): string {
     return `\\${greekMatch[1]}_{${greekMatch[2]}}`;
   }
 
-  // Capital letter followed by alphanumeric subscript content
-  if (/^[V|I|R|P|E|Z|X|S|Q|C|L][A-Za-z0-9]+$/.test(symbol)) {
+  // Capital letter followed by subscript content (e.g., Vth -> V_{th})
+  if (/^[V|I|R|P|E|Z|X|S|Q|C|L|A|B|f|g][A-Za-z0-9]+$/.test(symbol)) {
     return `${symbol[0]}_{${symbol.slice(1)}}`;
   }
   return symbol;
@@ -113,11 +140,11 @@ function MathFormula({ text }: { text: string }) {
   // Intermediate storage for nested components (fractions, square roots, scripts)
   const store: { type: "fraction" | "sqrt" | "sub" | "sup"; content1: string; content2?: string }[] = [];
 
-  // Match subscripts: _{sub} or _s (do this first so subscripts inside frac/sqrt get tokenized)
+  // Match subscripts: _{sub} or _sub (do this first so subscripts inside frac/sqrt get tokenized)
   while (true) {
     let match = raw.match(/_\{([^{}]+)\}/);
     if (!match) {
-      match = raw.match(/_([A-Za-z0-9])/);
+      match = raw.match(/_([A-Za-z0-9]+)/);
     }
     if (!match) break;
     const idx = store.length;
@@ -125,11 +152,11 @@ function MathFormula({ text }: { text: string }) {
     raw = raw.replace(match[0], `XZMATHSTORE${idx}XZ`);
   }
 
-  // Match superscripts: ^{sup} or ^s
+  // Match superscripts: ^{sup} or ^sup
   while (true) {
     let match = raw.match(/\^\{([^{}]+)\}/);
     if (!match) {
-      match = raw.match(/\^([A-Za-z0-9])/);
+      match = raw.match(/\^([A-Za-z0-9]+)/);
     }
     if (!match) break;
     const idx = store.length;

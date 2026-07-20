@@ -38,6 +38,18 @@ function formatVariableSymbol(symbol: string): string {
     "omega": "\\omega",
     "theta": "\\theta",
     "pi": "\\pi",
+    "tau": "\\tau",
+    "eta": "\\eta",
+    "gamma": "\\gamma",
+    "alpha": "\\alpha",
+    "beta": "\\beta",
+    "delta": "\\delta",
+    "epsilon": "\\epsilon",
+    "w0": "\\omega_0",
+    "w": "\\omega",
+    "wn": "\\omega_n",
+    "w1": "\\omega_1",
+    "w2": "\\omega_2",
     "Z": "Z",
     "R": "R",
     "X": "X",
@@ -46,6 +58,12 @@ function formatVariableSymbol(symbol: string): string {
   };
 
   if (exactMap[symbol]) return exactMap[symbol];
+
+  // Match Greek prefix followed by subscript content (e.g., phicarrier -> \phi_{carrier}, omega0 -> \omega_0)
+  const greekMatch = symbol.match(/^(phi|omega|theta|pi|tau|eta|gamma|alpha|beta|delta|epsilon)([A-Za-z0-9]+)$/);
+  if (greekMatch) {
+    return `\\${greekMatch[1]}_{${greekMatch[2]}}`;
+  }
 
   // Capital letter followed by alphanumeric subscript content
   if (/^[V|I|R|P|E|Z|X|S|Q|C|L][A-Za-z0-9]+$/.test(symbol)) {
@@ -68,24 +86,25 @@ function MathFormula({ text }: { text: string }) {
     .replace(/\\propto/g, " ∝ ")
     .replace(/\\\*/g, " · ")
     .replace(/\*/g, " · ")
+    .replace(/\\(?:c|l)?dots/g, "...")
     .replace(/\\left\(/g, "(")
     .replace(/\\right\)/g, ")");
 
-  // Standard Greek character substitutions
+  // Standard Greek character substitutions (supports \omega, omega, and omega followed by XZMATHSTORE token)
   const greekLetters: [RegExp, string][] = [
-    [/\\pi\b/g, "π"],
-    [/\\phi\b/g, "φ"],
-    [/\\omega\b/g, "ω"],
-    [/\\theta\b/g, "θ"],
-    [/\\Delta\b/g, "Δ"],
-    [/\\delta\b/g, "δ"],
-    [/\\alpha\b/g, "α"],
-    [/\\beta\b/g, "β"],
-    [/\\epsilon\b/g, "ε"],
-    [/\\tau\b/g, "τ"],
-    [/\\eta\b/g, "η"],
-    [/\\gamma\b/g, "γ"],
-    [/\\Phi\b/g, "Φ"]
+    [/(?:\\|\b)pi(?:\b|XZMATHSTORE)/g, "π"],
+    [/(?:\\|\b)phi(?:\b|XZMATHSTORE)/g, "φ"],
+    [/(?:\\|\b)omega(?:\b|XZMATHSTORE)/g, "ω"],
+    [/(?:\\|\b)theta(?:\b|XZMATHSTORE)/g, "θ"],
+    [/(?:\\|\b)Delta(?:\b|XZMATHSTORE)/g, "Δ"],
+    [/(?:\\|\b)delta(?:\b|XZMATHSTORE)/g, "δ"],
+    [/(?:\\|\b)alpha(?:\b|XZMATHSTORE)/g, "α"],
+    [/(?:\\|\b)beta(?:\b|XZMATHSTORE)/g, "β"],
+    [/(?:\\|\b)epsilon(?:\b|XZMATHSTORE)/g, "ε"],
+    [/(?:\\|\b)tau(?:\b|XZMATHSTORE)/g, "τ"],
+    [/(?:\\|\b)eta(?:\b|XZMATHSTORE)/g, "η"],
+    [/(?:\\|\b)gamma(?:\b|XZMATHSTORE)/g, "γ"],
+    [/(?:\\|\b)Phi(?:\b|XZMATHSTORE)/g, "Φ"]
   ];
   for (const [pattern, val] of greekLetters) {
     raw = raw.replace(pattern, val);
